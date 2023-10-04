@@ -1,0 +1,56 @@
+<ng-container *ngIf="agendadasCliente[0]">
+  <div class="row mt-4">
+    <p class="p-bold-500-20"> Orden  <span class="p-300">#{{agendadasCliente[0].id}}</span></p>
+    <p class="p-normal-300-16">Reservada el {{agendadasCliente[0].booking_start_date}} por {{agendadasCliente[0].name}}</p>
+    <div class="col-4">
+         <span class="badge bg-warning text-white">{{agendadasCliente[0].status}}</span>
+    </div>
+
+  </div>
+  <div class="row mt-4">
+     <p class="p-normal-300-20"> Detalles</p>
+
+
+  </div>
+  <div class="row px-2">
+     <table class="table">
+         <thead>
+             <tr>
+                 <th scope="col">Producto</th>
+                 <th scope="col">Total</th>
+
+             </tr>
+         </thead>
+         <tbody>
+             <tr>
+                 <td scope="row">{{agendadasCliente[0].title}}</td>
+                 <td>{{agendadasCliente[0].price}}</td>
+
+
+             </tr>
+             <tr>
+             <td scope="row">Subtotal</td>
+                 <td>{{agendadasCliente[0].price}}</td>
+
+             <tr>
+                 <td scope="row">Método de pago</td>
+                 <td>{{agendadasCliente[0].payment_method}}</td>
+             </tr>
+             <tr>
+                 <td scope="row" class="total-table">Total</td>
+                 <td>{{agendadasCliente[0].price}}</td>
+             </tr>
+         </tbody>
+     </table>
+  </div>
+
+</ng-container>
+
+
+
+
+
+
+
+
+

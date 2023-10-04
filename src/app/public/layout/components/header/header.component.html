@@ -1,0 +1,172 @@
+<header class="header-container">
+
+  <!--nav-->
+  <nav class="navh navbar navbar-expand-lg navbar-dark " style="
+  background: white;" id="navbarprinc">
+    <div class="container_nav " style="justify-content: center; align-items: center;   display: flex;">
+
+
+
+      <a class="navbar-brand" routerLink="" style="flex-basis: 20%;  display: flex;
+      justify-content: center;">
+        <!-- Migrago -->
+        <img src="assets/images/icons/Migrago_fondo_transparente.png"  style=" width: 100px;height: 50px;">
+      </a>
+
+      <a routerLink="/auth/login" class="btn custom-btn btn-ingresa-princ d-lg-none ms-auto me-4" *ngIf="!estalogeado">Ingresa</a>
+       <div class="dropdown d-lg-none ms-auto" *ngIf="estalogeado">
+        <div class="perfil-info">
+          <a class=" perfil-icon">
+            <i class="fas fa-user-circle"></i>
+          </a>
+          <span class="nombre-usuario dropdown-toggle me-4" href="#" role="button" id="perfilDropdown"
+            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username}}</span>
+          <!-- <div class="dropdown-menu" aria-labelledby="perfilDropdown">
+            <a class="dropdown-item" href="#">Perfil</a>
+            <a class="dropdown-item" href="#">Configuración</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Salir de sesión</a>
+          </div> -->
+          <div class="dropdown-menu" [ngSwitch]="rolUsuario" aria-labelledby="perfilDropdown">
+            <ng-container *ngSwitchCase='"ROLE_CLIENT"'>
+              <a class="dropdown-item" routerLink="/auth/dashboardCliente/agendadas">Agendadas</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardCliente/historico">Históricas</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardCliente/perfil">Actualizar Perfil</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardCliente/cambiar">Cambiar Contraseña</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+            </ng-container>
+            <ng-container *ngSwitchCase='"ROLE_GUIDE"' >
+              <a class="dropdown-item" routerLink="/auth/dashboardGuia/dashboard">Panel</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardGuia/historias">Mis Historias</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardGuia/agenda">Agenda</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardGuia/agendadas">Citas Agendadas</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardGuia/perfil">Actualizar Perfil</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardGuia/cambiar">Cambiar Contraseña</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+            </ng-container>
+
+
+          </div>
+        </div>
+
+
+      </div>
+      <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        style="color: black;">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+
+
+      <div class="collapse navbar-collapse" id="navbarCollapse" style="justify-content: center;">
+
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item">
+            <a class="nav-head-principal" routerLink="/historias"><strong>Historias</strong></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-head-principal" routerLink="/temas"><strong>Temas</strong></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-head-principal" routerLink="/unete"><strong>Únete</strong>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-head-principal" href="/"><strong>Blog</strong></a>
+          </li>
+        </ul>
+
+
+      </div>
+
+
+      <div class="botonesnav" style="align-items: center;justify-content: center;flex-basis: 50%;">
+        <select id="language" class="d-lg-block d-none idioma" style="color: #000;">
+          <option value="English">ES</option>
+          <option value="Spanish">EN</option>
+
+        </select>
+
+
+         <a routerLink="/auth/login"  id="ingresaprinc" class="btn-ingresa-princ btn custom-btn d-lg-block d-none  me-2" *ngIf="!estalogeado">Ingresa</a>
+        <a  class="btn custom-btn d-lg-block d-none btn-registrate" (click)="openModal(modalContent)" *ngIf="!estalogeado">Registrate</a>
+
+        <div *ngIf="estalogeado" class="dropdown">
+          <div class="perfil-info">
+            <a class=" perfil-icon">
+              <i class="fas fa-user-circle" style="font-size: 30px;"></i>
+              <!-- <img src="assets/images/icons/Logo-Footer-mobile.png"> -->
+            </a>
+            <span class="nombre-usuario dropdown-toggle" href="#" role="button" id="perfilDropdown"
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username}}</span>
+            <div class="dropdown-menu" [ngSwitch]="rolUsuario" aria-labelledby="perfilDropdown">
+              <ng-container *ngSwitchCase='"ROLE_CLIENT"'>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/agendadas">Agendadas</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/historico">Históricas</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/perfil">Actualizar Perfil</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/cambiar">Cambiar Contraseña</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+              </ng-container>
+              <ng-container *ngSwitchCase='"ROLE_GUIDE"' >
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/dashboard">Panel</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/historias">Mis Historias</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/agenda">Agenda</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/agendadas">Citas Agendadas</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/perfil">Actualizar Perfil</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/cambiar">Cambiar Contraseña</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+              </ng-container>
+
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+
+
+    </div>
+  </nav>
+  <!--end nav-->
+
+
+</header>
+
+<!-- Modal para el registro por web -->
+<ng-template #modalContent let-modal>
+
+
+  <div class="modal-contenido">
+
+    <div class="modal-body modal-login">
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')" style="
+      float: right;">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <app-registro-modal (closeModal)="cerrarModal()"></app-registro-modal>
+    </div>
+     <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Cerrar')">Cerrar</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('Guardar')">Guardar</button>
+    </div>  -->
+
+   </div>
+
+
+</ng-template>
+
+

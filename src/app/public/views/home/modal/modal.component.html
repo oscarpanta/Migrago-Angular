@@ -1,0 +1,87 @@
+
+
+
+        <div class="row ">
+          <div class="col-md-6 d-none d-md-block padding-0">
+            <img src="assets/images/imagen_prueba.jpg" class="img-fluid" style="min-height:100%;" />
+          </div>
+          <div class="col-md-6 bg-white px-4 py-5 padding-0 d-flex flex-column align-items-center">
+            <div class="row mb-4">
+              <span class="titulo-login-small">Únete a Migrago</span>
+            </div>
+            <div class="row btn-social">
+              <div class="">
+                <a href="" class="btn  mb-2  btn-facebook"><i class="fa-brands fa-facebook"></i> Continuar con
+                  Facebook</a>
+              </div>
+              <div class="">
+                <a href="" class="btn  mb-2  btn-google"><i class="fa-brands fa-google-plus-g"></i> Continuar con
+                  Google</a>
+              </div>
+              <div class="">
+                <a href="" class="btn mb-2  btn-aple"><i class="fa-brands fa-apple"></i> Continuar con Apple</a>
+              </div>
+
+
+            </div>
+            <div class="row">
+              <p>o</p>
+            </div>
+            <div class="row col-lg-12">
+              <form class="form-login" autocomplete="off"
+                [formGroup]="miFormulario"
+                (ngSubmit)="registro()">
+                <!-- <form class="form-login"> -->
+                  <div class="mb-4">
+                    <div class="form-group">
+
+                      <input type="email" formControlName="email" class="form-control" id="txtCorreo" aria-describedby="emailHelp"
+                        placeholder="Correo electrónico">
+                      <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <div class="form-group">
+
+
+                      <input type="password" formControlName="password"   name="password" class="form-control password1" value="clave"
+                        placeholder="Establecer contraseña">
+                      <span class="fa  password-icon show-password fa-eye"></span>
+
+
+                    </div>
+
+
+                  </div>
+
+                  <div class="mb-4">
+                    <button type="submit" class="btn btn-primary">Inicia sesión</button>
+                  </div>
+
+                <!-- </form> -->
+
+              </form>
+
+
+
+            </div>
+            <div class="row col-lg-8 text-center">
+              <span class="p-normal-300-10-black">Al unirme, acepto recibir correos electrónicos de MigraGo.</span>
+            </div>
+            <div class="col-lg-12 linea_black"></div>
+            <div class="row col-lg-10 text-center">
+              <div class="col-lg-6">
+                <span class="p-normal-300-10-black">¿Ya eres miembro?</span>
+              </div>
+
+              <div class="col-lg-6">
+                <a routerLink="/auth/login" class="p-normal-300-10 link-dashboard">Inicia sesión</a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+

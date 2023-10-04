@@ -1,0 +1,49 @@
+
+<div class="row mt-4 ms-4">
+  <p class="p-bold-500-20"> Histórico <br><span class="p-300">de citas</span></p>
+</div>
+<div class="row mt-4 px-5">
+   <table class="table">
+       <thead>
+           <tr>
+               <th scope="col">Orden</th>
+               <th scope="col">Fecha</th>
+               <th scope="col">Estado</th>
+               <th scope="col">Total</th>
+               <th scope="col">Acción</th>
+           </tr>
+       </thead>
+       <tbody>
+           <tr *ngFor="let cita of agendadasCliente ; let i = index">
+               <th scope="row">{{cita.id}}</th>
+               <td>{{cita.booking_start_date}}</td>
+               <td><span class="badge bg-success  text-white">{{cita.status}}</span></td>
+               <td>${{cita.price}} por cita</td>
+               <td><a [routerLink]="['../detalle']"  [queryParams]="{ cita_id: cita.id }" class="btn btn-info">Ver más</a></td>
+           </tr>
+           <!-- <tr>
+              <th scope="row">#485</th>
+               <td>23/06/23</td>
+               <td><span class="badge bg-dark text-white">Reprogramada</span></td>
+               <td>$99 por cita</td>
+               <td><a href="../views/detalle_historico_citas.php" class="btn btn-info">Ver más</a></td>
+            </tr>
+           <tr>
+              <th scope="row">#485</th>
+               <td>23/06/23</td>
+               <td><span class="badge bg-warning text-white">Completada</span></td>
+               <td>$99 por cita</td>
+               <td><a href="../views/detalle_historico_citas.php" class="btn btn-info">Ver más</a></td>
+           </tr> -->
+       </tbody>
+       </table>
+
+</div>
+
+
+
+
+
+
+
+

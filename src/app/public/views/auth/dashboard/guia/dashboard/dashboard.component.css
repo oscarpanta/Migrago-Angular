@@ -1,0 +1,10 @@
+.hov:hover{
+  opacity: 2;
+    z-index: 1000;
+    background-color: #00c1ff;
+
+}
+.hov:hover p {
+  color: white; /* Cambia el color del texto a blanco al hacer hover */
+}
+

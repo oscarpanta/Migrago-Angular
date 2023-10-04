@@ -1,0 +1,330 @@
+<section>
+  <div class="container-fluid d-grid gap-3 container__70_blanco container_10em">
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="row">
+          <p class="p-texto p-bold-500-20">
+            Temas
+
+          </p>
+          <p class="p-texto p-bold-500-20">
+            de interés
+
+          </p>
+
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="row">
+
+
+              <p class="p-normal-300-12">
+                <span class="p-bold-300-10-black"> Elige hasta 3 temas a la vez para una cita
+                  de 60 minutos.</span>
+                Por lo amplio de cada tema,
+                consideramos que se necesitan 20 min. para
+                explicar y recibir preguntas de cada uno.
+              </p>
+              <p class="p-normal-300-12">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing
+                elit, sed diam nonummy nibh euismod tincidunt
+                ut laoreet dolore magna aliquam.
+              </p>
+              <p class="p-normal-300-18">Nuestro propósito es ayudarte
+                a migrar de forma agradable y
+                segura,por eso, te invita
+                mos a conocer las historias
+                de personas que alguna vez
+                migraron como tú.</p>
+
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="text-center">
+          <img src="assets/images/imagen_prueba.jpg" alt="" class="img-fluid img_border">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section>
+  <ng-container *ngFor="let tema of Temas; let i = index">
+    <div *ngIf="i % 2 === 0" class="container-fluid d-grid gap-3 container__70_blanco container_2em_10em" >
+      <div class="row">
+        <div class="col-lg 6">
+          <p class="p-normal-20-naranja">
+            {{tema.title_description}}
+          </p>
+          <div class="linea_orange"></div>
+          <p class="p-bold-500-20">{{ formatDescriptionThemes(tema.details.data) }}</p>
+          <p>
+            {{tema.description_complete}}
+          </p>
+
+        </div>
+        <div class="col-lg-6">
+           <ngb-carousel *ngIf="tema && tema.images.data.length > 0">
+            <ng-template ngbSlide *ngFor="let image of tema.images.data">
+              <div class="picsum-img-wrapper">
+                <!-- <img [src]="'assets/images/images_themes/'+ tema.images.data" alt="Random first slide" /> -->
+                <img [src]="'assets/images/images_themes/' +image.image_group_themes" alt="Imagen del tema" />
+              </div>
+              <!-- <div class="carousel-caption">
+                <h3>First slide label</h3>
+                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              </div> -->
+            </ng-template>
+            </ngb-carousel>
+        </div>
+      </div>
+
+    </div>
+    <div *ngIf="i % 2 !== 0" class="container-fluid d-grid gap-3 container__70_gris container_2em_10em">
+      <div class="row">
+        <div class="col-lg 6">
+          <ngb-carousel *ngIf="tema && tema.images.data.length > 0">
+            <ng-template ngbSlide *ngFor="let image of tema.images.data">
+              <div class="picsum-img-wrapper">
+                <!-- <img [src]="'assets/images/images_themes/'+ tema.images.data" alt="Random first slide" /> -->
+                <img [src]="'assets/images/images_themes/' +image.image_group_themes" alt="Imagen del tema" />
+              </div>
+              <!-- <div class="carousel-caption">
+                <h3>First slide label</h3>
+                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              </div> -->
+            </ng-template>
+            </ngb-carousel>
+        </div>
+
+        <div class="col-lg 6">
+          <p class="p-normal-20-naranja">
+            {{tema.title_description}}
+          </p>
+          <div class="linea_orange"></div>
+          <p class="p-bold-500-20">{{ formatDescriptionThemes(tema.details.data) }}</p>
+          <p>
+            {{tema.description_complete}}
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </ng-container>
+
+  <!-- <div class="container-fluid d-grid gap-3 container__70_gris container_2em_10em">
+      <div class="row">
+          <div class="col-lg-6">
+
+          </div>
+          <div class="col-lg 6">
+              <p class="p-normal-20-naranja">
+                  TRANSPORTE Y MOVILIDAD
+              </p>
+              <div class="linea_orange"></div>
+              <p class="p-bold-500-20">Educacion niños, campamentos y daycares</p>
+              <p>
+              Aumenta ipsum dolor sit amet, consectetuer adipiscing elit,
+              sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+              magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+              quis nostrud exerci tation ullamcorper suscipit.
+              amet, consectetuer adipiscing elit, sed diam nonummy nibh
+              euismod tincidunt ut laoreet dolore magna aliquam erat
+              </p>
+          </div>
+
+      </div>
+
+  </div>
+  <div class="container-fluid d-grid gap-3 container__70_blanco container_2em_10em">
+      <div class="row">
+          <div class="col-lg 6">
+              <p class="p-normal-20-naranja">
+                  TRANSPORTE Y MOVILIDAD
+              </p>
+              <div class="linea_orange"></div>
+              <p class="p-bold-500-20">Salud, entretenimiento y mascotas</p>
+              <p>
+              Aumenta ipsum dolor sit amet, consectetuer adipiscing elit,
+              sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+              magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+              quis nostrud exerci tation ullamcorper suscipit.
+              amet, consectetuer adipiscing elit, sed diam nonummy nibh
+              euismod tincidunt ut laoreet dolore magna aliquam erat
+              </p>
+          </div>
+          <div class="col-lg-6">
+
+          </div>
+      </div>
+
+  </div>
+  <div class="container-fluid d-grid gap-3 container__70_gris container_2em_10em">
+      <div class="row">
+          <div class="col-lg 6">
+          </div>
+
+          <div class="col-lg 6">
+              <p class="p-normal-20-naranja">
+                      TRANSPORTE Y MOVILIDAD
+              </p>
+              <div class="linea_orange"></div>
+              <p class="p-bold-500-20">Educacion niños, campamentos y daycares</p>
+              <p>
+              Aumenta ipsum dolor sit amet, consectetuer adipiscing elit,
+              sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+              magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+              quis nostrud exerci tation ullamcorper suscipit.
+              amet, consectetuer adipiscing elit, sed diam nonummy nibh
+              euismod tincidunt ut laoreet dolore magna aliquam erat
+              </p>
+          </div>
+
+      </div>
+
+  </div>
+  <div class="container-fluid d-grid gap-3 container__70_blanco container_2em_10em">
+      <div class="row">
+          <div class="col-lg 6">
+              <p class="p-normal-20-naranja">
+                  TRANSPORTE Y MOVILIDAD
+              </p>
+              <div class="linea_orange"></div>
+              <p class="p-bold-500-20">Salud, entretenimiento y mascotas</p>
+              <p>
+              Aumenta ipsum dolor sit amet, consectetuer adipiscing elit,
+              sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+              magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+              quis nostrud exerci tation ullamcorper suscipit.
+              amet, consectetuer adipiscing elit, sed diam nonummy nibh
+              euismod tincidunt ut laoreet dolore magna aliquam erat
+              </p>
+          </div>
+          <div class="col-lg-6">
+
+          </div>
+      </div>
+
+  </div>
+  <div class="container-fluid d-grid gap-3 container__70_gris container_2em_10em">
+      <div class="row">
+          <div class="col-lg-6">
+
+          </div>
+          <div class="col-lg 6">
+              <p class="p-normal-20-naranja">
+                  TRANSPORTE Y MOVILIDAD
+              </p>
+              <div class="linea_orange"></div>
+              <p class="p-bold-500-20">Educacion niños, campamentos y daycares</p>
+              <p>
+              Aumenta ipsum dolor sit amet, consectetuer adipiscing elit,
+              sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+              magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+              quis nostrud exerci tation ullamcorper suscipit.
+              amet, consectetuer adipiscing elit, sed diam nonummy nibh
+              euismod tincidunt ut laoreet dolore magna aliquam erat
+              </p>
+          </div>
+
+      </div>
+
+  </div>
+  <div class="container-fluid d-grid gap-3 container__70_blanco container_2em_10em">
+      <div class="row">
+          <div class="col-lg 6">
+              <p class="p-normal-20-naranja">
+                  TRANSPORTE Y MOVILIDAD
+              </p>
+              <div class="linea_orange"></div>
+              <p class="p-bold-500-20">Salud, entretenimiento y mascotas</p>
+              <p>
+              Aumenta ipsum dolor sit amet, consectetuer adipiscing elit,
+              sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+              magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+              quis nostrud exerci tation ullamcorper suscipit.
+              amet, consectetuer adipiscing elit, sed diam nonummy nibh
+              euismod tincidunt ut laoreet dolore magna aliquam erat
+              </p>
+          </div>
+          <div class="col-lg-6">
+
+          </div>
+      </div>
+
+  </div>
+  <div class="container-fluid d-grid gap-3 container__70_gris container_2em_10em">
+      <div class="row">
+          <div class="col-lg-6">
+
+          </div>
+          <div class="col-lg 6">
+              <p class="p-normal-20-naranja">
+                  TRANSPORTE Y MOVILIDAD
+              </p>
+              <div class="linea_orange"></div>
+              <p class="p-bold-500-20">Educacion niños, campamentos y daycares</p>
+              <p>
+              Aumenta ipsum dolor sit amet, consectetuer adipiscing elit,
+              sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+              magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+              quis nostrud exerci tation ullamcorper suscipit.
+              amet, consectetuer adipiscing elit, sed diam nonummy nibh
+              euismod tincidunt ut laoreet dolore magna aliquam erat
+              </p>
+          </div>
+
+      </div>
+
+  </div>
+  <div class="container-fluid d-grid gap-3 container__70_blanco container_2em_10em">
+      <div class="row">
+          <div class="col-lg 6">
+              <p class="p-normal-20-naranja">
+                  TRANSPORTE Y MOVILIDAD
+              </p>
+              <div class="linea_orange"></div>
+              <p class="p-bold-500-20">Salud, entretenimiento y mascotas</p>
+              <p>
+              Aumenta ipsum dolor sit amet, consectetuer adipiscing elit,
+              sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+              magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+              quis nostrud exerci tation ullamcorper suscipit.
+              amet, consectetuer adipiscing elit, sed diam nonummy nibh
+              euismod tincidunt ut laoreet dolore magna aliquam erat
+              </p>
+          </div>
+          <div class="col-lg-6">
+
+          </div>
+      </div>
+
+  </div> -->
+
+</section>
+<section>
+  <div class="container-fluid d-grid gap-3 container__70_azul container_2em_10em">
+          <div class="row">
+
+                  <div class="col-sm-8">
+                      <p class="p-bold-500-20">Encuentra historias como la tuya</p>
+                  </div>
+                  <div class="col-sm-4">
+                      <a  class="btn btn-primary p-bold-500-18">Descubre Historias</a>
+                  </div>
+
+          </div>
+
+  </div>
+</section>

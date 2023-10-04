@@ -1,0 +1,213 @@
+<div class="row mt-4">
+  <p class="p-bold-500-20">
+    <label>Citas</label><br>
+    <label style="
+    margin-right: 1rem; font-weight: 300;">agendadas</label>
+  </p>
+</div>
+<ng-container *ngIf="agendadasCliente.length==0">
+  <p><strong class="p-bold-500-18">SIN CITAS</strong></p>
+</ng-container>
+<ng-container *ngFor="let cita of agendadasCliente ; let i = index">
+  <a class="btn-citas" data-bs-toggle="modal" data-bs-target="#modalCitaAgendada" (click)="obtenerDetalleAgendada(cita)">
+
+    <div class="card mb-5">
+      <div class="card-body px-5 pt-4">
+        <div class="row">
+          <p class="p-bold-500-18" style="font-size: 15pt;">Cita Agendada #{{cita.id}}</p>
+        </div>
+        <div class="row">
+          <p class="p-normal-300-16">{{cita.title}}</p>
+        </div>
+        <div class="row mb-3">
+          <div class="container_etiquetas mt-1">
+            <div class="container__body__etiqueta__dashboard">
+              {{cita.status}}
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <p class="p-normal-300-12">Reservada el {{cita.booking_start_date}}</p>
+        </div>
+      </div>
+    </div>
+  </a>
+
+</ng-container>
+
+<!-- <a href="" class="btn-citas" data-bs-toggle="modal" data-bs-target="#modalCitaAgendada">
+  <div class="card mb-5">
+    <div class="card-body px-5 pt-4">
+      <div class="row">
+        <p class="p-bold-500-18">Cita Agendada #434</p>
+      </div>
+      <div class="row">
+        <p class="p-normal-300-16">Al mes conseguí trabajo en ventas</p>
+      </div>
+      <div class="row mb-3">
+        <div class="container_etiquetas mt-1">
+          <div class="container__body__etiqueta__dashboard">
+            Confirmada
+          </div>
+
+        </div>
+      </div>
+      <div class="row">
+        <p class="p-normal-300-16">Reservada el 13/07/2023</p>
+      </div>
+    </div>
+  </div>
+</a>
+<a href="" class="btn-citas" data-bs-toggle="modal" data-bs-target="#modalCitaAgendada">
+  <div class="card mb-5">
+    <div class="card-body px-5 pt-4">
+      <div class="row">
+        <p class="p-bold-500-18">Cita Agendada #434</p>
+      </div>
+      <div class="row">
+        <p class="p-normal-300-16">Al mes conseguí trabajo en ventas</p>
+      </div>
+      <div class="row mb-3">
+        <div class="container_etiquetas mt-1">
+          <div class="container__body__etiqueta__dashboard">
+            Confirmada
+          </div>
+
+        </div>
+      </div>
+      <div class="row">
+        <p class="p-normal-300-16">Reservada el 13/07/2023</p>
+      </div>
+    </div>
+  </div>
+</a> -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalCitaAgendada" tabindex="-1" aria-labelledby="modalCitaAgendada" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content modal-transparente">
+
+      <div class="modal-body">
+        <nav>
+          <div class="nav nav-tabs nav-pills nav-fill" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+              type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+              Temas
+            </button>
+            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+              type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+              preguntas
+            </button>
+            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+              type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
+              Gestión de citas
+            </button>
+          </div>
+        </nav>
+        <div class="modal-body-blanco px-5 py-3">
+          <div class="tab-content text-center" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div class="row col-lg-7 mx-auto mb-3">
+                <span class="p-bold-500-20">Temas <span style="font-weight: 300;">de interés elegidos</span></span>
+
+              </div>
+              <div class="row col-lg-8 mx-auto mb-3">
+                <p class="p-bold-400-14">Has elegido {{cantTemas}} temas para una cita de 60 minutos </p>
+              </div>
+              <div class="row col-lg-8 mx-auto p-normal-300-12 categorias mb-3">
+                <p *ngFor="let temas of agendadasDetalle">{{temas.description}}</p>
+              </div>
+              <div class="row p-normal-300-9">
+                <p>Por lo amplio de cada tema, consideramos que se necesitan 20 min. para explicar y recibir preguntas
+                  de cada uno.</p>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <form autocomplete="off" [formGroup]="miFormulario"  (ngSubmit)="RegistroPreguntas()">
+                <div class="row col-lg-7  mx-auto mb-3">
+                  <span class="p-bold-500-20">Hazle {{cantTemas}} preguntas a tu guía</span>
+                </div>
+                <div class="row col-lg-10 mx-auto mb-3">
+                  <p class="p-bold-400-14">Para que la cita sea más satistactoria, déjale al guía una lista de {{cantTemas}} preguntas
+                    que más te urge saber de tus temas elegidos. </p>
+                </div>
+                <div class="row">
+                  <!-- <div class="form-group" *ngFor="let temas of agendadasDetalle ; let i = index">
+                    <textarea class="form-control mb-2" placeholder="Pregunta {{i+1}}" name="" id="" cols="30"
+                    rows="3" [(ngModel)]="temas.question"></textarea>
+                  </div> -->
+                  <div formArrayName="preguntas">
+                    <div class="form-group" *ngFor="let control of getControls(); let i = index">
+                      <textarea class="form-control mb-2" placeholder="Pregunta {{i+1}}" [formControl]="control"></textarea>
+                    </div>
+                  </div>
+                  <!-- <div class="form-group" *ngFor="let tema of agendadasDetalle; let i = index">
+                    <textarea class="form-control mb-2" placeholder="Pregunta {{i+1}}"
+                              [formControlName]="i"></textarea>
+                  </div> -->
+                  <!-- <div class="form-group" *ngFor="let pregunta of miFormulario.get('preguntas').controls; let i = index">
+                    <textarea class="form-control mb-2" placeholder="Pregunta {{i+1}}" formControlName="{{i}}"></textarea>
+                  </div> -->
+
+                  <div class="col-lg-6 mx-auto mt-3">
+                    <button class="btn btn-primary" type="submit" style="
+                          width: 50%;">Enviar</button>>
+                  </div>
+                  <!-- <div class="form-group">
+                    <textarea class="form-control mb-2" placeholder="Segunda pregunta" name="" id="" cols="30"
+                      rows="3"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <textarea class="form-control mb-2" placeholder="tercera pregunta" name="" id="" cols="30"
+                      rows="3"></textarea>
+                  </div>
+                  <div class="col-lg-6 mx-auto mt-3">
+                    <a href="" class="btn btn-primary">Enviar</a>
+                  </div> -->
+                </div>
+
+              </form>
+
+            </div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+              <div class="row mb-3 mt-3">
+                <div class="col-lg-6 mb-3">
+                  <div class="col-lg-6 mx-auto">
+                    <span class="p-bold-500-20 col-lg-8 mx-auto mb-3">Reagenda tu cita</span>
+                  </div>
+
+                  <div class="row col-lg-12 mx-auto mb-3 mt-3">
+                    <p class="p-bold-400-14">Puedes reprogramar tu cita hasta con 72 horas de anticipación. Pasado ese
+                      tiempo será imposible reagendar.</p>
+                  </div>
+                  <div class="col-lg-6 mx-auto mt-3">
+                    <a (click)="navegarReagenda()" data-bs-dismiss="modal" class="btn btn-primary">Reagendar</a>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="col-lg-6 mx-auto">
+                    <span class="p-bold-500-20-naranja col-lg-8 mx-auto mb-3 mt-3">Anula tu cita</span>
+                  </div>
+
+                  <div class="row col-lg-12 mx-auto mb-3 mt-3">
+                    <p class="p-bold-400-14">Al anular tu cita con el guía, deberás de agendar una nueva cita con otro
+                      guía. Debido a que no hay devolución. </p>
+                  </div>
+                  <div class="col-lg-6 mx-auto mt-3">
+                    <a href="" class="btn btn-secondary">Anular</a>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

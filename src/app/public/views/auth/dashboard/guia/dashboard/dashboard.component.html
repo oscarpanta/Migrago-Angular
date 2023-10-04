@@ -1,0 +1,102 @@
+<div class="row mt-4">
+  <p class="p-bold-500-20"> Hola, {{usuario.name}}</p>
+</div>
+<div class="row mt-4 text-center">
+       <div class="col-lg-4">
+           <div class="card card-resumen-dia  hov">
+               <div class="card-body">
+                   <p class="p-normal-300-20">$ 90</p>
+                   <p class="p-normal-300-9-celeste">Ganancias de día</p>
+               </div>
+           </div>
+       </div>
+       <div class="col-lg-4">
+           <div class="card card-resumen-dia  hov">
+               <div class="card-body">
+                   <p class="p-normal-300-20">$ 300</p>
+                   <p class="p-normal-300-9-celeste">Ganancias de noviembre 2023</p>
+               </div>
+           </div>
+       </div>
+
+       <div class="col-lg-4">
+           <div class="card card-resumen-dia  hov">
+               <div class="card-body">
+                   <p class="p-normal-300-20">$ 1200</p>
+                   <p class="p-normal-300-9-celeste">Total de genancias hasta la fecha</p>
+               </div>
+           </div>
+       </div>
+</div>
+<div class="row  mt-4">
+   <div class="col-lg-12">
+       <div class="card">
+           <div class="card-body p-4">
+               <div class="row mb-3">
+                   <div class="col-lg-6">
+                       <p class="p-bold-300-12">Histórico de ganancias</p>
+                   </div>
+                   <div class="col-lg-6">
+                       <select class="form-select form-select-sm" name="" id="" >
+                           <option value="-1">Resúmenes</option>
+                           <option value="1">Resumen por semana</option>
+                           <option value="2">Resumen por mes</option>
+                           <option value="3">Resumen 6 meses</option>
+                       </select>
+                   </div>
+               </div>
+
+               <div class="col-lg-12 mb-3">
+                   <!-- <canvas id="myChart"></canvas> -->
+                   <canvas id="myChart">{{ myChart }}</canvas>
+               </div>
+
+           </div>
+       </div>
+   </div>
+
+
+</div>
+<div class="row mt-4">
+
+   <div class="col-lg-12">
+       <div class="card">
+           <div class="card-body p-4">
+               <div class="col-lg-12">
+                   <p class="p-bold-300-12">Actividad Periódica</p>
+               </div>
+               <div class="col-lg-12">
+                   <table class="table">
+                       <thead>
+                           <tr>
+                               <th scope="col">Orden</th>
+                               <th scope="col">Total</th>
+                               <th scope="col">Ganancia</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr>
+                               <td scope="row">Hoy</td>
+                               <td>1</td>
+                               <td>$90</td>
+
+                           </tr>
+                           <tr>
+                           <td scope="row">Ayer</td>
+                               <td>3</td>
+                               <td>$270</td>
+
+                           <tr>
+                               <td scope="row">Ultimos 7 días</td>
+                               <td>5</td>
+                               <td>$500</td>
+                           </tr>
+                       </tbody>
+                   </table>
+               </div>
+
+           </div>
+       </div>
+   </div>
+
+</div>

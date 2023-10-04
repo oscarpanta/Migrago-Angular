@@ -1,0 +1,1356 @@
+<div class="container-fluid d-grid gap-3 container__70_gris">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card ">
+        <div class="card-body text-center">
+          <h5 class="card-title letra__b__bold">Banner/Tutorial</h5>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+
+      <div class="row col-lg-12 mb-3">
+        <div class="col-lg-7">
+          <span class="p-bold-500-20" *ngIf="historiaDetalle">{{historiaDetalle.story.data[0].title}}</span>
+
+        </div>
+
+      </div>
+      <div class="row col-lg-12 mb-3">
+        <div class="col-lg-12">
+          <div class="container_etiquetas">
+            <div class="container__body__etiqueta__perfil" *ngIf="historiaDetalle">
+              <!-- {{cantidadresenas}} Reseñas -->
+              {{historiaDetalle.reviews.totalElements}} Reseñas
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- <div class="row col-lg-12 mb-3" *ngIf="historiaDetalle"> -->
+      <div class="row col-lg-12 mb-3" *ngIf="historiaDetalle">
+
+        <ngb-carousel>
+          <ng-template ngbSlide *ngIf="imageSrc1">
+            <img [src]="imageSrc1" class="card-img" alt="">
+
+
+          </ng-template>
+          <ng-template ngbSlide *ngIf="imageSrc2">
+            <img [src]="imageSrc2" class="card-img" alt="">
+          </ng-template>
+          <ng-template ngbSlide *ngIf="imageSrc3">
+            <img [src]="imageSrc3" class="card-img" alt="">
+          </ng-template>
+        </ngb-carousel>
+        <!-- <div class="slide-container-carrrusel-imagenes swiper">
+          <div class="slide-content">
+
+            <div class="card-wrapper swiper-wrapper" >
+              <div class="swiper-slide"  *ngFor="let images of historiaDetalle.images_story.data">
+                <div class="image-content" >
+
+                  <div class="card-image" >
+                    <img [src]="'assets/images/historias/'+ images.image_story" class="card-img" alt="">
+
+                  </div>
+
+                </div>
+
+              </div> -->
+
+
+        <!-- <ng-container *ngIf="imageSrc1 || imageSrc2 || imageSrc3">
+                  <div class="swiper-slide">
+                    <div class="image-content">
+                      <img *ngIf="imageSrc1" [src]="imageSrc1" class="card-img" alt="">
+                      <img *ngIf="imageSrc2" [src]="imageSrc2" class="card-img" alt="">
+                      <img *ngIf="imageSrc3" [src]="imageSrc3" class="card-img" alt="">
+                    </div>
+                  </div>
+                </ng-container> -->
+
+        <!-- <div class="swiper-slide">
+                <div class="image-content">
+
+                  <div class="card-image">
+                    <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="swiper-slide">
+                <div class="image-content">
+
+                  <div class="card-image">
+                    <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="swiper-slide">
+                <div class="image-content">
+
+                  <div class="card-image">
+                    <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                  </div>
+
+                </div>
+
+              </div> -->
+        <!-- </div>
+          </div> -->
+        <!-- <div class="swiper-button-next swiper-navBtn"></div>
+                          <div class="swiper-button-prev swiper-navBtn"></div> -->
+        <!-- <div class="swiper-pagination"></div>
+        </div> -->
+      </div>
+      <div class="row col-lg-12 mt-5 mb-3 fs-6">
+        <p *ngIf="historiaDetalle">
+          {{historiaDetalle.story.data[0].story_text}}
+        </p>
+        <!-- <p>
+          Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un
+          sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos
+          normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos
+          textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web
+          usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado
+          muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han
+          evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo
+          insertándole humor y cosas por el estilo).
+        </p> -->
+      </div>
+      <div class="row col-lg-12 mb-3">
+        <div class="iconos__redes__perfil">
+          <a href="">
+            <picture>
+              <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                  <source media="(min-width: 550px)" srcset="media.png">  -->
+              <img src="assets/images/icons/Facebook-mobile.png">
+            </picture>
+          </a>
+          <a href="">
+            <picture>
+              <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                  <source media="(min-width: 550px)" srcset="media.png">  -->
+              <img src="assets/images/icons/LinkIn-mobile.png">
+            </picture>
+          </a>
+          <a href="">
+            <picture>
+              <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                  <source media="(min-width: 550px)" srcset="media.png">  -->
+              <img src="assets/images/icons/Twitter-mobile.png">
+            </picture>
+          </a>
+
+
+        </div>
+      </div>
+
+      <div class="row col-lg-12 ">
+        <div class="card mb-3">
+          <div class="card-content">
+            <div class="row col-lg-12 mb-2">
+
+              <p class="p-normal-300-18">Reseñas:</p>
+
+            </div>
+            <div class="row col-lg-12 mb-2" *ngIf="historiaDetalle">
+              <ng-container *ngFor="let reviews of historiaDetalle.reviews.data; let i = index">
+                <div class="row mb-5" *ngIf="i < 2">
+                  <div class="col-lg-3">
+                    <div class="image-content-perfil">
+
+                      <div class="card-image-tiny">
+                        <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
+                      </div>
+                      <!-- <div class="card-image-flag-small">
+                                                                <img src="../images/flags/tiny/Peru.png"  class="card-img" alt="pais">
+                                            </div> -->
+                    </div>
+                  </div>
+                  <div class="col-lg-9">
+
+                    <span class="p-bold-500 mb-1"> {{reviews.name}}</span>
+                    <p class="p-normal-300 mb-2">{{reviews.creation_date}}</p>
+                    <!-- <div class="valoracion_small mb-3"> -->
+
+                    <!-- Estrella 1 -->
+                    <!-- <div *ngFor="let score of getScoreArray(reviews.score)">
+                        <div class="active">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div> -->
+                    <div class="valoracion_small mb-3">
+                      <ng-container *ngFor="let score of [1, 2, 3, 4, 5]">
+                        <div [class.active]="score <= +reviews.score">
+                          <i class="fa-solid fa-star"></i>
+                        </div>
+                      </ng-container>
+                    </div>
+
+
+                    <p class="p-parrafo">
+                      {{reviews.review}}
+                    </p>
+
+                  </div>
+
+                </div>
+                <!-- </div> -->
+                <div class="infoExtra">
+                  <div class="row mb-5" *ngIf="i >= 2">
+                    <div class="col-lg-3">
+                      <div class="image-content-perfil">
+
+                        <div class="card-image-tiny">
+                          <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-9">
+
+                      <span class="p-bold-500 mb-1"> {{reviews.name}}</span>
+                      <p class="p-normal-300 mb-2">{{reviews.creation_date}}</p>
+                      <div class="valoracion_small mb-3">
+                        <ng-container *ngFor="let score of [1, 2, 3, 4, 5]">
+                          <div [class.active]="score <= +reviews.score">
+                            <i class="fa-solid fa-star"></i>
+                          </div>
+                        </ng-container>
+                      </div>
+                      <p class="p-parrafo">
+                        {{reviews.review}}
+
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+
+
+              <!-- <div class="row mb-5" >
+                <div class="col-lg-3">
+                  <div class="image-content-perfil">
+
+                    <div class="card-image-tiny">
+                      <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-9">
+
+                  <span class="p-bold-500 mb-1"> Miguel Angel</span>
+                  <p class="p-normal-300 mb-2">20/06/2023</p>
+                  <div class="valoracion_small mb-3">
+
+
+                    <div class="active">
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+
+
+                    <div class="active">
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+
+
+                    <div class="active">
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+
+
+                    <div>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+
+
+                    <div>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+
+                  </div>
+                  <p class="p-parrafo">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el
+                    contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que
+                    tiene una distribución más o menos normal de las letras, al contrario de usar textos como por
+                    ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer.
+                    Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por
+                    defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan
+                    este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de
+                    los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y
+                    cosas por el estilo).</p>
+                </div>
+              </div> -->
+              <!-- <div class="row mb-5">
+                <div class="col-lg-3">
+                  <div class="image-content-perfil">
+
+                    <div class="card-image-tiny">
+                      <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-9">
+
+                  <span class="p-bold-500 mb-1"> Miguel Angel</span>
+                  <p class="p-normal-300 mb-2">20/06/2023</p>
+                  <div class="valoracion_small mb-3">
+
+
+                    <div class="active">
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+
+
+                    <div class="active">
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+
+
+                    <div class="active">
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+
+
+                    <div>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+
+
+                    <div>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+
+                  </div>
+                  <p class="p-parrafo">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el
+                    contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que
+                    tiene una distribución más o menos normal de las letras, al contrario de usar textos como por
+                    ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer.
+                    Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por
+                    defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan
+                    este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de
+                    los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y
+                    cosas por el estilo).</p>
+                </div>
+              </div> -->
+
+              <!-- <div class="infoExtra">
+                <div class="row mb-5" >
+                  <div class="col-lg-3">
+                    <div class="image-content-perfil">
+
+                      <div class="card-image-tiny">
+                        <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-9">
+
+                    <span class="p-bold-500 mb-1"> Miguel Angel</span>
+                    <p class="p-normal-300 mb-2">20/06/2023</p>
+                    <div class="valoracion_small mb-3">
+
+
+                      <div class="active">
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div class="active">
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div class="active">
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+                    </div>
+                    <p class="p-parrafo">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el
+                      contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que
+                      tiene una distribución más o menos normal de las letras, al contrario de usar textos como por
+                      ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede
+                      leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto
+                      por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que
+                      usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a
+                      través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole
+                      humor y cosas por el estilo).</p>
+                  </div>
+                </div>
+                <div class="row mb-5">
+                  <div class="col-lg-3">
+                    <div class="image-content-perfil">
+
+                      <div class="card-image-tiny">
+                        <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-lg-9">
+
+                    <span class="p-bold-500 mb-1"> Miguel Angel</span>
+                    <p class="p-normal-300 mb-2">20/06/2023</p>
+                    <div class="valoracion_small mb-3">
+
+
+                      <div class="active">
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div class="active">
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div class="active">
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+                    </div>
+                    <p class="p-parrafo">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el
+                      contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que
+                      tiene una distribución más o menos normal de las letras, al contrario de usar textos como por
+                      ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede
+                      leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto
+                      por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que
+                      usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a
+                      través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole
+                      humor y cosas por el estilo).</p>
+                  </div>
+                </div>
+              </div> -->
+
+
+            </div>
+
+            <div class="row d-grid gap-2 col-4 mx-auto" style="
+            align-items: center;
+            justify-content: center;" *ngIf="historiaDetalle">
+              <button *ngIf="historiaDetalle.reviews.totalElements > 2 " type="button" class="btn btn-info"
+                id='mostrar'>Ver más</button>
+              <span *ngIf="historiaDetalle.reviews.totalElements==0">Sin Reseñas</span>
+              <!-- <button type="button" class="btn btn-info" id="mostrar" (click)="toggleInfoExtra()">
+                            {{ isInfoExtraVisible ? 'Ocultar' : 'Ver más' }}
+                        </button> -->
+              <!-- <button id="mostrar" (click)="toggleInfoExtra()">{{ isInfoExtraVisible ? 'Ocultar' : 'Ver más' }}</button> -->
+
+              <!-- <input type="button" id="leerMas" class="btn btn-info" name="boton1" value="Ver Más">  -->
+              <!-- <a href="" class="btn btn-info mt-2 verMas">Ver más</a> -->
+            </div>
+
+          </div>
+        </div>
+        <div class="card mb-3" *ngIf="rolUsuario!== 'ROLE_GUIDE'  ">
+          <div class="card-body">
+            <div class="row col-lg-12 mb-2">
+
+              <p class="p-normal-300-18">Comentario:</p>
+
+            </div>
+            <div class="row col-lg-12 mb-2">
+              <p>Hola XXX, déjanos un comentario sobre tu experiencia con YYY</p>
+            </div>
+            <form class="form-login" autocomplete="off" [formGroup]="miFormularioReview">
+              <div class="row col-lg-12 mb-2">
+
+                <div class="form-floating">
+                  <textarea class="form-control" rows="10" style="height:100%;" placeholder="Leave a comment here"
+                    id="floatingTextarea" formControlName="comentario"></textarea>
+
+                </div>
+
+              </div>
+              <div class="row col-lg-12 mb-2">
+                <div class="col-lg-6">
+                  <button type="submit" class="btn btn-primary" (click)="registroReview()"
+                    [disabled]="miFormularioReview.invalid">Publicar</button>
+                </div>
+                <div class="col-lg-6 d-flex flex-nowrap align-items-center justify-content-end">
+                  <span>Califica :</span>
+                  <div class="valoracion">
+
+                    <div class="valoracion_small">
+                      <button *ngFor="let estrella of estrellas" (click)="setCalificacion(estrella)"
+                        [class.active]="estrella <= calificacionSeleccionada!">
+                        <i class="fa-solid fa-star"></i>
+                      </button>
+                    </div>
+
+
+
+
+
+                  </div>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <div class="card-body p-4">
+          <div class="row mt-5 mb-3">
+
+            <div class="card card-container image-content-perfil">
+
+              <div class="card-image-small">
+                <!-- <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil"> -->
+                <img [src]="perfilUrlImagen || 'assets/images/perfiles/profile1.jpg'" class="card-img" alt="perfil">
+              </div>
+              <div class="card-image-flag-small" *ngIf="historiaDetalle">
+                <img *ngIf="historiaDetalle.story.data[0]"
+                  [src]="'assets/images/flags/tiny/'+  historiaDetalle.story.data[0].flag_img" class="card-img"
+                  alt="pais">
+                <!-- <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais"> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-3" *ngIf="historiaDetalle">
+            <span class="p-bold-500-18-detalle">
+              {{ historiaDetalle.story.data[0].name.split(' ')[0] }} {{
+              historiaDetalle.story.data[0].lastname.substring(0, 1) }}.
+            </span>
+            <span class="p-normal-300-16 color-gray">Vive en {{historiaDetalle.story.data[0].city_name}},
+              {{historiaDetalle.story.data[0].country_name}}</span>
+          </div>
+          <div class="row mb-3">
+            <span class="p-bold-500">Rutas de ingreso</span>
+            <div class="container_etiquetas mt-1">
+              <div class="container__body__etiqueta__perfil" *ngIf="historiaDetalle">
+                {{ historiaDetalle.story.data[0].name_way_migration }}
+              </div>
+              <!-- <div class="container__body__etiqueta__perfil">
+                Refugio
+              </div> -->
+
+            </div>
+          </div>
+          <div class="row mb-3">
+            <!-- *ngIf="historiaDetalle.monthsDiff" -->
+            <span class="p-bold-500" *ngIf="historiaDetalle">Llegó a {{historiaDetalle.story.data[0].country_name}}
+              hace:</span>
+
+            <span class="p-normal-300 color-gray" *ngIf="historiaDetalle">{{diferenciames > 0 ? diferenciames + ' meses'
+              : '0 meses' }}</span>
+
+          </div>
+          <div class="row mb-3">
+            <span class="p-bold-500">Nacionalidad: </span>
+            <span class="p-normal-300 color-gray"
+              *ngIf="historiaDetalle">{{historiaDetalle.story.data[0].nationality_name}}</span>
+          </div>
+          <div class="row mb-3">
+            <span class="p-bold-500">Integrantes de familia:</span>
+            <span class="p-normal-300 color-gray" *ngFor="let member of historiaMiembros">
+
+              {{member.mode_type_migration_description}},{{ member.amount }}
+
+            </span>
+          </div>
+
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body p-4 text-center">
+          <div class="row mb-3 " *ngIf="historiaDetalle">
+            <!-- <span class="p-bold-500-20">$ 90.00</span> -->
+            <span class="p-bold-500-20" *ngIf="historiaDetalle.story.data[0].user_created_id === usuario.id">Precio de tu Cita</span>
+            <span class="p-bold-500-20">${{historiaDetalle.rates.data[0].price}}.00</span>
+            <span class="p-normal-300">1 sesión - {{historiaDetalle.rates.data[0].time_rate}}</span>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 mt-3 mb-3">
+              <button class="btn btn-primary p-bold-500-18" [disabled]="rolUsuario=== 'ROLE_GUIDE'"
+                (click)="open(modalReservaCita, modalContinuacion)">
+                Reservar una cita</button>
+            </div>
+          </div>
+          <div class="row" style="opacity: .5;">
+            <span class="p-bold-400-10">En una cita podrás elegir hasta <strong>3 temas</strong> a la vez para conversar
+              por <strong>60 min.</strong></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+<!-- zona de modales      -->
+
+
+<!-- Modal reserva cita-->
+<ng-template #modalReservaCita let-modal>
+
+  <div class="modal-contenido">
+
+    <button type="button" class="close" (click)="cerrarModal()" style="
+      float: right;">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+    <div class="row d-grid gap-2 col-10 mx-auto">
+      <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="registroCita()">
+        <div *ngIf="currentSection === 1">
+
+          <div class="text-center d-flex align-items-baseline justify-content-evenly">
+            <p class="p-bold-500-20 ">Temas de interés</p>
+            <!-- <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-placement="right"
+              data-bs-trigger="hover focus" data-bs-content="Por lo amplio de cada tema, consideramos
+                              que se necesitan 20 min. para explicar y
+                              recibir preguntas de cada uno.">
+              <i class="fa-solid fa-circle-info"></i>
+            </span> -->
+            <span
+              ngbPopover="Por lo amplio de cada tema, consideramos que se necesitan 20 min. para explicar y recibir preguntas de cada uno."
+              popoverPlacement="right" popoverTrigger="mouseenter" class="d-inline-block" tabindex="0">
+              <i class="fa-solid fa-circle-info"></i>
+            </span>
+          </div>
+          <div class="text-center">
+            <p class="p-bold-400-14">Elige hasta 3 temas a la vez para una cita de 60 minutos.</p>
+
+          </div>
+          <div class="row mt-3 mb-5 d-grid gap-2 col-10 mx-auto">
+            <div class="form-check" #checkboxes *ngFor="let temas of themas">
+              <input class="form-check-input" type="checkbox" [value]="temas.id"
+                [checked]="groupThemeIds.includes(temas.id)" (change)="onChange(temas.id, $event)">
+              <label class="form-check-label" for="flexCheckDefault ">
+                {{temas.description}}
+
+              </label>
+
+
+            </div>
+
+
+          </div>
+          <div class="row mt-3 mb-3 d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary" [disabled]="groupThemeIds.length==0"
+              (click)="nextSection()">Siguiente</button>
+          </div>
+
+        </div>
+
+        <div *ngIf="currentSection === 2 && showEventList">
+          <!-- <div class="d-flex justify-content-center align-items-center row">
+                <img src="assets/images/icons/Migrago_fondo_transparente.png" alt=""  height="45" style="
+                width: auto;">
+
+              </div> -->
+
+          <div class='demo-app-main' style="padding: 1rem;">
+            <div class="d-flex justify-content-center align-items-center row">
+              <img src="assets/images/icons/Migrago_fondo_transparente.png" alt="" style="
+                  width: 200px; height: 90px;" class="mt-0">
+
+            </div>
+            <h4 class="d-flex justify-content-center align-items-center" style="
+                margin-bottom: 1rem;">Seleccione un Dia</h4>
+            <full-calendar *ngIf='calendarVisible' [options]='calendarOptions' style="margin-bottom: 20px">
+
+            </full-calendar>
+            <div class="row mt-3 mb-3 d-grid gap-2 col-6 mx-auto">
+              <!-- <button class="btn btn-primary" (click)="prevSection()">Anterior</button> -->
+              <!-- <button class="btn btn-primary" (click)="nextSection()">Siguiente</button> -->
+            </div>
+
+          </div>
+        </div>
+        <div *ngIf="currentSection === 2 && !showEventList">
+          <full-calendar *ngIf='calendarVisibleForSection2' [options]='calendarOptionsForSection2'></full-calendar>
+          <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+            <button class="btn btn-primary" style="width: 40%;" (click)="prevSection()">Anterior</button>
+            <button class="btn btn-primary" style="width: 40%;" type="submit">Registrar</button>
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+
+
+
+
+  </div>
+
+
+
+
+
+
+</ng-template>
+
+<!-- <div class="modal fade" id="modalReservaCita" tabindex="-1" aria-labelledby="modalReservaCita" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body p-3">
+        <div class="row d-grid gap-2 col-10 mx-auto">
+          <form  autocomplete="off" [formGroup]="miFormulario"  (ngSubmit)="registroCita()">
+            <div class="text-center d-flex align-items-baseline justify-content-evenly">
+              <p class="p-bold-500-20 ">Temas de interés</p>
+              <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-placement="right"
+                data-bs-trigger="hover focus" data-bs-content="Por lo amplio de cada tema, consideramos
+                            que se necesitan 20 min. para explicar y
+                            recibir preguntas de cada uno.">
+                <i class="fa-solid fa-circle-info"></i>
+              </span>
+            </div>
+            <div class="text-center">
+              <p class="p-bold-400-14" >Elige hasta 3 temas a la vez para una cita de 60 minutos.</p>
+
+            </div>
+            <div class="row mt-3 mb-5 d-grid gap-2 col-10 mx-auto">
+              <div class="form-check"  *ngFor="let temas of themas">
+                <input class="form-check-input"
+                type="checkbox" [value]="temas.id"
+                [checked]="groupThemeIds.includes(temas.id)"
+
+                (change)="onChange(temas.id, $event)"
+                >
+                <label class="form-check-label" for="flexCheckDefault ">
+                 {{temas.description}}
+
+                </label>
+                <label for="" class="p-bold-400-10">
+                  {{temas.description_long}}
+                </label>
+
+                </div>
+
+            </div>
+            <div class="row mt-3 mb-3 d-grid gap-2 col-6 mx-auto">
+              <button class="btn btn-primary" (click)="open(modalContinuacion)" >Siguiente</button>
+            </div>
+          </form>
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div> -->
+
+<!-- Modal continuacion cita-->
+<!-- <div class="modal fade" id="modalContinuacion" tabindex="-1" aria-labelledby="modalContinuacion" aria-hidden="true">
+  <div class='demo-app-main'>
+    <p>ABA</p>
+  </div>
+</div> -->
+
+<!-- <ng-template #modalContinuacion let-modal>
+
+
+  <div class="modal-contenido">
+
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')" style="
+      float: right;">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="d-flex justify-content-center align-items-center row">
+        <img src="assets/images/icons/Migrago_fondo_transparente.png" alt=""  height="45" style="
+        width: auto;">
+
+      </div>
+
+      <div class='demo-app-main' style="
+      padding: 1rem;">
+        <p class="d-flex justify-content-center align-items-center">Selecciona un Dia</p>
+        <full-calendar *ngIf='calendarVisible' [options]='calendarOptions'>
+
+        </full-calendar>
+      </div>
+
+   </div>
+
+
+</ng-template> -->
+
+
+
+
+<!--  -->
+<!-- Modal inicio de sesion por web -->
+<button type="button" class="btn btn-primary" (click)="abrirmodalpagos()">
+  Ingresar
+</button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalReservaCita">
+  Registrar
+</button>
+<button type="button" class="btn btn-primary" routerLink="/historias/pagoCita">
+  Registrar
+</button>
+
+<ng-template #modalLogin let-modal>
+
+
+  <div class="modal-contenido">
+
+    <div class="modal-body modal-login">
+      <button type="button" class="close" (click)="cerrarModal()" style="
+      float: right;">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+
+
+      <div class="row ">
+        <div class="col-md-6 d-none d-md-block padding-0">
+          <img src="assets/images/imagen_prueba.jpg" class="img-fluid" style="min-height:100%;" />
+        </div>
+        <div class="col-md-6 bg-white px-4 py-5 padding-0 d-flex flex-column align-items-center">
+          <div class="row mb-4">
+            <span class="titulo-login-small">Inicia sesión en Migrago</span>
+          </div>
+          <div class="row btn-social">
+            <div class="">
+              <a data-bs-toggle="modal" data-bs-target="#modalRegister" data-bs-dismiss="modal"
+                class="btn  mb-2  btn-facebook"><i class="fa-brands fa-facebook"></i> Continuar con
+                Facebook</a>
+            </div>
+            <div class="">
+              <a href="" class="btn  mb-2  btn-google"><i class="fa-brands fa-google-plus-g"></i> Continuar con
+                Google</a>
+            </div>
+            <div class="">
+              <a href="" class="btn mb-2  btn-aple"><i class="fa-brands fa-apple"></i> Continuar con Apple</a>
+            </div>
+
+
+          </div>
+          <div class="row">
+            <p>o</p>
+          </div>
+          <div class="row col-lg-12">
+            <form class="login100-form" autocomplete="off" [formGroup]="miFormularioLogin" (ngSubmit)="login()">
+              <div class="mb-4">
+                <div class="form-group">
+
+                  <input type="email" class="form-control" id="txtCorreo" aria-describedby="emailHelp"
+                    formControlName="username">
+                  <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <div class="form-group">
+
+
+                  <input type="password" name="password" class="form-control password1" value="clave"
+                    placeholder="Establecer contraseña" formControlName="password">
+                  <span class="fa  password-icon show-password fa-eye"></span>
+
+
+                </div>
+
+
+              </div>
+
+              <div class="mb-4">
+                <button type="submit" class="btn btn-primary">Inicia sesión</button>
+              </div>
+
+            </form>
+          </div>
+          <div class="row text-align-left">
+            <a href="" class="p-normal-300-10 link-dashboard">¿Olvidastes tu contraseña?</a>
+          </div>
+          <div class="col-lg-12 linea_black"></div>
+          <div class="row col-lg-12">
+            <div class="col-lg-5">
+              <span class="p-normal-300-10-black">¿No tienes cuenta?</span>
+            </div>
+
+            <div class="col-lg-7">
+              <a (click)="abrirmodalregistro(modalRegister)" class="p-normal-300-10 link-dashboard">Registrate en
+                MigraGo</a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+    <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Cerrar')">Cerrar</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('Guardar')">Guardar</button>
+    </div>  -->
+
+  </div>
+
+
+</ng-template>
+
+
+<ng-template #modalRegister let-modal>
+
+
+  <div class="modal-contenido">
+
+    <div class="modal-body modal-login">
+      <button type="button" class="close" (click)="cerrarModal()" style="
+      float: right;">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+
+
+
+      <div class="row ">
+        <div class="col-md-6 d-none d-md-block padding-0">
+          <img src="assets/images/imagen_prueba.png" class="img-fluid" style="min-height:100%;" />
+        </div>
+        <div class="col-md-6 bg-white px-4 py-5 padding-0 d-flex flex-column align-items-center">
+          <div class="row mb-4">
+            <span class="titulo-login-small">Únete a Migrago</span>
+          </div>
+          <div class="row btn-social">
+            <div class="">
+              <a href="" class="btn  mb-2  btn-facebook"><i class="fa-brands fa-facebook"></i> Continuar con
+                Facebook</a>
+            </div>
+            <div class="">
+              <a href="" class="btn  mb-2  btn-google"><i class="fa-brands fa-google-plus-g"></i> Continuar con
+                Google</a>
+            </div>
+            <div class="">
+              <a href="" class="btn mb-2  btn-aple"><i class="fa-brands fa-apple"></i> Continuar con Apple</a>
+            </div>
+
+
+          </div>
+          <div class="row">
+            <p>o</p>
+          </div>
+          <div class="row col-lg-12">
+            <form class="form-login" autocomplete="off" [formGroup]="miFormularioRegistro"
+              (ngSubmit)="registroUsuario()">
+              <!-- <form class="form-login"> -->
+              <div class="mb-4">
+                <div class="form-group">
+
+                  <input type="email" formControlName="email" class="form-control" id="txtCorreo"
+                    aria-describedby="emailHelp" placeholder="Correo electrónico">
+                  <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <div class="form-group">
+
+
+                  <input type="password" formControlName="password" name="password" class="form-control password1"
+                    value="clave" placeholder="Establecer contraseña">
+                  <span class="fa  password-icon show-password fa-eye"></span>
+
+
+                </div>
+
+
+              </div>
+
+              <div class="mb-4">
+                <button type="submit" class="btn btn-primary" [disabled]="formularioEnviado">Registrarse</button>
+              </div>
+
+              <!-- </form> -->
+
+            </form>
+
+
+
+          </div>
+          <div class="row col-lg-8 text-center">
+            <span class="p-normal-300-10-black">Al unirme, acepto recibir correos electrónicos de MigraGo.</span>
+          </div>
+          <div class="col-lg-12 linea_black"></div>
+          <div class="row col-lg-10 text-center">
+            <div class="col-lg-6">
+              <span class="p-normal-300-10-black">¿Ya eres miembro?</span>
+            </div>
+
+            <div class="col-lg-6">
+              <a (click)="abrirmodallogin()" class="p-normal-300-10 link-dashboard">Inicia sesión</a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+
+
+
+    </div>
+    <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Cerrar')">Cerrar</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('Guardar')">Guardar</button>
+    </div>  -->
+
+  </div>
+
+
+</ng-template>
+
+
+<ng-template #modalPagos let-modal>
+
+
+  <div class="modal-contenido">
+
+    <div class="modal-body modal-login">
+      <button type="button" class="close" (click)="cerrarModal()" style="
+      float: right;">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+
+      <form class="checkout-form" [formGroup]="paymentForm" (ngSubmit)="pay()">
+        <h4 class="text-pago">Detalles del Pago</h4>
+        <div></div>
+        <input class="input-pago" type="text" formControlName="name" placeholder="Name" />
+        <input class="input-pago" type="text" formControlName="email" placeholder="Email">
+        <input class="input-pago" type="number" formControlName="amount" placeholder="Amount" />
+        <div class="credit-card" ngxStripeCardGroup [elementsOptions]="elementsOptions">
+
+
+          <div class="stripe-element">
+            <ngx-stripe-card #card></ngx-stripe-card>
+          </div>
+
+
+        </div>
+
+        <button class="button-pago" type="submit">Enviar Pago</button>
+      </form>
+
+
+    </div>
+    <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Cerrar')">Cerrar</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('Guardar')">Guardar</button>
+    </div>  -->
+
+  </div>
+
+
+</ng-template>
+<!-- <ng-template #modalProb let-modal>
+  <div class="modal-contenido">
+    abasdas
+    abasdas
+    abasdas
+  </div>
+  <button (click)="abrirmodal2(modalProb2)"></button>
+</ng-template>
+<ng-template #modalProb2 let-modal>
+  <div class="modal-contenido">
+    asfasfaf
+    fadfa
+    fadf
+  </div>
+
+</ng-template> -->
+
+
+<!-- Modal reserva cita-->
+<div class="modal fade" id="modalReservaCita" tabindex="-1" aria-labelledby="modalReservaCita" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body p-3">
+        <div class="row d-grid gap-2 col-10 mx-auto">
+          <div class="text-center d-flex align-items-baseline justify-content-evenly">
+            <p class="p-bold-500-20 ">Temas de interés</p>
+            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-placement="right"
+              data-bs-trigger="hover focus" data-bs-content="Por lo amplio de cada tema, consideramos
+                                que se necesitan 20 min. para explicar y
+                                recibir preguntas de cada uno.">
+              <i class="fa-solid fa-circle-info"></i>
+            </span>
+          </div>
+          <div class="text-center">
+            <p class="p-bold-400-14">Elige hasta 3 temas a la vez para una cita de 60 minutos.</p>
+          </div>
+        </div>
+        <div class="row mt-3 mb-5 d-grid gap-2 col-10 mx-auto">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Salud / Entretenimiento / Mascotas
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+            <label class="form-check-label" for="flexCheckChecked">
+              Educacion niños / Campamentos / Daycares
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Educación adultos / Idiomas /Ayuda social
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+            <label class="form-check-label" for="flexCheckChecked">
+              Hogar / Mobiliario / Vestimenta
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+            <label class="form-check-label" for="flexCheckChecked">
+              Educacion niños / Campamentos / Daycares
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Educación adultos / Idiomas /Ayuda social
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+            <label class="form-check-label" for="flexCheckChecked">
+              Hogar / Mobiliario / Vestimenta
+            </label>
+          </div>
+
+        </div>
+        <div class="row mt-3 mb-3 d-grid gap-2 col-6 mx-auto">
+          <a href="" class="btn btn-primary">Siguiente</a>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--  -->
+
+<div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalRegister" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body modal-login">
+
+        <div class="row ">
+          <div class="col-md-6 d-none d-md-block padding-0">
+            <img src="assets/images/imagen_prueba.jpg" class="img-fluid" style="min-height:100%;" />
+          </div>
+          <div class="col-md-6 bg-white px-4 py-5 padding-0 d-flex flex-column align-items-center">
+            <div class="row mb-4">
+              <span class="titulo-login-small">Inicia sesión en Migrago</span>
+            </div>
+            <div class="row btn-social">
+              <div class="">
+                <a data-bs-toggle="modal" data-bs-target="#modalRegister" data-bs-dismiss="modal"
+                  class="btn  mb-2  btn-facebook"><i class="fa-brands fa-facebook"></i> Continuar con
+                  Facebook</a>
+              </div>
+              <div class="">
+                <a href="" class="btn  mb-2  btn-google"><i class="fa-brands fa-google-plus-g"></i> Continuar con
+                  Google</a>
+              </div>
+              <div class="">
+                <a href="" class="btn mb-2  btn-aple"><i class="fa-brands fa-apple"></i> Continuar con Apple</a>
+              </div>
+
+
+            </div>
+            <div class="row">
+              <p>o</p>
+            </div>
+            <div class="row col-lg-12">
+              <form class="form-login">
+                <div class="mb-4">
+                  <div class="form-group">
+
+                    <input type="email" class="form-control" id="txtCorreo" aria-describedby="emailHelp"
+                      placeholder="Correo electrónico">
+                    <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <div class="form-group">
+
+
+                    <input type="password" name="password" class="form-control password1" value="clave"
+                      placeholder="Establecer contraseña">
+                    <span class="fa  password-icon show-password fa-eye"></span>
+
+
+                  </div>
+
+
+                </div>
+
+                <div class="mb-4">
+                  <button type="submit" class="btn btn-primary">Inicia sesión</button>
+                </div>
+
+              </form>
+            </div>
+            <div class="row text-align-left">
+              <a href="" class="p-normal-300-10 link-dashboard">¿Olvidastes tu contraseña?</a>
+            </div>
+            <div class="col-lg-12 linea_black"></div>
+            <div class="row col-lg-12">
+              <div class="col-lg-5">
+                <span class="p-normal-300-10-black">¿No tienes cuenta?</span>
+              </div>
+
+              <div class="col-lg-7">
+                <a data-bs-dismiss="modal" class="p-normal-300-10 link-dashboard">Registrate en MigraGo</a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- -- -->
+<!-- Modal para el registro por web -->
+<div class="modal fade" id="modalRegister" tabindex="-1" aria-labelledby="modalRegister" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body modal-login">
+
+        <div class="row ">
+          <div class="col-md-6 d-none d-md-block padding-0">
+            <img src="assets/images/imagen_prueba.png" class="img-fluid" style="min-height:100%;" />
+          </div>
+          <div class="col-md-6 bg-white px-4 py-5 padding-0 d-flex flex-column align-items-center">
+            <div class="row mb-4">
+              <span class="titulo-login-small">Únete a Migrago</span>
+            </div>
+            <div class="row btn-social">
+              <div class="">
+                <a href="" class="btn  mb-2  btn-facebook"><i class="fa-brands fa-facebook"></i> Continuar con
+                  Facebook</a>
+              </div>
+              <div class="">
+                <a href="" class="btn  mb-2  btn-google"><i class="fa-brands fa-google-plus-g"></i> Continuar con
+                  Google</a>
+              </div>
+              <div class="">
+                <a href="" class="btn mb-2  btn-aple"><i class="fa-brands fa-apple"></i> Continuar con Apple</a>
+              </div>
+
+
+            </div>
+            <div class="row">
+              <p>o</p>
+            </div>
+            <div class="row col-lg-12">
+              <form class="form-login">
+                <div class="mb-4">
+                  <div class="form-group">
+
+                    <input type="email" class="form-control" id="txtCorreo" aria-describedby="emailHelp"
+                      placeholder="Correo electrónico">
+                    <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <div class="form-group">
+
+
+                    <input type="password" name="password" class="form-control password1" value="clave"
+                      placeholder="Establecer contraseña">
+                    <span class="fa  password-icon show-password fa-eye"></span>
+
+
+                  </div>
+
+
+                </div>
+
+                <div class="mb-4">
+                  <button type="submit" class="btn btn-primary">Inicia sesión</button>
+                </div>
+
+              </form>
+            </div>
+            <div class="row col-lg-8 text-center">
+              <span class="p-normal-300-10-black">Al unirme, acepto recibir correos electrónicos de MigraGo.</span>
+            </div>
+            <div class="col-lg-12 linea_black"></div>
+            <div class="row col-lg-10 text-center">
+              <div class="col-lg-6">
+                <span class="p-normal-300-10-black">¿Ya eres miembro?</span>
+              </div>
+
+              <div class="col-lg-6">
+                <a href="" class="p-normal-300-10 link-dashboard">Inicia sesión</a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- -- -->

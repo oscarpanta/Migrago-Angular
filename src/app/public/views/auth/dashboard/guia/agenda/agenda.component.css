@@ -1,0 +1,30 @@
+/* .image-dropdown {
+  display: inline-block;
+}
+
+.option-image {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+} */
+
+h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+ul {
+  margin: 0;
+  padding: 0 0 0 1.5em;
+}
+
+li {
+  margin: 1.5em 0;
+  padding: 0;
+}
+
+b {
+  margin-right: 3px;
+}
+
+

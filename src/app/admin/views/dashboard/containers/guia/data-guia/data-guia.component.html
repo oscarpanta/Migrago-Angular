@@ -1,0 +1,41 @@
+<form>
+  <!-- <div class="form-group form-inline">Full text search: <input class="form-control ml-2" type="text" name="searchTerm"
+      [(ngModel)]="countryService.searchTerm" />
+      <span class="ml-3"
+      *ngIf="countryService.loading$ | async">Loading...</span></div> -->
+  <div class="form-group form-inline">Full text search: <input class="form-control ml-2" type="text"
+      name="searchTerm" /><span class="ml-3">Loading...</span></div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" sbSortable="name"><span>Country</span></th>
+        <th scope="col" sbSortable="area"><span>cod_gen</span></th>
+        <th scope="col" sbSortable="population"><span>status</span></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let country of countries">
+        <th scope="row">{{ country.id }}</th>
+        <td><ngb-highlight [result]="country.country_name" >
+        </ngb-highlight>
+      </td>
+      <td><ngb-highlight [result]="country.cod_gen" ></ngb-highlight></td>
+      <td><ngb-highlight [result]="country.status "></ngb-highlight>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="total$" [(page)]="nropagina"
+      [pageSize]="tamanopagina" (pageChange)="onPageChange(nropagina)" >
+    </ngb-pagination>
+    <select class="custom-select" style="width: auto"
+      name="pageSize" [(ngModel)]="tamanopagina" (change)="onPageSizeChange()">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>
+</form>

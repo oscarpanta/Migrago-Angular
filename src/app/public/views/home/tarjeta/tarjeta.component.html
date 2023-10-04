@@ -1,0 +1,295 @@
+<!-- <div class="card swiper-slide">
+  <div class="card swiper-slide">
+    <div class="image-content">
+
+      <div class="card-image">
+        <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+      </div>
+      <div class="card-image2">
+        <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+      </div>
+      <div class="card-image_flag">
+        <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
+      </div>
+    </div>
+    <div class="card-content">
+
+      <p class="description">Al mes conseguí trabajo en ventas.</p>
+      <span class="autor mb-1">Miguel PantaD.</span>
+      <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
+      <div class="container_etiquetas mb-1">
+        <div class="container__body__etiqueta">
+          Estudios
+        </div>
+        <div class="container__body__etiqueta">
+          Refugio
+        </div>
+      </div>
+      <div class="footer-content">
+
+        <a href="../migrago/views/pagina2.php" class="btn btn-light mt-2">Ver Más <i
+            class="fa-solid fa-arrow-right"></i></a>
+        <a href="" class="btn btn-info mt-2">Reserva una cita</a>
+
+      </div>
+
+    </div>
+  </div>
+</div> -->
+
+                 <div class="card swiper-slide">
+                  <div class="image-content">
+
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                      <!-- <img [src]="historia.photo_story" alt="" class="card-img"> -->
+                    </div>
+                    <div class="card-image2">
+                      <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                    </div>
+                    <div class="card-image_flag">
+                      <img [src]="'assets/images/flags/tiny/' + historia.flag_img" class="card-img" alt="pais">
+                    </div>
+                  </div>
+                  <div class="card-content" *ngIf="historia">
+
+                    <p class="description">{{historia.title}}</p>
+                    <span class="autor mb-1" *ngIf="historia.name">{{historia.name.split(' ')[0]}} {{historia.lastname.split(' ')[0]}}</span>
+                    <span class="etiqueta mb-1">{{historia.city_name}},{{historia.country_name}}</span>
+                    <div class="container_etiquetas mb-1">
+
+                      <div class="container__body__etiqueta">
+                        {{historia.status}}
+                      </div>
+                    </div>
+                    <div class="footer-content">
+
+                      <a [routerLink]="['../historias/detalle']" [queryParams]="{ historia_id: historia.id }" class="btn btn-light mt-2">Ver Más <i
+                          class="fa-solid fa-arrow-right"></i></a>
+                      <a href="" class="btn btn-info mt-2">Reserva una cita</a>
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- <div class="card swiper-slide">
+                  <div class="image-content">
+
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
+                    <div class="card-image2">
+                      <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                    </div>
+                    <div class="card-image_flag">
+                      <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
+                    </div>
+                  </div>
+                  <div class="card-content">
+
+                    <p class="description">Al mes conseguí trabajo en ventas.</p>
+                    <span class="autor mb-1">Miguel PantaD.</span>
+                    <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
+                    <div class="container_etiquetas mb-1">
+                      <div class="container__body__etiqueta">
+                        Estudios
+                      </div>
+                      <div class="container__body__etiqueta">
+                        Refugio
+                      </div>
+                    </div>
+                    <div class="footer-content">
+
+                      <a href="../migrago/views/pagina2.php" class="btn btn-light mt-2">Ver Más <i
+                          class="fa-solid fa-arrow-right"></i></a>
+                      <a href="" class="btn btn-info mt-2">Reserva una cita</a>
+
+                    </div>
+
+                  </div>
+                </div>
+                <div class="card swiper-slide">
+                  <div class="image-content">
+
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
+                    <div class="card-image2">
+                      <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                    </div>
+                    <div class="card-image_flag">
+                      <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
+                    </div>
+                  </div>
+                  <div class="card-content">
+
+                    <p class="description">Al mes conseguí trabajo en ventas.</p>
+                    <span class="autor mb-1">Miguel PantaC.</span>
+                    <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
+                    <div class="container_etiquetas mb-1">
+                      <div class="container__body__etiqueta">
+                        Estudios
+                      </div>
+                      <div class="container__body__etiqueta">
+                        Refugio
+                      </div>
+                    </div>
+                    <div class="footer-content">
+
+                      <a href="../migrago/views/pagina2.php" class="btn btn-light mt-2">Ver Más <i
+                          class="fa-solid fa-arrow-right"></i></a>
+                      <a href="" class="btn btn-info mt-2">Reserva una cita</a>
+
+                    </div>
+
+                  </div>
+                </div>
+                <div class="card swiper-slide">
+                  <div class="image-content">
+
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
+                    <div class="card-image2">
+                      <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                    </div>
+                    <div class="card-image_flag">
+                      <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
+                    </div>
+                  </div>
+                  <div class="card-content">
+
+                    <p class="description">Al mes conseguí trabajo en ventas.</p>
+                    <span class="autor mb-1">Miguel PantaB.</span>
+                    <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
+                    <div class="container_etiquetas mb-1">
+                      <div class="container__body__etiqueta">
+                        Estudios
+                      </div>
+                      <div class="container__body__etiqueta">
+                        Refugio
+                      </div>
+
+                    </div>
+                    <div class="footer-content">
+
+                      <a href="../migrago/views/pagina2.php" class="btn btn-light mt-2">Ver Más <i
+                          class="fa-solid fa-arrow-right"></i></a>
+                      <a href="" class="btn btn-info mt-2">Reserva una cita</a>
+
+                    </div>
+
+                  </div>
+                </div>
+                <div class="card swiper-slide">
+                  <div class="image-content">
+
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
+                    <div class="card-image2">
+                      <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                    </div>
+                    <div class="card-image_flag">
+                      <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
+                    </div>
+                  </div>
+                  <div class="card-content">
+
+                    <p class="description">Al mes conseguí trabajo en ventas.</p>
+                    <span class="autor mb-1">Miguel Panta.</span>
+                    <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
+                    <div class="container_etiquetas mb-1">
+                      <div class="container__body__etiqueta">
+                        Estudios
+                      </div>
+                      <div class="container__body__etiqueta">
+                        Refugio
+                      </div>
+
+                    </div>
+                    <div class="footer-content">
+
+                      <a href="" class="btn btn-light mt-2">Ver Más <i class="fa-solid fa-arrow-right"></i></a>
+                      <a href="../migrago/views/pagina2.php" class="btn btn-info mt-2">Reserva una cita</a>
+
+                    </div>
+
+                  </div>
+                </div>
+                <div class="card swiper-slide">
+                  <div class="image-content">
+
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
+                    <div class="card-image2">
+                      <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                    </div>
+                    <div class="card-image_flag">
+                      <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
+                    </div>
+                  </div>
+                  <div class="card-content">
+
+                    <p class="description">Al mes conseguí trabajo en ventas.</p>
+                    <span class="autor mb-1">Miguel PantaA.</span>
+                    <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
+                    <div class="container_etiquetas mb-1">
+                      <div class="container__body__etiqueta">
+                        Estudios
+                      </div>
+                      <div class="container__body__etiqueta">
+                        Refugio
+                      </div>
+                    </div>
+                    <div class="footer-content">
+
+                      <a routerLink="./temas" class="btn btn-light mt-2">Ver Más <i
+                          class="fa-solid fa-arrow-right"></i></a>
+                      <a href="" class="btn btn-info mt-2">Reserva una cita</a>
+
+                    </div>
+
+                  </div>
+                </div>
+                <div class="card swiper-slide">
+                  <div class="image-content">
+
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
+                    <div class="card-image2">
+                      <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                    </div>
+                    <div class="card-image_flag">
+                      <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
+                    </div>
+                  </div>
+                  <div class="card-content">
+
+                    <p class="description">Al mes conseguí trabajo en ventas.</p>
+                    <span class="autor mb-1">Miguel PantaA.</span>
+                    <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
+                    <div class="container_etiquetas mb-1">
+                      <div class="container__body__etiqueta">
+                        Estudios
+                      </div>
+                      <div class="container__body__etiqueta">
+                        Refugio
+                      </div>
+                    </div>
+                    <div class="footer-content">
+
+                      <a href="../migrago/views/pagina2.php" class="btn btn-light mt-2">Ver Más <i
+                          class="fa-solid fa-arrow-right"></i></a>
+                      <a href="" class="btn btn-info mt-2">Reserva una cita</a>
+
+                    </div>
+
+                  </div>
+                </div>  -->
+
+
+<!-- <swiper-container></swiper-container> -->

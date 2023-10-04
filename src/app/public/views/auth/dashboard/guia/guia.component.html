@@ -1,0 +1,101 @@
+<div class="container-fluid d-grid gap-3 container__70_gris">
+
+  <div class="row">
+      <div class="col-lg-4 py-3">
+          <div class="card ">
+              <div class="card-body p-4 mt-3">
+                  <div class="row mb-4 d-flex align-items-center">
+                      <div class="col-lg-4">
+                                  <div class="card card-container image-content-perfil">
+
+                                       <div class="card-image-small">
+                                                           <img [src]="imageSrc"  class="card-img-small" alt="perfil">
+                                       </div>
+                                       <div class="card-image-flag-tiny">
+                                                           <img src="assets/images/flags/tiny/Peru.png"  class="card-img" alt="pais">
+                                       </div>
+                                  </div>
+                      </div>
+                      <div class="col-lg-8">
+                          <span class="p-bold-500">{{usuario.name}}</span> <br>
+                          <span class="p-normal-300">{{usuario.username}}</span>
+                      </div>
+
+                      <div class="col-lg-12 mt-3 d-flex flex-column align-items-center justify-content-center ">
+                        <span style="color: darkgrey;">Balance</span>
+                        <p class="mb-0" style="font-size: 20pt;">$ 1500.00</p>
+                        <span style="font-size: 7pt;">Transfiere a tu cuenta</span>
+                      </div>
+
+                  </div>
+                  <hr>
+                  <div class="row mt-4 px-3 mb-2 d-flex flex-column">
+                    <div class="row mb-3 justify-content-between">
+                        <div class="col-lg-2">
+                            <i class="fa-regular fa-chart-simple"></i>
+                        </div>
+                        <div class="col-lg-9">
+                            <a routerLink="./dashboard" class="link-dashboard"> Dashboard</a>
+                        </div>
+                    </div>
+                    <div class="row mb-3 justify-content-between">
+                        <div class="col-lg-2">
+                            <i class="fa-regular fa-comment-dots"></i>
+                        </div>
+                        <div class="col-lg-9">
+                            <a routerLink="./historias"  class="link-dashboard"> Mis historias</a>
+                        </div>
+                    </div>
+                    <div class="row mb-3 justify-content-between">
+                        <div class="col-lg-2">
+                            <i class="fa-regular fa-calendar-days"></i>
+                        </div>
+                        <div class="col-lg-9">
+                            <a routerLink="./agenda"  class="link-dashboard"> Agenda</a>
+                        </div>
+                    </div>
+                    <div class="row mb-3 justify-content-between">
+                        <div class="col-lg-2">
+                            <i class="fa-regular fa-paperclip"></i>
+                        </div>
+                        <div class="col-lg-9">
+                            <a routerLink="./agendadas"  class="link-dashboard"> Citas agendadas</a>
+                        </div>
+                    </div>
+                    <div class="row mb-3 justify-content-between">
+                        <div class="col-lg-2">
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+                        <div class="col-lg-9">
+                            <a routerLink="./perfil" class="link-dashboard"> Actualizar perfil</a>
+                        </div>
+                    </div>
+                    <div class="row mb-3 justify-content-between">
+                        <div class="col-lg-2">
+                            <i class="fa-solid fa-user-lock"></i>
+                        </div>
+                        <div class="col-lg-9">
+                            <a routerLink="./cambiar"  class="link-dashboard"> Cambiar contraseña</a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                  <div class="row ">
+                      <div class="col-lg-12">
+                              <a href="" (click)="logout()" class="btn btn-primary">Salir</a>
+                          </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-8">
+        <router-outlet></router-outlet>
+      </div>
+
+  </div>
+
+
+
+</div>

@@ -1,0 +1,1083 @@
+<header class="header-container">
+  <div class="p-cinta">
+
+    <div class="p-cinta-body">
+      <a href="">
+        <p>
+          REGÍSTRATE Y OBTÉN 20$ OFF EN TU PRIMER CONSULTA <i class="fa-sharp fa-solid fa-arrow-right"></i>
+
+          <!-- </p> -->
+      </a>
+    </div>
+
+
+    <div class="p-cinta-close">
+      <a href="">
+        <p><i class="fa-solid fa-xmark"></i></p>
+      </a>
+
+    </div>
+
+  </div>
+  <!--nav-->
+  <nav class="navh navbar navbar-expand-lg navbar-dark " id="navbar">
+    <div class="container_nav " style="
+justify-content: center;
+align-items: center;     display: flex;">
+
+
+
+
+      <a class="navbar-brand" routerLink="" style="flex-basis: 20%;  display: flex;
+      justify-content: center;">
+        <!-- Migrago -->
+        <img src="assets/images/icons/Logo-cabecera-mobile.png" width="110" height="25">
+      </a>
+
+      <a routerLink="../auth/login" class="btn custom-btn btn-ingresa d-lg-none ms-auto me-4"
+        *ngIf="!estalogeado">Ingresa</a>
+      <div class="dropdown d-lg-none ms-auto" *ngIf="estalogeado">
+        <div class="perfil-info">
+          <a class=" perfil-icon">
+            <i class="fas fa-user-circle"></i>
+          </a>
+          <span class="nombre-usuario dropdown-toggle  me-4" href="#" role="button" id="perfilDropdown"
+            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username}}</span>
+          <!-- <div class="dropdown-menu" aria-labelledby="perfilDropdown">
+            <a class="dropdown-item" href="#">Perfil</a>
+            <a class="dropdown-item" href="#">Configuración</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Salir de sesión</a>
+          </div> -->
+          <div class="dropdown-menu" [ngSwitch]="rolUsuario" aria-labelledby="perfilDropdown">
+            <ng-container *ngSwitchCase='"ROLE_CLIENT"'>
+              <a class="dropdown-item" routerLink="/auth/dashboardCliente/agendadas">Agendadas</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardCliente/historico">Históricas</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardCliente/perfil">Actualizar Perfil</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardCliente/cambiar">Cambiar Contraseña</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+            </ng-container>
+            <ng-container *ngSwitchCase='"ROLE_GUIDE"' >
+              <a class="dropdown-item" routerLink="/auth/dashboardGuia/dashboard">Panel</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardGuia/historias">Mis Historias</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardGuia/agenda">Agenda</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardGuia/agendadas">Citas Agendadas</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardGuia/perfil">Actualizar Perfil</a>
+              <a class="dropdown-item" routerLink="/auth/dashboardGuia/cambiar">Cambiar Contraseña</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+            </ng-container>
+
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+
+
+      <div class="collapse navbar-collapse" id="navbarCollapse" style="justify-content: center;">
+
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item">
+            <a class="nav-head" routerLink="/historias"><strong>Historias</strong></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-head" routerLink="/temas"><strong>Temas</strong></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-head" routerLink="/unete"><strong>Únete</strong></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-head" routerLink="/"><strong>Blog</strong></a>
+          </li>
+        </ul>
+
+
+      </div>
+
+
+      <div class="botonesnav" style="align-items: center;justify-content: center;flex-basis: 50%;">
+        <select id="language" class="d-lg-block d-none idioma" style="color: #fff;">
+          <option value="English">ES</option>
+          <option value="Spanish">EN</option>
+
+        </select>
+
+
+        <a routerLink="../auth/login" id="ingresa" *ngIf="!estalogeado"
+          class="btn-ingresa btn custom-btn d-lg-block d-none  me-2">Ingresa</a>
+        <!-- <a  class="btn custom-btn d-lg-block d-none btn-registrate" data-bs-toggle="modal"
+
+          data-bs-target="#modalRegister"
+          (click)="openModal(modalContent)">Registrate</a> -->
+        <a class="btn custom-btn d-lg-block d-none btn-registrate" *ngIf="!estalogeado"
+          (click)="openModal(modalContent)">Registrate</a>
+
+        <div *ngIf="estalogeado" class="dropdown">
+          <div class="perfil-info">
+            <a class=" perfil-icon">
+              <i class="fas fa-user-circle" style="font-size: 30px;"></i>
+            </a>
+            <span class="nombre-usuario dropdown-toggle" href="#" role="button" id="perfilDropdown"
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username}}</span>
+            <div class="dropdown-menu" [ngSwitch]="rolUsuario" aria-labelledby="perfilDropdown">
+              <ng-container *ngSwitchCase='"ROLE_CLIENT"'>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/agendadas">Agendadas</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/historico">Históricas</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/perfil">Actualizar Perfil</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/cambiar">Cambiar Contraseña</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+              </ng-container>
+              <ng-container *ngSwitchCase='"ROLE_GUIDE"' >
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/dashboard">Panel</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/historias">Mis Historias</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/agenda">Agenda</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/agendadas">Citas Agendadas</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/perfil">Actualizar Perfil</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/cambiar">Cambiar Contraseña</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+              </ng-container>
+
+
+            </div>
+            <!-- <div class="dropdown-menu" *ngIf="rolUsuario=='ROLE_CLIENT'" aria-labelledby="perfilDropdown">
+              <a class="dropdown-item" href="#">Agendadas</a>
+              <a class="dropdown-item" href="#">Históricas</a>
+              <a class="dropdown-item" href="#">Actualizar Perfil</a>
+              <a class="dropdown-item" href="#">Cambiar Contraseña</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Salir de sesión</a>
+            </div>
+            <div class="dropdown-menu" *ngIf="rolUsuario=='ROLE_GUIDE'" aria-labelledby="perfilDropdown">
+              <a class="dropdown-item" href="#">Panel</a>
+              <a class="dropdown-item" href="#">Mis Historias</a>
+              <a class="dropdown-item" href="#">Agenda</a>
+              <a class="dropdown-item" href="#">Citas Agendadas</a>
+              <a class="dropdown-item" href="#">Actualizar Perfil</a>
+              <a class="dropdown-item" href="#">Cambiar Contraseña</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Salir de sesión</a>
+            </div> -->
+          </div>
+
+
+        </div>
+
+        <!-- <div  class="dropdown">
+          <a class="dropdown-toggle" href="#" role="button" id="perfilDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="perfilDropdown">
+            <a class="dropdown-item" href="#">Perfil</a>
+            <a class="dropdown-item" href="#">Configuración</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Salir de sesión</a>
+          </div>
+        </div> -->
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+    </div>
+  </nav>
+  <!--end nav-->
+
+
+</header>
+
+
+
+<!-- seccion 1 -->
+<section>
+  <div class="apartado__index">
+    <div class="container__70">
+      <div class="apartado__index__body">
+        <div class="letra__a letra__blanca">
+          Encuentra historias
+        </div>
+        <div class="letra__b__bold letra__blanca">
+          para migrar seguro
+        </div>
+
+      </div>
+      <div class="apartado__index__buscador">
+        <input type="text" class="buscador" placeholder="Busca el país al que estas migrando">
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<section>
+  <div class="apartado__combinado">
+    <!-- seccion azul -->
+
+    <div class="container__azul">
+      <div class="container__azul__head">
+        <p>Cómo funciona?</p>
+      </div>
+      <div class="container__azul__body">
+        <div class="container__azul__body__item">
+          <div class="container__azul__body__item__imagen">
+            <picture>
+              <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                              <source media="(min-width: 550px)" srcset="media.png"> -->
+              <img src="assets/images/icons/Geo-mobile.png">
+            </picture>
+          </div>
+          <div class="container__azul__body__item__title">
+            1.-
+          </div>
+          <div class="container__azul__body__item__text">
+            Busca el país y ciudad a donde migrarás
+          </div>
+        </div>
+        <div class="container__azul__body__item">
+          <div class="container__azul__body__item__imagen">
+            <picture>
+              <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                              <source media="(min-width: 550px)" srcset="media.png"> -->
+              <img src="assets/images/icons/Corazon-mobile.png">
+            </picture>
+          </div>
+          <div class="container__azul__body__item__title">
+            2.-
+          </div>
+          <div class="container__azul__body__item__text">
+            ELige una historia como la tuya
+          </div>
+        </div>
+        <div class="container__azul__body__item">
+          <div class="container__azul__body__item__imagen">
+            <picture>
+              <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                              <source media="(min-width: 550px)" srcset="media.png"> -->
+              <img src="assets/images/icons/Calendario-mobile.png">
+            </picture>
+          </div>
+          <div class="container__azul__body__item__title">
+            3.-
+          </div>
+          <div class="container__azul__body__item__text">
+            Reserva una cita para obtener información
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- seccion inferior -->
+    <div class="container__60">
+      <div class="container__rutas">
+        <div class="container__rutas__head">
+          <div class="container__rutas__head__title">
+            Rutas de migración
+          </div>
+          <div class="container__rutas__head__subtitle">
+            Distintas maneras de llegar a tu destino
+          </div>
+        </div>
+        <div class="container__rutas__body">
+          <div class="container__rutas__body__etiquetas">
+            <div class="container__rutas__body__etiqueta" *ngFor="let rutamigracion of rutasmigracion">
+              {{rutamigracion.name_way_migration}}
+            </div>
+            <!-- <div class="container__rutas__body__etiqueta">
+              Estudios
+            </div>
+            <div class="container__rutas__body__etiqueta">
+              Refugio
+            </div>
+            <div class="container__rutas__body__etiqueta">
+              Invitación
+            </div>
+            <div class="container__rutas__body__etiqueta">
+              Trabajo
+            </div>
+            <div class="container__rutas__body__etiqueta">
+              Turista
+            </div>
+            <div class="container__rutas__body__etiqueta">
+              Residencia directa
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="marquee p-cinta" style="display: flex; align-items: center; justify-content: center;">
+  <p [style.padding-right]="last ? '0em':'5em'" *ngFor="let rutamigracion of rutasmigracion ; let last = last">
+    {{rutamigracion.name_way_migration}}</p>
+</div>
+
+<!-- seccion historias como la tuya -->
+
+<section>
+  <div class="container__70">
+    <div class="container__historias">
+      <div class="container__historias__body">
+        <div class="container__historias__body__head">
+          <div class="container__historias__body__title letra__b__bold">
+            Historias
+
+          </div>
+          <div class="container__historias__body__title letra__b">
+            como la tuya
+          </div>
+          <div class="container__historias__body__subtitle">
+            de migrantes reales dispuestos a responder
+          </div>
+        </div>
+        <div class="container__historias__body__body">
+          <div class="container__historias__body__body__item">
+            <div class="container__historias__body__body__item__imagen">
+              <picture>
+                <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                  <source media="(min-width: 550px)" srcset="media.png"> -->
+                <img src="assets/images/icons/People-mobile.png">
+              </picture>
+            </div>
+            <div class="container__historias__body__body__item__body">
+              <div class="container__historias__body__body__item__title">
+                3456
+              </div>
+              <div class="container__historias__body__body__item__text">
+                Migrantes que han llegado con éxito
+              </div>
+            </div>
+
+          </div>
+          <div class="container__historias__body__body__item">
+            <div class="container__historias__body__body__item__imagen">
+              <picture>
+                <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                  <source media="(min-width: 550px)" srcset="media.png"> -->
+                <img src="assets/images/icons/Mochila-mobile.png">
+              </picture>
+            </div>
+            <div class="container__historias__body__body__item__body">
+              <div class="container__historias__body__body__item__title">
+                1684
+              </div>
+              <div class="container__historias__body__body__item__text">
+                menores que se encuentran estudiando
+              </div>
+            </div>
+
+          </div>
+          <div class="container__historias__body__body__item">
+            <div class="container__historias__body__body__item__imagen">
+              <picture>
+                <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                  <source media="(min-width: 550px)" srcset="media.png"> -->
+                <img src="assets/images/icons/Mascota-mobile.png">
+              </picture>
+            </div>
+            <div class="container__historias__body__body__item__body">
+              <div class="container__historias__body__body__item__title">
+                658
+              </div>
+              <div class="container__historias__body__body__item__text">
+                mascotas empadronadas con un nuevo hogar
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="container__historias__imagen">
+        <picture>
+          <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                  <source media="(min-width: 550px)" srcset="media.png"> -->
+          <img src="assets/images/imagen_video.png">
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- seccion fondo naranja -->
+<section>
+  <div class="container__naranja">
+    <div class="container__70">
+      <div class="container__historias__reales">
+        <div class="container__historias__reales__head">
+          <div class="container__historias__reales__head__title">
+            Historias reales de migrantes
+          </div>
+          <div class="container__historias__reales__head__subtitle">
+            dispuestos a responder tus dudas
+          </div>
+        </div>
+        <div class="container__historias__reales__body">
+          <div class="slide-container swiper">
+            <div class="slide-content">
+              <div class="btn_navigation">
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+              </div>
+
+              <!-- <div class="card-wrapper swiper-wrapper cards ">
+
+              </div> -->
+              <div class="card-wrapper swiper-wrapper cards ">
+                <!-- <div *ngFor="let number of [0,1,2,3,4]"> -->
+                <!-- <div class="card swiper-slide " *ngFor="let heroe of heroes"  >
+                  <div class="image-content">
+
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
+                    <div class="card-image2">
+                      <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                    </div>
+                    <div class="card-image_flag">
+                      <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
+                    </div>
+                  </div>
+                  <div class="card-content">
+
+                    <p class="description">Al mes conseguí trabajo en ventas.</p>
+                    <span class="autor mb-1">Miguel PantaD.</span>
+                    <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
+                    <div class="container_etiquetas mb-1">
+                      <div class="container__body__etiqueta">
+                        Estudios
+                      </div>
+                      <div class="container__body__etiqueta">
+                        Refugio
+                      </div>
+                    </div>
+                    <div class="footer-content">
+
+                      <a href="../migrago/views/pagina2.php" class="btn btn-light mt-2">Ver Más <i
+                          class="fa-solid fa-arrow-right"></i></a>
+                      <a href="" class="btn btn-info mt-2">Reserva una cita</a>
+
+                    </div>
+
+                  </div>
+                </div> -->
+
+                <div class="card swiper-slide " *ngFor="let historia of resp_historias">
+                  <app-tarjeta [historia]="historia"></app-tarjeta>
+                </div>
+
+              </div>
+
+            </div>
+            <!-- <div class="swiper-button-next swiper-navBtn"></div>
+                      <div class="swiper-button-prev swiper-navBtn"></div> -->
+            <!-- <div class="swiper-pagination"></div> -->
+          </div>
+        </div>
+        <div class="container__historias__reales__link">
+          <a routerLink="/historias" routerLinkActive="router-link-active" class="btn_ver_mas">Ver más historias</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- seccion reseñas de migrantes -->
+<section>
+  <div class="container__resenias">
+    <div class="container__verificados__texto">
+      <div class="container__verificados__head">
+        <div class="container__verificados__head__title">
+          <span class="letra__b">Reseñas de migrantes</span>
+        </div>
+        <div class="container__verificados__head__subtitle">
+          que ahora viven en un nuevo país
+        </div>
+
+      </div>
+
+    </div>
+    <div class="container__resenias__body">
+      <div class="slide-container swiper">
+        <div class="slide-content3">
+
+          <div class="card-wrapper swiper-wrapper cards">
+            <div class="swiper-slide card-resenia">
+
+              <div class="card-content">
+
+                <p class="description-resenia">“LoremC ipsum dolor sit amet, con-sectetuer adipiscing elit, sed diam
+                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat”</p>
+                <span class="autor">Miguel Panta.</span>
+                <span class="etiqueta">Verificado</span>
+
+
+              </div>
+              <div class="image-content">
+
+                <div class="card-image">
+                  <img src="assets/images/imagen_resenia.png" alt="" class="card-img">
+                </div>
+
+              </div>
+            </div>
+            <div class="swiper-slide card-resenia">
+
+              <div class="card-content">
+
+                <p class="description-resenia">“LoremA ipsum dolor sit amet, con-sectetuer adipiscing elit, sed diam
+                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat”</p>
+                <span class="autor">Miguel Panta.</span>
+                <span class="etiqueta">Verificado</span>
+
+
+              </div>
+              <div class="image-content">
+
+                <div class="card-image">
+                  <img src="assets/images/imagen_resenia.png" alt="" class="card-img">
+                </div>
+
+              </div>
+            </div>
+            <div class="swiper-slide card-resenia">
+
+              <div class="card-content">
+
+                <p class="description-resenia">“LoremB ipsum dolor sit amet, con-sectetuer adipiscing elit, sed diam
+                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat”</p>
+                <span class="autor">Miguel Panta.</span>
+                <span class="etiqueta">Verificado</span>
+
+
+              </div>
+              <div class="image-content">
+
+                <div class="card-image">
+                  <img src="assets/images/imagen_resenia.png" alt="" class="card-img">
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="container__pagination__navigation">
+            <div class="swiper-pagination"></div>
+            <div class="btn_navigation">
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- seccion migrantes verificados -->
+<section>
+  <div class="container__verificados">
+    <div class="container__verificados__texto">
+      <div class="container__verificados__head">
+        <div class="container__verificados__head__title">
+          <span class="letra__b">Migrantes verificados</span>
+        </div>
+        <div class="container__verificados__head__subtitle">
+          dispuestos a ayudarte a migrar con seguridad
+        </div>
+
+      </div>
+      <div class="container__verificados__body">
+        <div class="container__verificados__body__item">
+          <div class="container__azul__body__item__imagen">
+            <picture>
+              <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                  <source media="(min-width: 550px)" srcset="media.png"> -->
+              <img src="assets/images/icons/Talk-mobile.png">
+            </picture>
+          </div>
+          <div class="container__azul__body__item__title">
+            Variedad de historias
+          </div>
+          <div class="container__azul__body__item__text">
+            Podrían ser como la tuya con información precisa, real y conﬁable
+          </div>
+        </div>
+        <div class="container__verificados__body__item">
+          <div class="container__azul__body__item__imagen">
+            <picture>
+              <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                  <source media="(min-width: 550px)" srcset="media.png"> -->
+              <img src="assets/images/icons/Escudo-mobile.png">
+            </picture>
+          </div>
+          <div class="container__azul__body__item__title">
+            Migrantes veriﬁcados
+          </div>
+          <div class="container__azul__body__item__text">
+            Podrían ser como la tuya con información precisa, real y conﬁable
+          </div>
+        </div>
+        <div class="container__verificados__body__item">
+          <div class="container__azul__body__item__imagen">
+            <picture>
+              <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                  <source media="(min-width: 550px)" srcset="media.png"> -->
+              <img src="assets/images/icons/Visa-mobile.png">
+            </picture>
+          </div>
+          <div class="container__azul__body__item__title">
+            Tu pago está protegido
+          </div>
+          <div class="container__azul__body__item__text">
+            Podrían ser como la tuya con información precisa, real y conﬁable
+          </div>
+        </div>
+        <div class="container__verificados__body__item">
+          <div class="container__azul__body__item__imagen">
+            <picture>
+              <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                  <source media="(min-width: 550px)" srcset="media.png"> -->
+              <img src="assets/images/icons/Call--mobile.png">
+            </picture>
+          </div>
+          <div class="container__azul__body__item__title">
+            Soporte en línea
+          </div>
+          <div class="container__azul__body__item__text">
+            Podrían ser como la tuya con información precisa, real y conﬁable
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container__verificados__imagen">
+      <picture>
+        <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                              <source media="(min-width: 550px)" srcset="media.png"> -->
+        <img src="assets/images/imagen_grande.png">
+      </picture>
+    </div>
+
+
+  </div>
+</section>
+<!-- seccion antes de migrar -->
+<section>
+  <div class="container__migrar">
+    <div class="container__70">
+      <div class="container__historias__reales">
+        <div class="container__historias__reales__head">
+          <div class="container__historias__reales__head__title">
+            <span class="letra__b">Antes de migrar</span>
+          </div>
+          <div class="container__historias__reales__head__subtitle">
+            debes saber esto. últimos post
+          </div>
+
+        </div>
+        <div class="container__historias__reales__body">
+
+          <div class="slide-container swiper">
+            <div class="slide-content2">
+              <div class="btn_navigation">
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+              </div>
+
+              <div class="card-wrapper swiper-wrapper cards">
+                <div class="card swiper-slide">
+                  <div class="image-content">
+                    <!-- <span class="overlay"></span> -->
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
+
+                  </div>
+                  <div class="card-content">
+                    <!-- <h2 class="name">David Dell</h2> -->
+                    <p class="description">Todos los documentos son necesarios.</p>
+                    <span class="texto">
+                      Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum
+                      ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N.
+                      del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de
+                      tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que
+                      tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al
+                      original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales
+                      contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por
+                      ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+                    </span>
+                    <div class="container__etiquetas">
+                      <div class="etiquetas">
+                        Entrevista
+                      </div>
+                      <div class="etiquetas">
+                        Testimonio
+                      </div>
+                    </div>
+                    <div class="card-content-footer">
+                      <div class="card-image3">
+                        <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                      </div>
+                      <div class="card-content-footer-autor">
+                        <span class="autor">Miguel Panta.</span>
+                        <span class="etiqueta">20/06&1993</span>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+
+                </div>
+                <div class="card swiper-slide">
+                  <div class="image-content">
+                    <!-- <span class="overlay"></span> -->
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
+
+                  </div>
+                  <div class="card-content">
+                    <!-- <h2 class="name">David Dell</h2> -->
+                    <p class="description">Todos los documentos son necesarios.</p>
+                    <span class="texto">
+                      Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum
+                      ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N.
+                      del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de
+                      tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que
+                      tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al
+                      original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales
+                      contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por
+                      ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+                    </span>
+                    <div class="container__etiquetas">
+                      <div class="etiquetas">
+                        Entrevista
+                      </div>
+                      <div class="etiquetas">
+                        Testimonio
+                      </div>
+                    </div>
+                    <div class="card-content-footer">
+                      <div class="card-image3">
+                        <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                      </div>
+                      <div class="card-content-footer-autor">
+                        <span class="autor">Miguel Panta.</span>
+                        <span class="etiqueta">20/06/1993</span>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+
+                </div>
+                <div class="card swiper-slide">
+                  <div class="image-content">
+                    <!-- <span class="overlay"></span> -->
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
+
+                  </div>
+                  <div class="card-content">
+                    <!-- <h2 class="name">David Dell</h2> -->
+                    <p class="description">Todos los documentos son necesarios.</p>
+                    <span class="texto">
+                      Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum
+                      ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N.
+                      del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de
+                      tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que
+                      tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al
+                      original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales
+                      contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por
+                      ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+                    </span>
+                    <div class="container__etiquetas">
+                      <div class="etiquetas">
+                        Entrevista
+                      </div>
+                      <div class="etiquetas">
+                        Testimonio
+                      </div>
+                    </div>
+                    <div class="card-content-footer">
+                      <div class="card-image3">
+                        <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                      </div>
+                      <div class="card-content-footer-autor">
+                        <span class="autor">Miguel Panta.</span>
+                        <span class="etiqueta">20/06&1993</span>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+
+                </div>
+                <div class="card swiper-slide">
+                  <div class="image-content">
+                    <!-- <span class="overlay"></span> -->
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
+
+                  </div>
+                  <div class="card-content">
+                    <!-- <h2 class="name">David Dell</h2> -->
+                    <p class="description">Todos los documentos son necesarios.</p>
+                    <span class="texto">
+                      Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum
+                      ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N.
+                      del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de
+                      tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que
+                      tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al
+                      original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales
+                      contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por
+                      ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+                    </span>
+                    <div class="container__etiquetas">
+                      <div class="etiquetas">
+                        Entrevista
+                      </div>
+                      <div class="etiquetas">
+                        Testimonio
+                      </div>
+                    </div>
+                    <div class="card-content-footer">
+                      <div class="card-image3">
+                        <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                      </div>
+                      <div class="card-content-footer-autor">
+                        <span class="autor">Miguel Panta.</span>
+                        <span class="etiqueta">20/06&1993</span>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+
+                </div>
+                <div class="card swiper-slide">
+                  <div class="image-content">
+                    <!-- <span class="overlay"></span> -->
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
+
+                  </div>
+                  <div class="card-content">
+                    <!-- <h2 class="name">David Dell</h2> -->
+                    <p class="description">Todos los documentos son necesarios.</p>
+                    <span class="texto">
+                      Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum
+                      ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N.
+                      del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de
+                      tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que
+                      tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al
+                      original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales
+                      contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por
+                      ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+                    </span>
+                    <div class="container__etiquetas">
+                      <div class="etiquetas">
+                        Entrevista
+                      </div>
+                      <div class="etiquetas">
+                        Testimonio
+                      </div>
+                    </div>
+                    <div class="card-content-footer">
+                      <div class="card-image3">
+                        <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                      </div>
+                      <div class="card-content-footer-autor">
+                        <span class="autor">Miguel Panta.</span>
+                        <span class="etiqueta">20/06&1993</span>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+
+                </div>
+                <div class="card swiper-slide">
+                  <div class="image-content">
+                    <!-- <span class="overlay"></span> -->
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
+
+                  </div>
+                  <div class="card-content">
+                    <!-- <h2 class="name">David Dell</h2> -->
+                    <p class="description">Todos los documentos son necesarios.</p>
+                    <span class="texto">
+                      Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum
+                      ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N.
+                      del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de
+                      tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que
+                      tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al
+                      original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales
+                      contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por
+                      ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+                    </span>
+                    <div class="container__etiquetas">
+                      <div class="etiquetas">
+                        Entrevista
+                      </div>
+                      <div class="etiquetas">
+                        Testimonio
+                      </div>
+                    </div>
+                    <div class="card-content-footer">
+                      <div class="card-image3">
+                        <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                      </div>
+                      <div class="card-content-footer-autor">
+                        <span class="autor">Miguel Panta.</span>
+                        <span class="etiqueta">20/06&1993</span>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+
+                </div>
+              </div>
+              <!-- <div class="swiper-button-prev"></div>
+                          <div class="swiper-button-next"></div> -->
+            </div>
+
+
+          </div>
+
+          <!-- <div class="swiper-button-next swiper-navBtn "></div>
+
+                  <div class="swiper-button-prev swiper-navBtn "></div> -->
+        </div>
+        <div class="container__historias__reales__link">
+          <a href="" class="btn_ver_informacion">Ver más información</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- seccion quiero unirme -->
+<section>
+  <div class="container__unirme">
+    <div class="container__unirme__head">
+      <div class="container__unirme__head__title">
+        <span class="">Comparte tu historia</span>
+      </div>
+      <div class="container__unirme__head__subtitle">
+        Si eres nuevo en un país desarrollado, puedes recuperar tu inversión compartiendo tu experiencia con futuros
+        emigrantes de todo el mundo.
+      </div>
+    </div>
+    <div class="container__unirme__body">
+      <a routerLink="./registroGuia" class="btn_unirme">Quiero unirme</a>
+    </div>
+  </div>
+</section>
+<!-- botoncito para los videos -->
+<!-- <picture>
+                  <source media="(min-width: 900px)" srcset="grande.png">
+                  <source media="(min-width: 550px)" srcset="media.png">
+                  <img src="assets/images/icons/Play-mobile.png">
+              </picture> -->
+<!-- boton de wasap -->
+<a href="" target="_blank" class="btn-whatsapp">
+  <img src="assets/images/whatsapp.png" width="75" height="75">
+</a>
+
+
+<!-- Modal para el registro por web -->
+<!-- <div class="modal fade" id="modalRegister" tabindex="-1" aria-labelledby="modalRegister" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body modal-login">
+
+        <app-modal></app-modal>
+      </div>
+
+    </div>
+  </div>
+</div> -->
+
+<ng-template #modalContent let-modal>
+
+
+  <div class="modal-contenido">
+
+    <div class="modal-body modal-login">
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')" style="
+        float: right;">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <app-modal (closeModal)="cerrarModal()"></app-modal>
+    </div>
+    <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.close('Cerrar')">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="modal.close('Guardar')">Guardar</button>
+      </div>  -->
+
+  </div>
+
+
+</ng-template>
+
+
+<!-- <ng-template #modalContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modalRegister">Título de la Modal</h4>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Cerrar')">Cerrar</button>
+    <button type="button" class="btn btn-primary" (click)="modal.close('Guardar')">Guardar</button>
+  </div>
+</ng-template> -->
+
+
+<!-- fin Home-->

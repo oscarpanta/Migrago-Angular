@@ -1,0 +1,415 @@
+<div class="row mt-4">
+  <p class="p-bold-500-20"> Mis historias</p>
+</div>
+<div class="row">
+  <p class="p-normal-300-16"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh</p>
+</div>
+<div class="row" *ngFor="let guia of historiasporGuia; let i = index">
+
+  <div class="card mb-5">
+    <div class="card-body px-5 pt-4">
+      <div class="row">
+        <p class="p-bold-500-18">{{guia.title}}</p>
+      </div>
+
+      <div class="row">
+        <p class="p-normal-300-12">Publicada el 13/07/2023</p>
+      </div>
+      <div class="row col-lg-6 my-3">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <button class="btn btn-primary btn-sm" type="button" id="" data-bs-toggle="modal"
+            data-bs-target="#modalEditarHistoria" (click)="obtenerDetalleHistoria(guia)" [disabled]="guia.status === 'PENDING'">Editar</button>
+          <!-- [attr.data-bs-target]="'#modalEditarHistoria' + i" (click)="obtenerDetalleHistoria(guia)">{{guia.id}} </button> -->
+          <button class="btn btn-success btn-sm" type="button" id="">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+<div class="row col-lg-6">
+  <button class="btn btn-dark btn-sm" type="button" id="" data-bs-toggle="modal" (click)="limpiarFormulario()"
+    data-bs-target="#modalEditarHistoria">Nueva historia</button>
+</div>
+
+
+<div class="modal fade" id="modalEditarHistoria" tabindex="-1" aria-labelledby="modalEditarHistoria" #myModalClose
+  aria-hidden="true">
+  <!-- <div class="modal fade" [id]="'modalEditarHistoria' + i" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true"> -->
+  <div class="modal-lg modal-dialog">
+    <div class="modal-content modal-transparente">
+
+      <div class="modal-body" style="padding: 0;">
+        <div class="modal-body-primary" style="
+                background-color: #e4e4e4;padding: 3rem;">
+          <span class="p-bold-500-20-blanco" style="
+                    color: #5a2395;">Gestiona</span>
+          <span class="p-bold-500-20-blanco" style="
+                    color: #5a2395;font-weight: normal;"> tu historia</span>
+
+        </div>
+        <nav class="nav-modal-general" style="
+                background-color: #e4e4e4;">
+          <div class="nav nav-tabs nav-pills nav-fill" id="nav-tab" role="tablist">
+            <button class="nav-link active" style="margin-right: 3pt;" id="nav-home-tab" data-bs-toggle="tab"
+              data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+              Historia
+            </button>
+            <button class="nav-link" style="margin-left: 3pt;" id="nav-profile-tab" data-bs-toggle="tab"
+              data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+              Temas
+            </button>
+
+          </div>
+        </nav>
+        <div class="modal-body-blanco  py-5 " style="padding-right: 5rem; padding-left: 5rem;">
+          <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="registroHistoria()">
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <ng-container>
+                  <div class="row col-lg-12">
+
+                    <div class="form-group mb-3">
+                      <p class="p-bold-300-10-black">Titulo*</p>
+                      <p class="p-parrafo">Escribe hasta 70 caracteres</p>
+                      <input type="text" id="" formControlName="titulo" class="input_historia form-control form-control-sm">
+                      <!-- [(ngModel)]="historiaDetalle.story.data[0].title" -->
+                    </div>
+                    <div class="form-group mb-3 col-lg-6">
+
+                      <p class="p-parrafo">País en el que sucedió la historia</p>
+                      <select id="countrySelect" formControlName="countrySelect" name="countrySelect"
+                        (change)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"
+                        class="input_historia form-select form-select-normal" aria-label="Default select example">
+                        <option value="0">País a migrar</option>
+                        <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}
+                        </option>
+                      </select>
+
+                      <!-- <input type="text" id="" name="pais" class="form-control form-control-sm"> -->
+                    </div>
+                    <div class="form-group mb-3 col-lg-6">
+
+                      <p class="p-parrafo">Ciudad en la que ocurrió la historia</p>
+                      <!-- <input type="text" id="" name="ciudad" class="form-control form-control-sm"> -->
+                      <select name="citySelect" formControlName="citySelect" (change)="onCitySelect($event)"
+                        class="form-select form-select-normal" [(ngModel)]="selectedCityId"
+                        aria-label="Default select example">
+                        <option value="0">Selecciona una ciudad</option>
+                        <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
+                      </select>
+                    </div>
+                    <div class="form-group mb-3 col-lg-6">
+
+                      <p class="p-parrafo">Nacionalidad</p>
+
+                      <select formControlName="Nacionalidad" (change)="onNationalitySelect($event)"
+                        class="form-select form-select-normal" [(ngModel)]="selectedNationalityId"
+                        aria-label="Default select example">
+                        <option value="0" selected>Nacionalidad del guía</option>
+                        <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
+                          nacionalidad.nationality_name }}</option>
+                      </select>
+
+                    </div>
+                    <div class="form-group mb-3 col-lg-6">
+                      <p class="p-parrafo">Fecha de llegada al país* (público)</p>
+                      <input type="date" name="" formControlName="fecha" (change)="onFecha($event)"
+                        class="form-control form-control-sm" value="" placeholder="">
+                    </div>
+
+                    <div class="form-group mb-3">
+
+                      <p class="p-parrafo">Modo Migracion</p>
+                      <select formControlName="ModoMigracion" (change)="onWayMigrationSelect($event)"
+                        class="form-select form-select-normal" [(ngModel)]="selectedModoMigrationId"
+                        aria-label="Default select example">
+                        <option value="0" selected>Modo Migracion</option>
+                        <option *ngFor="let migracion of modemigrations" [value]="migracion.id">{{
+                          migracion.description }}</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+
+                      <p class="p-parrafo">Ruta Migracion</p>
+                      <select formControlName="RutaMigracion" (change)="onRutaMigrationSelect($event)"
+                        class="form-select form-select-normal" [(ngModel)]="selectedRutaMigrationId"
+                        aria-label="Default select example">
+                        <option value="0" selected>Ruta Migracion</option>
+                        <option *ngFor="let ruta of rutasmigracion" [value]="ruta.id">{{
+                          ruta.name_way_migration }}</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group mb-3 mt-1">
+                      <p class="p-bold-300-10-black">Imágenes *</p>
+                      <p class="p-parrafo p-texto">3 fotos como mínimo (.jpg o .png).</p>
+                      <p class="p-parrafo p-texto"> Medidas: 1920x1080 px.</p>
+                      <p class="p-parrafo p-texto"> Peso máximo de 50 kb.</p>
+                      <!-- <div class="input-group-append">
+                                                  <button type="button" class="browse1 btn btn-primary">Selecciona una imagen</button>
+                                                  <button type="button" class="browse2 btn btn-primary">Selecciona una imagen</button>
+                                                  <button type="button" class="browse3 btn btn-primary">Selecciona una imagen</button>
+                                              </div> -->
+                      <div class="row d-flex align-items-end mt-3">
+
+                        <div class="form-group col-lg-2 mb-3">
+                          <!-- <a href="" class="browse1"> -->
+                          <input type="file" #fileInput style="display:none" (change)="onFileSelected($event)">
+
+                          <div *ngIf="imageSrc !== ''; else nomuestra">
+                            <img [src]="imageSrc" id="preview" style="max-width: 100px;height: 8rem;" (click)="openFileInput()">
+                          </div>
+                          <ng-template #nomuestra>
+                            <img src="assets/images/perfiles/perfil.png" style="max-width: 100px" id="preview"
+                              class="img-thumbnail" (click)="openFileInput()">
+                          </ng-template>
+
+
+                          <!-- <div *ngIf="imageSrc!='';then muestra else nomuestra"></div>
+                            <ng-template #muestra><img [src]="imageSrc" id="preview" style="max-width:100px" (click)="openFileInput()"></ng-template>
+                            <ng-template #nomuestra><img src="assets/images/perfiles/perfil.png" style="max-width:100px" id="preview" class="img-thumbnail" (click)="openFileInput()"></ng-template> -->
+
+                          <!-- <div *ngIf="imageSrc!='';then muestra else nomuestra"></div>
+                            <ng-template #muestra><img [src]="imageSrc" id="preview1" style="max-width:100px" ></ng-template>
+                            <ng-template #nomuestra><img src="assets/images/perfiles/perfil.png" style="max-width:100px" id="preview1" class="img-thumbnail" ></ng-template>
+ -->
+
+
+
+                          <!-- <img src="assets/images/perfiles/perfil.png" style="max-width:100px" id="preview1"
+                              class="img-thumbnail"> -->
+
+                          <!-- </a> -->
+
+                        </div>
+
+                          <!-- <div  class="form-group col-lg-2 mb-3" *ngIf="historiaDetalle"> -->
+                            <div  class="form-group col-lg-2 mb-3">
+                            <input type="file" #fileInput2 style="display:none" (change)="onFileSelected2($event)">
+
+                            <div *ngIf="imageSrc2 !== ''; else nomuestra2">
+                              <img [src]="imageSrc2" id="preview2" style="max-width: 100px;height: 8rem;" (click)="openFileInput2()">
+                            </div>
+                            <ng-template #nomuestra2>
+                              <img src="assets/images/perfiles/perfil.png" style="max-width: 100px" id="preview2"
+                                class="img-thumbnail" (click)="openFileInput2()">
+                            </ng-template>
+                           </div>
+                          <!-- <div  class="form-group col-lg-2 mb-3" *ngIf="historiaDetalle"  > -->
+                            <div  class="form-group col-lg-2 mb-3">
+                            <input type="file" #fileInput3 style="display:none" (change)="onFileSelected3($event)">
+
+                            <div *ngIf="imageSrc3 !== ''; else nomuestra3">
+                              <img [src]="imageSrc3" id="preview3" style="max-width: 100px;height: 8rem;" (click)="openFileInput3()">
+                            </div>
+                            <ng-template #nomuestra3>
+                              <img src="assets/images/perfiles/perfil.png" style="max-width: 100px" id="preview3"
+                                class="img-thumbnail" (click)="openFileInput3()">
+                            </ng-template>
+                           </div>
+
+
+                        <!-- <div class="form-group col-lg-2 mb-3">
+                          <a href="" class="browse2">
+                            <div *ngIf="imageSrc2!='';then muestra2 else nomuestra2"></div>
+                            <ng-template #muestra2><img [src]="imageSrc2" id="preview2" style="max-width:100px" ></ng-template>
+                            <ng-template #nomuestra2><img src="assets/images/perfiles/perfil.png" style="max-width:100px" id="preview2" class="img-thumbnail" ></ng-template>
+
+                          </a>
+                        </div>
+                        <div class="form-group col-lg-2 mb-3">
+                          <a href="" class="browse3">
+                              <div *ngIf="imageSrc3!='';then muestra3 else nomuestra3"></div>
+                              <ng-template #muestra3><img [src]="imageSrc3" id="preview3" style="max-width:100px" ></ng-template>
+                              <ng-template #nomuestra3><img src="assets/images/perfiles/perfil.png" style="max-width:100px" id="preview3" class="img-thumbnail" ></ng-template>
+
+
+                          </a>
+                        </div> -->
+
+                        <div class="form-group mb-3 d-none">
+                          <!-- <input  type="file" (change)="onFileSelected($event)" name="file1" class="file1" accept=".jpg, .png, .gif" > -->
+                          <!-- <input  type="file" (change)="onFileSelected($event)" name="file1" class="file1" accept=".jpg, .png, .gif" > -->
+                          <!-- <input type="file" #fileInput2 (change)="onFileSelected2($event)" name="file2" class="file2" accept=".jpg, .png, .gif">
+                          <input type="file" (change)="onFileSelected3($event)" name="file3" class="file3" accept=".jpg, .png, .gif"> -->
+                          <!-- <input type="file" (change)="onFileSelected2($event)" name="file2" class="file2" accept=".jpg, .png, .gif" >
+                          <input type="file" (change)="onFileSelected3($event)" name="file3" class="file3" accept=".jpg, .png, .gif" > -->
+                          <!-- <div class="input-group my-3"> -->
+                          <!-- <input type="text" class="form-control" disabled placeholder="Cargar imagen" id="file"> -->
+                          <!-- <div class="input-group-append">
+                                                                  <button type="button" class="browse btn btn-primary">Selecciona una imagen</button>
+                                                              </div> -->
+                          <!-- </div> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group mb-3">
+                      <p class="p-bold-300-10-black">Escribe los detalles de tu historia* *</p>
+                      <p class="p-parrafo">Escribe hasta 70 caracteres</p>
+                      <textarea formControlName="texto_historia" cols="30" rows="10"
+                        class="form-control form-contro-sm">
+                        <!-- [(ngModel)]="historiaDetalle.story.data[0].story_text" -->
+                        </textarea>
+                    </div>
+
+
+
+                    <!-- </form> -->
+
+
+                  </div>
+
+                </ng-container>
+
+
+              </div>
+              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <ng-container *ngIf="guiaSelecc">
+                  <div class="row col-lg-7  mx-auto mb-3">
+                    <span class="p-bold-500-20">Temas para contar</span>
+                  </div>
+                  <div class="row col-lg-10 mx-auto mb-3">
+                    <p class="p-bold-400-14">Elige el o los temas en los que eres experto y comparte ese aprendizaje
+                    </p>
+                    <!-- <p class="p-bold-400-14" *ngIf="guiaSelecc.guia.id">{{ guiaSelecc.guia.id }} </p> -->
+                  </div>
+                  <div class="row mt-3 mb-5 d-grid gap-2 col-10 mx-auto p-normal-300-10-black">
+                    <!-- <form action=""> -->
+
+
+                    <!-- <div class="form-check" *ngFor="let temas of themas">
+                      <input class="form-check-input"
+                      type="checkbox" [value]="temas.id" id="flexCheckDefault" name="temas" [checked]="temas.id === guiaSelecc.guia.group_theme_id"
+                      >
+                      <label class="form-check-label" for="flexCheckDefault ">
+                       {{temas.description}}
+
+                      </label>
+                      <label for="" class="p-bold-400-10">
+                        {{temas.description_long}}
+                      </label>
+                    </div> -->
+                    <div class="form-check mb-1" *ngFor="let temas of themas">
+
+                      <!-- <input class="form-check-input"
+                      type="checkbox" [value]="temas.id" [checked]="temas.id === guiaSelecc.guia.group_theme_id" (change)="onChange(temas.id, $event)"
+                      > -->
+                      <!-- [checked]="isSelected(temas.id)"  -->
+                      <input class="form-check-input" type="checkbox" [value]="temas.id"
+                        [checked]="groupThemeIds.includes(temas.id)" (change)="onChange(temas.id, $event)">
+                      <label class="form-check-label" style="
+                      font-size: 11pt;" for="flexCheckDefault ">
+                        {{temas.description}}
+
+                      </label>
+                      <label for="" class="p-bold-400-10">
+                        {{temas.description_long}}
+                      </label>
+                    </div>
+
+                    <!-- <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Educacion niños / Campamentos / Daycares
+                      </label>
+                      <label for="" class="p-bold-400-10">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+                        tincidunt
+                        ut laoreet
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Educación adultos / Idiomas /Ayuda social
+                      </label>
+                      <label for="" class="p-bold-400-10">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+                        tincidunt
+                        ut laoreet
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Hogar / Mobiliario / Vestimenta
+                      </label>
+                      <label for="" class="p-bold-400-10">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+                        tincidunt
+                        ut laoreet
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Educacion niños / Campamentos / Daycares
+                      </label>
+                      <label for="" class="p-bold-400-10">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+                        tincidunt
+                        ut laoreet
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Educación adultos / Idiomas /Ayuda social
+                      </label>
+                      <label for="" class="p-bold-400-10">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+                        tincidunt
+                        ut laoreet
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Hogar / Mobiliario / Vestimenta
+                      </label>
+                      <label for="" class="p-bold-400-10">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+                        tincidunt
+                        ut laoreet
+                      </label>
+                    </div> -->
+
+                    <!-- </form> -->
+
+
+                  </div>
+
+                </ng-container>
+
+
+
+              </div>
+
+
+            </div>
+            <div class="col-lg-5 my-3 ms-5">
+              <button class="btn btn-primary btn-sm" type="submit" id="">Guardar cambios</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Modal para la gestion de historias -->
+
+<!-- Modal -->
+<!-- <div  class="modal fade" id="modalEditarHistoria" tabindex="-1" aria-labelledby="modalEditarHistoria" aria-hidden="true"> -->
+
+
+
+<!-- -- -->
+
+<!-- -- -->

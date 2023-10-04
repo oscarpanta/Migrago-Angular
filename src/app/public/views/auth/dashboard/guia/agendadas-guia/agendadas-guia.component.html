@@ -1,0 +1,232 @@
+<div class="row mt-4">
+  <p class="p-bold-500-20">
+    <label>Citas</label><br>
+    <label class="p-300">agendadas</label>
+  </p>
+</div>
+<ng-container *ngFor="let agendada of agendadasGuia ; let i = index">
+  <a class="btn-citas" data-bs-toggle="modal" data-bs-target="#modalCitaAgendada" (click)="obtenerDetalleAgendada(agendada)">
+
+    <div class="card mb-5">
+      <div class="card-body px-5 pt-4">
+        <div class="row">
+          <p class="p-bold-500-18" style="font-size: 15pt;">Cita Agendada #{{agendada.id}}</p>
+        </div>
+        <div class="row">
+          <p class="p-normal-300-16">{{agendada.title}}</p>
+        </div>
+        <div class="row mb-3">
+          <div class="container_etiquetas mt-1">
+            <div class="container__body__etiqueta__dashboard">
+              {{agendada.status}}
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <p class="p-normal-300-12">Reservada el {{agendada.booking_start_date}}</p>
+        </div>
+      </div>
+    </div>
+  </a>
+</ng-container>
+
+
+<!-- <a href="" class="btn-citas" data-bs-toggle="modal" data-bs-target="#modalCitaAgendada">
+  <div class="card mb-5">
+    <div class="card-body px-5 pt-4">
+      <div class="row">
+        <p class="p-bold-500-18">Cita Agendada #434</p>
+      </div>
+      <div class="row">
+        <p class="p-normal-300-16">Al mes conseguí trabajo en ventas</p>
+      </div>
+      <div class="row mb-3">
+        <div class="container_etiquetas mt-1">
+          <div class="container__body__etiqueta__dashboard">
+            Confirmada
+          </div>
+
+        </div>
+      </div>
+      <div class="row">
+        <p class="p-normal-300-16">Reservada el 13/07/2023</p>
+      </div>
+    </div>
+  </div>
+</a>
+<a href="" class="btn-citas" data-bs-toggle="modal" data-bs-target="#modalCitaAgendada">
+  <div class="card mb-5">
+    <div class="card-body px-5 pt-4">
+      <div class="row">
+        <p class="p-bold-500-18">Cita Agendada #434</p>
+      </div>
+      <div class="row">
+        <p class="p-normal-300-16">Al mes conseguí trabajo en ventas</p>
+      </div>
+      <div class="row mb-3">
+        <div class="container_etiquetas mt-1">
+          <div class="container__body__etiqueta__dashboard">
+            Confirmada
+          </div>
+
+        </div>
+      </div>
+      <div class="row">
+        <p class="p-normal-300-16">Reservada el 13/07/2023</p>
+      </div>
+    </div>
+  </div>
+</a> -->
+
+
+<div class="modal fade" id="modalCitaAgendada" tabindex="-1" aria-labelledby="modalCitaAgendada" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content modal-transparente">
+      <div class="modal-body" *ngIf="agendadasDetalle">
+        <div class="modal-body-primary" style="
+        background-color: #e4e4e4;">
+          <!-- <span class="p-bold-500-20-blanco">Getiona tu historia</span> -->
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="row d-flex align-items-center">
+                <div class="col-lg-4">
+                  <div class="card-container image-content-perfil">
+
+                    <div class="card-image-small" style="text-align:center">
+                      <img src="assets/images/perfiles/profile1.jpg" class="card-img-small" alt="perfil">
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-lg-8" *ngIf="agendadaSeleccionada">
+                  <p class="p-bold-500 p-texto" *ngIf="agendadaSeleccionada.name">{{agendadaSeleccionada.name}}</p>
+                  <p class="p-normal-300 p-texto" *ngIf="agendadaSeleccionada.nationality_name">{{agendadaSeleccionada.nationality_name}}</p>
+                  <p class="p-normal-300 p-texto"*ngIf="agendadaSeleccionada.country_name">Migrará a {{agendadaSeleccionada.country_name}}</p>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-lg-4">
+              <div class="card">
+                <div class="card-body text-center d-inline">
+                  <p class="p-texto p-bold-300-9">Cita: </p>
+                  <p class="p-normal-300-18 p-texto">Jue. 23 ago </p>
+                  <span class="badge bg-primary">18:00 pm</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <nav class="nav-modal-general" style="
+        background-color: #e4e4e4;">
+          <nav>
+            <div class="nav nav-tabs nav-pills nav-fill" id="nav-tab" role="tablist">
+              <button class="nav-link active" style="margin-right: 3pt;" id="nav-home-tab" data-bs-toggle="tab"
+                data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                Temas
+              </button>
+              <button class="nav-link" style="margin-right: 3pt;margin-left: 3pt;" id="nav-profile-tab"
+                data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
+                aria-selected="false">
+                Preguntas
+              </button>
+              <button class="nav-link" style="margin-left: 3pt;" id="nav-contact-tab" data-bs-toggle="tab"
+                data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact"
+                aria-selected="false">
+                Gestión de citas
+              </button>
+            </div>
+          </nav>
+          <div class="modal-body-blanco px-5 py-3">
+            <div class="tab-content text-center" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="row col-lg-7 mx-auto mb-3">
+                  <span class="p-bold-500-20">Temas <span class="p-300">de interés elegidos</span></span>
+                </div>
+                <div class="row col-lg-8 mx-auto mb-3">
+                  <p class="p-bold-400-14">El usuario ha elegido estos 3 temas para su cita de 60 minutos. </p>
+                </div>
+                <div class="row col-lg-8 mx-auto p-normal-300-12 categorias mb-3">
+                  <p *ngFor="let temas of agendadasDetalle">{{temas.description}}</p>
+                  <!-- <p>Educacipon niños / Campamentos</p>
+                  <p>Educación adultos / Idiomas / Social</p> -->
+                </div>
+                <div class="row p-normal-300-9">
+                  <p>Por lo amplio de cada tema, consideramos que se necesitan 20 min. para explicar y recibir preguntas
+                    de cada uno.</p>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="row col-lg-7  mx-auto mb-3">
+                  <span class="p-bold-500-20"><span class="p-300">Preguntas </span>anticipadas</span>
+
+                </div>
+                <div class="row col-lg-10 mx-auto mb-3">
+                  <p class="p-bold-400-14">Responde estas preguntas en tu próxima cita.</p>
+                </div>
+                <div class="row text-start">
+                  <div class="form-group mb-2" *ngFor="let temas of agendadasDetalle ; let i = index">
+                    <label for="" class="p-bold-300-10-black mb-1">{{i+1}}. Pregunta {{i+1}} sobre {{ temas.description | replaceSlashPipe }} </label>
+                    <textarea class="form-control mb-2" placeholder="Primera pregunta" name="" id="" cols="30"
+                      rows="3" [(ngModel)]="temas.question"></textarea>
+                  </div>
+                  <!-- <div class="form-group mb-2">
+                    <label for="" class="p-bold-300-10-black">2. Pregunta 2</label>
+                    <textarea class="form-control mb-2" placeholder="Segunda pregunta" name="" id="" cols="30"
+                      rows="3"></textarea>
+                  </div>
+                  <div class="form-group mb-2">
+                    <label for="" class="p-bold-300-10-black">3. Pregunta 3</label>
+                    <textarea class="form-control mb-2" placeholder="tercera pregunta" name="" id="" cols="30"
+                      rows="3"></textarea>
+                  </div> -->
+
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <div class="row mb-3 mt-3">
+                  <div class="col-lg-12 mb-3">
+                    <form  autocomplete="off" [formGroup]="miFormulario"  (ngSubmit)="RegistroReagendar()">
+                      <div class="col-lg-6 mx-auto">
+                        <span class="p-bold-500-20 col-lg-8 mx-auto mb-3">Reagenda <span class="p-300" >tu cita</span> </span>
+                      </div>
+
+                      <div class="row col-lg-12 mx-auto mb-3 mt-3">
+                        <p class="p-bold-400-14" style="font-size: 13pt;">Puedes reprogramar tu cita hasta con 72 horas de anticipación. Pasado ese
+                          tiempo será imposible reagendar.</p>
+                      </div>
+                      <div class="row col-lg-12 mb-3 mt-3 text-start">
+                        <div class="form-group mb-2">
+                          <label for="" class="p-bold-300-10-black mb-1 ms-2">Escribe el motivo: </label>
+                          <textarea  formControlName="motivo" class="form-control mb-2" placeholder="Escribe aquí" name="" id="" cols="30"
+                            rows="3"></textarea>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 mx-auto mt-3">
+                        <button class="btn btn-primary" type="submit" style="
+                        width: 50%;">Reagendar</button>
+
+                      </div>
+                      <div class="row col-lg-12 mx-auto mb-3 mt-3" style="opacity: .6;">
+                        <p class="p-bold-400-10 p-texto">Solo puedes reagendar una vez. </p>
+                        <p class="p-bold-400-10 p-texto">El usuario puede aceptar la reprogramación o rechazarla.</p>
+                      </div>
+
+
+                    </form>
+
+                  </div>
+
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+    </div>
+  </div>
+</div>

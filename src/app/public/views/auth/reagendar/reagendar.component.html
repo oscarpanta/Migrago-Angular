@@ -1,0 +1,28 @@
+<form  autocomplete="off" [formGroup]="miFormulario"  (ngSubmit)="RegistroReagendar()">
+
+
+  <div *ngIf="section2 == 0" class='demo-app-main' style="padding: 1rem;">
+    <div class="d-flex justify-content-center align-items-center row">
+      <img src="assets/images/icons/Migrago_fondo_transparente.png" alt=""  style="
+      width: 200px; height: 80px;" class="mt-5">
+
+    </div>
+    <h4 class="d-flex justify-content-center align-items-center mb-2">Selecciona un dia</h4>
+    <full-calendar *ngIf='calendarVisible' [options]='calendarOptions' style="margin-bottom: 20px;width: 900px; height: 750px;">
+
+    </full-calendar>
+  </div>
+
+  <div *ngIf="section2 == 1" class='demo-app-main' style="padding: 1rem;">
+    <full-calendar *ngIf='calendarVisibleForSection2' [options]='calendarOptionsForSection2' style="margin-bottom: 20px;width: 900px; height: 750px; margin-top: 50px;" class="mb-20"></full-calendar>
+
+    <div class="botones-calendarregistro">
+      <button  class="btn btn-primary"  (click)="prevSection()" >Regresar</button>
+      <button  class="btn btn-primary" type="submit">Registrar</button>
+    </div>
+  </div>
+
+
+</form>
+
+<div id="jitsi-iframe"></div>
