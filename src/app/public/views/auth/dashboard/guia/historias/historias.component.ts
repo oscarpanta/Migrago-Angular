@@ -90,6 +90,7 @@ export class HistoriasComponent implements OnInit {
   ngOnInit(): void {
     // this.browse();
     this.GetUsuario()
+    this.GetGuiaId()
     this.listahistoriasGuia()
     this.listaPaises()
     this.listaNacionalidades()
@@ -108,6 +109,7 @@ export class HistoriasComponent implements OnInit {
   }
   GetGuiaId() {
     this.idguia = this.authService.getGuia();
+    this.idguia = Number(this.idguia.replace(/[^0-9]/g, ''));
   }
   // browse() {
 
@@ -224,8 +226,8 @@ export class HistoriasComponent implements OnInit {
         console.log('historias guia=' + JSON.stringify(response));
         this.historiasporGuia = response[0].data;
         console.log(this.historiasporGuia)
-
-        this.idguia = this.historiasporGuia[0].guide_id
+        //if(this.historiasporGuia[0])
+         // this.idguia = this.historiasporGuia[0].guide_id
 
       }
 

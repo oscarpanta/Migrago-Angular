@@ -36,6 +36,11 @@ export class BookingsService {
     const url = environment.baseUrl  + apiurl
     return this.http.post<any>(apiurl, requestData);
   }
+  anularCita(requestData: any){
+    const apiurl = '/api/bookings/anular';
+    const url = environment.baseUrl  + apiurl
+    return this.http.post<any>(apiurl, requestData);
+  }
   registrarPreguntas(requestData: any){
     const apiurl = '/api/bookings/question';
     const url = environment.baseUrl  + apiurl

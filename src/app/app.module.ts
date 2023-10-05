@@ -10,7 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { InterceptorInterceptor } from './core/interceptor/interceptor.interceptor';
 import { TemasComponent } from './public/views/temas/temas.component';
-
+import { LOCALE_ID } from '@angular/core';
 
 
 @NgModule({
@@ -33,7 +33,10 @@ import { TemasComponent } from './public/views/temas/temas.component';
 
 
   ],
-  providers: [{
+  providers: [
+    {provide: LOCALE_ID, useValue: 'es' },
+    {
+     //provide: LOCALE_ID, useValue: 'es',
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorInterceptor,
     multi:true

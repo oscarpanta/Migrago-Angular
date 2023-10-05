@@ -32,53 +32,6 @@
 </ng-container>
 
 
-<!-- <a href="" class="btn-citas" data-bs-toggle="modal" data-bs-target="#modalCitaAgendada">
-  <div class="card mb-5">
-    <div class="card-body px-5 pt-4">
-      <div class="row">
-        <p class="p-bold-500-18">Cita Agendada #434</p>
-      </div>
-      <div class="row">
-        <p class="p-normal-300-16">Al mes conseguí trabajo en ventas</p>
-      </div>
-      <div class="row mb-3">
-        <div class="container_etiquetas mt-1">
-          <div class="container__body__etiqueta__dashboard">
-            Confirmada
-          </div>
-
-        </div>
-      </div>
-      <div class="row">
-        <p class="p-normal-300-16">Reservada el 13/07/2023</p>
-      </div>
-    </div>
-  </div>
-</a>
-<a href="" class="btn-citas" data-bs-toggle="modal" data-bs-target="#modalCitaAgendada">
-  <div class="card mb-5">
-    <div class="card-body px-5 pt-4">
-      <div class="row">
-        <p class="p-bold-500-18">Cita Agendada #434</p>
-      </div>
-      <div class="row">
-        <p class="p-normal-300-16">Al mes conseguí trabajo en ventas</p>
-      </div>
-      <div class="row mb-3">
-        <div class="container_etiquetas mt-1">
-          <div class="container__body__etiqueta__dashboard">
-            Confirmada
-          </div>
-
-        </div>
-      </div>
-      <div class="row">
-        <p class="p-normal-300-16">Reservada el 13/07/2023</p>
-      </div>
-    </div>
-  </div>
-</a> -->
-
 
 <div class="modal fade" id="modalCitaAgendada" tabindex="-1" aria-labelledby="modalCitaAgendada" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -111,8 +64,10 @@
               <div class="card">
                 <div class="card-body text-center d-inline">
                   <p class="p-texto p-bold-300-9">Cita: </p>
-                  <p class="p-normal-300-18 p-texto">Jue. 23 ago </p>
-                  <span class="badge bg-primary">18:00 pm</span>
+                  <p class="p-normal-300-18 p-texto">{{agendadaSeleccionada?.booking_start_date | date:'EEE. dd MMM'}}</p>
+                  <span class="badge bg-primary">{{agendadaSeleccionada?.booking_start_date | date:'hh:mm a'}}</span>
+                  <!-- <p class="p-normal-300-18 p-texto">Jue. 23 ago </p>
+                  <span class="badge bg-primary">18:00 pm</span> -->
                 </div>
               </div>
             </div>

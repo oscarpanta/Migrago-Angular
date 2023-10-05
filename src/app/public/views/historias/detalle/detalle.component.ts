@@ -78,6 +78,7 @@ export class DetalleComponent implements OnInit, AfterViewInit {
   selectedEventCalendar2: any = null;
   arr: any
   closeResult = '';
+  citasRegistradas : any
   calendarVisible = true;
   calendarVisibleForSection2 = false;
   calendarOptionsForSection2: any = {};
@@ -1182,19 +1183,36 @@ export class DetalleComponent implements OnInit, AfterViewInit {
           id: item.id,
           title: `DISPONIBLE`,
           start: item.availability_start_date,
-          end: item.availability_end_date
+          end: item.availability_end_date,
+
         };
       });
       this.calendarOptions.events = events;
       // this.currentEvents = this.calendarOptions.events;
+
+      this.citasRegistradas = events.map((event:any) => event.start);
+
+      // Llama a la función customDayRender para actualizar la apariencia del calendario principal
+    //  this.customDayRender(events);
     });
   }
+  // customDayRender(events: any[]) {
+  //   this.calendarOptions.eventRender = (info) => {
+  //     const fecha = info.event.start.toISOString().split('T')[0]; // Obtén la fecha del evento
 
+  //     // Verifica si la fecha tiene citas registradas
+  //     const tieneCitas = events.some(event => event.start.includes(fecha));
 
-  // getScoreArray(score: string): any[] {
-  //   const numericScore = +score; // Convertimos el string a número
-  //   return Array.from({ length: numericScore });
+  //     if (tieneCitas) {
+  //       info.el.style.backgroundColor = 'green'; // Color para días con citas
+  //     }
+  //   };
   // }
+
+  getScoreArray(score: string): any[] {
+    const numericScore = +score; // Convertimos el string a número
+    return Array.from({ length: numericScore });
+  }
 
   logeado(){
     if(!this.authService.estalogeado()){
