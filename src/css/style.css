@@ -1,16 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-*{
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap'); */
+/* *{
 
 
+} */
+@font-face {
+    font-family: 'Bricolage Grotesque';
+    src: url('../css/fonts/Bricolage_Grotesque/BricolageGrotesque_36pt-Regular.ttf') ; 
+    font-style: normal;
+  
 }
 @font-face {
-    font-family: 'Open Sans';
-    src: url('../css/fonts/FiraSans-Black.ttf') ;
+    font-family: 'Bricolage Grotesque Bold';
+    src: url('../css/fonts/Bricolage_Grotesque/BricolageGrotesque_36pt-Bold.ttf') ; 
     font-style: normal;
-    font-weight: 700;
+  
 }
+@font-face {
+    font-family: 'Inter';
+    src: url('../css/fonts/Inter/Inter-Regular.ttf') ; 
+    font-style: normal;
+  
+}
+@font-face {
+    font-family: 'Inter Light';
+    src: url('../css/fonts/Inter/Inter-Light.ttf') ; 
+    font-style: normal;
+  
+}
+@font-face {
+    font-family: 'Inter Thin';
+    src: url('../css/fonts/Inter/Inter-Thin.ttf') ; 
+    font-style: normal;
+  
+}
+/* @font-face {
+    font-family: 'Fire Sans';
+    src: url('../css/fonts/Bricolage_Grotesque/BricolageGrotesque_36pt-Regular.ttf') ;
+    font-style: normal;
+ 
+} */
 body{
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+   
+    font-family: 'Bricolage Grotesque','Inter';
     color: #333333;
     margin: 0;
 }
@@ -25,7 +56,10 @@ body{
 .container__70{
     /* max-width: 70%;
     margin: 0 auto; */
-    padding: 0 8em;
+    /* padding: 0 8em; */
+
+    max-width: 65%;
+    margin:  0 auto;
 }
 
 /* .contenedor_general{
@@ -99,6 +133,7 @@ i{
     text-align: center;
     padding: 0;
     display: flex;
+    font-family: 'Inter Light';
     /* position: absolute; */
 
 }
@@ -158,20 +193,22 @@ i{
     background-position: center center;
     background-repeat: no-repeat;
     /* background-attachment: fixed; */
-    height: 40rem;
+    height: 45rem;
 
 }
 .apartado__index__body{
     padding: 4em 0 1em 0;
-    font-size: 35pt;
+    font-size: 36pt;
     width: 35%;
 }
 .buscador{
     border-radius: 20px;
-    padding: 10px;
+    padding: 12px;
     width: 40%;
     outline: none;
     border: 1px solid #333333;
+    font-family: 'Inter Light';
+    color: #5a2395;
 }
 
 /* section azul */
@@ -181,7 +218,7 @@ i{
     padding: 2em 3em;
     font-size: 13pt;
     position: absolute;
-    top:36rem;
+    top:40rem;
     left: 0;
     right: 0;
     width: 75%;
@@ -204,6 +241,7 @@ i{
 .container__azul__body__item{
     width: 25%;
     color: #333333;
+    font-family: 'Inter Light';
 }
 .container__azul__body__item__imagen{
     padding: 10px;
@@ -230,10 +268,12 @@ i{
 .container__rutas__head__title{
     font-size: 25pt;
     font-weight: bold;
+    color: #5a2395;
 }
 .container__rutas__head__subtitle{
     color: #333333;
     font-size: 18pt;
+    font-family: 'Inter Light';
 }
 .container__rutas__body__etiquetas{
     display: flex;
@@ -241,13 +281,16 @@ i{
     justify-content: center;
     text-align: center;
     align-items: center;
+    font-family: 'Inter';
+    font-size: 12pt;
 }
 .container__rutas__body__etiqueta{
     background: #cfcfcf;
-    max-width: 170px;
+    width: 200px;
+    max-width: 200px;
     border-radius: 25px;
-    padding: 5px 10px;
-    margin: 5px 5px;
+    padding: 15px 20px;
+   margin: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 /* seccion historias */
 .container__historias{
@@ -262,13 +305,14 @@ i{
 }
 
 .container__historias__body__title{
-    font-size: 25pt;
+    font-size: 30pt;
 }
 .container__historias__body__subtitle{
-    font-size: 18pt;
+    font-size: 24pt;
     color: #333333;
     width: 70%;
     padding: 1em 0;
+    font-family: 'Inter Light';
 }
 .container__historias__body__head{
     padding: 3em 0;
@@ -276,6 +320,8 @@ i{
 .container__historias__body__body__item__title{
     color: #f98900;
     font-size: 40pt;
+    font-family: 'Inter Thin';
+    font-weight:lighter;
 }
 .container__historias__body__body__item__text{
     color: #333333;
@@ -292,7 +338,7 @@ i{
     width: 50%;
 }
 .container__historias__body__body__item__imagen img{
-    width: 45px;
+    width: 80px;
 }
 
 /* seccion naranja */
@@ -305,7 +351,7 @@ i{
     padding: 5em 0;
 }
 .container__historias__reales__head__title{
-    font-size: 25pt;
+    font-size: 30pt;
     font-weight: bold;
     width: 32%;
 }
@@ -673,15 +719,24 @@ i{
 }
 
 /* seccion migrantes verificados */
+/* .container_verificador_main{
+    background: #94e0bc;
+} */
 .container__verificados{
     background: #94e0bc;
     display: flex;
     justify-content: space-between;
     padding: 8rem 0;
     width: 100%;
+    margin:  0 auto;
+  
+}
+.container__verificados__texto_main{
+ padding: 0 10em;
+ width: 60%;
 }
 .container__verificados__texto{
-    padding: 0 6em;
+    /* padding: 0 6em; */
     width: 60%;
 
 }
@@ -713,24 +768,28 @@ i{
 .container__verificados__body__item{
     max-width: 50%;
     margin-bottom: 3em;
+    font-family: 'Inter';
 }
 /* seccion reseñas de migrantes */
 .container__resenias{
     padding: 5rem 0;
     height: 52rem;
+    max-width: 65%;
+    margin: 0 auto;
 }
 .container__resenias__body{
-    width:  85%;
+    width:  65%;
     /* padding: 0 5em; */
 
     position: absolute;
-    top: 205rem;
+    top: 220rem;
     left: 0;
     right: 0;
     margin: 0 auto;
 }
 .container__resenias .card-content{
-    width: 60%;
+    width: 80%;
+    padding: 0;
 }
 .description-resenia{
     font-size: 24pt;
@@ -1871,6 +1930,7 @@ ul.form-stepper li a .form-stepper-circle {
         padding: 2em 0;
         flex-direction: column;
         align-items: center;
+        
     }
     .container__verificados__texto{
         width: auto;

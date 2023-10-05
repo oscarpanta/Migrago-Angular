@@ -335,7 +335,9 @@ ul{
   margin-bottom: 0;
   list-style: none;
 }
-
+.menu_up{
+  font-weight: bold;
+}
 @media (min-width: 992px) {
   .d-lg-block {
     display: block !important;
@@ -381,6 +383,7 @@ ul{
   border-radius: 4px;
   box-sizing: border-box;
   background: none;
+  margin-right: 2rem;
 }
 /* .btn2 {
   --bs-btn-padding-x: 0.75rem;
@@ -419,19 +422,20 @@ ul{
 } */
 
 .btn-ingresa {
-  border: 1px solid #000;
+  
   background: white;
-  padding-right: 2rem;
-  padding-left: 2rem;
-  font-size: small;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  color: #00c1ff;
+  font-family: 'Inter';
 }
 
 .btn-registrate {
-  border: 1px solid #000;
   background: #00c1ff;
-  padding-right: 2rem;
-  padding-left: 2rem;
-  font-size: small;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  font-family: 'Inter';
+  color: #fff;
 }
 
 .btn-ingresa-princ {
