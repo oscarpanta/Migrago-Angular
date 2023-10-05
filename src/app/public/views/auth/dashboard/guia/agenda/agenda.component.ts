@@ -30,7 +30,6 @@ export class AgendaComponent implements OnInit{
   // horaInicial: string = '';
   // horaFinal: string = '';
   guiaid!:any;
-
   usuario!: Usuario;
   //miFormulario: FormGroup;
   //mostrarModal = false;
@@ -52,14 +51,7 @@ export class AgendaComponent implements OnInit{
     locale: 'es',
 
     initialView: 'dayGridMonth',
-  //  initialView: 'listWeek',
-  //   views: {
-  //   listWeek: {
-  //     type: 'timeGrid',
-  //     duration: { days: 1 },
-  //     buttonText: '1 day'
-  //   }
-  // },
+   // dayCellContent: {html: 'Su texto'},
     //initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
     weekends: true,
    // editable: true,
@@ -70,36 +62,7 @@ export class AgendaComponent implements OnInit{
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this),
 
-    /* you can update a remote database when these fire:
-    eventAdd:
-    eventChange:
-    eventRemove:
-    */
-    // events: [ //foreach(a as fila){} // Cargar data de base
-    //   {
 
-    //     id: "1",
-    //     //title,
-    //     title: `abc`, // Agregar el título y el horario
-    //     start: '2023-09-03 14:00:00',
-    //     end: '2023-09-04 12:00:00',
-    //     // allDay: selectInfo.allDay,
-    //     //url:"google.com"
-
-    //   },
-    //   {
-
-    //     id: "2",
-    //     //title,
-    //     title: `ccc`, // Agregar el título y el horario
-    //     start: '2023-09-10',
-    //     end: '2023-09-12 24:00:00',
-    //     editable: false
-    //     // allDay: selectInfo.allDay,
-    //     //url:"google.com"
-
-    //   }
-    // ],
     events:[]
     //  dateClick: function(info) {
 
@@ -451,9 +414,12 @@ export class AgendaComponent implements OnInit{
           id: item.id,
           title: `DISPONIBLE`,
           start: item.availability_start_date,
-          end: item.availability_end_date
+          end: item.availability_end_date,
+
         };
       });
+
+
       this.calendarOptions.events = events;
      // this.currentEvents = this.calendarOptions.events;
     });

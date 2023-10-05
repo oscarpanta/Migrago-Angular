@@ -166,7 +166,8 @@
             <div class="image-content">
 
               <div class="card-image">
-                <img src="assets/images/imagen_prueba.png" class="card-img" alt="fondo">
+                <!-- <img src="assets/images/imagen_prueba.png" class="card-img" alt="fondo"> -->
+                <img [src]="historia.urlImagenStory || 'assets/images/imagen_prueba.png'" class="card-img" alt="fondo">
               </div>
               <div class="card-image2">
                 <!-- <ng-container *ngIf="historia.urlImagen">

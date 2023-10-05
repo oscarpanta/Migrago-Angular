@@ -163,4 +163,33 @@ export class AgendadasComponent {
   getControls() {
     return (this.miFormulario.get('preguntas') as FormArray).controls.map(control => control as FormControl);
   }
+
+  AnularCita(){
+  //  const { motivo} = this.miFormulario.value;
+
+    let req = {
+      request: {
+        booking_id: this.bookingid,
+        startDate_booking: null,
+        endDate_booking: null,
+        link_meeting: null,
+        reason_cancellation: '',
+        user_cencela:this.usuario.id,
+        in_status:"ANULADA"
+
+      }
+    }
+    console.log(req)
+    this.agendadasService.anularCita(req)
+      .subscribe(res => {
+        //  console.log(res[0].in_id);
+        if (res[0][0].out_rpta === "OK") {
+          //this.modalClose.nativeElement.click();
+          this.listaAgendadasGuia()
+          Swal.fire('Hecho', 'Se ha anulado su cita. Deberás de agendar una nueva cita con otro guía', 'success')
+        } else {
+          Swal.fire('Error', 'No se pudo anular', 'error')
+        }
+      });
+  }
 }

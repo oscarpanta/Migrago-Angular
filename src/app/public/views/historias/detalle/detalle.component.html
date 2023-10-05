@@ -476,8 +476,8 @@
               <p class="p-normal-300-18">Comentario:</p>
 
             </div>
-            <div class="row col-lg-12 mb-2">
-              <p>Hola XXX, déjanos un comentario sobre tu experiencia con YYY</p>
+            <div class="row col-lg-12 mb-2" *ngIf="usuario">
+              <p *ngIf="historiaDetalle">Hola {{usuario.name}}, déjanos un comentario sobre tu experiencia con {{ historiaDetalle.story.data[0].name.split(' ')[0] }}</p>
             </div>
             <form class="form-login" autocomplete="off" [formGroup]="miFormularioReview">
               <div class="row col-lg-12 mb-2">
@@ -539,7 +539,7 @@
           </div>
 
           <div class="row mb-3" *ngIf="historiaDetalle">
-            <span class="p-bold-500-18-detalle">
+            <span class="p-bold-500-18-detalle" >
               {{ historiaDetalle.story.data[0].name.split(' ')[0] }} {{
               historiaDetalle.story.data[0].lastname.substring(0, 1) }}.
             </span>
@@ -587,7 +587,10 @@
         <div class="card-body p-4 text-center">
           <div class="row mb-3 " *ngIf="historiaDetalle">
             <!-- <span class="p-bold-500-20">$ 90.00</span> -->
-            <span class="p-bold-500-20" *ngIf="historiaDetalle.story.data[0].user_created_id === usuario.id">Precio de tu Cita</span>
+            <ng-container *ngIf="usuario">
+              <span class="p-bold-500-20" *ngIf="historiaDetalle.story.data[0].user_created_id === usuario.id">Precio de tu Cita</span>
+            </ng-container>
+
             <span class="p-bold-500-20">${{historiaDetalle.rates.data[0].price}}.00</span>
             <span class="p-normal-300">1 sesión - {{historiaDetalle.rates.data[0].time_rate}}</span>
           </div>
@@ -814,7 +817,7 @@
 
 <!--  -->
 <!-- Modal inicio de sesion por web -->
-<button type="button" class="btn btn-primary" (click)="abrirmodalpagos()">
+<!-- <button type="button" class="btn btn-primary" (click)="abrirmodalpagos()">
   Ingresar
 </button>
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalReservaCita">
@@ -822,7 +825,7 @@
 </button>
 <button type="button" class="btn btn-primary" routerLink="/historias/pagoCita">
   Registrar
-</button>
+</button> -->
 
 <ng-template #modalLogin let-modal>
 

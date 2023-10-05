@@ -4,7 +4,10 @@ import { Usuario } from 'src/app/core/interfaces/login.interface';
 import { AutenticacionService } from 'src/app/core/services/autenticacion.service';
 import { BookingsService } from 'src/app/public/views/services/bookings.service';
 import Swal from 'sweetalert2';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
 
+registerLocaleData(localeEs);
 @Component({
   selector: 'app-agendadas-guia',
   templateUrl: './agendadas-guia.component.html',
@@ -19,7 +22,7 @@ export class AgendadasGuiaComponent implements OnInit{
   idguia:any;
   citaid:any;
   constructor(private agendadasService: BookingsService, private authService: AutenticacionService,
-              private bookingservice:BookingsService,private fb: FormBuilder,) {
+              private fb: FormBuilder,) {
     this.miFormulario = this.fb.group({
       motivo:['', [Validators.required]],
       // fechainicio: ['', [Validators.required]],
@@ -29,6 +32,7 @@ export class AgendadasGuiaComponent implements OnInit{
   ngOnInit(): void {
     this.GetUsuario()
     this.GetGuiaId()
+
     this.listaAgendadasGuia()
   }
 
@@ -75,6 +79,7 @@ export class AgendadasGuiaComponent implements OnInit{
 
   obtenerDetalleAgendada(agendada:any) {
     this.agendadaSeleccionada=[]
+    this.agendadaSeleccionada = agendada;
     console.log(agendada)
 
     const requestData = {
@@ -95,7 +100,7 @@ export class AgendadasGuiaComponent implements OnInit{
         console.log('agendadas=' + JSON.stringify(response));
         this.agendadasDetalle = response[0].data;
         console.log(this.agendadasDetalle)
-        this.agendadaSeleccionada = agendada;
+       // this.agendadaSeleccionada = agendada;
         this.citaid=agendada.id
       }
 
@@ -121,7 +126,7 @@ export class AgendadasGuiaComponent implements OnInit{
       }
     }
     console.log(req)
-    this.bookingservice.reagendarCita(req)
+    this.agendadasService.reagendarCita(req)
       .subscribe(res => {
         //  console.log(res[0].in_id);
         if (res[0][0].out_rpta === "OK") {

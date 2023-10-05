@@ -434,8 +434,17 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
           console.log(historia.urlImagen)
         });
-        // console.log(this.resp_historias)
-        // console.log(this.totalelementos)
+        this.resp_historias.forEach(historia => {
+          if (historia.image_story.image_story) {
+            historia.urlImagenStory = this.imagenservice.getImageUrlHistoria(historia.image_story.image_story);
+          }else{
+            historia.urlImagenStory = 'assets/images/imagen_prueba.png';
+          }
+
+
+
+          console.log(historia.urlImagenStory)
+        });
       }
 
 
@@ -504,6 +513,18 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
           console.log(historia.urlImagen)
         });
+        this.resp_historias.forEach(historia => {
+          if (historia.image_story.image_story) {
+            historia.urlImagenStory = this.imagenservice.getImageUrlHistoria(historia.image_story.image_story);
+          }else{
+            historia.urlImagenStory = 'assets/images/imagen_prueba.png';
+          }
+
+
+
+          console.log(historia.urlImagenStory)
+        });
+
         // console.log(this.resp_historias)
         // console.log(this.totalelementos)
       }

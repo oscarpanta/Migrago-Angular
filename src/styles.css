@@ -665,6 +665,12 @@ nav .btn{
   max-width: 2000px;
   margin: 0 auto;
 }
+.fc-daygrid-event{
+  background-color: #96ff96;
+}
+/* .fc-day[data-date='2023-10-15'] {
+  background-color: #f0f0f0;
+} */
 .selected-event {
   background-color: #FFD700; /* Cambia este color según tu preferencia */
   color: #000; /* Cambia este color según tu preferencia */

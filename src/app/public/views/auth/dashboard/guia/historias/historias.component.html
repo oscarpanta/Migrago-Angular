@@ -13,14 +13,26 @@
       </div>
 
       <div class="row">
-        <p class="p-normal-300-12">Publicada el 13/07/2023</p>
+        <div class="col-lg-6">
+          <p class="p-normal-300-12">Publicada el {{guia.created_at}}</p>
+        </div>
+        <div class="col-lg-6 text-lg-end">
+          <p class="p-normal-14-gris">Estado: {{guia.status}}</p>
+        </div>
       </div>
       <div class="row col-lg-6 my-3">
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-          <button class="btn btn-primary btn-sm" type="button" id="" data-bs-toggle="modal"
+        <div  class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <div style="width: 100%;" [ngbTooltip]="(guia.status === 'PENDING') ? 'Editar no disponible' : 'Haz clic para editar'">
+            <button class="btn btn-primary btn-sm" type="button" id="" data-bs-toggle="modal"
             data-bs-target="#modalEditarHistoria" (click)="obtenerDetalleHistoria(guia)" [disabled]="guia.status === 'PENDING'">Editar</button>
+          </div>
+
           <!-- [attr.data-bs-target]="'#modalEditarHistoria' + i" (click)="obtenerDetalleHistoria(guia)">{{guia.id}} </button> -->
+          <!-- <div [ngbTooltip]="(guia.status === 'PENDING') ? 'Editar no disponible' : 'Haz clic para editar'">
+            <button class='btn' [disabled]="guia.status === 'PENDING'"> ABC</button>
+         </div> -->
           <button class="btn btn-success btn-sm" type="button" id="">Borrar</button>
+
         </div>
       </div>
     </div>
