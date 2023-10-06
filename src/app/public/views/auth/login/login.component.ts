@@ -17,8 +17,8 @@ import { AuthResponse } from 'src/app/core/interfaces/login.interface';
 })
 export class LoginComponent implements OnInit {
   miFormulario:FormGroup=this.fb.group({
-    username:['tpaicom',[Validators.required]],
-    password:['12345678',[Validators.required]],
+    username:['',[Validators.required]],
+    password:['',[Validators.required]],
   });
 
   // req = {
