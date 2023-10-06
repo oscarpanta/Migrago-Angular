@@ -124,7 +124,7 @@
             ruta.name_way_migration }}</option>
         </select>
       </div>
-      <div class="form-group col-lg-6 mb-3">
+      <!-- <div class="form-group col-lg-6 mb-3">
         <p class="p-bold-300-10-black">Modo Migracion*</p>
         <select  formControlName="ModoMigracion" (change)="onWayMigrationSelect($event)" class="form-select form-select-normal"  [(ngModel)]="selectedModoMigrationId"
           aria-label="Default select example">
@@ -132,7 +132,7 @@
           <option *ngFor="let migracion of modemigrations" [value]="migracion.id">{{
             migracion.description }}</option>
         </select>
-      </div>
+      </div> -->
 
       <div class="form-group col-lg-6 mb-3">
 
@@ -160,10 +160,7 @@
         </div>
       </div> -->
 
-      <div class="form-group col-lg-12 mb-3 ">
-
-        <!-- <p class="p-bold-300-10-black col-lg-6">Cuéntanos brevemente tu historia de migración
-          y cómo esta puede ayudar a otros migrantes*</p> -->
+      <!-- <div class="form-group col-lg-12 mb-3 ">
 
           <p class="p-bold-300-10-black mb-1">Titulo*
             <label class="letra_gris">(Escribe hasta 70 caracteres)</label>
@@ -174,7 +171,19 @@
 
 
 
+      </div> -->
+      <div class="form-group col-lg-6 mb-3">
+        <p>Llegó con mascotas</p>
+        <select formControlName="llegadamascota" class="form-select form-select-sm form-select-normal">
+          <option selected value="">Seleccione</option>
+
+          <option value="0">No</option>
+          <option value="1">Si</option>
+
+        </select>
       </div>
+
+
       <div class="form-group col-lg-12 mb-3">
         <p class="p-bold-300-10-black col-lg-6">
           <label class="letra_gris"  style="font-size: 11pt;">Cuéntanos brevemente tu historia de migración y cómo ésta puede ayudar a otros migrantes*</label>

@@ -424,7 +424,7 @@ ul{
 } */
 
 .btn-ingresa {
-  
+
   background: white;
   padding-right: 3rem;
   padding-left: 3rem;
@@ -455,8 +455,12 @@ ul{
 .btn-ingresa-princ:hover{
   color: #fff;
 }
-
-
+.modal-contenido{
+  /* padding: 1rem 1rem 1rem 1rem; */
+}
+.fc .fc-toolbar-title{
+  font-size: 14pt;
+}
 
 select option {
 

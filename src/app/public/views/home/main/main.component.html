@@ -5,7 +5,7 @@
       <a href="">
         <p>
           Regístrate y obtén 20$ OFF en tu primera consulta
-           
+
           </p>
       </a>
     </div>
@@ -217,7 +217,7 @@ align-items: center;     display: flex;">
             Encuentra
           </p>
           <p class="p_texto">historias</p>
-         
+
         </div>
         <div class="letra__b__bold letra__blanca">
             <p class="p_texto">
@@ -226,7 +226,7 @@ align-items: center;     display: flex;">
             <p class="p_texto">
               seguro
             </p>
-         
+
         </div>
 
       </div>
@@ -311,14 +311,14 @@ align-items: center;     display: flex;">
         </div>
         <div class="container__rutas__body">
           <div class="container__rutas__body__etiquetas">
-           
+
             <div class="container__rutas__body__etiqueta" *ngFor="let rutamigracion of rutasmigracion">
-             
+
                   {{rutamigracion.name_way_migration}}
-              
-             
+
+
             </div>
-           
+
           </div>
         </div>
       </div>
@@ -327,11 +327,15 @@ align-items: center;     display: flex;">
   </div>
 </section>
 
-<div class="marquee p-cinta" style="display: flex; align-items: center; justify-content: center;">
+<!-- <div class="marquee p-cinta" style="display: flex; align-items: center; justify-content: center;">
   <p [style.padding-right]="last ? '0em':'5em'" *ngFor="let rutamigracion of rutasmigracion ; let last = last">
      {{rutamigracion.name_way_migration}}</p>
-</div>
+</div> -->
+<div class="marquee p-cinta" style="display: flex; align-items: center; justify-content: center;">
+  <p [style.padding-right]="last ? '0em':'5em'" *ngFor="let tema of Temas; let last = last">
+    {{ formatDescriptionThemes(tema.details.data) }}</p>
 
+</div>
 <!-- seccion historias como la tuya -->
 
 <section>
@@ -414,9 +418,9 @@ align-items: center;     display: flex;">
                   <source media="(min-width: 550px)" srcset="media.png"> -->
           <img src="assets/images/imagen_video.png">
         </picture>
-       
-        <!-- <iframe width="1080" height="1920" 
-        src=" https://youtube.com/shorts/eMKlPCvHmnE?si=e4m96KnoVayNI_U2" 
+
+        <!-- <iframe width="1080" height="1920"
+        src=" https://youtube.com/shorts/eMKlPCvHmnE?si=e4m96KnoVayNI_U2"
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
       </div>
     </div>
@@ -450,7 +454,7 @@ align-items: center;     display: flex;">
 
               </div> -->
               <div class="card-wrapper swiper-wrapper cards ">
-              
+
 
                 <div class="card swiper-slide " *ngFor="let historia of resp_historias">
                   <app-tarjeta [historia]="historia"></app-tarjeta>
@@ -459,7 +463,7 @@ align-items: center;     display: flex;">
               </div>
 
             </div>
-           
+
           </div>
         </div>
         <div class="container__historias__reales__link">
@@ -576,7 +580,7 @@ align-items: center;     display: flex;">
           <div class="container__verificados__head__subtitle">
             dispuestos a ayudarte a migrar con seguridad
           </div>
-  
+
         </div>
         <div class="container__verificados__body">
           <div class="container__verificados__body__item">
@@ -648,8 +652,8 @@ align-items: center;     display: flex;">
           <img src="assets/images/imagen_grande.png">
         </picture>
       </div>
-  
-  
+
+
     </div>
   </div>
 
@@ -963,7 +967,7 @@ align-items: center;     display: flex;">
 </section>
 <!-- seccion quiero unirme -->
 <section>
-  
+
   <div class="container__unirme__main">
     <div class="container__unirme">
       <div class="container__unirme__head">
@@ -979,7 +983,7 @@ align-items: center;     display: flex;">
         <a routerLink="./registroGuia" class="btn_unirme">Quiero unirme</a>
       </div>
     </div>
-   
+
   </div>
 </section>
 <!-- botoncito para los videos -->

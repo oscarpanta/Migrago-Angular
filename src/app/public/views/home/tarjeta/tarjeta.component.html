@@ -54,12 +54,13 @@
                   <div class="card-content" *ngIf="historia">
 
                     <p class="description">{{historia.title}}</p>
-                    <span class="autor mb-1" *ngIf="historia.name">{{historia.name.split(' ')[0]}} {{historia.lastname.split(' ')[0]}}</span>
+                    <!-- <span class="autor mb-1" *ngIf="historia.name">{{historia.name.split(' ')[0]}} {{historia.lastname.split(' ')[0]}}</span> -->
+                    <span class="autor mb-1">{{historia.name.split(' ')[0]}} {{historia.lastname.substring(0, 1)}}.</span>
                     <span class="etiqueta mb-1">{{historia.city_name}},{{historia.country_name}}</span>
                     <div class="container_etiquetas mb-1">
 
                       <div class="container__body__etiqueta">
-                        {{historia.status}}
+                        {{historia.name_way_migration}}
                       </div>
                     </div>
                     <div class="footer-content">

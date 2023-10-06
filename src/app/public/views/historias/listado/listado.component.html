@@ -91,7 +91,7 @@
 
           <ng-select [items]="modemigrations" bindLabel="description" bindValue="id" [multiple]="true"
             groupBy="selectedAllGroup" [searchWhileComposing]="true" [selectableGroup]="true"
-            placeholder="Modo de migracion" (change)="onMaterialGroupChangeModo($event)" >
+            placeholder="Modo de migracion" (change)="onMaterialGroupChangeModo($event)">
 
             <ng-template ng-label-tmp let-item="item">
               {{ item.description }}
@@ -157,11 +157,7 @@
         </div>
       </div>
       <div class="row mt-4">
-
-        <div class="d-flex align-content-center flex-wrap container__historias__reales__body" *ngIf="resp_historias">
-
-
-
+        <div class="d-flex align-content-center flex-wrap container__historias__reales__body">
           <div class="card card-container mb-3" *ngFor="let historia of resp_historias">
             <div class="image-content">
 
@@ -171,17 +167,17 @@
               </div>
               <div class="card-image2">
                 <!-- <ng-container *ngIf="historia.urlImagen">
-                  <img [src]="historia.urlImagen" class="card-img" alt="perfil">
-                </ng-container>
-                <ng-container *ngIf="!historia.urlImagen">
-                  <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
-                </ng-container> -->
+                    <img [src]="historia.urlImagen" class="card-img" alt="perfil">
+                  </ng-container>
+                  <ng-container *ngIf="!historia.urlImagen">
+                    <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
+                  </ng-container> -->
                 <img [src]="historia.urlImagen || 'assets/images/perfiles/profile1.jpg'" class="card-img" alt="perfil">
                 <!-- <div class="form-group col-lg-4 mb-3">
-                  <div *ngIf="imageSrc!='';then muestra else nomuestra"></div>
-                  <ng-template #muestra><img [src]="imageSrc" id="preview" class="img-thumbnail"></ng-template>
-                  <ng-template #nomuestra><img src="assets/images/perfiles/perfil.png" id="preview" class="img-thumbnail"></ng-template>
-                </div>     -->
+                    <div *ngIf="imageSrc!='';then muestra else nomuestra"></div>
+                    <ng-template #muestra><img [src]="imageSrc" id="preview" class="img-thumbnail"></ng-template>
+                    <ng-template #nomuestra><img src="assets/images/perfiles/perfil.png" id="preview" class="img-thumbnail"></ng-template>
+                  </div>     -->
               </div>
               <div class="card-image_flag">
                 <img [src]="'assets/images/flags/tiny/'+ historia.flag_img" class="card-img" alt="pais">
@@ -216,370 +212,196 @@
 
           </div>
 
-          <!-- <div class="card card-container mb-2">
-                <div class="image-content">
-
-                  <div class="card-image">
-                    <img src="assets/images/imagen_prueba.png" class="card-img" alt="fondo">
-                  </div>
-                  <div class="card-image2">
-                    <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
-                  </div>
-                  <div class="card-image_flag">
-                    <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
-                  </div>
-                </div>
-
-                <div class="card-content">
-
-                  <p class="description">Al mes conseguí trabajo en ventas.</p>
-                  <span class="autor mb-1">Miguel Panta.</span>
-                  <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
-                  <div class="container_etiquetas mb-1">
-                    <div class="container__body__etiqueta">
-                      Estudios
-                    </div>
-                    <div class="container__body__etiqueta">
-                      Refugio
-                    </div>
-
-                  </div>
-                  <div class="footer-content">
-
-                    <a href="../views/pagina2.php" class="btn btn-light mt-2">Ver Más <i
-                        class="fa-solid fa-arrow-right"></i></a>
-                    <a href="" class="btn btn-info mt-2">Reserva una cita</a>
-
-                  </div>
-
-                </div>
-              </div>
-              <div class="card card-container mb-2">
-                <div class="image-content">
-
-                  <div class="card-image">
-                    <img src="assets/images/imagen_prueba.png" class="card-img" alt="fondo">
-                  </div>
-                  <div class="card-image2">
-                    <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
-                  </div>
-                  <div class="card-image_flag">
-                    <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
-                  </div>
-                </div>
-
-                <div class="card-content">
-
-                  <p class="description">Al mes conseguí trabajo en ventas.</p>
-                  <span class="autor mb-1">Miguel Panta.</span>
-                  <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
-                  <div class="container_etiquetas mb-1">
-                    <div class="container__body__etiqueta">
-                      Estudios
-                    </div>
-                    <div class="container__body__etiqueta">
-                      Refugio
-                    </div>
-
-                  </div>
-                  <div class="footer-content">
-
-                    <a href="../views/pagina2.php" class="btn btn-light mt-2">Ver Más <i
-                        class="fa-solid fa-arrow-right"></i></a>
-                    <a href="" class="btn btn-info mt-2">Reserva una cita</a>
-
-                  </div>
-
-                </div>
-              </div>
-              <div class="card card-container mb-2">
-                <div class="image-content">
-
-                  <div class="card-image">
-                    <img src="assets/images/imagen_prueba.png" class="card-img" alt="fondo">
-                  </div>
-                  <div class="card-image2">
-                    <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
-                  </div>
-                  <div class="card-image_flag">
-                    <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
-                  </div>
-                </div>
-
-                <div class="card-content">
-
-                  <p class="description">Al mes conseguí trabajo en ventas.</p>
-                  <span class="autor mb-1">Miguel Panta.</span>
-                  <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
-                  <div class="container_etiquetas mb-1">
-                    <div class="container__body__etiqueta">
-                      Estudios
-                    </div>
-                    <div class="container__body__etiqueta">
-                      Refugio
-                    </div>
-                  </div>
-                  <div class="footer-content">
-
-                    <a href="../views/pagina2.php" class="btn btn-light mt-2">Ver Más <i
-                        class="fa-solid fa-arrow-right"></i></a>
-                    <a href="" class="btn btn-info mt-2">Reserva una cita</a>
-
-                  </div>
-
-                </div>
-              </div>
-              <div class="card card-container mb-2">
-                <div class="image-content">
-
-                  <div class="card-image">
-                    <img src="assets/images/imagen_prueba.png" class="card-img" alt="fondo">
-                  </div>
-                  <div class="card-image2">
-                    <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
-                  </div>
-                  <div class="card-image_flag">
-                    <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
-                  </div>
-                </div>
-
-                <div class="card-content">
-
-                  <p class="description">Al mes conseguí trabajo en ventas.</p>
-                  <span class="autor mb-1">Miguel Panta.</span>
-                  <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
-                  <div class="container_etiquetas mb-1">
-                    <div class="container__body__etiqueta">
-                      Estudios
-                    </div>
-                    <div class="container__body__etiqueta">
-                      Refugio
-                    </div>
-                  </div>
-                  <div class="footer-content">
-
-                    <a href="../views/pagina2.php" class="btn btn-light mt-2">Ver Más <i
-                        class="fa-solid fa-arrow-right"></i></a>
-                    <a href="" class="btn btn-info mt-2">Reserva una cita</a>
-
-                  </div>
-
-                </div>
-              </div> -->
-
-
-
-
-
-          <!-- --paginacion -->
-
-
-
-
-          <!-- <div class="col-md-3 mt-2" style="text-align: right;">
-          <span class="mr-2">Page Size</span>
-
-          <select #myPageSelect (change)="updatePageSize(myPageSelect.value)">
-            <option>2</option>
-            <option selected="true">5</option>
-            <option>10</option>
-            <option>20</option>
-            <option>50</option>
-          </select>
-        </div> -->
-          <!-- find pag -->
-
-
-
-
-
-
         </div>
 
 
+
       </div>
-      <div class="d-flex justify-content-center">
-        <ngb-pagination [(page)]="nropagina" [pageSize]="tamanopagina" [collectionSize]="totalelementos" [maxSize]="1"
-          [boundaryLinks]="true" (pageChange)="onPageChange(nropagina)">
-          <!-- (pageChange)="listaHistorias() -->
-        </ngb-pagination>
-      </div>
+
 
     </div>
+    <div class="d-flex justify-content-center">
+      <ngb-pagination [(page)]="nropagina" [pageSize]="tamanopagina" [collectionSize]="totalelementos" [maxSize]="1"
+        [boundaryLinks]="true" (pageChange)="onPageChange(nropagina)">
+        <!-- (pageChange)="listaHistorias() -->
+      </ngb-pagination>
+    </div>
 
-    <div class="card">
-      <div class="row card-content align-items-center">
+  </div>
 
-        <div class="row mb-3">
-          <div class="col-lg-12 text-center">
-            <span class="container__historias__body__title letra__b__bold">Historias</span>
-            <span class="container__historias__body__title" style="color: #5a2395;"> como la tuya</span>
-          </div>
-          <div class="col-lg-12 text-center" style="font-size: 13pt;">
-            <span>de migrantes reales dispuestos a responder</span>
-          </div>
+  <div class="card">
+    <div class="row card-content align-items-center">
+
+      <div class="row mb-3">
+        <div class="col-lg-12 text-center">
+          <span class="container__historias__body__title letra__b__bold">Historias</span>
+          <span class="container__historias__body__title" style="color: #5a2395;"> como la tuya</span>
         </div>
-
-        <div class="row d-flex align-content-center flex-wrap justify-content-between mb-5">
-
-          <div class="container__historias__items ">
-            <div class="container__historias__body__body__item__imagen">
-              <picture>
-                <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                          <source media="(min-width: 550px)" srcset="media.png"> -->
-                <img src="assets/images/icons/People-mobile.png">
-              </picture>
-            </div>
-            <div class="container__historias__body__body__item__body">
-              <div class="container__historias__body__body__item__title">
-                3456
-              </div>
-              <div class="container__historias__body__body__item__text">
-                Migrantes que han llegado con éxito
-              </div>
-            </div>
-
-          </div>
-          <div class="container__historias__items">
-            <div class="container__historias__body__body__item__imagen">
-              <picture>
-                <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                          <source media="(min-width: 550px)" srcset="media.png"> -->
-                <img src="assets/images/icons/People-mobile.png">
-              </picture>
-            </div>
-            <div class="container__historias__body__body__item__body">
-              <div class="container__historias__body__body__item__title">
-                3456
-              </div>
-              <div class="container__historias__body__body__item__text">
-                Migrantes que han llegado con éxito
-              </div>
-            </div>
-
-          </div>
-          <div class="container__historias__items">
-            <div class="container__historias__body__body__item__imagen">
-              <picture>
-                <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                          <source media="(min-width: 550px)" srcset="media.png"> -->
-                <img src="assets/images/icons/Mochila-mobile.png">
-              </picture>
-            </div>
-            <div class="container__historias__body__body__item__body">
-              <div class="container__historias__body__body__item__title">
-                1684
-              </div>
-              <div class="container__historias__body__body__item__text">
-                Menores que se encuentran estudiando
-              </div>
-            </div>
-
-          </div>
-          <div class="container__historias__items">
-            <div class="container__historias__body__body__item__imagen">
-              <picture>
-                <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                          <source media="(min-width: 550px)" srcset="media.png"> -->
-                <img src="assets/images/icons/Call--mobile.png">
-              </picture>
-            </div>
-            <div class="container__historias__body__body__item__body">
-              <div class="container__historias__body__body__item__title">
-                27
-              </div>
-              <div class="container__historias__body__body__item__text">
-                Ciudades en 4 países los alojan
-              </div>
-            </div>
-
-          </div>
+        <div class="col-lg-12 text-center" style="font-size: 13pt;">
+          <span>de migrantes reales dispuestos a responder</span>
         </div>
-
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <span class="container__historias__body__title letra__b__bold">Preguntas</span>
-            <span class="container__historias__body__title" style="color: #5a2395;"> frecuentes</span>
-          </div>
-          <div class="col-lg-12">
-            <div class="accordion" id="accordionExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button " type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <strong>¿Cuánto dura una sesión con un residente?</strong>
-                  </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    This is the first item's accordion body.It is shown by default, until the collapse plugin adds the
-                    appropriate classes that we use to style each element. These classes control the overall appearance,
-                    as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
-                    overriding our default variables. It's also worth noting that just about any HTML can go within the
-                    <code>.accordion-body</code>, though the transition does limit overflow.
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <strong>¿Let iusto odio dignissim qui blandit praesent?</strong>
-                  </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    This is the second item's accordion body. It is hidden by default, until the collapse plugin adds
-                    the
-                    appropriate classes that we use to style each element. These classes control the overall appearance,
-                    as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
-                    overriding our default variables. It's also worth noting that just about any HTML can go within the
-                    <code>.accordion-body</code>, though the transition does limit overflow.
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <strong>¿Rerat volutpat. Ut wisi enim ad minim veniam?</strong>
-                  </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    This is the third item's accordion body. It is hidden by default, until the collapse plugin adds the
-                    appropriate classes that we use to style each element. These classes control the overall appearance,
-                    as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
-                    overriding our default variables. It's also worth noting that just about any HTML can go within the
-                    <code>.accordion-body</code>, though the transition does limit overflow.
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapeFour" aria-expanded="false" aria-controls="collapeFour">
-                    <strong> ¿Vel illum dolore eu feugiat nulla facilisis at?</strong>
-                  </button>
-                </h2>
-                <div id="collapeFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    This is the third item's accordion body. It is hidden by default, until the collapse plugin adds the
-                    appropriate classes that we use to style each element. These classes control the overall appearance,
-                    as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
-                    overriding our default variables. It's also worth noting that just about any HTML can go within the
-                    <code>.accordion-body</code>, though the transition does limit overflow.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
       </div>
+
+      <div class="row d-flex align-content-center flex-wrap justify-content-between mb-5">
+
+        <div class="container__historias__items ">
+          <div class="container__historias__body__body__item__imagen">
+            <picture>
+              <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                          <source media="(min-width: 550px)" srcset="media.png"> -->
+              <img src="assets/images/icons/People-mobile.png">
+            </picture>
+          </div>
+          <div class="container__historias__body__body__item__body">
+            <div class="container__historias__body__body__item__title">
+              3456
+            </div>
+            <div class="container__historias__body__body__item__text">
+              Migrantes que han llegado con éxito
+            </div>
+          </div>
+
+        </div>
+        <div class="container__historias__items">
+          <div class="container__historias__body__body__item__imagen">
+            <picture>
+              <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                          <source media="(min-width: 550px)" srcset="media.png"> -->
+              <img src="assets/images/icons/People-mobile.png">
+            </picture>
+          </div>
+          <div class="container__historias__body__body__item__body">
+            <div class="container__historias__body__body__item__title">
+              3456
+            </div>
+            <div class="container__historias__body__body__item__text">
+              Migrantes que han llegado con éxito
+            </div>
+          </div>
+
+        </div>
+        <div class="container__historias__items">
+          <div class="container__historias__body__body__item__imagen">
+            <picture>
+              <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                          <source media="(min-width: 550px)" srcset="media.png"> -->
+              <img src="assets/images/icons/Mochila-mobile.png">
+            </picture>
+          </div>
+          <div class="container__historias__body__body__item__body">
+            <div class="container__historias__body__body__item__title">
+              1684
+            </div>
+            <div class="container__historias__body__body__item__text">
+              Menores que se encuentran estudiando
+            </div>
+          </div>
+
+        </div>
+        <div class="container__historias__items">
+          <div class="container__historias__body__body__item__imagen">
+            <picture>
+              <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                          <source media="(min-width: 550px)" srcset="media.png"> -->
+              <img src="assets/images/icons/Call--mobile.png">
+            </picture>
+          </div>
+          <div class="container__historias__body__body__item__body">
+            <div class="container__historias__body__body__item__title">
+              27
+            </div>
+            <div class="container__historias__body__body__item__text">
+              Ciudades en 4 países los alojan
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <span class="container__historias__body__title letra__b__bold">Preguntas</span>
+          <span class="container__historias__body__title" style="color: #5a2395;"> frecuentes</span>
+        </div>
+        <div class="col-lg-12">
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                  aria-expanded="true" aria-controls="collapseOne">
+                  <strong>¿Cuánto dura una sesión con un residente?</strong>
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  This is the first item's accordion body.It is shown by default, until the collapse plugin adds the
+                  appropriate classes that we use to style each element. These classes control the overall appearance,
+                  as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
+                  overriding our default variables. It's also worth noting that just about any HTML can go within the
+                  <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <strong>¿Let iusto odio dignissim qui blandit praesent?</strong>
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  This is the second item's accordion body. It is hidden by default, until the collapse plugin adds
+                  the
+                  appropriate classes that we use to style each element. These classes control the overall appearance,
+                  as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
+                  overriding our default variables. It's also worth noting that just about any HTML can go within the
+                  <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  <strong>¿Rerat volutpat. Ut wisi enim ad minim veniam?</strong>
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  This is the third item's accordion body. It is hidden by default, until the collapse plugin adds the
+                  appropriate classes that we use to style each element. These classes control the overall appearance,
+                  as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
+                  overriding our default variables. It's also worth noting that just about any HTML can go within the
+                  <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapeFour" aria-expanded="false" aria-controls="collapeFour">
+                  <strong> ¿Vel illum dolore eu feugiat nulla facilisis at?</strong>
+                </button>
+              </h2>
+              <div id="collapeFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  This is the third item's accordion body. It is hidden by default, until the collapse plugin adds the
+                  appropriate classes that we use to style each element. These classes control the overall appearance,
+                  as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
+                  overriding our default variables. It's also worth noting that just about any HTML can go within the
+                  <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
 
     </div>
 
   </div>
+
+</div>

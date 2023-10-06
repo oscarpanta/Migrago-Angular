@@ -55,9 +55,10 @@ export class RegistroGuiaComponent {
       fecha: ['', [Validators.required]],
       correo: ['', [Validators.required]],
       RutaMigracion: [[0], [Validators.required]],
-      ModoMigracion: [[0], [Validators.required]],
+      //ModoMigracion: [[0], [Validators.required]],
       fechaNac: ['', [Validators.required]],
-      titulo: ['', [Validators.required]],
+      llegadamascota: [[0], [Validators.required]],
+      //titulo: ['', [Validators.required]],
       texto_historia: ['', [Validators.required]],
 
     });
@@ -249,13 +250,42 @@ export class RegistroGuiaComponent {
   registroGuia() {
     this.formularioEnviado = true;
     this.textoBoton = 'Esperando registro';
-    const { nombre, nacionalidad, apellidos, countrySelect, genero, citySelect, numero, fecha, correo, RutaMigracion, ModoMigracion
-      , fechaNac, titulo, texto_historia } = this.miFormulario.value;
+    const { nombre, nacionalidad, apellidos, countrySelect, genero, citySelect, numero, fecha, correo, RutaMigracion
+      , fechaNac,llegadamascota,texto_historia } = this.miFormulario.value;
 
     const primeraLetraNombre = nombre.charAt(0);
     const contrasena = `${primeraLetraNombre}12345@`;
     console.log(this.miFormulario.value)
 
+    // let req = {
+    //   request: {
+    //     id: 0,
+    //     dni: null,
+    //     name: nombre,
+    //     lastname: apellidos,
+    //     username: correo,
+    //     password: contrasena,
+    //     sexo: genero,
+    //     photo: null,
+    //     status: true,
+    //     phone: numero.toString(),
+    //     birth_date: fechaNac,
+    //     rol: 7,
+    //     mascota:0
+    //   },
+    //   story: {
+    //     story_id: 0,
+    //     country_id: countrySelect,
+    //     city_id: citySelect,
+    //     nationality_id: nacionalidad,
+    //     migration_mode_id: ModoMigracion,
+    //     way_migration_id: RutaMigracion,
+    //     title: titulo,
+    //     arrival_date: fecha,
+    //     story_text: texto_historia,
+    //     status: "PENDING"
+    //   }
+    // }
     let req = {
       request: {
         id: 0,
@@ -270,19 +300,16 @@ export class RegistroGuiaComponent {
         phone: numero.toString(),
         birth_date: fechaNac,
         rol: 7,
-        mascota:0
       },
-      story: {
-        story_id: 0,
+      guide: {
         country_id: countrySelect,
         city_id: citySelect,
         nationality_id: nacionalidad,
-        migration_mode_id: ModoMigracion,
         way_migration_id: RutaMigracion,
-        title: titulo,
         arrival_date: fecha,
-        story_text: texto_historia,
-        status: "PENDING"
+        guide_status:'PENDING',
+        texto_cuentanos: texto_historia,
+        mascota: llegadamascota
       }
     }
     console.log(req)

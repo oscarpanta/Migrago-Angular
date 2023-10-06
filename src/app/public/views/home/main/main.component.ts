@@ -13,6 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AutenticacionService } from 'src/app/core/services/autenticacion.service';
 import { Usuario } from 'src/app/core/interfaces/login.interface';
 import { environment } from 'src/environments/environment';
+import { TemasService } from '../../services/temas.service';
 declare var $: any;
 //import * as $ from 'jquery';
 
@@ -33,7 +34,7 @@ export class MainComponent implements OnInit,AfterViewInit{
   //resp_historias:ResponseStories[]=[]
   //resp_historias:DataStories[]=[]
   resp_historias:any[]=[]
-
+  Temas:any[]=[]
   estalogeado : boolean = false;
   rolUsuario : string |null ="";
  // private swiper!:Swiper;
@@ -43,7 +44,7 @@ export class MainComponent implements OnInit,AfterViewInit{
               private heroesService: HeroeService,
               private rutamigracionService: WaysMigrationService,
               private historiasService:StoriesService,
-              private authService:AutenticacionService ) {
+              private authService:AutenticacionService,private temasService:TemasService ) {
 
               }
   ngAfterViewInit(): void {
@@ -72,8 +73,8 @@ export class MainComponent implements OnInit,AfterViewInit{
       }
     }
     this.displayService.setNavigationVisibility(false);
-    this.cargarheroes();
     this.listaRutasMigracion();
+    this.obtenerDataTema()
     this.listaHistorias();
     console.log(this.rolUsuario)
     this.logeado();
@@ -247,19 +248,7 @@ export class MainComponent implements OnInit,AfterViewInit{
     );
   }
 
-  cargarheroes() {
-    // this.heroesService.getHeroes().subscribe(
-    //   heroes => {
-    //     this.heroes = heroes
-    //   }
-    // )
-    // this.httpCoreService.get('/heroes/').subscribe(
-    //   heroes => {
-    //     this.heroes = heroes
-    //   }
-    // )
 
-  }
 
   listaHistorias(){
 
@@ -329,6 +318,44 @@ export class MainComponent implements OnInit,AfterViewInit{
   logout(){
     this.router.navigateByUrl('/auth');
     this.authService.logout();
+  }
+
+  obtenerDataTema() {
+    const requestData = {
+      request: {
+        themes_name: "",
+        status: true
+      },
+      order: {
+        column: null,
+        mode: null
+      },
+      page_size: 10,
+      pgination_key: 1
+    };
+
+    this.temasService.getDataTema(requestData).subscribe(response => {
+
+      if (response) {
+
+        this.Temas = response[0];
+        console.log(this.Temas)
+        console.log(this.Temas[0].details.data)
+        console.log(this.Temas[0].images.data)
+      }
+    });
+  }
+  formatDescriptionThemes(detailsData: any[]): string {
+    const themes = detailsData.map((detail) => detail.description_theme);
+
+    if (themes.length === 1) {
+      return themes[0];
+    } else if (themes.length === 2) {
+      return themes.join(' y ');
+    } else {
+      const lastTheme = themes.pop(); // Remover el último tema
+      return themes.join(', ') + ' y ' + lastTheme;
+    }
   }
 
 }

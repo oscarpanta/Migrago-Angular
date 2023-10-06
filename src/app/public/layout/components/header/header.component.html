@@ -8,7 +8,7 @@
 
 
       <a class="navbar-brand" routerLink="" style="flex-basis: 20%;  display: flex;
-      justify-content: center;">
+      justify-content: flex-start;">
         <!-- Migrago -->
         <img src="assets/images/icons/Migrago_fondo_transparente.png"  style=" width: 100px;height: 50px;">
       </a>
@@ -59,7 +59,7 @@
       </button>
 
 
-      <div class="collapse navbar-collapse" id="navbarCollapse" style="justify-content: center;">
+      <div class="collapse navbar-collapse menu_up" id="navbarCollapse" style="width: 100%; justify-content: center;">
 
         <ul class="navbar-nav mr-auto">
 
@@ -91,7 +91,7 @@
 
 
          <a routerLink="/auth/login"  id="ingresaprinc" class="btn-ingresa-princ btn custom-btn d-lg-block d-none  me-2" *ngIf="!estalogeado">Ingresa</a>
-        <a  class="btn custom-btn d-lg-block d-none btn-registrate" (click)="openModal(modalContent)" *ngIf="!estalogeado">Registrate</a>
+        <a  class="btn custom-btn me-2 d-lg-block d-none btn-registrate" (click)="openModal(modalContent)" *ngIf="!estalogeado">Registrate</a>
 
         <div *ngIf="estalogeado" class="dropdown">
           <div class="perfil-info">

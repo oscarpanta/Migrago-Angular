@@ -363,6 +363,9 @@ export class DetalleComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
+
+
   onChange(id: string, event: any) {
 
     this.arr = this.miFormulario.get('temas') as FormArray;
