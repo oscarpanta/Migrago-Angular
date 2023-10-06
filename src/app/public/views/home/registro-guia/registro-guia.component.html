@@ -46,7 +46,7 @@
         <select formControlName="countrySelect"
           (change)="onCountrySelect($event)" [(ngModel)]="selectedCountryId" class="form-select form-select-normal"
           aria-label="Default select example">
-          <option value="0" selected>País a migrar</option>
+          <option value="0" selected>País</option>
           <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}
           </option>
         </select>

@@ -34,7 +34,7 @@ import { LOCALE_ID } from '@angular/core';
 
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'es' },
+   // {provide: LOCALE_ID, useValue: 'es' },
     {
      //provide: LOCALE_ID, useValue: 'es',
     provide: HTTP_INTERCEPTORS,

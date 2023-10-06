@@ -447,9 +447,9 @@ ul{
 .btn-ingresa-princ {
   /* border: 1px solid #000; */
   background: #5a2395;
-  padding-right: 2rem;
-  padding-left: 2rem;
-  font-size: small;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  font-family: 'Inter';
   color: #fff;
 }
 .btn-ingresa-princ:hover{

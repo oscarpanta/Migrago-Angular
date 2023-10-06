@@ -154,8 +154,12 @@
 
     <div class="modal-body modal-login">
       <button type="button" class="close" (click)="modal.dismiss('Cross click')" style="
-      float: right;">
-        <span aria-hidden="true">&times;</span>
+        background: none;
+        float: right;
+        border: 0;
+        margin: 0.2rem">
+        <!-- <span aria-hidden="true">&times;</span> -->
+        <i class="fa-solid fa-xmark"></i>
       </button>
       <app-registro-modal (closeModal)="cerrarModal()"></app-registro-modal>
     </div>

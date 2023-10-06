@@ -40,7 +40,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   selectedItemsTemas: any[] = [];
   serviceLst: any = [];
   selectedModes: any[] = [];
-
+  mostrarLoad: boolean = false;
   //citiesss = [];
   selectedCityIds!: string[];
   //selectedMigrationIds:any = [];
@@ -82,6 +82,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
     this.listaTemasMigracion();
     this.listaHistorias();
 
+
   }
 
 
@@ -95,6 +96,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
       this.selectedTemasIds = selectedIds.join(',');
       console.log(event);
       console.log(this.selectedTemasIds);
+
       this.listaHistorias();
       // this.listaHistorias(this.selectedMigrationIds, this.selectedTemasIds,this.selectedCountryId!,this.selectedCityId,this.selectedNationalityId,this.selectedWayMigrationId);
     }
@@ -394,6 +396,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
   // listaHistorias(idsmigra: string,idstemas:string,idpais:number,idciudad:number,idnacionalidad:number,idruta:number){
   listaHistorias() {
+    this.mostrarLoad=false
     const requestData = {
       request: {
         id_country: this.selectedCountryId,
@@ -421,6 +424,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
     this.historiasService.getStories(requestData).subscribe(
       response => {
         console.log('hist' + JSON.stringify(response));
+        this.mostrarLoad=true
         this.resp_historias = response[0].data;
         this.totalelementos = +response[0].totalElements;
         this.resp_historias.forEach(historia => {
@@ -453,6 +457,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
   onPageChange(page: number) {
     this.nropagina = page;
+
     this.listaHistorias();
     //this.filtrado()
 
@@ -501,6 +506,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
         console.log('hist' + JSON.stringify(response));
         //   console.log('hist' + JSON.stringify(response));
         this.resp_historias = response[0].data;
+        this.mostrarLoad=true
         this.totalelementos = +response[0].totalElements;
         this.resp_historias.forEach(historia => {
           if (historia.photo) {

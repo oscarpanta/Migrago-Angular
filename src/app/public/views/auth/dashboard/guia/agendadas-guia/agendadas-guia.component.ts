@@ -4,10 +4,10 @@ import { Usuario } from 'src/app/core/interfaces/login.interface';
 import { AutenticacionService } from 'src/app/core/services/autenticacion.service';
 import { BookingsService } from 'src/app/public/views/services/bookings.service';
 import Swal from 'sweetalert2';
-import { registerLocaleData } from '@angular/common';
+//import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 
-registerLocaleData(localeEs);
+//registerLocaleData(localeEs);
 @Component({
   selector: 'app-agendadas-guia',
   templateUrl: './agendadas-guia.component.html',

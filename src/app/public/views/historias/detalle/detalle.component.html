@@ -626,11 +626,15 @@
   <div class="modal-contenido">
 
     <button type="button" class="close" (click)="cerrarModal()" style="
-      float: right;">
-      <span aria-hidden="true">&times;</span>
+      background: none;
+      float: right;
+      border: 0;
+      margin: 0.2rem">
+      <!-- <span aria-hidden="true">&times;</span> -->
+      <i class="fa-solid fa-xmark"></i>
     </button>
 
-    <div class="row d-grid gap-2 col-10 mx-auto">
+    <div class="row d-grid gap-2 col-10 mx-auto py-5">
       <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="registroCita()">
         <div *ngIf="currentSection === 1">
 
@@ -664,8 +668,8 @@
 
             </div> -->
             <div class="form-check" #checkboxes *ngFor="let temas of historiaDetalle.group_themes.data">
-              <input class="form-check-input" type="checkbox" [value]="temas.id"
-                [checked]="groupThemeIds.includes(temas.id)" (change)="onChange(temas.id, $event)">
+              <input class="form-check-input" type="checkbox" [value]="temas.group_themes_id"
+                [checked]="groupThemeIds.includes(temas.group_themes_id)" (change)="onChange(temas.group_themes_id, $event)">
               <label class="form-check-label" for="flexCheckDefault ">
                 {{temas.description}}
 
@@ -690,7 +694,7 @@
 
               </div> -->
 
-          <div class='demo-app-main' style="padding: 1rem;">
+          <div class='demo-app-main' style="padding: 0rem;">
             <div class="d-flex justify-content-center align-items-center row">
               <img src="assets/images/icons/Migrago_fondo_transparente.png" alt="" style="
                   width: 200px; height: 90px;" class="mt-0">
@@ -844,8 +848,12 @@
 
     <div class="modal-body modal-login">
       <button type="button" class="close" (click)="cerrarModal()" style="
-      float: right;">
-        <span aria-hidden="true">&times;</span>
+      background: none;
+      float: right;
+      border: 0;
+      margin: 0.2rem">
+        <!-- <span aria-hidden="true">&times;</span> -->
+        <i class="fa-solid fa-xmark"></i>
       </button>
 
 
@@ -948,8 +956,11 @@
 
     <div class="modal-body modal-login">
       <button type="button" class="close" (click)="cerrarModal()" style="
-      float: right;">
-        <span aria-hidden="true">&times;</span>
+        background: none;
+    float: right;
+    border: 0">
+        <!-- <span aria-hidden="true">&times;</span> -->
+        <i class="fa-solid fa-xmark"></i>
       </button>
 
 
@@ -1063,8 +1074,12 @@
 
     <div class="modal-body modal-login">
       <button type="button" class="close" (click)="cerrarModal()" style="
-      float: right;">
-        <span aria-hidden="true">&times;</span>
+        background: none;
+        float: right;
+        border: 0;
+        margin: 0.2rem">
+        <!-- <span aria-hidden="true">&times;</span> -->
+        <i class="fa-solid fa-xmark"></i>
       </button>
 
 
@@ -1121,7 +1136,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body p-3">
-        <div class="row d-grid gap-2 col-10 mx-auto">
+        <div class="row d-grid gap-2 col-10 mx-auto py-5">
           <div class="text-center d-flex align-items-baseline justify-content-evenly">
             <p class="p-bold-500-20 ">Temas de interés</p>
             <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-placement="right"

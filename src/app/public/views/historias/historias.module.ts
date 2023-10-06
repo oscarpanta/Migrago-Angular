@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetalleComponent } from './detalle/detalle.component';
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule, NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { NgxStripeModule } from 'ngx-stripe';
 import { environment } from 'src/environments/environment';
@@ -37,6 +37,7 @@ import { PagoCitaComponent } from './pago-cita/pago-cita.component';
     HistoriasRoutingModule,
     FullCalendarModule,
     NgbModule,
+    NgbProgressbarModule,
     NgxStripeModule.forRoot(environment.stripe.publicKey),
   ],
   providers:[
