@@ -4,9 +4,9 @@
     <div class="p-cinta-body">
       <a href="">
         <p>
-          REGÍSTRATE Y OBTÉN 20$ OFF EN TU PRIMER CONSULTA <i class="fa-sharp fa-solid fa-arrow-right"></i>
-
-          <!-- </p> -->
+          Regístrate y obtén 20$ OFF en tu primera consulta
+           
+          </p>
       </a>
     </div>
 
@@ -29,7 +29,7 @@ align-items: center;     display: flex;">
 
 
       <a class="navbar-brand" routerLink="" style="flex-basis: 20%;  display: flex;
-      justify-content: center;">
+      justify-content: flex-start;">
         <!-- Migrago -->
         <img src="assets/images/icons/Logo-cabecera-mobile.png" width="110" height="25">
       </a>
@@ -82,7 +82,7 @@ align-items: center;     display: flex;">
       </button>
 
 
-      <div class="collapse navbar-collapse menu_up" id="navbarCollapse" style="justify-content: center;">
+      <div class="collapse navbar-collapse menu_up" id="navbarCollapse" style="width:100%;justify-content: center;">
 
         <ul class="navbar-nav mr-auto">
 
@@ -213,10 +213,20 @@ align-items: center;     display: flex;">
     <div class="container__70">
       <div class="apartado__index__body">
         <div class="letra__a letra__blanca">
-          Encuentra historias
+          <p class="p_texto">
+            Encuentra
+          </p>
+          <p class="p_texto">historias</p>
+         
         </div>
         <div class="letra__b__bold letra__blanca">
-          para migrar seguro
+            <p class="p_texto">
+              para migrar
+            </p>
+            <p class="p_texto">
+              seguro
+            </p>
+         
         </div>
 
       </div>
@@ -237,7 +247,7 @@ align-items: center;     display: flex;">
 
     <div class="container__azul">
       <div class="container__azul__head">
-        <p>Cómo funciona?</p>
+        <p>¿Cómo funciona?</p>
       </div>
       <div class="container__azul__body">
         <div class="container__azul__body__item">
@@ -245,7 +255,7 @@ align-items: center;     display: flex;">
             <picture>
               <!-- <source media="(min-width: 900px)" srcset="grande.png">
                               <source media="(min-width: 550px)" srcset="media.png"> -->
-              <img src="assets/images/icons/Geo-mobile.png">
+              <img src="assets/images/icons/geo.png">
             </picture>
           </div>
           <div class="container__azul__body__item__title">
@@ -260,14 +270,14 @@ align-items: center;     display: flex;">
             <picture>
               <!-- <source media="(min-width: 900px)" srcset="grande.png">
                               <source media="(min-width: 550px)" srcset="media.png"> -->
-              <img src="assets/images/icons/Corazon-mobile.png">
+              <img src="assets/images/icons/cora.png">
             </picture>
           </div>
           <div class="container__azul__body__item__title">
             2.-
           </div>
           <div class="container__azul__body__item__text">
-            ELige una historia como la tuya
+            Elige una historia como la tuya ahora
           </div>
         </div>
         <div class="container__azul__body__item">
@@ -275,7 +285,7 @@ align-items: center;     display: flex;">
             <picture>
               <!-- <source media="(min-width: 900px)" srcset="grande.png">
                               <source media="(min-width: 550px)" srcset="media.png"> -->
-              <img src="assets/images/icons/Calendario-mobile.png">
+              <img src="assets/images/icons/calen.png">
             </picture>
           </div>
           <div class="container__azul__body__item__title">
@@ -301,27 +311,14 @@ align-items: center;     display: flex;">
         </div>
         <div class="container__rutas__body">
           <div class="container__rutas__body__etiquetas">
+           
             <div class="container__rutas__body__etiqueta" *ngFor="let rutamigracion of rutasmigracion">
-              {{rutamigracion.name_way_migration}}
+             
+                  {{rutamigracion.name_way_migration}}
+              
+             
             </div>
-            <!-- <div class="container__rutas__body__etiqueta">
-              Estudios
-            </div>
-            <div class="container__rutas__body__etiqueta">
-              Refugio
-            </div>
-            <div class="container__rutas__body__etiqueta">
-              Invitación
-            </div>
-            <div class="container__rutas__body__etiqueta">
-              Trabajo
-            </div>
-            <div class="container__rutas__body__etiqueta">
-              Turista
-            </div>
-            <div class="container__rutas__body__etiqueta">
-              Residencia directa
-            </div> -->
+           
           </div>
         </div>
       </div>
@@ -332,7 +329,7 @@ align-items: center;     display: flex;">
 
 <div class="marquee p-cinta" style="display: flex; align-items: center; justify-content: center;">
   <p [style.padding-right]="last ? '0em':'5em'" *ngFor="let rutamigracion of rutasmigracion ; let last = last">
-    {{rutamigracion.name_way_migration}}</p>
+     {{rutamigracion.name_way_migration}}</p>
 </div>
 
 <!-- seccion historias como la tuya -->
@@ -359,7 +356,7 @@ align-items: center;     display: flex;">
               <picture>
                 <!-- <source media="(min-width: 900px)" srcset="grande.png">
                                   <source media="(min-width: 550px)" srcset="media.png"> -->
-                <img src="assets/images/icons/People-mobile.png">
+                <img src="assets/images/icons/pareja.png">
               </picture>
             </div>
             <div class="container__historias__body__body__item__body">
@@ -377,7 +374,7 @@ align-items: center;     display: flex;">
               <picture>
                 <!-- <source media="(min-width: 900px)" srcset="grande.png">
                                   <source media="(min-width: 550px)" srcset="media.png"> -->
-                <img src="assets/images/icons/Mochila-mobile.png">
+                <img src="assets/images/icons/mochila.png">
               </picture>
             </div>
             <div class="container__historias__body__body__item__body">
@@ -395,7 +392,7 @@ align-items: center;     display: flex;">
               <picture>
                 <!-- <source media="(min-width: 900px)" srcset="grande.png">
                                   <source media="(min-width: 550px)" srcset="media.png"> -->
-                <img src="assets/images/icons/Mascota-mobile.png">
+                <img src="assets/images/icons/pet.png">
               </picture>
             </div>
             <div class="container__historias__body__body__item__body">
@@ -417,6 +414,10 @@ align-items: center;     display: flex;">
                   <source media="(min-width: 550px)" srcset="media.png"> -->
           <img src="assets/images/imagen_video.png">
         </picture>
+       
+        <!-- <iframe width="1080" height="1920" 
+        src=" https://youtube.com/shorts/eMKlPCvHmnE?si=e4m96KnoVayNI_U2" 
+        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
       </div>
     </div>
   </div>
@@ -428,7 +429,10 @@ align-items: center;     display: flex;">
       <div class="container__historias__reales">
         <div class="container__historias__reales__head">
           <div class="container__historias__reales__head__title">
-            Historias reales de migrantes
+            Historias reales
+          </div>
+          <div class="container__historias__reales__head__title">
+            de migrantes
           </div>
           <div class="container__historias__reales__head__subtitle">
             dispuestos a responder tus dudas
@@ -446,43 +450,7 @@ align-items: center;     display: flex;">
 
               </div> -->
               <div class="card-wrapper swiper-wrapper cards ">
-                <!-- <div *ngFor="let number of [0,1,2,3,4]"> -->
-                <!-- <div class="card swiper-slide " *ngFor="let heroe of heroes"  >
-                  <div class="image-content">
-
-                    <div class="card-image">
-                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
-                    </div>
-                    <div class="card-image2">
-                      <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
-                    </div>
-                    <div class="card-image_flag">
-                      <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
-                    </div>
-                  </div>
-                  <div class="card-content">
-
-                    <p class="description">Al mes conseguí trabajo en ventas.</p>
-                    <span class="autor mb-1">Miguel PantaD.</span>
-                    <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
-                    <div class="container_etiquetas mb-1">
-                      <div class="container__body__etiqueta">
-                        Estudios
-                      </div>
-                      <div class="container__body__etiqueta">
-                        Refugio
-                      </div>
-                    </div>
-                    <div class="footer-content">
-
-                      <a href="../migrago/views/pagina2.php" class="btn btn-light mt-2">Ver Más <i
-                          class="fa-solid fa-arrow-right"></i></a>
-                      <a href="" class="btn btn-info mt-2">Reserva una cita</a>
-
-                    </div>
-
-                  </div>
-                </div> -->
+              
 
                 <div class="card swiper-slide " *ngFor="let historia of resp_historias">
                   <app-tarjeta [historia]="historia"></app-tarjeta>
@@ -491,9 +459,7 @@ align-items: center;     display: flex;">
               </div>
 
             </div>
-            <!-- <div class="swiper-button-next swiper-navBtn"></div>
-                      <div class="swiper-button-prev swiper-navBtn"></div> -->
-            <!-- <div class="swiper-pagination"></div> -->
+           
           </div>
         </div>
         <div class="container__historias__reales__link">
@@ -997,19 +963,23 @@ align-items: center;     display: flex;">
 </section>
 <!-- seccion quiero unirme -->
 <section>
-  <div class="container__unirme">
-    <div class="container__unirme__head">
-      <div class="container__unirme__head__title">
-        <span class="">Comparte tu historia</span>
+  
+  <div class="container__unirme__main">
+    <div class="container__unirme">
+      <div class="container__unirme__head">
+        <div class="container__unirme__head__title">
+          <span class="">Comparte tu historia</span>
+        </div>
+        <div class="container__unirme__head__subtitle">
+          Si eres nuevo en un país desarrollado, puedes recuperar tu inversión compartiendo tu experiencia con futuros
+          emigrantes de todo el mundo.
+        </div>
       </div>
-      <div class="container__unirme__head__subtitle">
-        Si eres nuevo en un país desarrollado, puedes recuperar tu inversión compartiendo tu experiencia con futuros
-        emigrantes de todo el mundo.
+      <div class="container__unirme__body">
+        <a routerLink="./registroGuia" class="btn_unirme">Quiero unirme</a>
       </div>
     </div>
-    <div class="container__unirme__body">
-      <a routerLink="./registroGuia" class="btn_unirme">Quiero unirme</a>
-    </div>
+   
   </div>
 </section>
 <!-- botoncito para los videos -->

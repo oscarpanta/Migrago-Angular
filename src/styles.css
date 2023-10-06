@@ -336,7 +336,8 @@ ul{
   list-style: none;
 }
 .menu_up{
-  font-weight: bold;
+  font-family: 'Inter';
+  /* font-weight: bold; */
 }
 @media (min-width: 992px) {
   .d-lg-block {
@@ -366,7 +367,7 @@ ul{
 
 @media (min-width: 992px) {
   nav .container_nav {
-    flex-basis: 60%;
+    flex-basis: 65%;
 
   }
 
@@ -376,14 +377,15 @@ ul{
 
 .idioma {
   width: auto;
-  padding: 8px 12px;
+  padding: 8px 0px;
   margin: 5px 0;
   /* display: inline-block; */
   border: none;
   border-radius: 4px;
   box-sizing: border-box;
   background: none;
-  margin-right: 2rem;
+  margin-right: 1rem;
+  font-family: 'Inter';
 }
 /* .btn2 {
   --bs-btn-padding-x: 0.75rem;
@@ -429,7 +431,9 @@ ul{
   color: #00c1ff;
   font-family: 'Inter';
 }
-
+.btn-ingresa:hover{
+  color: #00c1ff;
+}
 .btn-registrate {
   background: #00c1ff;
   padding-right: 3rem;
@@ -437,13 +441,18 @@ ul{
   font-family: 'Inter';
   color: #fff;
 }
-
+.btn-registrate:hover{
+  color: #fff;
+}
 .btn-ingresa-princ {
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   background: #5a2395;
   padding-right: 2rem;
   padding-left: 2rem;
   font-size: small;
+  color: #fff;
+}
+.btn-ingresa-princ:hover{
   color: #fff;
 }
 
