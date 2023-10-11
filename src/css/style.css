@@ -980,7 +980,13 @@ adicionales
 }
 .card-container{
   /* max-width: 245px; */
-  max-width: 290px;
+  max-width: 300px;
+  min-width: 300px;
+}
+.card-container_menu{
+  /* max-width: 245px; */
+  max-width: 300px;
+
 }
 .footer-content{
   width: 100%;

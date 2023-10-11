@@ -334,7 +334,7 @@ align-items: center;     display: flex;">
 <div class="marquee p-cinta" style="display: flex; align-items: center; justify-content: center;">
   <p [style.padding-right]="last ? '0em':'5em'" *ngFor="let tema of Temas; let last = last">
     <span [style.margin-right]="last ? '0' : '70px'">{{ formatDescriptionThemes(tema.details.data) }}</span>
-    <span *ngIf="!last"><i class="fas fa-circle"></i></span>
+    <span *ngIf="!last"><i class="fas fa-xs fa-circle"></i></span>
 
 </div>
 <!-- seccion historias como la tuya -->

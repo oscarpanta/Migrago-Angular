@@ -30,7 +30,7 @@ export class HistoriasComponent implements OnInit {
   imageSrc!: string;
   imageSrc2!: string;
   imageSrc3!: string;
-
+  mostrarLoad: boolean = false;
 
   historiasporGuia: any[] = [];
   historiaDetalle: any;
@@ -208,6 +208,7 @@ export class HistoriasComponent implements OnInit {
   // }
 
   listahistoriasGuia() {
+    this.mostrarLoad=false
     const requestData = {
       request: {
         id_user: this.usuario.id
@@ -223,6 +224,7 @@ export class HistoriasComponent implements OnInit {
 
     this.historiaguiaservice.getStoriesGuide(requestData).subscribe(
       response => {
+        this.mostrarLoad=true
         console.log('historias guia=' + JSON.stringify(response));
         this.historiasporGuia = response[0].data;
         console.log(this.historiasporGuia)
@@ -261,6 +263,7 @@ export class HistoriasComponent implements OnInit {
     };
 
     this.historiaguiaservice.getStoriesDetalle(requestData).subscribe(response => {
+      console.log(response)
       console.log(response.story.data[0].title)
       console.log(response.story.data[0].lastname)
       console.log(response.story.data[0].arrival_date)
@@ -621,7 +624,7 @@ export class HistoriasComponent implements OnInit {
       ModoMigracion: [[0], [Validators.required]],
       RutaMigracion: [[0], [Validators.required]],
       texto_historia: ['', [Validators.required]],
-      fecha: ['', [Validators.required]],
+     fecha: ['', [Validators.required]],
       temas: this.groupThemeIds,
     });
     if (this.historiaDetalle) {
@@ -656,13 +659,14 @@ export class HistoriasComponent implements OnInit {
 
   registroHistoria() {
     const { titulo, countrySelect, citySelect, Nacionalidad, ModoMigracion, RutaMigracion, texto_historia, fecha, temas } = this.miFormulario.value;
+  // const { titulo, countrySelect, citySelect, ModoMigracion, texto_historia, temas } = this.miFormulario.value;
     console.log(temas)
     // console.log(temas.length)
     console.log(this.miFormulario.value)
     console.log(this.miFormulario)
     console.log(this.groupThemeIds)
     if (this.miFormulario.invalid || this.groupThemeIds.length == 0) {
-      Swal.fire('Error', 'LLene todos los campos porfavor', 'error')
+      Swal.fire('Error', 'LLene todos los campos porfavor. Recuerda que hay una sección para escoger temas', 'error')
       return
     }
 
@@ -682,7 +686,7 @@ export class HistoriasComponent implements OnInit {
           nationality_id: Nacionalidad,
           migration_mode_id: ModoMigracion,
           way_migration_id: RutaMigracion,
-          group_theme_id: 8,
+          group_theme_id: null,//temas
           title: titulo,
           arrival_date: fecha,
           story_text: texto_historia,
@@ -723,7 +727,7 @@ export class HistoriasComponent implements OnInit {
           nationality_id: Nacionalidad,
           migration_mode_id: ModoMigracion,
           way_migration_id: RutaMigracion,
-          group_theme_id: 8,//temas
+          group_theme_id: null,//temas
           title: titulo,
           arrival_date: fecha,
           story_text: texto_historia,

@@ -13,8 +13,9 @@ export class ContenidoComponent implements OnDestroy {
 
 
   showNavigation = true;
-
+  showNavigationfooter=true
   private destroyed: Subject<void> = new Subject<void>();
+  private destroyedfooter: Subject<void> = new Subject<void>();
 
    ngOnInit(): void {
 
@@ -32,6 +33,14 @@ export class ContenidoComponent implements OnDestroy {
         //});
       });
 
+      this.displayService.showNavigationfooter$
+      .pipe(takeUntil(this.destroyedfooter))
+      .subscribe((visible: boolean) => {
+        //this.ngZone.runOutsideAngular(() => {
+          this.showNavigationfooter = visible;
+          this.cd.detectChanges();
+        //});
+      });
 // //    this.cd.detectChanges();
 }
 
@@ -39,6 +48,8 @@ export class ContenidoComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.destroyed.next();
     this.destroyed.complete();
+    this.destroyedfooter.next();
+    this.destroyedfooter.complete();
   }
 }
 

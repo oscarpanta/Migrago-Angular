@@ -4,6 +4,8 @@ import { DashboardComponent } from './containers/dashboard/dashboard.component';
 import { MainComponent } from './containers/main/main.component';
 import { GuiaComponent } from './containers/guia/guia.component';
 import { SBRouteData } from '../../navigation/models/navigation.model';
+import { PaisComponent } from './containers/pais/pais.component';
+import { HistoriaComponent } from './containers/historia/historia.component';
 
 const routes: Routes = [
 {
@@ -15,6 +17,23 @@ const routes: Routes = [
       component: MainComponent
     },
     {
+      path: 'pais', component: PaisComponent,
+      data: {
+        title: 'Dashboard Static - SB Admin Angular',
+        breadcrumbs: [
+          {
+            text: 'Dashboard',
+            link: '/dashboard',
+          },
+          {
+            text: 'Tabla de pais',
+            active: true,
+          },
+        ],
+      } as SBRouteData,
+    },
+
+    {
       path: 'Guia', component: GuiaComponent,
       data: {
         title: 'Table Guia',
@@ -25,6 +44,22 @@ const routes: Routes = [
           },
           {
             text: 'Tabla de Guia',
+            active: true,
+          },
+        ],
+      } as SBRouteData,
+    },
+    {
+      path: 'historia', component: HistoriaComponent,
+      data: {
+        title: 'Tabla de Historias',
+        breadcrumbs: [
+          {
+            text: 'Dashboard',
+            link: '/dashboard',
+          },
+          {
+            text: 'Tabla de Historias',
             active: true,
           },
         ],

@@ -41,11 +41,13 @@
                   <div class="image-content">
 
                     <div class="card-image">
-                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                      <!-- <img src="assets/images/imagen_prueba.png" alt="" class="card-img"> -->
+                      <img [src]="historia.urlImagenStory || 'assets/images/imagen_prueba.png'" class="card-img" alt="fondo">
                       <!-- <img [src]="historia.photo_story" alt="" class="card-img"> -->
                     </div>
                     <div class="card-image2">
-                      <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                      <!-- <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img"> -->
+                      <img [src]="historia.urlImagen || 'assets/images/perfiles/profile1.jpg'" class="card-img" alt="perfil">
                     </div>
                     <div class="card-image_flag">
                       <img [src]="'assets/images/flags/tiny/' + historia.flag_img" class="card-img" alt="pais">

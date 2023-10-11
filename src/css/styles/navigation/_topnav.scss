@@ -6,8 +6,8 @@
   z-index: $zindex-topnav;
   .navbar-brand {
       width: $sidenav-base-width;
-      padding-left: $navbar-padding-x;
-      padding-right: $navbar-padding-x;
+      padding-left: 1rem;
+      padding-right: 1rem;
       margin: 0;
   }
   &.navbar-dark {
@@ -20,4 +20,24 @@
           color: $topnav-light-toggler-color;
       }
   }
+}
+.drop-admin{
+  padding: 0;
+}
+
+.btn-link_admin {
+  display: block;
+  /* margin-bottom: 5px; */
+  /* padding: 0; */
+  /* padding-top: 0px; */
+  /* padding-right: 0px; */
+  /* padding-bottom: 0px; */
+  /* padding-left: 0px; */
+  padding: 0;
+  text-align: left;
+  color: #fff;
+  font-weight: normal;
+  text-transform: capitalize;
+  transition: .3s;
+  text-decoration: none;
 }

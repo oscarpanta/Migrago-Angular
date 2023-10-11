@@ -8,14 +8,19 @@ import { TemasService } from '../services/temas.service';
 })
 export class TemasComponent implements OnInit{
   Temas:any[]=[]
+  mostrarLoad: boolean = false;
  // images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
   constructor(private temasService:TemasService){}
   ngOnInit(): void {
-    this.obtenerDataTema()
+
+
+      this.obtenerDataTema()
+
   }
 
   obtenerDataTema() {
+    this.mostrarLoad=false
     const requestData = {
       request: {
         themes_name: "",
@@ -32,7 +37,7 @@ export class TemasComponent implements OnInit{
     this.temasService.getDataTema(requestData).subscribe(response => {
 
       if (response) {
-
+        this.mostrarLoad=true
         this.Temas = response[0];
         console.log(this.Temas)
         console.log(this.Temas[0].details.data)

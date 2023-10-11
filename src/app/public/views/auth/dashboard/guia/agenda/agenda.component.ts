@@ -151,6 +151,8 @@ export class AgendaComponent implements OnInit{
       console.log(fechaFinal.toISOString())
       console.log(fechaInicial.toLocaleString())
       console.log(fechaFinal.toLocaleString())
+      console.log(fechaInicial.toLocaleString("en-US"))
+      console.log(fechaFinal.toLocaleString("en-US"))
       if (fechaInicial < fechaFinal) {
 
         let req = {

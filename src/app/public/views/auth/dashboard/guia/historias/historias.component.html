@@ -4,6 +4,25 @@
 <div class="row">
   <p class="p-normal-300-16"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh</p>
 </div>
+
+<ng-container *ngIf="!mostrarLoad" >
+  <div class="row mb-5">
+    <div class="d-flex justify-content-center">
+    <div class="cardskelet loading " *ngFor="let score of [1]" style="width: 990px;" >
+      <div class="imagecard" style="height: 60px;">
+
+      </div>
+      <div class="contentskel"  >
+        <h4 class="skelh4"></h4>
+        <div class="descriptionskel">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</ng-container>
+
 <div class="row" *ngFor="let guia of historiasporGuia; let i = index">
 
   <div class="card mb-5">
@@ -22,7 +41,7 @@
       </div>
       <div class="row col-lg-6 my-3">
         <div  class="d-grid gap-2 d-md-flex justify-content-md-start">
-          <div style="width: 100%;" [ngbTooltip]="(guia.status === 'PENDING') ? 'Editar no disponible' : 'Haz clic para editar'">
+          <div style="width: 100%;" [ngbTooltip]="(guia.status === 'PENDING') ? 'Editar no disponible. Tu historia se encuentra en revisión' : 'Haz clic para editar'">
             <button class="btn btn-primary btn-sm" type="button" id="" data-bs-toggle="modal"
             data-bs-target="#modalEditarHistoria" (click)="obtenerDetalleHistoria(guia)" [disabled]="guia.status === 'PENDING'">Editar</button>
           </div>
@@ -171,7 +190,7 @@ aria-hidden="true"> -->
 
                         <div class="form-group col-lg-2 mb-3">
                           <!-- <a href="" class="browse1"> -->
-                          <input type="file" #fileInput style="display:none" (change)="onFileSelected($event)">
+                          <input type="file" #fileInput style="display:none" accept=".jpg, .png" (change)="onFileSelected($event)">
 
                           <div *ngIf="imageSrc !== ''; else nomuestra">
                             <img [src]="imageSrc" id="preview" style="max-width: 100px;height: 8rem;" (click)="openFileInput()">
@@ -202,7 +221,7 @@ aria-hidden="true"> -->
 
                           <!-- <div  class="form-group col-lg-2 mb-3" *ngIf="historiaDetalle"> -->
                             <div  class="form-group col-lg-2 mb-3">
-                            <input type="file" #fileInput2 style="display:none" (change)="onFileSelected2($event)">
+                            <input type="file" #fileInput2 style="display:none" accept=".jpg, .png" (change)="onFileSelected2($event)">
 
                             <div *ngIf="imageSrc2 !== ''; else nomuestra2">
                               <img [src]="imageSrc2" id="preview2" style="max-width: 100px;height: 8rem;" (click)="openFileInput2()">
@@ -214,7 +233,7 @@ aria-hidden="true"> -->
                            </div>
                           <!-- <div  class="form-group col-lg-2 mb-3" *ngIf="historiaDetalle"  > -->
                             <div  class="form-group col-lg-2 mb-3">
-                            <input type="file" #fileInput3 style="display:none" (change)="onFileSelected3($event)">
+                            <input type="file" #fileInput3 style="display:none" accept=".jpg, .png" (change)="onFileSelected3($event)">
 
                             <div *ngIf="imageSrc3 !== ''; else nomuestra3">
                               <img [src]="imageSrc3" id="preview3" style="max-width: 100px;height: 8rem;" (click)="openFileInput3()">

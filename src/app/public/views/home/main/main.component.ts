@@ -14,6 +14,7 @@ import { AutenticacionService } from 'src/app/core/services/autenticacion.servic
 import { Usuario } from 'src/app/core/interfaces/login.interface';
 import { environment } from 'src/environments/environment';
 import { TemasService } from '../../services/temas.service';
+import { ImagenesService } from '../../services/imagenes.service';
 declare var $: any;
 //import * as $ from 'jquery';
 
@@ -44,7 +45,7 @@ export class MainComponent implements OnInit,AfterViewInit{
               private heroesService: HeroeService,
               private rutamigracionService: WaysMigrationService,
               private historiasService:StoriesService,
-              private authService:AutenticacionService,private temasService:TemasService ) {
+              private authService:AutenticacionService,private temasService:TemasService,private imagenservice: ImagenesService ) {
 
               }
   ngAfterViewInit(): void {
@@ -276,6 +277,29 @@ export class MainComponent implements OnInit,AfterViewInit{
         this.resp_historias = response[0].data;
 
         console.log(this.resp_historias)
+        this.resp_historias.forEach(historia => {
+          if (historia.photo) {
+            historia.urlImagen = this.imagenservice.getImageUrl(historia.photo);
+          }else{
+            historia.urlImagen = 'assets/images/perfiles/profile1.jpg';
+          }
+
+          // Obtener la URL de la imagen
+
+          console.log(historia.urlImagen)
+        });
+        this.resp_historias.forEach(historia => {
+          if (historia.image_story.image_story) {
+            historia.urlImagenStory = this.imagenservice.getImageUrlHistoria(historia.image_story.image_story);
+          }else{
+            historia.urlImagenStory = 'assets/images/imagen_prueba.png';
+          }
+
+
+
+          console.log(historia.urlImagenStory)
+        });
+
      }
 
 

@@ -26,6 +26,7 @@
               "src/web.config"
             ],
             "styles": [
+              "src/css/styles/styles.scss",
               "src/css/bootstrap/css/bootstrap.min.css",
               "src/styles.css",
               "src/css/style.css",
@@ -33,8 +34,8 @@
               "src/css/fontawesome/css/brands.css",
               "src/css/fontawesome/css/solid.css",
               "src/css/filter-multi-select/dist/filter_multi_select.css",
-              "./node_modules/swiper/swiper-bundle.min.css",
-              "src/css/styles/styles.scss"
+              "./node_modules/swiper/swiper-bundle.min.css"
+
 
 
             ],

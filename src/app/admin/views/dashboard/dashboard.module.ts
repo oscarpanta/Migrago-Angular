@@ -9,12 +9,13 @@ import { GuiaComponent } from './containers/guia/guia.component';
 import { HistoriaComponent } from './containers/historia/historia.component';
 import { CustomMinTableDirective } from 'src/app/core/directives/custom-min-table.directive';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavigationModule } from '../../navigation/navigation.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataGuiaComponent } from './containers/guia/data-guia/data-guia.component';
 import { DataHistoriaComponent } from './containers/historia/data-historia/data-historia.component';
 import { DashboardComponent } from './containers/dashboard/dashboard.component';
+import { PaisComponent } from './containers/pais/pais.component';
 
 
 @NgModule({
@@ -28,15 +29,20 @@ import { DashboardComponent } from './containers/dashboard/dashboard.component';
     CustomMinTableDirective,
     DataGuiaComponent,
     DataHistoriaComponent,
-    DashboardComponent
+    DashboardComponent,
+    PaisComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     NavigationModule,
     RouterModule,
     DashboardRoutingModule,
     NgbModule
+  ],
+  providers:[
+    NgbActiveModal
   ]
 })
 export class DashboardModule { }

@@ -57,6 +57,25 @@
 
 
 <section>
+
+  <ng-container *ngIf="!mostrarLoad" >
+    <div class="row mb-5">
+      <div class="d-flex justify-content-center">
+      <div class="cardskelet loading  me-4" *ngFor="let score of [1]" style="width: 990px;" >
+        <div class="imagecard" style="height: 100px;">
+
+        </div>
+        <div class="contentskel"  >
+          <h4 class="skelh4"></h4>
+          <div class="descriptionskel">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </ng-container>
+
   <ng-container *ngFor="let tema of Temas; let i = index">
     <div *ngIf="i % 2 === 0" class="container-fluid d-grid gap-3 container__70_blanco container_2em_10em" >
       <div class="row">

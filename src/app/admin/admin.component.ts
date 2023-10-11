@@ -11,8 +11,10 @@ export class AdminComponent implements OnInit {
   constructor(private displayService: LayoutService){}
   ngOnInit(): void {
     this.displayService.setNavigationVisibility(false);
+    this.displayService.setNavigationVisibilityfooter(false);
   }
   ngOnDestroy(): void {
     this.displayService.setNavigationVisibility(true);
+    this.displayService.setNavigationVisibilityfooter(true);
   }
 }

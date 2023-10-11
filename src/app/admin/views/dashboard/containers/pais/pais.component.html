@@ -1,0 +1,67 @@
+<app-dashboard-head title="Paises" [hideBreadcrumbs]="false"></app-dashboard-head>
+
+<!-- <div class="card-body">The table below is adapted from ng-bootsrap. For more information, please visit the
+  <a target="_blank" href="https://ng-bootstrap.github.io/#/components/table/overview">ng-bootstrap table documentation</a>.
+</div> -->
+
+
+  <!-- <div class="card-header"><i class="fas fa-table mr-1 mb-5"></i>DataTable Example</div> -->
+
+  <form>
+    <!-- <div class="form-group form-inline">Full text search: <input class="form-control ml-2" type="text" name="searchTerm"
+        [(ngModel)]="countryService.searchTerm" />
+        <span class="ml-3"
+        *ngIf="countryService.loading$ | async">Loading...</span></div> -->
+    <!-- <div class="form-group form-inline">Full text search: <input class="form-control ml-2" type="text"
+        name="searchTerm" /><span class="ml-3">Loading...</span></div> -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <!-- <th scope="col" sbSortable="name" (sort)="onSort($event)"><span>Country</span><sb-sort-icon *ngIf='sortedColumn === "name"' [direction]="sortedDirection"></sb-sort-icon></th>
+                  <th scope="col" sbSortable="area" (sort)="onSort($event)"><span>Area</span><sb-sort-icon *ngIf='sortedColumn === "area"' [direction]="sortedDirection"></sb-sort-icon></th>
+                  <th scope="col" sbSortable="population" (sort)="onSort($event)"><span>Population</span><sb-sort-icon *ngIf='sortedColumn === "population"' [direction]="sortedDirection"></sb-sort-icon></th> -->
+          <!-- <th scope="col">#</th>
+                  <th scope="col" sbSortable="name" ><span>Country</span><sb-sort-icon *ngIf='sortedColumn === "name"' [direction]="sortedDirection"></sb-sort-icon></th>
+                  <th scope="col" sbSortable="area" ><span>Area</span><sb-sort-icon *ngIf='sortedColumn === "area"' [direction]="sortedDirection"></sb-sort-icon></th>
+                  <th scope="col" sbSortable="population" ><span>Population</span><sb-sort-icon *ngIf='sortedColumn === "population"' [direction]="sortedDirection"></sb-sort-icon></th> -->
+
+          <th scope="col">#</th>
+          <th scope="col" sbSortable="name"><span>Country</span></th>
+          <th scope="col" sbSortable="area"><span>cod_gen</span></th>
+          <th scope="col" sbSortable="population"><span>status</span></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let country of countries">
+          <th scope="row">{{ country.id }}</th>
+          <!-- <td><img class="mr-2" [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag"
+              style="width: 20px" /><ngb-highlight [result]="country.name"
+              [term]="countryService.searchTerm"></ngb-highlight></td> -->
+          <!-- <td><ngb-highlight [result]="country.name" [term]="countryService.searchTerm">
+            </ngb-highlight>
+          </td>
+          <td><ngb-highlight [result]="country.area | number" [term]="countryService.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="country.population | number" [term]="countryService.searchTerm"></ngb-highlight>
+          </td> -->
+          <td><ngb-highlight [result]="country.country_name" >
+          </ngb-highlight>
+        </td>
+        <td><ngb-highlight [result]="country.cod_gen" ></ngb-highlight></td>
+        <td><ngb-highlight [result]="country.status "></ngb-highlight>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination [collectionSize]="total$" [(page)]="nropagina"
+        [pageSize]="tamanopagina" (pageChange)="onPageChange(nropagina)" >
+      </ngb-pagination>
+      <select class="custom-select" style="width: auto"
+        name="pageSize" [(ngModel)]="tamanopagina" (change)="onPageSizeChange()">
+        <option [ngValue]="2">2 items per page</option>
+        <option [ngValue]="4">4 items per page</option>
+        <option [ngValue]="6">6 items per page</option>
+      </select>
+    </div>
+  </form>

@@ -5,3 +5,6 @@ $grid-gutter-width: $spacer * 1.5;
 // Spacing variables for navigation
 $topnav-base-height: 56px;
 $sidenav-base-width: 225px;
+.ml-auto, .mx-auto {
+  margin-left: auto !important;
+}

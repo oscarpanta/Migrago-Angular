@@ -1,1 +1,325 @@
-<p>historia works!</p>
+<app-dashboard-head title="Historias" [hideBreadcrumbs]="false"></app-dashboard-head>
+
+<!-- <div class="card-body">The table below is adapted from ng-bootsrap. For more information, please visit the
+  <a target="_blank" href="https://ng-bootstrap.github.io/#/components/table/overview">ng-bootstrap table documentation</a>.
+</div> -->
+
+
+<!-- <div class="card-header"><i class="fas fa-table mr-1 mb-5"></i>DataTable Example</div> -->
+
+<form>
+  <!-- <div class="form-group form-inline">Full text search: <input class="form-control ml-2" type="text" name="searchTerm"
+        [(ngModel)]="countryService.searchTerm" />
+        <span class="ml-3"
+        *ngIf="countryService.loading$ | async">Loading...</span></div> -->
+  <!-- <div class="form-group form-inline">Full text search: <input class="form-control ml-2" type="text"
+        name="searchTerm" /><span class="ml-3">Loading...</span></div> -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+
+        <th scope="col">#</th>
+        <!-- <th scope="col" sbSortable="id"><span>Id</span></th> -->
+        <th scope="col" sbSortable="titulo"><span>Titulo</span></th>
+        <th scope="col" sbSortable="nombre"><span>Nombre Guia</span></th>
+        <th scope="col" sbSortable="apellido"><span>Apellido Guia</span></th>
+        <th scope="col" sbSortable="nacionalidad"><span>Nacionalidad</span></th>
+        <th scope="col" sbSortable="ruta"><span>Ruta Migracion</span></th>
+        <th scope="col" sbSortable="estado"><span>Estado</span></th>
+        <th scope="col" sbSortable="acciones"><span>Acciones</span></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let historia of historias">
+        <th scope="row">{{ historia.id }}</th>
+        <td><ngb-highlight [result]="historia.title">
+          </ngb-highlight>
+        </td>
+        <td><ngb-highlight [result]="historia.name"></ngb-highlight></td>
+        <td><ngb-highlight [result]="historia.lastname"></ngb-highlight></td>
+        <td><ngb-highlight [result]="historia.nationality_name"></ngb-highlight></td>
+        <td><ngb-highlight [result]="historia.name_way_migration"></ngb-highlight></td>
+        <td><ngb-highlight [result]="historia.status"></ngb-highlight></td>
+        <td>
+          <div class="btn-group">
+            <a (click)="editarHistoria(historia)" class="btn btn-sm btn-warning"><span
+                class="fas fa-pencil icon-md"></span></a>
+            <a (click)="eliminarHistoria(historia)" class="btn btn-sm btn-danger"><span
+                class="fas fa-circle-xmark icon-md"></span></a>
+            <!-- <a href="https://www.phpcrudgenerator.com/admin/city/edit/city_id=1" class="btn btn-sm btn-warning"
+              data-bs-toggle="tooltip" data-bs-title="Edit"><span class="fas fa-pencil icon-md"></span></a>
+            <a href="https://www.phpcrudgenerator.com/admin/city/delete/city_id=1" class="btn btn-sm btn-danger"
+              data-bs-toggle="tooltip" data-bs-title="Remove"><span class="fas fa-circle-xmark icon-md"></span></a> -->
+          </div>
+          <!-- <button (click)="editarHistoria(historia)">Editar</button>
+          <button (click)="eliminarHistoria(historia)">Eliminar</button> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="total$" [(page)]="nropagina" [pageSize]="tamanopagina"
+      (pageChange)="onPageChange(nropagina)">
+    </ngb-pagination>
+    <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="tamanopagina"
+      (change)="onPageSizeChange()">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>
+</form>
+
+
+<ng-template #modalContent let-modal>
+
+
+  <div class="modal-contenido">
+
+    <div class="modal-body modal-login">
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')" style="
+         background: none;
+        float: right;
+        border: 0;
+        margin: 0.2rem">
+        <!-- <span aria-hidden="true">&times;</span> -->
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-body-primary" style="
+background-color: #e4e4e4;padding: 3rem;">
+        <span class="p-bold-500-20-blanco" style="
+    color: #5a2395;">Gestiona</span>
+        <span class="p-bold-500-20-blanco" style="
+    color: #5a2395;font-weight: normal;"> tu historia</span>
+
+      </div>
+      <nav class="nav-modal-general" style="
+background-color: #e4e4e4;">
+        <div class="nav nav-tabs nav-pills nav-fill" id="nav-tab" role="tablist">
+          <button class="nav-link active" style="margin-right: 3pt;" id="nav-home-tab" data-bs-toggle="tab"
+            data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+            Historia
+          </button>
+          <button class="nav-link" style="margin-left: 3pt;" id="nav-profile-tab" data-bs-toggle="tab"
+            data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+            Temas
+          </button>
+
+        </div>
+      </nav>
+      <div class="modal-body-blanco  py-5 " style="padding-right: 5rem; padding-left: 5rem;">
+        <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="registroHistoria()">
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <ng-container>
+                <div class="row col-lg-12">
+
+                  <div class="form-group mb-3">
+                    <p class="p-bold-300-10-black">Titulo*</p>
+                    <p class="p-parrafo">Escribe hasta 70 caracteres</p>
+                    <input type="text" id="" formControlName="titulo"
+                      class="input_historia form-control form-control-sm">
+                    <!-- [(ngModel)]="historiaDetalle.story.data[0].title" -->
+                  </div>
+                  <div class="form-group mb-3 col-lg-6">
+
+                    <p class="p-parrafo">País en el que sucedió la historia</p>
+                    <select id="countrySelect" formControlName="countrySelect" name="countrySelect"
+                      (change)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"
+                      class="input_historia form-select form-select-normal" aria-label="Default select example">
+                      <option value="0">País a migrar</option>
+                      <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}
+                      </option>
+                    </select>
+
+                    <!-- <input type="text" id="" name="pais" class="form-control form-control-sm"> -->
+                  </div>
+                  <div class="form-group mb-3 col-lg-6">
+
+                    <p class="p-parrafo">Ciudad en la que ocurrió la historia</p>
+                    <!-- <input type="text" id="" name="ciudad" class="form-control form-control-sm"> -->
+                    <select name="citySelect" formControlName="citySelect" (change)="onCitySelect($event)"
+                      class="form-select form-select-normal" [(ngModel)]="selectedCityId"
+                      aria-label="Default select example">
+                      <option value="0">Selecciona una ciudad</option>
+                      <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
+                    </select>
+                  </div>
+                  <div class="form-group mb-3 col-lg-6">
+
+                    <p class="p-parrafo">Nacionalidad</p>
+
+                    <select formControlName="Nacionalidad"
+                      class="form-select form-select-normal" [(ngModel)]="selectedNationalityId"
+                      aria-label="Default select example">
+                      <option value="0" selected>Nacionalidad del guía</option>
+                      <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
+                        nacionalidad.nationality_name }}</option>
+                    </select>
+
+                  </div>
+                  <div class="form-group mb-3 col-lg-6">
+                    <p class="p-parrafo">Fecha de llegada al país* (público)</p>
+                    <input type="date" name="" formControlName="fecha"
+                      class="form-control form-control-sm" value="" placeholder="">
+                  </div>
+
+                  <div class="form-group mb-3">
+
+                    <p class="p-parrafo">Modo Migracion</p>
+                    <select formControlName="ModoMigracion"
+                      class="form-select form-select-normal" [(ngModel)]="selectedModoMigrationId"
+                      aria-label="Default select example">
+                      <option value="0" selected>Modo Migracion</option>
+                      <option *ngFor="let migracion of modemigrations" [value]="migracion.id">{{
+                        migracion.description }}</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group mb-3 col-lg-6">
+
+                    <p class="p-parrafo">Ruta Migracion</p>
+                    <select formControlName="RutaMigracion"
+                      class="form-select form-select-normal" [(ngModel)]="selectedRutaMigrationId"
+                      aria-label="Default select example">
+                      <option value="0" selected>Ruta Migracion</option>
+                      <option *ngFor="let ruta of rutasmigracion" [value]="ruta.id">{{
+                        ruta.name_way_migration }}</option>
+                    </select>
+                  </div>
+                  <div class="form-group mb-3 col-lg-6">
+
+                    <p class="p-parrafo">Estado</p>
+                    <select class="form-select form-select-normal" formControlName="estado">
+                      <option value="0" selected>ESTADO</option>
+                      <option value="APROBADO" selected>APROBADO</option>
+                      <option value="PENDING" selected>PENDING</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group mb-3 mt-1">
+                    <p class="p-bold-300-10-black">Imágenes *</p>
+                    <p class="p-parrafo p-texto">3 fotos como mínimo (.jpg o .png).</p>
+                    <p class="p-parrafo p-texto"> Medidas: 1920x1080 px.</p>
+                    <p class="p-parrafo p-texto"> Peso máximo de 50 kb.</p>
+
+                    <div class="row d-flex align-items-end mt-3">
+
+                      <div class="form-group col-lg-2 mb-3">
+                        <input type="file" #fileInput style="display:none" accept=".jpg, .png"
+                          disabled>
+
+                        <div *ngIf="imageSrc !== ''; else nomuestra">
+                          <img [src]="imageSrc" id="preview" style="max-width: 100px;height: 8rem;"
+                            >
+                        </div>
+                        <ng-template #nomuestra>
+                          <img src="assets/images/perfiles/perfil.png" style="max-width: 100px" id="preview"
+                            class="img-thumbnail" >
+                        </ng-template>
+
+
+                      </div>
+
+                      <div class="form-group col-lg-2 mb-3">
+                        <input type="file" #fileInput2 style="display:none" accept=".jpg, .png"
+                          disabled>
+
+                        <div *ngIf="imageSrc2 !== ''; else nomuestra2">
+                          <img [src]="imageSrc2" id="preview2" style="max-width: 100px;height: 8rem;"
+                            >
+                        </div>
+                        <ng-template #nomuestra2>
+                          <img src="assets/images/perfiles/perfil.png" style="max-width: 100px" id="preview2"
+                            class="img-thumbnail">
+                        </ng-template>
+                      </div>
+                      <!-- <div  class="form-group col-lg-2 mb-3" *ngIf="historiaDetalle"  > -->
+                      <div class="form-group col-lg-2 mb-3">
+                        <input type="file" #fileInput3 style="display:none" accept=".jpg, .png"
+                          disabled>
+
+                        <div *ngIf="imageSrc3 !== ''; else nomuestra3">
+                          <img [src]="imageSrc3" id="preview3" style="max-width: 100px;height: 8rem;"
+                            >
+                        </div>
+                        <ng-template #nomuestra3>
+                          <img src="assets/images/perfiles/perfil.png" style="max-width: 100px" id="preview3"
+                            class="img-thumbnail" >
+                        </ng-template>
+                      </div>
+
+                      <div class="form-group mb-3 d-none">
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <p class="p-bold-300-10-black">Escribe los detalles de tu historia* *</p>
+                    <p class="p-parrafo">Escribe hasta 70 caracteres</p>
+                    <textarea formControlName="texto_historia" cols="30" rows="10" class="form-control form-contro-sm">
+
+        </textarea>
+                  </div>
+
+
+                </div>
+
+              </ng-container>
+
+
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <ng-container >
+                <div class="row col-lg-7  mx-auto mb-3">
+                  <span class="p-bold-500-20">Temas para contar</span>
+                </div>
+                <div class="row col-lg-10 mx-auto mb-3">
+                  <p class="p-bold-400-14">Elige el o los temas en los que eres experto y comparte ese aprendizaje
+                  </p>
+                  <!-- <p class="p-bold-400-14" *ngIf="guiaSelecc.guia.id">{{ guiaSelecc.guia.id }} </p> -->
+                </div>
+                <div class="row mt-3 mb-5 d-grid gap-2 col-10 mx-auto p-normal-300-10-black">
+
+                  <div class="form-check mb-1" *ngFor="let temas of themas">
+
+                    <input class="form-check-input" type="checkbox" [value]="temas.id"
+                      [checked]="groupThemeIds.includes(temas.id)" (change)="onChange(temas.id, $event)">
+                    <label class="form-check-label" style="
+      font-size: 11pt;" for="flexCheckDefault ">
+                      {{temas.description}}
+
+                    </label>
+                    <label for="" class="p-bold-400-10">
+                      {{temas.description_long}}
+                    </label>
+                  </div>
+
+                </div>
+
+              </ng-container>
+
+
+
+            </div>
+
+
+          </div>
+          <div class="col-lg-5 my-3 ms-5">
+            <button class="btn btn-primary btn-sm" type="submit" id="">Guardar cambios</button>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+    <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.close('Cerrar')">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="modal.close('Guardar')">Guardar</button>
+      </div>  -->
+
+  </div>
+
+
+</ng-template>

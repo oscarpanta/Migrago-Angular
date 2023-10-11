@@ -21,6 +21,7 @@ export class AgendadasGuiaComponent implements OnInit{
   miFormulario!: FormGroup;
   idguia:any;
   citaid:any;
+  mostrarLoad: boolean = false;
   constructor(private agendadasService: BookingsService, private authService: AutenticacionService,
               private fb: FormBuilder,) {
     this.miFormulario = this.fb.group({
@@ -47,6 +48,7 @@ export class AgendadasGuiaComponent implements OnInit{
   }
 
   listaAgendadasGuia() {
+    this.mostrarLoad=false
     const requestData = {
       request: {
         booking_id:null,
@@ -66,6 +68,7 @@ export class AgendadasGuiaComponent implements OnInit{
 
     this.agendadasService.getBooking(requestData).subscribe(
       response => {
+        this.mostrarLoad=true
         console.log('agendadas=' + JSON.stringify(response));
         this.agendadasGuia = response[0].data;
         console.log(this.agendadasGuia)

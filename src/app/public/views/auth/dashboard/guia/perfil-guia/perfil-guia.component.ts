@@ -496,7 +496,7 @@ export class PerfilGuiaComponent implements OnInit {
       this.miFormulario.patchValue({
 
         nombre: this.usuario.name,
-        nacionalidad: [0],
+        nacionalidad: this.guia[0].nationality_id,
         apellidos: this.usuario.lastname,
         countrySelect: this.guia[0].country_id,
         genero: this.usuario.sex,
@@ -529,7 +529,9 @@ export class PerfilGuiaComponent implements OnInit {
       let req = {
         request: {
           id_user : this.usuario.id,
-          id_guide: this.guia[0].id,
+          id_guide: this.guia[0].id_guia,
+          nationality_id:nacionalidad,
+          id_nacionalidad:this.guia[0].id_nacionalidad,
           dni : null,
           name : nombre,
           lastname :apellidos,
@@ -552,6 +554,7 @@ export class PerfilGuiaComponent implements OnInit {
 
         }
       }
+      console.log(req)
       this.authService.actualizarUsuarioGuia(req)
         .subscribe(res => {
           console.log(res.msg);
