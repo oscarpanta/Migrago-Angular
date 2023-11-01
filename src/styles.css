@@ -433,6 +433,7 @@ ul{
 }
 .btn-ingresa:hover{
   color: #00c1ff;
+  background-color:#fff;
 }
 .btn-registrate {
   background: #00c1ff;
@@ -443,6 +444,7 @@ ul{
 }
 .btn-registrate:hover{
   color: #fff;
+  background-color: #00c1ff;
 }
 .btn-ingresa-princ {
   /* border: 1px solid #000; */
@@ -454,6 +456,7 @@ ul{
 }
 .btn-ingresa-princ:hover{
   color: #fff;
+  background-color: #00c1ff;
 }
 .modal-contenido{
   /* padding: 1rem 1rem 1rem 1rem; */
