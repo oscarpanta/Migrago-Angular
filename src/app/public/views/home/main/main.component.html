@@ -31,7 +31,7 @@ align-items: center;     display: flex;">
       <a class="navbar-brand" routerLink="" style="flex-basis: 20%;  display: flex;
       justify-content: flex-start;">
         <!-- Migrago -->
-        <img src="assets/images/icons/Logo-cabecera-mobile.png" width="110" height="25">
+        <img src="assets/images/icons/LogoMigrago.png" width="110" height="25">
       </a>
 
       <a routerLink="../auth/login" class="btn custom-btn btn-ingresa d-lg-none ms-auto me-4"
@@ -335,7 +335,10 @@ align-items: center;     display: flex;">
   <p [style.padding-right]="last ? '0em':'5em'" *ngFor="let tema of Temas; let last = last">
     <span [style.margin-right]="last ? '0' : '70px'">{{ formatDescriptionThemes(tema.details.data) }}</span>
     <span *ngIf="!last"><i class="fas fa-xs fa-circle"></i></span>
-
+    <!-- <p [style.padding-right]="'1em'" *ngFor="let tema of Temas; let last = last">
+      <span [style.margin-right]="'70px'">{{ formatDescriptionThemes(tema.details.data) }}</span> -->
+      <!-- <span ><i class="fas fa-xs fa-circle"></i></span> -->
+  
 </div>
 <!-- seccion historias como la tuya -->
 
@@ -480,7 +483,12 @@ align-items: center;     display: flex;">
     <div class="container__verificados__texto">
       <div class="container__verificados__head">
         <div class="container__verificados__head__title">
-          <span class="letra__b">Reseñas de migrantes</span>
+          <span class="letra__b">Reseñas  </span>
+        
+        </div>
+        <div class="container__verificados__head__title">
+         
+          <span class="letra__b">de migrantes</span>
         </div>
         <div class="container__verificados__head__subtitle">
           que ahora viven en un nuevo país
@@ -493,7 +501,7 @@ align-items: center;     display: flex;">
       <div class="slide-container swiper">
         <div class="slide-content3">
 
-          <div class="card-wrapper swiper-wrapper cards">
+          <div class="card-wrapper swiper-wrapper card-resenia-main">
             <div class="swiper-slide card-resenia">
 
               <div class="card-content">
@@ -576,7 +584,10 @@ align-items: center;     display: flex;">
       <div class="container__verificados__texto_main">
         <div class="container__verificados__head">
           <div class="container__verificados__head__title">
-            <span class="letra__b">Migrantes verificados</span>
+            <span class="letra__b">Migrantes</span>
+          </div>
+          <div class="container__verificados__head__title">
+            <span class="letra__b">verificados</span>
           </div>
           <div class="container__verificados__head__subtitle">
             dispuestos a ayudarte a migrar con seguridad
@@ -589,7 +600,7 @@ align-items: center;     display: flex;">
               <picture>
                 <!-- <source media="(min-width: 900px)" srcset="grande.png">
                                     <source media="(min-width: 550px)" srcset="media.png"> -->
-                <img src="assets/images/icons/Talk-mobile.png">
+                <img src="assets/images/icons/chat150.png">
               </picture>
             </div>
             <div class="container__azul__body__item__title">
@@ -604,7 +615,7 @@ align-items: center;     display: flex;">
               <picture>
                 <!-- <source media="(min-width: 900px)" srcset="grande.png">
                                     <source media="(min-width: 550px)" srcset="media.png"> -->
-                <img src="assets/images/icons/Escudo-mobile.png">
+                <img src="assets/images/icons/Very150.png">
               </picture>
             </div>
             <div class="container__azul__body__item__title">
@@ -619,7 +630,7 @@ align-items: center;     display: flex;">
               <picture>
                 <!-- <source media="(min-width: 900px)" srcset="grande.png">
                                     <source media="(min-width: 550px)" srcset="media.png"> -->
-                <img src="assets/images/icons/Visa-mobile.png">
+                <img src="assets/images/icons/Visa150.png">
               </picture>
             </div>
             <div class="container__azul__body__item__title">
@@ -634,7 +645,7 @@ align-items: center;     display: flex;">
               <picture>
                 <!-- <source media="(min-width: 900px)" srcset="grande.png">
                                     <source media="(min-width: 550px)" srcset="media.png"> -->
-                <img src="assets/images/icons/Call--mobile.png">
+                <img src="assets/images/icons/Fono150.png">
               </picture>
             </div>
             <div class="container__azul__body__item__title">
@@ -650,7 +661,7 @@ align-items: center;     display: flex;">
         <picture>
           <!-- <source media="(min-width: 900px)" srcset="grande.png">
                                 <source media="(min-width: 550px)" srcset="media.png"> -->
-          <img src="assets/images/imagen_grande.png">
+          <img src="assets/images/1200x1500-min.jpeg">
         </picture>
       </div>
 
@@ -691,7 +702,7 @@ align-items: center;     display: flex;">
                     </div>
 
                   </div>
-                  <div class="card-content">
+                  <div class="card-content-main">
                     <!-- <h2 class="name">David Dell</h2> -->
                     <p class="description">Todos los documentos son necesarios.</p>
                     <span class="texto">
@@ -705,10 +716,10 @@ align-items: center;     display: flex;">
                       ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
                     </span>
                     <div class="container__etiquetas">
-                      <div class="etiquetas">
+                      <div class="container__body__etiqueta">
                         Entrevista
                       </div>
-                      <div class="etiquetas">
+                      <div class="container__body__etiqueta">
                         Testimonio
                       </div>
                     </div>
@@ -735,7 +746,7 @@ align-items: center;     display: flex;">
                     </div>
 
                   </div>
-                  <div class="card-content">
+                  <div class="card-content-main">
                     <!-- <h2 class="name">David Dell</h2> -->
                     <p class="description">Todos los documentos son necesarios.</p>
                     <span class="texto">
@@ -749,10 +760,10 @@ align-items: center;     display: flex;">
                       ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
                     </span>
                     <div class="container__etiquetas">
-                      <div class="etiquetas">
+                      <div class="container__body__etiqueta">
                         Entrevista
                       </div>
-                      <div class="etiquetas">
+                      <div class="container__body__etiqueta">
                         Testimonio
                       </div>
                     </div>
@@ -779,7 +790,7 @@ align-items: center;     display: flex;">
                     </div>
 
                   </div>
-                  <div class="card-content">
+                  <div class="card-content-main">
                     <!-- <h2 class="name">David Dell</h2> -->
                     <p class="description">Todos los documentos son necesarios.</p>
                     <span class="texto">
@@ -793,10 +804,10 @@ align-items: center;     display: flex;">
                       ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
                     </span>
                     <div class="container__etiquetas">
-                      <div class="etiquetas">
+                      <div class="container__body__etiqueta">
                         Entrevista
                       </div>
-                      <div class="etiquetas">
+                      <div class="container__body__etiqueta">
                         Testimonio
                       </div>
                     </div>
@@ -823,7 +834,7 @@ align-items: center;     display: flex;">
                     </div>
 
                   </div>
-                  <div class="card-content">
+                  <div class="card-content-main">
                     <!-- <h2 class="name">David Dell</h2> -->
                     <p class="description">Todos los documentos son necesarios.</p>
                     <span class="texto">
@@ -837,10 +848,10 @@ align-items: center;     display: flex;">
                       ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
                     </span>
                     <div class="container__etiquetas">
-                      <div class="etiquetas">
+                      <div class="container__body__etiqueta">
                         Entrevista
                       </div>
-                      <div class="etiquetas">
+                      <div class="container__body__etiqueta">
                         Testimonio
                       </div>
                     </div>
@@ -867,7 +878,7 @@ align-items: center;     display: flex;">
                     </div>
 
                   </div>
-                  <div class="card-content">
+                  <div class="card-content-main">
                     <!-- <h2 class="name">David Dell</h2> -->
                     <p class="description">Todos los documentos son necesarios.</p>
                     <span class="texto">
@@ -881,10 +892,10 @@ align-items: center;     display: flex;">
                       ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
                     </span>
                     <div class="container__etiquetas">
-                      <div class="etiquetas">
+                      <div class="container__body__etiqueta">
                         Entrevista
                       </div>
-                      <div class="etiquetas">
+                      <div class="container__body__etiqueta">
                         Testimonio
                       </div>
                     </div>
@@ -911,7 +922,7 @@ align-items: center;     display: flex;">
                     </div>
 
                   </div>
-                  <div class="card-content">
+                  <div class="card-content-main">
                     <!-- <h2 class="name">David Dell</h2> -->
                     <p class="description">Todos los documentos son necesarios.</p>
                     <span class="texto">
@@ -925,10 +936,10 @@ align-items: center;     display: flex;">
                       ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
                     </span>
                     <div class="container__etiquetas">
-                      <div class="etiquetas">
+                      <div class="container__body__etiqueta">
                         Entrevista
                       </div>
-                      <div class="etiquetas">
+                      <div class="container__body__etiqueta">
                         Testimonio
                       </div>
                     </div>

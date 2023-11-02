@@ -94,7 +94,7 @@ font-weight: bold;
   background: #00c1ff;
   border-radius: 30px;
   padding: 15px 30px;
-  font-size: 11pt;
+  font-size: 14pt;
   color: #333333;
 }
 .btn_ver_informacion{
@@ -102,7 +102,7 @@ font-weight: bold;
   background: #f98900;
   border-radius: 30px;
   padding: 15px 30px;
-  font-size: 11pt;
+  font-size: 14pt;
   color: #fff;
 
 }
@@ -145,6 +145,9 @@ font-weight: bold;
   font-size: 18px;
   margin: 0;
   padding: 10px 0;
+}
+.p-cinta i{
+  font-size: 10px;
 }
 .p-cinta-body{
   width: 95%;
@@ -258,7 +261,12 @@ color: white;
   width: 70px;
 }
 .container__azul__body__item__title{
-  font-weight: bold;
+  /* font-weight: bold; */
+  font-family: "Inter";
+  font-size: 16pt;
+}
+.container__azul__body__item__text{
+  font-family: "Inter light";
 }
 
 /* seccion 2 */
@@ -410,12 +418,19 @@ height: auto;
 }
 .cards{
   height: 23rem;
+  margin: 2rem 1rem 1rem 0rem;
+ 
+}
+.cards-resenia-main{
+  margin: 0;
 }
 .card{
 border-radius: 15px;
 background-color: #FFF;
 border-radius: 15px;
 border: 0;
+box-shadow: 0 5px 10px rgba(55,58,80,0.1);
+/* box-shadow: 0 16px 32px rgba(55,58,80,.1), 0 8px 16px rgba(55,58,80,.1), 0 4px 8px rgba(55,58,80,.1), 0 2px 4px rgba(55,58,80,.1), 0 1px 2px rgba(55,58,80,.1); */
 
 }
 .slide-content3 .swiper-slide{
@@ -434,10 +449,12 @@ flex-direction: column;
 align-items: flex-start;
 /* padding: 10px 14px; */
 }
+
 .card-content-footer{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  margin-top: 1rem;
 }
 .card-content-footer-autor{
   display: flex;
@@ -451,10 +468,14 @@ row-gap: 5px;
 }
 .card-content{
   /* padding: 40px 20px; */
-  padding:  4rem 2rem;
+  padding:  4rem 2rem 2rem 2rem;
 
 }
+.card-content-main{
+  /* padding: 40px 20px; */
+  padding:  2rem 2rem 2rem 2rem;
 
+}
 .card-image{
   width: 100%;
   position: relative;
@@ -532,8 +553,8 @@ font-weight: bold;
   height: 78px;
   margin: 0 auto;
 
-  line-height: 1;
-  -webkit-line-clamp: 6;
+  line-height: 1.5;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -694,7 +715,7 @@ left: 0;
       --swiper-pagination-bullet-opacity: 1;
       --swiper-pagination-bullet-horizontal-gap: 2px;
       text-align: start;
-      padding: 0 2em;
+      padding: 0;
 
     }
 
@@ -709,8 +730,13 @@ left: 0;
 .slide-content3 .swiper-pagination-bullet{
 background-color: #00c1ff;
 opacity: 1;
-width: 30px;
-height: 30px;
+width: 23px;
+height: 23px;
+
+}
+.slide-content3 .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet{
+  margin-right: 0.5em;
+  margin-top: 0.5em;
 }
 .slide-content3 .swiper-pagination-bullet-active{
 background-color: #1a46f1;
@@ -726,6 +752,7 @@ background-color: #1a46f1;
   flex-wrap: wrap;
   padding: 10px 0;
   justify-content: flex-start;
+  margin-top: 1rem;
 }
 .etiquetas{
   background: #cfcfcf;
@@ -744,7 +771,7 @@ background-color: #1a46f1;
   background: #94e0bc;
   display: flex;
   justify-content: space-between;
-  padding: 8rem 0;
+  padding: 7rem 0;
   width: 100%;
   margin:  0 auto;
 
@@ -762,9 +789,10 @@ width: 60%;
   margin-bottom: 4em;
 }
 .container__verificados__head__title{
-  font-size: 25pt;
+  font-size: 35pt;
   font-weight: bold;
   max-width: 50%;
+  margin-top: -1.5rem;
 }
 .container__verificados__head__subtitle{
   color: #333333;
@@ -775,7 +803,9 @@ width: 60%;
   width: 40%;
 }
 .container__verificados__imagen img{
-  max-width: 100%;
+  width: 100%;
+  /* height: 45rem; */
+  border-radius: 30px 0px 0px 30px;
 }
 .container__verificados__body{
   display: flex;
@@ -784,13 +814,13 @@ width: 60%;
   flex-wrap: wrap
 }
 .container__verificados__body__item{
-  max-width: 50%;
+  max-width: 45%;
   margin-bottom: 3em;
   font-family: 'Inter';
 }
 /* seccion reseñas de migrantes */
 .container__resenias{
-  padding: 5rem 0;
+  padding: 7rem 0;
   height: 52rem;
   max-width: 65%;
   margin: 0 auto;
@@ -800,18 +830,21 @@ width: 60%;
   /* padding: 0 5em; */
 
   position: absolute;
-  top: 235rem;
+  top: 240rem;
   left: 0;
   right: 0;
   margin: 0 auto;
 }
 .container__resenias .card-content{
-  width: 80%;
+  width: 60%;
   padding: 0;
 }
 .description-resenia{
   font-size: 24pt;
-  font-weight: bold;
+  font-family: 'Inter light';
+  margin-bottom: 2rem;
+  color: #333333;
+
 }
 .container__resenias .card-image{
   height: 45em;
@@ -835,7 +868,7 @@ width: 60%;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  padding: 4rem 0rem;
+  padding: 5rem 0rem;
 
 }
 .container__unirme__main{
