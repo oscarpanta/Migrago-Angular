@@ -61,7 +61,11 @@ export class StoriesService {
     const url = environment.baseUrl  + apiUrl
     return this.http.post(apiUrl, requestData);
   }
-
+  CambiarEstadoHistoria(requestData: any): Observable<any>{
+    const apiUrl = '/api/stories/updateStatusStorie';
+    const url = environment.baseUrl  + apiUrl
+    return this.http.post(apiUrl, requestData);
+  }
 }
 
 interface ResponseStoriesDetalle {

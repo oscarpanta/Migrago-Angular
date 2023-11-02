@@ -918,3 +918,30 @@ margin-left: 0.3rem;
   flex-wrap: nowrap;
   justify-content: flex-start;
 }
+
+.custom_badge {
+  width:60px;
+  height:30px;
+  position:absolute;
+  margin-top: -15px;
+  border-radius:12px;
+  -webkit-border-radius:12px;
+  /* background:#708090;
+  color:white; */
+  background:white;
+  text-align:center;
+  vertical-align:bottom;
+  /* font-size:14px;
+  font-style: normal; */
+  margin-left: 10px;
+  padding-top:3px;
+}
+.custom_input {
+  border: none !important;
+  border:solid 1px #708090 !important;
+  border-radius:12px !important;
+  -webkit-border-radius:12px !important;
+  /* width:350px !important; */
+  text-align: center !important;
+  color:#54606C !important;
+}

@@ -7,13 +7,40 @@
 
 <!-- <div class="card-header"><i class="fas fa-table mr-1 mb-5"></i>DataTable Example</div> -->
 
-<form>
+
   <!-- <div class="form-group form-inline">Full text search: <input class="form-control ml-2" type="text" name="searchTerm"
         [(ngModel)]="countryService.searchTerm" />
         <span class="ml-3"
         *ngIf="countryService.loading$ | async">Loading...</span></div> -->
-  <!-- <div class="form-group form-inline">Full text search: <input class="form-control ml-2" type="text"
-        name="searchTerm" /><span class="ml-3">Loading...</span></div> -->
+
+
+        <div class="row col-lg-12">
+          <div class="form-group col-lg-4">
+            <label class="align-middle custom_badge" for="inputName">Titulo</label>
+            <input required type="text" class="form-control custom_input" id="inputName"  [(ngModel)]="searchTerm">
+          </div>
+          <div class="form-group col-lg-2">
+            <button class="btn-primary" (click)="buscarLocalmente()">Buscar</button>
+          </div>
+          <!-- <div class="form-group form-inline col-lg-4">Full text search:
+            <input class="form-control ml-2" style="padding: .125rem .75rem" type="text" name="searchTerm" />
+            <span class="ml-3">Loading...</span>
+          </div> -->
+          <div class="form-group form-inline col-lg-6"> Estado
+            <select id="estadoSelect" (change)="onEstadoSelect($event)"
+              [(ngModel)]="selectedEstado" class="input_historia form-select form-select-normal"
+              aria-label="Default select example">
+              <option value="" selected>Seleccione Estado</option>
+              <option value="APROBADO">APROBADO</option>
+              <option value="PENDING">PENDING</option>
+              <option value="RECHAZADO">RECHAZADO</option>
+            </select>
+          </div>
+        </div>
+
+  <!-- <div class="form-group form-inline col-lg-4">Full text search:
+    <input class="form-control ml-2" type="text" name="searchTerm" /><span class="ml-3">Loading...</span>
+  </div> -->
   <table class="table table-striped">
     <thead>
       <tr>
@@ -31,7 +58,7 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let historia of historias">
+      <tr *ngFor="let historia of historiasFiltradas">
         <th scope="row">{{ historia.id }}</th>
         <td><ngb-highlight [result]="historia.title">
           </ngb-highlight>
@@ -47,13 +74,8 @@
                 class="fas fa-pencil icon-md"></span></a>
             <a (click)="eliminarHistoria(historia)" class="btn btn-sm btn-danger"><span
                 class="fas fa-circle-xmark icon-md"></span></a>
-            <!-- <a href="https://www.phpcrudgenerator.com/admin/city/edit/city_id=1" class="btn btn-sm btn-warning"
-              data-bs-toggle="tooltip" data-bs-title="Edit"><span class="fas fa-pencil icon-md"></span></a>
-            <a href="https://www.phpcrudgenerator.com/admin/city/delete/city_id=1" class="btn btn-sm btn-danger"
-              data-bs-toggle="tooltip" data-bs-title="Remove"><span class="fas fa-circle-xmark icon-md"></span></a> -->
+
           </div>
-          <!-- <button (click)="editarHistoria(historia)">Editar</button>
-          <button (click)="eliminarHistoria(historia)">Eliminar</button> -->
         </td>
       </tr>
     </tbody>
@@ -69,7 +91,7 @@
       <option [ngValue]="6">6 items per page</option>
     </select>
   </div>
-</form>
+
 
 
 <ng-template #modalContent let-modal>
@@ -78,11 +100,12 @@
   <div class="modal-contenido">
 
     <div class="modal-body modal-login">
-      <button type="button" class="close" (click)="modal.dismiss('Cross click')" style="
+      <button type="button" class="close" (click)="cerrarModal()" style="
          background: none;
         float: right;
         border: 0;
-        margin: 0.2rem">
+        margin: 0.2rem;
+        padding: 2rem 0rem 0rem;">
         <!-- <span aria-hidden="true">&times;</span> -->
         <i class="fa-solid fa-xmark"></i>
       </button>
@@ -150,9 +173,8 @@ background-color: #e4e4e4;">
 
                     <p class="p-parrafo">Nacionalidad</p>
 
-                    <select formControlName="Nacionalidad"
-                      class="form-select form-select-normal" [(ngModel)]="selectedNationalityId"
-                      aria-label="Default select example">
+                    <select formControlName="Nacionalidad" class="form-select form-select-normal"
+                      [(ngModel)]="selectedNationalityId" aria-label="Default select example">
                       <option value="0" selected>Nacionalidad del guía</option>
                       <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
                         nacionalidad.nationality_name }}</option>
@@ -161,16 +183,15 @@ background-color: #e4e4e4;">
                   </div>
                   <div class="form-group mb-3 col-lg-6">
                     <p class="p-parrafo">Fecha de llegada al país* (público)</p>
-                    <input type="date" name="" formControlName="fecha"
-                      class="form-control form-control-sm" value="" placeholder="">
+                    <input type="date" name="" formControlName="fecha" class="form-control form-control-sm" value=""
+                      placeholder="">
                   </div>
 
                   <div class="form-group mb-3">
 
                     <p class="p-parrafo">Modo Migracion</p>
-                    <select formControlName="ModoMigracion"
-                      class="form-select form-select-normal" [(ngModel)]="selectedModoMigrationId"
-                      aria-label="Default select example">
+                    <select formControlName="ModoMigracion" class="form-select form-select-normal"
+                      [(ngModel)]="selectedModoMigrationId" aria-label="Default select example">
                       <option value="0" selected>Modo Migracion</option>
                       <option *ngFor="let migracion of modemigrations" [value]="migracion.id">{{
                         migracion.description }}</option>
@@ -180,9 +201,8 @@ background-color: #e4e4e4;">
                   <div class="form-group mb-3 col-lg-6">
 
                     <p class="p-parrafo">Ruta Migracion</p>
-                    <select formControlName="RutaMigracion"
-                      class="form-select form-select-normal" [(ngModel)]="selectedRutaMigrationId"
-                      aria-label="Default select example">
+                    <select formControlName="RutaMigracion" class="form-select form-select-normal"
+                      [(ngModel)]="selectedRutaMigrationId" aria-label="Default select example">
                       <option value="0" selected>Ruta Migracion</option>
                       <option *ngFor="let ruta of rutasmigracion" [value]="ruta.id">{{
                         ruta.name_way_migration }}</option>
@@ -192,9 +212,10 @@ background-color: #e4e4e4;">
 
                     <p class="p-parrafo">Estado</p>
                     <select class="form-select form-select-normal" formControlName="estado">
-                      <option value="0" selected>ESTADO</option>
-                      <option value="APROBADO" selected>APROBADO</option>
-                      <option value="PENDING" selected>PENDING</option>
+                      <option value="0" selected>Seleccione Estado</option>
+                      <option value="APROBADO">APROBADO</option>
+                      <option value="PENDING">PENDING</option>
+                      <option value="RECHAZADO">RECHAZADO</option>
                     </select>
                   </div>
 
@@ -207,28 +228,24 @@ background-color: #e4e4e4;">
                     <div class="row d-flex align-items-end mt-3">
 
                       <div class="form-group col-lg-2 mb-3">
-                        <input type="file" #fileInput style="display:none" accept=".jpg, .png"
-                          disabled>
+                        <input type="file" #fileInput style="display:none" accept=".jpg, .png" disabled>
 
                         <div *ngIf="imageSrc !== ''; else nomuestra">
-                          <img [src]="imageSrc" id="preview" style="max-width: 100px;height: 8rem;"
-                            >
+                          <img [src]="imageSrc" id="preview" style="max-width: 100px;height: 8rem;">
                         </div>
                         <ng-template #nomuestra>
                           <img src="assets/images/perfiles/perfil.png" style="max-width: 100px" id="preview"
-                            class="img-thumbnail" >
+                            class="img-thumbnail">
                         </ng-template>
 
 
                       </div>
 
                       <div class="form-group col-lg-2 mb-3">
-                        <input type="file" #fileInput2 style="display:none" accept=".jpg, .png"
-                          disabled>
+                        <input type="file" #fileInput2 style="display:none" accept=".jpg, .png" disabled>
 
                         <div *ngIf="imageSrc2 !== ''; else nomuestra2">
-                          <img [src]="imageSrc2" id="preview2" style="max-width: 100px;height: 8rem;"
-                            >
+                          <img [src]="imageSrc2" id="preview2" style="max-width: 100px;height: 8rem;">
                         </div>
                         <ng-template #nomuestra2>
                           <img src="assets/images/perfiles/perfil.png" style="max-width: 100px" id="preview2"
@@ -237,16 +254,14 @@ background-color: #e4e4e4;">
                       </div>
                       <!-- <div  class="form-group col-lg-2 mb-3" *ngIf="historiaDetalle"  > -->
                       <div class="form-group col-lg-2 mb-3">
-                        <input type="file" #fileInput3 style="display:none" accept=".jpg, .png"
-                          disabled>
+                        <input type="file" #fileInput3 style="display:none" accept=".jpg, .png" disabled>
 
                         <div *ngIf="imageSrc3 !== ''; else nomuestra3">
-                          <img [src]="imageSrc3" id="preview3" style="max-width: 100px;height: 8rem;"
-                            >
+                          <img [src]="imageSrc3" id="preview3" style="max-width: 100px;height: 8rem;">
                         </div>
                         <ng-template #nomuestra3>
                           <img src="assets/images/perfiles/perfil.png" style="max-width: 100px" id="preview3"
-                            class="img-thumbnail" >
+                            class="img-thumbnail">
                         </ng-template>
                       </div>
 
@@ -271,7 +286,7 @@ background-color: #e4e4e4;">
 
             </div>
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-              <ng-container >
+              <ng-container>
                 <div class="row col-lg-7  mx-auto mb-3">
                   <span class="p-bold-500-20">Temas para contar</span>
                 </div>

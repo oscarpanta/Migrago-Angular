@@ -12,6 +12,7 @@ import { ImagenesService } from 'src/app/public/views/services/imagenes.service'
 import { StoriesService } from 'src/app/public/views/services/stories.service';
 import { TemasService } from 'src/app/public/views/services/temas.service';
 import { WaysMigrationService } from 'src/app/public/views/services/ways-migration.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-historia',
@@ -21,13 +22,15 @@ import { WaysMigrationService } from 'src/app/public/views/services/ways-migrati
 export class HistoriaComponent {
   @ViewChild('modalContent') modalContent: any; // Agrega esta línea
   historias: any[] = []
+  historiasFiltradas: any[] = [];
+  searchTerm: string = '';
   //@Input() pageSize = 4;
-  tamanopagina:number = 6;
-//  countries$!: Observable<Country[]>;
-  total$:number = 0;
+  tamanopagina: number = 6;
+  //  countries$!: Observable<Country[]>;
+  total$: number = 0;
   sortedColumn!: string;
   sortedDirection!: string;
-  nropagina:number = 1;
+  nropagina: number = 1;
 
   countries: Country[] = []
   cities: Cities[] = []
@@ -37,6 +40,7 @@ export class HistoriaComponent {
   modemigrations: MigrationMode[] = []
   selectedCountryId: number | null = null;
   selectedCityId: number = 0;
+  selectedEstado: any = null;
   //idhistoria: any;
   selectedFile!: File;
   selectedFile2!: File;
@@ -57,22 +61,23 @@ export class HistoriaComponent {
   @ViewChildren(CustomMinTableDirective) headers!: QueryList<CustomMinTableDirective>;
 
   constructor(public historiasService: StoriesService, private modalService: NgbModal,
-    private changeDetectorRef: ChangeDetectorRef,  private country: CountriesService, private fb: FormBuilder, private waymigration: WaysMigrationService,
-    private temas: TemasService,private imagenservice: ImagenesService,){
-      this.miFormulario = this.fb.group({
-        titulo: ['', [Validators.required]],
-        countrySelect: [[-1], [Validators.required]],
-        citySelect: [[-1], [Validators.required]],
-        Nacionalidad: [[-1], [Validators.required]],
-        ModoMigracion: [[-1], [Validators.required]],
-        RutaMigracion: [[-1], [Validators.required]],
-        estado: [[-1], [Validators.required]],
-        texto_historia: ['', [Validators.required]],
-        fecha: ['', [Validators.required]],
-        temas: [this.groupThemeIds, [Validators.required]]
-
-      });
-    }
+    private changeDetectorRef: ChangeDetectorRef, private country: CountriesService, private fb: FormBuilder, private waymigration: WaysMigrationService,
+    private temas: TemasService, private imagenservice: ImagenesService,) {
+    this.miFormulario = this.fb.group({
+      id: ['', [Validators.required]],
+      titulo: ['', [Validators.required]],
+      countrySelect: [[-1], [Validators.required]],
+      citySelect: [[-1], [Validators.required]],
+      Nacionalidad: [[-1], [Validators.required]],
+      ModoMigracion: [[-1], [Validators.required]],
+      RutaMigracion: [[-1], [Validators.required]],
+      estado: [[-1], [Validators.required]],
+      texto_historia: ['', [Validators.required]],
+      fecha: ['', [Validators.required]],
+      temas: [this.groupThemeIds, [Validators.required]],
+      user_created_id: ['', [Validators.required]],
+    });
+  }
   ngOnInit(): void {
     this.listaHistorias()
     this.listaPaises()
@@ -83,6 +88,10 @@ export class HistoriaComponent {
   }
   listaHistorias() {
     // this.mostrarLoad=false
+    // if(this.sek)
+    if (this.selectedEstado == "")
+      this.selectedEstado = null
+
     const requestData = {
       request: {
         id_country: 0,
@@ -91,7 +100,7 @@ export class HistoriaComponent {
         id_way_migration: 0,
         id_migration_mode: "",
         id_group_themes: "",
-        status: "PENDING"
+        status: this.selectedEstado
       },
       order: {
         column: null,
@@ -103,11 +112,13 @@ export class HistoriaComponent {
 
     this.historiasService.getStories(requestData).subscribe(
       response => {
-//        console.log('hist' + JSON.stringify(response));
-    //    this.mostrarLoad=true
+        //        console.log('hist' + JSON.stringify(response));
+        //    this.mostrarLoad=true
         this.historias = response[0].data;
-    //    this.totalelementos = +response[0].totalElements;
-       // this.historias.forEach(historia => {
+        this.historiasFiltradas = this.historias;
+        this.total$ = +response[0].totalElements;
+        //    this.totalelementos = +response[0].totalElements;
+        // this.historias.forEach(historia => {
         //   if (historia.photo) {
         //     historia.urlImagen = this.imagenservice.getImageUrl(historia.photo);
         //   }else{
@@ -127,12 +138,21 @@ export class HistoriaComponent {
 
 
 
-       //   console.log(historia.urlImagenStory)
-        });
-      }
+        //   console.log(historia.urlImagenStory)
+      });
+  }
 
 
-
+  buscarLocalmente() {
+    if (this.searchTerm.trim() === '') {
+      this.historiasFiltradas = this.historias; // Si el término de búsqueda está vacío, muestra todas las historias
+    } else {
+      this.historiasFiltradas = this.historias.filter(historia =>
+        historia.title.toLowerCase().includes(this.searchTerm.trim().toLowerCase())
+      );
+    }
+    console.log(this.historiasFiltradas)
+  }
   onPageChange(page: number) {
     this.nropagina = page;
     this.listaHistorias();
@@ -349,9 +369,14 @@ export class HistoriaComponent {
     }
     console.log('formul' + JSON.stringify(this.miFormulario.value));
     console.log(arr.value);
-   // console.log(this.array);
+    // console.log(this.array);
     console.log(this.groupThemeIds);
 
+  }
+  onEstadoSelect(event: any) {
+    this.selectedEstado = event.target.value;
+    console.log(this.selectedEstado)
+    this.listaHistorias();
   }
 
   // onFileSelected(event: any) {
@@ -560,19 +585,18 @@ export class HistoriaComponent {
   //   }
   // }
 
-  obtenerDetalleHistoria(guia: any) {}
+  obtenerDetalleHistoria(guia: any) { }
 
   editarHistoria(historia: any) {
-    this.modalService.open(this.modalContent, { size: 'lg' }); // Asegúrate de importar NgbModal
-
-    // Si necesitas hacer algo con la historia seleccionada, puedes hacerlo aquí
+    this.modalService.open(this.modalContent, { size: 'lg' });
 
 
     this.idhistory = historia.id
     const requestData = {
       request: {
         story_id: historia.id,
-        status: "PENDING"
+        //status: "PENDING"
+        status: null
       },
       order: {
         column: null,
@@ -607,23 +631,23 @@ export class HistoriaComponent {
       }
       console.log(response);
 
-      setTimeout(() => {
-        if (this.miFormulario.controls['titulo']) {
-          this.miFormulario.patchValue({
-            titulo: response.story.data[0].title,
-            countrySelect: response.story.data[0].contry_id,
-            citySelect: response.story.data[0].city_id,
-            Nacionalidad: response.story.data[0].nationality_id,
-            ModoMigracion: response.story.data[0].migration_mode_id,
-            RutaMigracion: response.story.data[0].way_migration_id,
-            estado: response.story.data[0].status,
-            texto_historia: response.story.data[0].story_text,
-            fecha: response.story.data[0].arrival_date,
-            temas: this.groupThemeIds,
-          });
-        }
 
-      },);
+      this.miFormulario.patchValue({
+        id: response.story.data[0].storie_id,
+        titulo: response.story.data[0].title,
+        countrySelect: response.story.data[0].contry_id,
+        citySelect: response.story.data[0].city_id,
+        Nacionalidad: response.story.data[0].nationality_id,
+        ModoMigracion: response.story.data[0].migration_mode_id,
+        RutaMigracion: response.story.data[0].way_migration_id,
+        estado: response.story.data[0].status,
+        texto_historia: response.story.data[0].story_text,
+        fecha: response.story.data[0].arrival_date,
+        temas: this.groupThemeIds,
+        user_created_id: response.story.data[0].user_created_id
+      });
+
+      console.log(this.miFormulario.value)
 
       if (response.images_story.data.length > 0) {
 
@@ -668,10 +692,27 @@ export class HistoriaComponent {
   }
   cerrarModal() {
     this.modalService.dismissAll();
-
+    this.miFormulario.reset();
 
   }
-  registroHistoria(){
+  registroHistoria() {
+    const requestData = {
+      request: {
+        story_id: this.miFormulario.controls['id'].value,
+        status: this.miFormulario.controls['estado'].value,
+        user_id: this.miFormulario.controls['user_created_id'].value
+      },
+    };
+
+    this.historiasService.CambiarEstadoHistoria(requestData).subscribe(response => {
+      console.log(response)
+      if (response) {
+
+        Swal.fire('Hecho', 'Se ha actualizados.', 'success')
+      } else {
+        Swal.fire('Error', 'No se pudo registrar', 'error')
+      }
+    })
 
   }
 }
