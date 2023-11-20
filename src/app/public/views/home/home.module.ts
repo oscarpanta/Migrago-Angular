@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainComponent } from './main/main.component';
 import { ModalComponent } from './modal/modal.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
+import { NgxSummernoteModule } from 'ngx-summernote';
 
 
 
@@ -35,7 +36,7 @@ import { NosotrosComponent } from './nosotros/nosotros.component';
     ReactiveFormsModule,
     NgbModule,
    // NgbModalModule
-
+   NgxSummernoteModule
 
   ],
   exports: [

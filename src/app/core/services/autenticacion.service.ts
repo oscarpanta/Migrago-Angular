@@ -69,7 +69,7 @@ export class AutenticacionService {
           localStorage.setItem('userdata', JSON.stringify(resp[0].usuario));
           localStorage.setItem('rol', JSON.stringify(resp[0].roles[0].role_name));
           if(resp[0].guia!=null){
-            localStorage.setItem('guia', JSON.stringify(resp[0].guia.id));
+            localStorage.setItem('guia', JSON.stringify(resp[0].guia.id_guia));
           }
           if(resp[0].cliente!=null){
             localStorage.setItem('cliente', JSON.stringify(resp[0].cliente.id));

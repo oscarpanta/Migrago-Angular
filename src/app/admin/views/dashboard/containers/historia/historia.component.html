@@ -16,17 +16,15 @@
 
         <div class="row col-lg-12">
           <div class="form-group col-lg-4">
-            <label class="align-middle custom_badge" for="inputName">Titulo</label>
-            <input required type="text" class="form-control custom_input" id="inputName"  [(ngModel)]="searchTerm">
+            <label for="inputName">Titulo</label>
+            <input required type="text" class="form-control form-control-sm" id="inputName"  [(ngModel)]="searchTerm">
           </div>
-          <div class="form-group col-lg-2">
-            <button class="btn-primary" (click)="buscarLocalmente()">Buscar</button>
-          </div>
+
           <!-- <div class="form-group form-inline col-lg-4">Full text search:
             <input class="form-control ml-2" style="padding: .125rem .75rem" type="text" name="searchTerm" />
             <span class="ml-3">Loading...</span>
           </div> -->
-          <div class="form-group form-inline col-lg-6"> Estado
+          <div class="form-group form-inline col-lg-4"> Estado
             <select id="estadoSelect" (change)="onEstadoSelect($event)"
               [(ngModel)]="selectedEstado" class="input_historia form-select form-select-normal"
               aria-label="Default select example">
@@ -35,6 +33,9 @@
               <option value="PENDING">PENDING</option>
               <option value="RECHAZADO">RECHAZADO</option>
             </select>
+          </div>
+          <div class="form-group col-lg-2 d-flex align-items-center">
+            <button class="btn-primary" (click)="buscarLocalmente()">Buscar</button>
           </div>
         </div>
 
