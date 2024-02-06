@@ -1,6 +1,7 @@
 
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { notZeroValidator } from 'src/app/core/directives/not-zero.directive';
 import { Usuario } from 'src/app/core/interfaces/login.interface';
 import { AutenticacionService } from 'src/app/core/services/autenticacion.service';
 import { Cities } from 'src/app/public/views/interfaces/cities.interface';
@@ -20,7 +21,7 @@ declare var $: any;
 })
 export class PerfilComponent implements OnInit {
   countries: Country[] = []
-  paismigra:Country[] = []
+  paismigra: Country[] = []
   cities: Cities[] = []
   nationalities: Nationalities[] = []
   cliente: any[] = [];
@@ -30,6 +31,8 @@ export class PerfilComponent implements OnInit {
   usuario!: Usuario;
   archivos: any = []
   imageSrc!: string;
+  formularioEnviado = false;
+  textoBoton = 'Guardar';
 
   selectedOption: any = null;
   selectedCountryId: number | null = null;
@@ -43,7 +46,7 @@ export class PerfilComponent implements OnInit {
   selectedFile!: File;
   ngOnInit(): void {
     this.pasosPerfilCliente(),
-    this.GetUsuario()
+      this.GetUsuario()
     this.GetClienteId()
     this.listaPaises()
     this.listaNacionalidades()
@@ -52,23 +55,23 @@ export class PerfilComponent implements OnInit {
   }
   constructor(private authService: AutenticacionService,
     private country: CountriesService, private fb: FormBuilder,
-    private imagenservice: ImagenesService){
-      this.miFormulario = this.fb.group({
-        nombre: ['', [Validators.required]],
-        apellidos: ['', [Validators.required]],
-        correo: ['', [Validators.required]],
-        fechanac: ['', [Validators.required]],
-        genero: [[0], [Validators.required]],
-        nacionalidad: ['', [Validators.required]],
-        countrySelect: [[0], [Validators.required]],
-        citySelect: [[0], [Validators.required]],
-        migrafamilia:[[0], [Validators.required]],
-        fechatentativa: ['', [Validators.required]],
-        redsocial:[[0], [Validators.required]],
-        paismigra:[[0], [Validators.required]],
-      });
-
-    }
+    private imagenservice: ImagenesService, private cdr: ChangeDetectorRef) {
+    this.miFormulario = this.fb.group({
+      nombre: ['', [Validators.required]],
+      apellidos: ['', [Validators.required]],
+      correo: ['', [Validators.required]],
+      fechanac: ['', [Validators.required]],
+      genero: [[0], [Validators.required, notZeroValidator]],
+      nacionalidad: [[0], [Validators.required, notZeroValidator]],
+      countrySelect: [[0], [Validators.required, notZeroValidator]],
+      citySelect: [[0], [Validators.required, notZeroValidator]],
+      migrafamilia: [[0], [Validators.required, notZeroValidator]],
+      fechatentativa: ['', [Validators.required]],
+      redsocial: [[0], [Validators.required, notZeroValidator]],
+      paismigra: [[0], [Validators.required, notZeroValidator]],
+    });
+    //this.miFormulario.controls['correo'].disable();
+  }
 
   pasosPerfilCliente() {
 
@@ -195,7 +198,7 @@ export class PerfilComponent implements OnInit {
     this.country.getCountries(requestData).subscribe(
       response => {
         this.countries = response[0].data;
-        this.paismigra=response[0].data;
+        this.paismigra = response[0].data;
 
       }
 
@@ -292,8 +295,12 @@ export class PerfilComponent implements OnInit {
     this.selectedFechaNac = event.target.value;
   }
   GetUsuario() {
-    //this.usuario =  this.authService.usuario;
-    this.usuario = this.authService.getUsuario();
+
+    //this.usuario = this.authService.getUsuario();
+    this.authService.getUsuario().subscribe((usuario: any) => {
+      this.usuario = usuario;
+      console.log(this.usuario);
+    });
   }
   GetClienteId() {
     this.idcliente = this.authService.getCliente();
@@ -303,50 +310,75 @@ export class PerfilComponent implements OnInit {
 
     this.selectedFile = event.target.files[0];
     this.archivos.push(this.selectedFile);
+
+    // if (this.selectedFile) {
+    //   // cargar la imagen imageSrc
+    //   const reader = new FileReader();
+    //   reader.onload = () => {
+    //     this.imageSrc = reader.result as string;
+    //   };
+    //   reader.readAsDataURL(this.selectedFile);
+    //   console.log(this.imageSrc)
+    // }
     console.log(event)
     console.log(event.target.files)
     console.log(this.selectedFile)
     console.log(this.archivos)
 
-    const imagen = new FormData();
+    // const imagen = new FormData();
 
-    try {
-      this.archivos.forEach((archivo: any) => {
-        console.log(archivo)
-        imagen.append('file', archivo)
-      });
-      imagen.append('request[id_user]', this.usuario.id.toString());
-      //const url = '/api/stories/guardar_images';
-      //const url = '/api/guardar_images';
-      console.log(imagen)
-      this.imagenservice.enviarImage(imagen).subscribe(
-        (response) => {
-          console.log('Imagen subida con éxito:', response);
-          this.usuario = {
-            ...this.usuario,
-            photo: response.msg
-          };
-          localStorage.setItem('userdata', JSON.stringify(this.usuario));
-        },
-        (error) => {
-          console.error('Error al subir imagen:', error);
-        }
-      );
+    // try {
+    //   this.archivos.forEach((archivo: any) => {
+    //     console.log(archivo)
+    //     imagen.append('file', archivo)
+    //   });
+    //   imagen.append('request[id_user]', this.usuario.id.toString());
+    //   //const url = '/api/stories/guardar_images';
+    //   //const url = '/api/guardar_images';
+    //   console.log(imagen)
+    //   this.imagenservice.enviarImage(imagen).subscribe(
+    //     (response) => {
+    //       console.log('Imagen subida con éxito:', response);
+    //       this.usuario = {
+    //         ...this.usuario,
+    //         photo: response.msg
+    //       };
+    //       localStorage.setItem('userdata', JSON.stringify(this.usuario));
+    //      // this.imagenservice.getImageUrl(response.msg);
 
-    } catch (e) {
-      console.log('ERROR', e)
-    }
+    //     },
+    //     (error) => {
+    //       console.error('Error al subir imagen:', error);
+    //     }
+    //   );
+
+    // } catch (e) {
+    //   console.log('ERROR', e)
+    // }
 
 
   }
 
   cargarUsuario() {
-    if (this.usuario.photo)
-      this.imageSrc = this.imagenservice.getImageUrl(this.usuario.photo);
+       // if (this.usuario.photo)
+    //   this.imageSrc = this.imagenservice.getImageUrl(this.usuario.photo);
+    if (this.usuario.photo) {
+      this.imageSrc = this.imagenservice.getImageUrlUser(this.usuario.photo);
+     // this.imagenservice.getImageUrl(this.usuario.photo)
+     // this.imagenservice.imageUrl$.subscribe(
+     //   (url: string) => {
+
+     //     this.imageSrc = url.toString();
+     //   }
+     // );
+
+    }
     else
       this.imageSrc = ''
 
 
+    console.log(this.usuario.name)
+    console.log(this.usuario.id)
     let req = {
       request: {
         id_user: this.usuario.id,
@@ -362,8 +394,8 @@ export class PerfilComponent implements OnInit {
         console.log(this.cliente)
         this.selectedCountryId = response[0].country_id;
         this.selectedCityId = response[0].city_id;
-        this.selectedNationalityId=response[0].nationality_id;
-        this.selectedPaisMigraId=response[0].country_migration;
+        this.selectedNationalityId = response[0].nationality_id;
+        this.selectedPaisMigraId = response[0].country_migration;
         this.listaCiudades();
 
 
@@ -371,17 +403,17 @@ export class PerfilComponent implements OnInit {
       const formattedDate = new Date(this.cliente[0].date_tentative).toISOString().substr(0, 10);
       this.miFormulario.patchValue({
         nombre: this.usuario.name,
-        apellidos:  this.usuario.lastname,
+        apellidos: this.usuario.lastname,
         correo: this.usuario.username,
         fechanac: this.usuario.birth_date,
         genero: this.usuario.sex,
         nacionalidad: this.cliente[0].nationality_id,
         countrySelect: this.cliente[0].country_id,
-        citySelect:  this.cliente[0].city_id,
+        citySelect: this.cliente[0].city_id,
         migrafamilia: this.cliente[0].family_migration,
         fechatentativa: formattedDate,
-        redsocial:this.cliente[0].social_network_id,
-        paismigra:this.cliente[0].country_migration
+        redsocial: this.cliente[0].social_network_id,
+        paismigra: this.cliente[0].country_migration
       });
 
 
@@ -391,45 +423,61 @@ export class PerfilComponent implements OnInit {
 
   }
 
-  ActualizarPerfil(){
-    const { nombre, apellidos,correo,fechanac,  genero, nacionalidad,countrySelect,citySelect, migrafamilia,
-          fechatentativa, redsocial,paismigra} = this.miFormulario.value;
+  ActualizarPerfil() {
+    const { nombre, apellidos, correo, fechanac, genero, nacionalidad, countrySelect, citySelect, migrafamilia,
+      fechatentativa, redsocial, paismigra } = this.miFormulario.value;
+
+
 
     console.log(this.miFormulario.value)
-      console.log(this.idcliente)
-      console.log(this.cliente[0].id)
-
-      let req = {
-        request: {
-          id_user : this.usuario.id,
-         // id_customer: this.cliente[0].id,
-          id_customer: this.cliente[0].id,
-          dni : null,
-          name : nombre,
-          lastname :apellidos,
-          username : correo,
-          password :"",
-          sexo : genero,
-          photo : "",
-          status : true,
-          phone :this.usuario.phone,
-          birth_date:fechanac,
-          rol:6,
-          country_id:countrySelect,
-          city_id:citySelect,
-          nationality_id:nacionalidad,
-          social_network:redsocial,
-          country_migration:paismigra,
-          family_migration:migrafamilia,
-          date_tentative:fechatentativa
+    console.log(this.idcliente)
+    console.log(this.cliente[0].id)
 
 
+    if (this.miFormulario.invalid) {
+      Swal.fire('Error', 'LLene todos los campos porfavor', 'error')
+      return
+    }
+    console.log(this.archivos)
+    if ((this.archivos.length == 0 || (this.archivos.every((file: any) => file === undefined))) && this.imageSrc == '') {
+      Swal.fire('Error', 'Debe insertar una imagen', 'error')
+      return
+    }
 
-        }
+    this.formularioEnviado = true;
+    this.textoBoton = 'Esperando registro';
+
+    let req = {
+      request: {
+        id_user: this.usuario.id,
+        // id_customer: this.cliente[0].id,
+        id_customer: this.cliente[0].id,
+        dni: null,
+        name: nombre,
+        lastname: apellidos,
+        username: correo,
+        password: "",
+        sexo: genero,
+        photo: "",
+        status: true,
+        phone: this.usuario.phone,
+        birth_date: fechanac,
+        rol: 6,
+        country_id: countrySelect,
+        city_id: citySelect,
+        nationality_id: nacionalidad,
+        social_network: redsocial,
+        country_migration: paismigra,
+        family_migration: migrafamilia,
+        date_tentative: fechatentativa
+
+
+
       }
-      this.authService.actualizarUsuarioCliente(req)
-        .subscribe(
-          res => {
+    }
+    this.authService.actualizarUsuarioCliente(req)
+      .subscribe(
+        res => {
           console.log(res);
           if (res.msg[0].out_rpta === "OK") {
             //this.lista
@@ -440,7 +488,7 @@ export class PerfilComponent implements OnInit {
               name: nombre,
               lastname: apellidos,
               username: correo,
-              sex:genero,
+              sex: genero,
               enabled: true,
               first_session: true,
               cod_gen: this.usuario.cod_gen,
@@ -448,12 +496,60 @@ export class PerfilComponent implements OnInit {
               created_at: this.usuario.created_at,
               user_updated_id: this.usuario.user_updated_id,
               updated_at: this.usuario.updated_at,
-              phone:this.usuario.phone,
-              birth_date:fechanac
+              phone: this.usuario.phone,
+              birth_date: fechanac
             };
-            localStorage.setItem('userdata', JSON.stringify(this.usuario));
 
-            this.cargarUsuario()
+
+            if ((this.archivos.length !== 0 || this.archivos.some((file: any) => file !== undefined))) {
+              const imagen = new FormData();
+
+
+              this.archivos.forEach((archivo: any) => {
+                console.log(archivo)
+                imagen.append('file', archivo)
+              });
+              imagen.append('request[id_user]', this.usuario.id.toString());
+
+              console.log(imagen)
+              this.imagenservice.enviarImage(imagen).subscribe(
+                (response) => {
+                  console.log('Imagen subida con éxito:', response);
+                  this.usuario = {
+                    ...this.usuario,
+                    photo: response.msg
+                  };
+                  localStorage.setItem('userdata', JSON.stringify(this.usuario));
+
+                  // this.imagenservice.getImageUrl(this.usuario.photo)
+                  // this.imagenservice.imageUrl$.subscribe(
+                  //   (url: string) => {
+
+                  //         this.imageSrc = url.toString();
+                  //     this.cdr.detectChanges();
+                  //     console.log('asgda' + this.imageSrc)
+                  //   }
+                  // );
+
+                },
+                (error) => {
+                  console.error('Error al subir imagen:', error);
+                }
+              );
+
+
+            }
+
+            localStorage.setItem('userdata', JSON.stringify(this.usuario));
+            this.GetUsuario()
+            //  this.imagenservice.getImageUrl(this.usuario.photo)
+
+
+
+            this.formularioEnviado = false;
+            this.textoBoton = 'Guardar';
+            //this.imagenservice.getImageUrl(this.usuario.photo)
+
             Swal.fire({
               title: 'Exito',
               text: 'Datos actualizados',
@@ -462,20 +558,25 @@ export class PerfilComponent implements OnInit {
               showConfirmButton: false // Oculta el botón de confirmación
             });
 
-            //Espera 2 segundos antes de abrir la modal de login
+
             setTimeout(() => {
               location.reload();
             }, 2000);
 
 
           } else {
+            this.formularioEnviado = false;
+            this.textoBoton = 'Guardar';
+
             Swal.fire('Error', 'No se pudo actualizar', 'error')
           }
         },
         error => {
+          this.formularioEnviado = false;
+          this.textoBoton = 'Guardar';
           console.error("Error al actualizar:", error);
           // Agregar código de manejo de error aquí
         }
-        );
+      );
   }
 }

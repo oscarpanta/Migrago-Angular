@@ -87,7 +87,11 @@ export class ReagendarComponent implements OnInit {
   }
 
   GetUsuario() {
-    this.usuario = this.authService.getUsuario();
+    //this.usuario = this.authService.getUsuario();
+    this.authService.getUsuario().subscribe((usuario:any) => {
+      this.usuario = usuario;
+      console.log(this.usuario);
+    });
   }
   handleDateSelect(arg: any) {
     this.selectedDate = arg.startStr;

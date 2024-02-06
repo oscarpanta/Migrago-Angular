@@ -51,28 +51,28 @@
             <div class="form-group col-lg-12 mb-3">
 
               <p>Nombres:</p>
-              <input type="text" name="" formControlName="nombre" class="form-control form-control-sm"
-                value="Miguel Angel" placeholder="">
+              <input type="text" name="" formControlName="nombre" class="form-control form-control-sm" readonly
+                value="Miguel Angel" placeholder="" >
 
             </div>
             <div class="form-group col-lg-12 mb-3">
 
               <p>Apellidos:</p>
-              <input type="text" name="" formControlName="apellidos" class="form-control form-control-sm"
+              <input type="text" name="" formControlName="apellidos" class="form-control form-control-sm" readonly
                 value="Panta Chapoñan" placeholder="">
 
             </div>
             <div class="form-group col-lg-12 mb-3" *ngIf="usuario.username">
 
               <p>Correo electrónico:</p>
-              <input type="text" name="" formControlName="correo" class="form-control form-control-sm"
+              <input type="text" name="" formControlName="correo" class="form-control form-control-sm" readonly
                 value="mpanta@migrago.com" placeholder="">
 
             </div>
             <div class="form-group col-lg-12 mb-3">
 
               <p>Fecha de nacimiento:</p>
-              <input type="date" name="" formControlName="fechanac" class="form-control form-control-sm" value=""
+              <input type="date" name="" formControlName="fechanac" class="form-control form-control-sm" value="" readonly
                 placeholder="">
 
             </div>
@@ -87,8 +87,8 @@
 
               <p>Género:</p>
               <select class="form-select form-select-sm form-select-normal" aria-label="Default select example"
-                formControlName="genero">
-                <option selected value="0">Selecciona el genero</option>
+                formControlName="genero" >
+                <option selected value="0" disabled>Selecciona el genero</option>
                 <option value="M">Masculino</option>
                 <option value="F">Femenino</option>
 
@@ -146,7 +146,7 @@
               <select formControlName="nacionalidad" (change)="onNationalitySelect($event)"
                 class="form-select form-select-sm form-select-normal" [(ngModel)]="selectedNationalityId"
                 aria-label="Default select example">
-                <option value="0" selected>Nacionalidad del guía</option>
+                <option value="0" selected disabled>Nacionalidad del guía</option>
                 <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
                   nacionalidad.nationality_name }}</option>
               </select>
@@ -156,8 +156,8 @@
               <p>Pais de residencia actual:</p>
               <select id="countrySelect" formControlName="countrySelect" name="countrySelect"
                 (change)="onCountrySelect($event)" [(ngModel)]="selectedCountryId" class="form-select form-select-sm"
-                aria-label="Default select example">
-                <option value="0" selected>País a migrar</option>
+                aria-label="Default select example"  >
+                <option value="0" selected disabled>País a migrar</option>
                 <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}
                 </option>
               </select>
@@ -167,7 +167,7 @@
               <p>Ciudad de residencia actual:</p>
               <select name="citySelect" formControlName="citySelect" (change)="onCitySelect($event)"
                 class="form-select form-select-sm" [(ngModel)]="selectedCityId" aria-label="Default select example">
-                <option value="0">Selecciona una ciudad</option>
+                <option value="0" selected disabled>Selecciona una ciudad</option>
                 <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
               </select>
 
@@ -192,8 +192,8 @@
             <div class="form-group col-lg-12 mb-3">
               <p>Indique quién es el aplicante principal*</p>
               <select formControlName="aplicante" class="form-select form-select-sm form-select-normal"
-                aria-label="Default select example">
-                <option selected value="0">Seleccione</option>
+                aria-label="Default select example" >
+                <option selected value="0" disabled>Seleccione</option>
                 <option value="1">Esposo</option>
                 <option value="2">Esposa</option>
                 <option value="3">Padre</option>
@@ -207,8 +207,8 @@
             <div class="form-group col-lg-12 mb-3">
               <p>¿Creas contenido (videos) en redes sociales?*</p>
               <select formControlName="contenido" class="form-select form-select-sm form-select-normal"
-                aria-label="Default select example">
-                <option selected value="">Seleccione</option>
+                aria-label="Default select example" >
+                <option selected value="" disabled>Seleccione</option>
                 <option value="0">No</option>
                 <option value="1">Si</option>
 
@@ -232,7 +232,7 @@
 
               <p>Llegó con mascotas</p>
               <select formControlName="llegadamascota" class="form-select form-select-sm form-select-normal">
-                <option selected value="">Seleccione</option>
+                <option selected value="" disabled>Seleccione</option>
 
                 <option value="0">No</option>
                 <option value="1">Si</option>
@@ -251,8 +251,9 @@
               <!-- <img src="assets/images/perfiles/perfil.png" id="preview" class="img-thumbnail"> -->
 
             </div>
-            <div class="col-lg-4 mb-3"><span class="p-normal-300">(Opcional)</span>
-            </div>
+            <!-- <div class="col-lg-4 mb-3">
+              <span class="p-normal-300">(Opcional)</span>
+            </div> -->
             <div class="form-group mb-3">
               <input type="file" (change)="onFileSelected($event)" name="file" class="file" accept=".jpg, .png, .gif">
               <div class="input-group my-3">
@@ -294,7 +295,7 @@
                 class="form-select form-select-sm form-select-normal" [(ngModel)]="selectedRubroId"
                 aria-label="Default select example" class="form-select form-select-sm form-select-normal"
                 aria-label="Default select example">
-                <option value="0" selected>Selecciona Rubro</option>
+                <option value="0" selected disabled>Selecciona Rubro</option>
                 <option *ngFor="let rubro of rubros" [value]="rubro.id">{{
                   rubro.rubro_description }}</option>
 
@@ -317,7 +318,7 @@
         </div>
         <div class="mt-3 d-grid gap-2 d-md-flex justify-content-md-end">
           <button class="btn btn-primary btn-navigate-form-step" type="button" step_number="2">Anterior</button>
-          <button class="btn btn-primary submit-btn" type="submit">Guardar</button>
+          <button class="btn btn-primary submit-btn" type="submit" [disabled]="formularioEnviado">{{ textoBoton }}</button>
         </div>
       </section>
     </form>

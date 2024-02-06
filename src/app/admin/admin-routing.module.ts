@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './views/auth/login/login.component';
 import { AdminComponent } from './admin.component';
+import { IntentoLoginGuard } from '../core/guard/intento-login.guard';
+import { ValidarAdminGuard } from '../core/guard/validar-admin.guard';
 
 
 const routes: Routes = [
@@ -11,13 +13,13 @@ const routes: Routes = [
   children: [
     {
       path: 'login', component: LoginComponent,
-      //canActivate: [IntentoLoginGuard],
+      canActivate: [IntentoLoginGuard],
       // {path:'registro',component:RegisterComponent},
     },
     {
       path: 'dashboard',
       loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule),
-      //canActivate:[ValidarTokenGuard],
+      canActivate:[ValidarAdminGuard],
 
     },
     {

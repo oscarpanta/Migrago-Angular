@@ -8,90 +8,89 @@
 <!-- <div class="card-header"><i class="fas fa-table mr-1 mb-5"></i>DataTable Example</div> -->
 
 
-  <!-- <div class="form-group form-inline">Full text search: <input class="form-control ml-2" type="text" name="searchTerm"
+<!-- <div class="form-group form-inline">Full text search: <input class="form-control ml-2" type="text" name="searchTerm"
         [(ngModel)]="countryService.searchTerm" />
         <span class="ml-3"
         *ngIf="countryService.loading$ | async">Loading...</span></div> -->
 
 
-        <div class="row col-lg-12">
-          <div class="form-group col-lg-4">
-            <label for="inputName">Titulo</label>
-            <input required type="text" class="form-control form-control-sm" id="inputName"  [(ngModel)]="searchTerm">
-          </div>
+<div class="row col-lg-12 d-flex justify-content-between">
+  <div class="form-group col-lg-4">
+    <label for="inputName">Titulo</label>
+    <input required type="text" class="form-control form-control-sm" id="inputName" [(ngModel)]="searchTerm">
+  </div>
 
-          <!-- <div class="form-group form-inline col-lg-4">Full text search:
+  <!-- <div class="form-group form-inline col-lg-4">Full text search:
             <input class="form-control ml-2" style="padding: .125rem .75rem" type="text" name="searchTerm" />
             <span class="ml-3">Loading...</span>
           </div> -->
-          <div class="form-group form-inline col-lg-4"> Estado
-            <select id="estadoSelect" (change)="onEstadoSelect($event)"
-              [(ngModel)]="selectedEstado" class="input_historia form-select form-select-normal"
-              aria-label="Default select example">
-              <option value="" selected>Seleccione Estado</option>
-              <option value="APROBADO">APROBADO</option>
-              <option value="PENDING">PENDING</option>
-              <option value="RECHAZADO">RECHAZADO</option>
-            </select>
-          </div>
-          <div class="form-group col-lg-2 d-flex align-items-center">
-            <button class="btn-primary" (click)="buscarLocalmente()">Buscar</button>
-          </div>
-        </div>
-
-  <!-- <div class="form-group form-inline col-lg-4">Full text search:
-    <input class="form-control ml-2" type="text" name="searchTerm" /><span class="ml-3">Loading...</span>
-  </div> -->
-  <table class="table table-striped">
-    <thead>
-      <tr>
-
-        <th scope="col">#</th>
-        <!-- <th scope="col" sbSortable="id"><span>Id</span></th> -->
-        <th scope="col" sbSortable="titulo"><span>Titulo</span></th>
-        <th scope="col" sbSortable="nombre"><span>Nombre Guia</span></th>
-        <th scope="col" sbSortable="apellido"><span>Apellido Guia</span></th>
-        <th scope="col" sbSortable="nacionalidad"><span>Nacionalidad</span></th>
-        <th scope="col" sbSortable="ruta"><span>Ruta Migracion</span></th>
-        <th scope="col" sbSortable="estado"><span>Estado</span></th>
-        <th scope="col" sbSortable="acciones"><span>Acciones</span></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let historia of historiasFiltradas">
-        <th scope="row">{{ historia.id }}</th>
-        <td><ngb-highlight [result]="historia.title">
-          </ngb-highlight>
-        </td>
-        <td><ngb-highlight [result]="historia.name"></ngb-highlight></td>
-        <td><ngb-highlight [result]="historia.lastname"></ngb-highlight></td>
-        <td><ngb-highlight [result]="historia.nationality_name"></ngb-highlight></td>
-        <td><ngb-highlight [result]="historia.name_way_migration"></ngb-highlight></td>
-        <td><ngb-highlight [result]="historia.status"></ngb-highlight></td>
-        <td>
-          <div class="btn-group">
-            <a (click)="editarHistoria(historia)" class="btn btn-sm btn-warning"><span
-                class="fas fa-pencil icon-md"></span></a>
-            <a (click)="eliminarHistoria(historia)" class="btn btn-sm btn-danger"><span
-                class="fas fa-circle-xmark icon-md"></span></a>
-
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="d-flex justify-content-between p-2">
-    <ngb-pagination [collectionSize]="total$" [(page)]="nropagina" [pageSize]="tamanopagina"
-      (pageChange)="onPageChange(nropagina)">
-    </ngb-pagination>
-    <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="tamanopagina"
-      (change)="onPageSizeChange()">
-      <option [ngValue]="2">2 items per page</option>
-      <option [ngValue]="4">4 items per page</option>
-      <option [ngValue]="6">6 items per page</option>
+  <div class="form-group form-inline col-lg-4"> Estado
+    <select id="estadoSelect" (change)="onEstadoSelect($event)" [(ngModel)]="selectedEstado"
+      class="input_historia form-select form-select-normal" aria-label="Default select example">
+      <option value="" selected>Seleccione Estado</option>
+      <option value="APROBADO">APROBADO</option>
+      <option value="PENDING">PENDING</option>
+      <option value="RECHAZADO">RECHAZADO</option>
     </select>
   </div>
+  <div class="form-group col-lg-2 d-flex align-items-center">
+    <button class="btn-primary" (click)="buscarLocalmente()">Buscar</button>
+  </div>
+</div>
+
+<!-- <div class="form-group form-inline col-lg-4">Full text search:
+    <input class="form-control ml-2" type="text" name="searchTerm" /><span class="ml-3">Loading...</span>
+  </div> -->
+<table class="table table-striped">
+  <thead>
+    <tr>
+
+      <th scope="col">#</th>
+      <!-- <th scope="col" sbSortable="id"><span>Id</span></th> -->
+      <th scope="col" sbSortable="titulo"><span>Titulo</span></th>
+      <th scope="col" sbSortable="nombre"><span>Nombre Guia</span></th>
+      <th scope="col" sbSortable="apellido"><span>Apellido Guia</span></th>
+      <th scope="col" sbSortable="nacionalidad"><span>Nacionalidad</span></th>
+      <th scope="col" sbSortable="ruta"><span>Ruta Migracion</span></th>
+      <th scope="col" sbSortable="estado"><span>Estado</span></th>
+      <th scope="col" sbSortable="acciones"><span>Acciones</span></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let historia of historiasFiltradas">
+      <th scope="row">{{ historia.id }}</th>
+      <td><ngb-highlight [result]="historia.title">
+        </ngb-highlight>
+      </td>
+      <td><ngb-highlight [result]="historia.name"></ngb-highlight></td>
+      <td><ngb-highlight [result]="historia.lastname"></ngb-highlight></td>
+      <td><ngb-highlight [result]="historia.nationality_name"></ngb-highlight></td>
+      <td><ngb-highlight [result]="historia.name_way_migration"></ngb-highlight></td>
+      <td><ngb-highlight [result]="historia.status"></ngb-highlight></td>
+      <td>
+        <div class="btn-group">
+          <a (click)="editarHistoria(historia)" class="btn btn-sm btn-warning"><span
+              class="fas fa-pencil icon-md"></span></a>
+          <a (click)="eliminarHistoria(historia)" class="btn btn-sm btn-danger"><span
+              class="fas fa-circle-xmark icon-md"></span></a>
+
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination [collectionSize]="total$" [(page)]="nropagina" [pageSize]="tamanopagina"
+    (pageChange)="onPageChange(nropagina)">
+  </ngb-pagination>
+  <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="tamanopagina"
+    (change)="onPageSizeChange()">
+    <option [ngValue]="2">2 items per page</option>
+    <option [ngValue]="4">4 items per page</option>
+    <option [ngValue]="6">6 items per page</option>
+  </select>
+</div>
 
 
 
@@ -170,7 +169,7 @@ background-color: #e4e4e4;">
                       <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
                     </select>
                   </div>
-                  <div class="form-group mb-3 col-lg-6">
+                  <!-- <div class="form-group mb-3 col-lg-6">
 
                     <p class="p-parrafo">Nacionalidad</p>
 
@@ -181,7 +180,7 @@ background-color: #e4e4e4;">
                         nacionalidad.nationality_name }}</option>
                     </select>
 
-                  </div>
+                  </div> -->
                   <div class="form-group mb-3 col-lg-6">
                     <p class="p-parrafo">Fecha de llegada al país* (público)</p>
                     <input type="date" name="" formControlName="fecha" class="form-control form-control-sm" value=""
@@ -199,7 +198,7 @@ background-color: #e4e4e4;">
                     </select>
                   </div>
 
-                  <div class="form-group mb-3 col-lg-6">
+                  <!-- <div class="form-group mb-3 col-lg-6">
 
                     <p class="p-parrafo">Ruta Migracion</p>
                     <select formControlName="RutaMigracion" class="form-select form-select-normal"
@@ -208,7 +207,7 @@ background-color: #e4e4e4;">
                       <option *ngFor="let ruta of rutasmigracion" [value]="ruta.id">{{
                         ruta.name_way_migration }}</option>
                     </select>
-                  </div>
+                  </div> -->
                   <div class="form-group mb-3 col-lg-6">
 
                     <p class="p-parrafo">Estado</p>
@@ -300,7 +299,7 @@ background-color: #e4e4e4;">
 
                   <div class="form-check mb-1" *ngFor="let temas of themas">
 
-                    <input class="form-check-input" type="checkbox" [value]="temas.id"
+                    <input class="form-check-input" type="checkbox" [value]="temas.id" disabled
                       [checked]="groupThemeIds.includes(temas.id)" (change)="onChange(temas.id, $event)">
                     <label class="form-check-label" style="
       font-size: 11pt;" for="flexCheckDefault ">
@@ -323,7 +322,7 @@ background-color: #e4e4e4;">
 
           </div>
           <div class="col-lg-5 my-3 ms-5">
-            <button class="btn btn-primary btn-sm" type="submit" id="">Guardar cambios</button>
+            <button class="btn btn-primary btn-sm" type="submit" id="" [disabled]="formularioEnviado">{{ textoBoton }}</button>
           </div>
         </form>
 

@@ -279,7 +279,7 @@ export class MainComponent implements OnInit,AfterViewInit{
         console.log(this.resp_historias)
         this.resp_historias.forEach(historia => {
           if (historia.photo) {
-            historia.urlImagen = this.imagenservice.getImageUrl(historia.photo);
+            historia.urlImagen = this.imagenservice.getImageUrlUser(historia.photo);
           }else{
             historia.urlImagen = 'assets/images/perfiles/profile1.jpg';
           }
@@ -308,8 +308,11 @@ export class MainComponent implements OnInit,AfterViewInit{
   }
 
   GetUsuario(){
-    //this.usuario =  this.authService.usuario;
-    this.usuario = this.authService.getUsuario();
+    //this.usuario = this.authService.getUsuario();
+    this.authService.getUsuario().subscribe((usuario:any) => {
+      this.usuario = usuario;
+      console.log(this.usuario);
+    });
   }
   openModal(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modalRegister' }).result.then(
@@ -330,15 +333,36 @@ export class MainComponent implements OnInit,AfterViewInit{
       this.estalogeado=false
 
     }
-    else{
-      this.estalogeado=true
+    else
+    {
       this.rolUsuario =this.authService.getRolUsuario();
       this.rolUsuario = this.rolUsuario!.replace(/"/g, '')
+      if (this.rolUsuario==='ROLE_ADMIN'){
+        this.estalogeado=false
+        return
+      }
+      this.estalogeado=true
+      // this.rolUsuario =this.authService.getRolUsuario();
+      // this.rolUsuario = this.rolUsuario!.replace(/"/g, '')
       this.GetUsuario();
-      console.log(this.usuario)
+      console.log(this.rolUsuario)
 
     }
   }
+  // logeado(){
+  //   if(!this.authService.estalogeado()){
+  //     this.estalogeado=false
+
+  //   }
+  //   else{
+  //     this.estalogeado=true
+  //     this.rolUsuario =this.authService.getRolUsuario();
+  //     this.rolUsuario = this.rolUsuario!.replace(/"/g, '')
+  //     this.GetUsuario();
+  //     console.log(this.usuario)
+
+  //   }
+  // }
   logout(){
     this.router.navigateByUrl('/auth');
     this.authService.logout();

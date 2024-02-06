@@ -42,8 +42,8 @@
                         <div class="col-lg-2">
                             <i class="fa-regular fa-comment-dots"></i>
                         </div>
-                        <div class="col-lg-9">
-                            <a routerLink="./historias"  class="link-dashboard"> Mis historias</a>
+                        <div class="col-lg-9"  [ngbTooltip]="(usuario.flagdata === '0') ? 'Debes actualizar tu perfil para crear historias' : ''">
+                            <a routerLink="./historias"  class="link-dashboard" [ngClass]="{'disabled-link': usuario.flagdata === '0'}"> Mis historias</a>
                         </div>
                     </div>
                     <div class="row mb-3 justify-content-between">
@@ -58,16 +58,16 @@
                         <div class="col-lg-2">
                             <i class="fa-regular fa-paperclip"></i>
                         </div>
-                        <div class="col-lg-9">
-                            <a routerLink="./agendadas"  class="link-dashboard"> Citas agendadas</a>
+                        <div class="col-lg-9" >
+                            <a routerLink="./agendadas"  class="link-dashboard" > Citas agendadas</a>
                         </div>
                     </div>
                     <div class="row mb-3 justify-content-between">
                         <div class="col-lg-2">
                             <i class="fa-regular fa-user"></i>
                         </div>
-                        <div class="col-lg-9">
-                            <a routerLink="./perfil" class="link-dashboard"> Actualizar perfil</a>
+                        <div class="col-lg-9" [ngbTooltip]="(usuario.flagpass === '0') ? 'Actualiza tu contraseña' : ''">
+                            <a routerLink="./perfil" class="link-dashboard" [ngClass]="{'disabled-link': usuario.flagpass === '0'}"> Actualizar perfil</a>
                         </div>
                     </div>
                     <div class="row mb-3 justify-content-between">

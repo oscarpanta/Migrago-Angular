@@ -1,0 +1,189 @@
+<app-dashboard-head title="Guias" [hideBreadcrumbs]="false"></app-dashboard-head>
+
+
+<div class="row col-lg-12 d-flex justify-content-between ">
+  <div class="form-group col-lg-4">
+    <label for="inputName">Nombre</label>
+    <input required type="text" class="form-control form-control-sm" id="inputName" [(ngModel)]="searchTerm">
+  </div>
+
+
+  <!-- <div class="form-group form-inline col-lg-4"> Estado
+    <select id="estadoSelect" (change)="onEstadoSelect($event)" [(ngModel)]="selectedEstado"
+      class="input_historia form-select form-select-normal" aria-label="Default select example">
+      <option value="" selected>Seleccione Estado</option>
+      <option value="APROBADO">APROBADO</option>
+      <option value="PENDING">PENDING</option>
+      <option value="RECHAZADO">RECHAZADO</option>
+    </select>
+  </div> -->
+  <div class="form-group col-lg-2 d-flex align-items-center">
+    <button class="btn-primary" (click)="buscarLocalmente()">Buscar</button>
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+
+      <th scope="col">#</th>
+
+      <th scope="col" sbSortable="nombre"><span>Nombre Guia</span></th>
+      <th scope="col" sbSortable="apellido"><span>Apellido Guia</span></th>
+      <th scope="col" sbSortable="nacionalidad"><span>Correo</span></th>
+      <th scope="col" sbSortable="estado"><span>Estado</span></th>
+      <th scope="col" sbSortable="acciones"><span>Acciones</span></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let guia of listaguiasfiltradas">
+      <th scope="row">{{ guia.id }}</th>
+
+      <td><ngb-highlight [result]="guia.name"></ngb-highlight></td>
+      <td><ngb-highlight [result]="guia.lastname"></ngb-highlight></td>
+      <td><ngb-highlight [result]="guia.username"></ngb-highlight></td>
+      <td><ngb-highlight [result]="guia.guide_status"></ngb-highlight></td>
+      <td>
+        <div class="btn-group">
+          <a (click)="editarGuia(guia)" class="btn btn-sm btn-warning"><span
+              class="fas fa-pencil icon-md"></span></a>
+          <a (click)="eliminarGuia(guia)" class="btn btn-sm btn-danger"><span
+              class="fas fa-circle-xmark icon-md"></span></a>
+
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination [collectionSize]="total$" [(page)]="nropagina" [pageSize]="tamanopagina"
+    (pageChange)="onPageChange(nropagina)">
+  </ngb-pagination>
+  <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="tamanopagina"
+    (change)="onPageSizeChange()">
+    <option [ngValue]="2">2 items per page</option>
+    <option [ngValue]="4">4 items per page</option>
+    <option [ngValue]="6">6 items per page</option>
+  </select>
+</div>
+
+
+
+<ng-template #modalContent let-modal>
+
+
+  <div class="modal-contenido">
+
+    <div class="modal-body modal-login">
+      <button type="button" class="close" (click)="cerrarModal()" style="
+         background: none;
+        float: right;
+        border: 0;
+        margin: 0.2rem;
+        padding: 2rem 0rem 0rem;">
+
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-body-primary" style="
+background-color: #e4e4e4;padding: 3rem;">
+        <span class="p-bold-500-20-blanco" style="
+    color: #5a2395;">Datos </span>
+        <span class="p-bold-500-20-blanco" style="
+    color: #5a2395;font-weight: normal;">del Guia</span>
+
+      </div>
+      <!-- <nav class="nav-modal-general" style="
+background-color: #e4e4e4;">
+        <div class="nav nav-tabs nav-pills nav-fill" id="nav-tab" role="tablist">
+          <button class="nav-link active" style="margin-right: 3pt;" id="nav-home-tab" data-bs-toggle="tab"
+            data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+            Historia
+          </button>
+          <button class="nav-link" style="margin-left: 3pt;" id="nav-profile-tab" data-bs-toggle="tab"
+            data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+            Temas
+          </button>
+
+        </div>
+      </nav> -->
+      <div class="modal-body-blanco  py-5 " style="padding-right: 5rem; padding-left: 5rem;">
+        <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="registroGuia()">
+          <div class="tab-content" id="nav-tabContent">
+
+            <ng-container>
+              <div class="row col-lg-12">
+
+                <div class="form-group mb-3 col-lg-6">
+                  <p class="p-bold-300-10-black">Nombre</p>
+
+                  <input type="text" id="" formControlName="nombre" class="input_historia form-control form-control-sm">
+
+                </div>
+                <div class="form-group mb-3 col-lg-6">
+                  <p class="p-bold-300-10-black">Apellido</p>
+
+                  <input type="text" id="" formControlName="apellido"
+                    class="input_historia form-control form-control-sm">
+
+                </div>
+
+                <div class="form-group mb-3 col-lg-6">
+                  <p class="p-bold-300-10-black">Correo</p>
+
+                  <input type="text" id="" formControlName="correo" class="input_historia form-control form-control-sm">
+
+                </div>
+
+                <!-- <div class="form-group mb-3 col-lg-6">
+                  <p class="p-bold-300-10-black">DNI</p>
+
+                  <input type="text" id="" formControlName="dni" class="input_historia form-control form-control-sm">
+
+                </div> -->
+
+                <div class="form-group mb-3 col-lg-6">
+
+                  <p class="p-parrafo">Estado</p>
+                  <select class="form-select form-select-normal" formControlName="estado">
+                    <option value="0" selected>Seleccione Estado</option>
+                    <option value="APROBADO">APROBADO</option>
+                    <option value="PENDING">PENDING</option>
+                    <option value="RECHAZADO">RECHAZADO</option>
+                  </select>
+                </div>
+
+
+
+                <div class="form-group mb-3">
+                  <p class="p-bold-300-10-black">Detalle de la historia:</p>
+
+                  <textarea formControlName="texto_historia" cols="30" rows="10" class="form-control form-contro-sm">
+
+                  </textarea>
+                </div>
+
+
+              </div>
+
+            </ng-container>
+
+
+
+
+
+
+          </div>
+          <div class="col-lg-5 my-3 ms-5">
+            <button class="btn btn-primary btn-sm" type="submit" id="" [disabled]="formularioEnviado">{{ textoBoton }}</button>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</ng-template>

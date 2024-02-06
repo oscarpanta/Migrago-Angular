@@ -45,9 +45,14 @@
             <div class="form-group">
 
 
-              <input type="password" formControlName="password"   name="password" class="form-control password1" value="clave"
+              <!-- <input type="password" formControlName="password"   name="password" class="form-control password1" value="clave"
                 placeholder="Establecer contraseña">
-              <span class="fa  password-icon show-password fa-eye"></span>
+              <span class="fa  password-icon show-password fa-eye"></span> -->
+              <input type="password" id="inputPassword" formControlName="password" name="password" class="form-control password1"
+                [type]="ocultarpas ? 'password' : 'text'" placeholder="Establecer contraseña" required>
+
+              <span class="fa  password-icon show-password1 " [ngClass]="{'fa-eye': ocultarpas, 'fa-eye-slash': !ocultarpas }"
+                (click)="ocultarpass1()"></span>
 
 
             </div>

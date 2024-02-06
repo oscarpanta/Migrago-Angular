@@ -21,7 +21,9 @@ export interface Usuario{
   user_updated_id:number;
   updated_at:Date;
   phone:string;
-  birth_date:Date
+  birth_date:Date;
+  flagdata:string;
+  flagpass:string;
 
 }
 export interface Roles{

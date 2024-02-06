@@ -948,3 +948,10 @@ margin-left: 0.3rem;
   text-align: center !important;
   color:#54606C !important;
 }
+
+.disabled-link {
+  pointer-events: none;
+  color: grey; /* Puedes ajustar el color según tus preferencias */
+  text-decoration: none;
+  cursor: not-allowed;
+}

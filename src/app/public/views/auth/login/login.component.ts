@@ -16,16 +16,18 @@ import { AuthResponse } from 'src/app/core/interfaces/login.interface';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  miFormulario:FormGroup=this.fb.group({
-    username:['',[Validators.required]],
-    password:['',[Validators.required]],
+  ocultarpas: boolean = true;
+
+  miFormulario: FormGroup = this.fb.group({
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required]],
   });
 
   // req = {
   //   username: "",
   //   password: "",
   // };
-  constructor( private fb:FormBuilder,private router:Router,private displayService: LayoutService,private authService:AutenticacionService){}
+  constructor(private fb: FormBuilder, private router: Router, private displayService: LayoutService, private authService: AutenticacionService) { }
   ngOnInit(): void {
     this.ocultarpass();
     this.displayService.setNavigationVisibility(false);
@@ -35,7 +37,11 @@ export class LoginComponent implements OnInit {
     this.displayService.setNavigationVisibility(true);
   }
 
-  ocultarpass(){
+  ocultarpass1() {
+    // a=!a;
+    this.ocultarpas = !this.ocultarpas;
+  }
+  ocultarpass() {
     window.addEventListener("load", function () {
 
       // icono para mostrar contraseña
@@ -63,7 +69,7 @@ export class LoginComponent implements OnInit {
   }
   login() {
     console.log(this.miFormulario.value);
-    const {username,password} = this.miFormulario.value;
+    const { username, password } = this.miFormulario.value;
 
     let _req = {
       username: username,
@@ -73,31 +79,47 @@ export class LoginComponent implements OnInit {
     };
     console.log(_req);
     // if (!(this.req.username == '' || this.req.username == undefined) && !(this.req.password == '' || this.req.password == undefined)) {
-      this.authService.login(_req).subscribe((res:any)=> {
+    this.authService.login(_req).subscribe((res: any) => {
+      console.log(res)
+      if (res) {
+        if (res[0].roles[0].role_name == 'ROLE_CLIENT') {
+
+          this.router.navigate(['/auth/dashboardCliente']);
+
+        }
+        else if (res[0].roles[0].role_name == 'ROLE_GUIDE') {
+
+          if (res[0].usuario.flagpass === '0') {
+            this.router.navigate(['/auth/dashboardGuia/cambiar']);
+            Swal.fire({
+              title: 'Alerta',
+              text: 'Debes cambiar tu contraseña',
+              icon: 'warning',
+              timer: 2000,
+              showConfirmButton: true
+            });
+          }
+          else
+           {
+            this.router.navigate(['/auth/dashboardGuia']);}
+
+
+
+       //   this.router.navigate(['/auth/dashboardGuia']);
+        }
+
+      }
+      else {
         console.log(res)
-        if (res) {
-          if(res[0].roles[0].role_name == 'ROLE_CLIENT'){
-            this.router.navigate(['/auth/dashboardCliente']);
-
-
-          }
-          else if(res[0].roles[0].role_name== 'ROLE_GUIDE'){
-
-            this.router.navigate(['/auth/dashboardGuia']);
-          }
-
-        }
-        else {
-          console.log(res)
-          // this.router.navigate(['/auth/dashboarCliente']);
-          Swal.fire('Error',res,'error')
-        }
-      },
-        (error: any) => {
-          console.error('Error:');
-          Swal.fire('Error', 'Datos incorrectos','error')
-        }
-      );
+        // this.router.navigate(['/auth/dashboarCliente']);
+        Swal.fire('Error', res, 'error')
+      }
+    },
+      (error: any) => {
+        console.error('Error:');
+        Swal.fire('Error', 'Datos incorrectos', 'error')
+      }
+    );
     // } else {
     //   console.log('datos incompletos')
     //   console.log(this.req.username);

@@ -84,17 +84,36 @@ export class HeaderComponent implements OnInit {
   }
   GetUsuario(){
     //this.usuario =  this.authService.usuario;
-    this.usuario = this.authService.getUsuario();
+
+
+    // this.usuario = this.authService.getUsuario();
+    // console.log(this.authService.getUsuario())
+    // console.log(this.usuario)
+
+    this.authService.getUsuario().subscribe((usuario:any) => {
+      this.usuario = usuario;
+      console.log(this.usuario);
+    });
+
   }
+
+
   logeado(){
     if(!this.authService.estalogeado()){
       this.estalogeado=false
 
     }
-    else{
-      this.estalogeado=true
+    else
+    {
       this.rolUsuario =this.authService.getRolUsuario();
       this.rolUsuario = this.rolUsuario!.replace(/"/g, '')
+      if (this.rolUsuario==='ROLE_ADMIN'){
+        this.estalogeado=false
+        return
+      }
+      this.estalogeado=true
+      // this.rolUsuario =this.authService.getRolUsuario();
+      // this.rolUsuario = this.rolUsuario!.replace(/"/g, '')
       this.GetUsuario();
       console.log(this.rolUsuario)
 

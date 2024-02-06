@@ -21,8 +21,11 @@ export class DashboardComponent implements OnInit {
     this.GetUsuario()
   }
   GetUsuario(){
-    //this.usuario =  this.authService.usuario;
-    this.usuario = this.authService.getUsuario();
+   //this.usuario = this.authService.getUsuario();
+   this.authService.getUsuario().subscribe((usuario:any) => {
+    this.usuario = usuario;
+    console.log(this.usuario);
+  });
   }
   mostrarChart() {
     // const $grafica: HTMLElement | null = document.querySelector("#myChart");

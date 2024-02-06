@@ -6,6 +6,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { LoginComponent } from './views/auth/login/login.component';
 import { AdminComponent } from './admin.component';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,6 +20,7 @@ import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     AdminRoutingModule,
+    ReactiveFormsModule
   ],
 
 })

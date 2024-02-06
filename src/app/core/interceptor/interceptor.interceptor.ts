@@ -1,44 +1,79 @@
-import { Injectable,Injector } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpContext,
+  HttpContextToken
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { AutenticacionService } from '../services/autenticacion.service';
 
+const AUTH_TOKEN = new HttpContextToken<boolean>(() => false);
+
+export function addTokenHeader() {
+  return new HttpContext().set(AUTH_TOKEN, true);
+}
 
 @Injectable()
 export class InterceptorInterceptor implements HttpInterceptor {
 
-  constructor(private router:Router,private inject:Injector) {}
+  // constructor(private router:Router,private inject:Injector) {}
 
+  // intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  //   let authservice = this.inject.get(AutenticacionService)
+  //   console.log('Interceptor is running');
+  //   let jwtToken = request.clone({
+  //     setHeaders:{
+  //       Authorization: 'Bearer ' +authservice.getToken()
+  //     }
+  //   })
+  //   return next.handle(jwtToken);
+
+  // }
+
+
+  constructor(private authService: AutenticacionService,private router: Router) { }
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    //let authservice = localStorage.getItem('token')
-    let authservice = this.inject.get(AutenticacionService)
-    console.log('Interceptor is running');
-    let jwtToken = request.clone({
-      setHeaders:{
-        Authorization: 'Bearer ' +authservice.getToken()
+    // request =this.addToken(request)
+    // return next.handle(request);
+
+    request = this.addToken(request);
+
+    return next.handle(request).pipe(
+      catchError((error) => {
+        if (error.status === 401 && error.error?.error === 'Expired token') {
+          console.log("error")
+          // Token expirado, realiza las acciones correspondientes
+          this.handleExpiredToken();
+        }
+
+        return throwError(error);
+      })
+    );
+
+
+  }
+  private addToken(request: HttpRequest<unknown>) {
+    if (request.context.get(AUTH_TOKEN)) {
+      const token = this.authService.getToken()
+      if (token) {
+        const authRequest = request.clone({
+          headers: request.headers.set('Authorization', `Bearer ${token}`)
+        });
+        return authRequest
       }
-    })
-    return next.handle(jwtToken);
-    // let token = localStorage.getItem('token');
-    // let req = request;
-    // if(token){
+      return request
 
-    //   req=request.clone( {
+    }
+    return request
+  }
 
-    //     setHeaders:{
-    //       Authorization:`Bearer ${token}`
-    //     }
-    //   });
-    // }
-
-
-
-    // return next.handle(req);
+  private handleExpiredToken() {
+    // Limpiar localStorage y redirigir al login
+    this.authService.logout();
+    this.router.navigate(['/auth/login']); // Ajusta la ruta según tu configuración
   }
 }

@@ -65,10 +65,10 @@ export class DetalleComponent implements OnInit, AfterViewInit {
   // modalContinuacion: any;
   // datePipe: DatePipe = new DatePipe('en-US');
   guiaid!: any;
-  perfilUrlImagen:any;
+  perfilUrlImagen: any;
   usuario!: Usuario;
-  estalogeado : boolean = false;
-  rolUsuario : string |null ="";
+  estalogeado: boolean = false;
+  rolUsuario: string | null = "";
 
 
   currentSection = 1;
@@ -78,7 +78,7 @@ export class DetalleComponent implements OnInit, AfterViewInit {
   selectedEventCalendar2: any = null;
   arr: any
   closeResult = '';
-  citasRegistradas : any
+  citasRegistradas: any
   calendarVisible = true;
   calendarVisibleForSection2 = false;
   calendarOptionsForSection2: any = {};
@@ -128,8 +128,8 @@ export class DetalleComponent implements OnInit, AfterViewInit {
 
   calificacionSeleccionada: number | null = null;
   estrellas = [1, 2, 3, 4, 5];
-  miFormularioReview:FormGroup=this.fb.group({
-    comentario:['',[Validators.required,Validators.minLength(5)]],
+  miFormularioReview: FormGroup = this.fb.group({
+    comentario: ['', [Validators.required, Validators.minLength(5)]],
     calificacion: ['', Validators.required]
   });
 
@@ -191,6 +191,16 @@ export class DetalleComponent implements OnInit, AfterViewInit {
       const confirmarRegistro = confirm('¿Deseas registrar la cita?');
 
       if (confirmarRegistro) {
+        if (this.usuario.name === null) {
+          localStorage.removeItem('fechainicio');
+          localStorage.removeItem('fechafin');
+          localStorage.removeItem('temas');
+          localStorage.removeItem('historia')
+
+          Swal.fire('Error', 'Debes actualizar tu perfil para solicitar una cita', 'error')
+          return
+        }
+        console.log(this.usuario)
 
         this.router.navigate(['/historias/pagoCita']);
         // let req = {
@@ -225,7 +235,7 @@ export class DetalleComponent implements OnInit, AfterViewInit {
         //     }
         //   });
       }
-      else{
+      else {
         localStorage.removeItem('fechainicio');
         localStorage.removeItem('fechafin');
         localStorage.removeItem('temas');
@@ -258,8 +268,11 @@ export class DetalleComponent implements OnInit, AfterViewInit {
 
   }
   GetUsuario() {
-    this.usuario = this.authService.getUsuario();
-    console.log(this.usuario)
+    //this.usuario = this.authService.getUsuario();
+    this.authService.getUsuario().subscribe((usuario: any) => {
+      this.usuario = usuario;
+      console.log(this.usuario);
+    });
   }
   obtenerDetalleHistoria(storyId: number) {
 
@@ -298,9 +311,9 @@ export class DetalleComponent implements OnInit, AfterViewInit {
       console.log('a' + this.historiaDetalle)
       //  console.log(this.historiaDetalle.name)
       // this.historiaDetalle.name.split(' ')[0];
-      if(this.historiaDetalle.story.data[0].photo){
-        this.perfilUrlImagen= this.imagenservice.getImageUrl(this.historiaDetalle.story.data[0].photo);
-      }else{
+      if (this.historiaDetalle.story.data[0].photo) {
+        this.perfilUrlImagen = this.imagenservice.getImageUrlUser(this.historiaDetalle.story.data[0].photo);
+      } else {
         this.perfilUrlImagen = 'assets/images/perfiles/profile1.jpg';
       }
 
@@ -727,7 +740,7 @@ export class DetalleComponent implements OnInit, AfterViewInit {
 
 
   }
-  mandarlocalstorage(){
+  mandarlocalstorage() {
     localStorage.setItem('fechainicio', this.miFormulario.get('fechainicio')?.value);
     localStorage.setItem('fechafin', this.miFormulario.get('fechafin')?.value);
     localStorage.setItem('temas', JSON.stringify(this.groupThemeIds));
@@ -787,9 +800,16 @@ export class DetalleComponent implements OnInit, AfterViewInit {
       Swal.fire('Error', 'Debes registrate como usuario cliente para adquirir una cita', 'error')
       return
     }
-    this.mandarlocalstorage()
-    this.modalService.dismissAll();
-    this.router.navigate(['/historias/pagoCita']);
+
+    if (this.usuario.name !== null) {
+      this.mandarlocalstorage()
+      this.modalService.dismissAll();
+      this.router.navigate(['/historias/pagoCita']);
+    }
+    else {
+      Swal.fire('Error', 'Debes actualizar tu perfil para solicitar una cita', 'error')
+      return
+    }
     //this.abrirmodalpagos()
 
     // let req = {
@@ -836,8 +856,8 @@ export class DetalleComponent implements OnInit, AfterViewInit {
       console.log(this.paymentForm.value)
       let historia = this.historiaDetalle.story.data[0].title
 
-      if(localStorage.getItem('historia'))
-       historia=localStorage.getItem('historia')
+      if (localStorage.getItem('historia'))
+        historia = localStorage.getItem('historia')
 
       let req = {
 
@@ -956,7 +976,7 @@ export class DetalleComponent implements OnInit, AfterViewInit {
     //   windowClass = 'modalSeccion2';
     // }
 
-    this.modalService.open(content, { backdrop: 'static', keyboard: false, ariaLabelledBy: 'modal-basic-title',windowClass : 'modalSeccion1'}).result.then((result) => {
+    this.modalService.open(content, { backdrop: 'static', keyboard: false, ariaLabelledBy: 'modal-basic-title', windowClass: 'modalSeccion1' }).result.then((result) => {
       console.log(result)
       this.modalService.open(nextModal);
 
@@ -1192,41 +1212,26 @@ export class DetalleComponent implements OnInit, AfterViewInit {
       });
       this.calendarOptions.events = events;
       // this.currentEvents = this.calendarOptions.events;
-
-      this.citasRegistradas = events.map((event:any) => event.start);
-
-      // Llama a la función customDayRender para actualizar la apariencia del calendario principal
-    //  this.customDayRender(events);
+      //  this.citasRegistradas = events.map((event:any) => event.start);
     });
   }
-  // customDayRender(events: any[]) {
-  //   this.calendarOptions.eventRender = (info) => {
-  //     const fecha = info.event.start.toISOString().split('T')[0]; // Obtén la fecha del evento
 
-  //     // Verifica si la fecha tiene citas registradas
-  //     const tieneCitas = events.some(event => event.start.includes(fecha));
-
-  //     if (tieneCitas) {
-  //       info.el.style.backgroundColor = 'green'; // Color para días con citas
-  //     }
-  //   };
-  // }
 
   getScoreArray(score: string): any[] {
     const numericScore = +score; // Convertimos el string a número
     return Array.from({ length: numericScore });
   }
 
-  logeado(){
-    if(!this.authService.estalogeado()){
-      this.estalogeado=false
+  logeado() {
+    if (!this.authService.estalogeado()) {
+      this.estalogeado = false
       console.log(this.usuario)
       console.log(this.rolUsuario)
 
     }
-    else{
-      this.estalogeado=true
-      this.rolUsuario =this.authService.getRolUsuario();
+    else {
+      this.estalogeado = true
+      this.rolUsuario = this.authService.getRolUsuario();
       this.rolUsuario = this.rolUsuario!.replace(/"/g, '')
       this.GetUsuario();
       //userRole === '"ROLE_CLIENT"'
@@ -1240,15 +1245,15 @@ export class DetalleComponent implements OnInit, AfterViewInit {
     this.miFormularioReview.get('calificacion')?.setValue(calificacion);
   }
 
-  registroReview(){
+  registroReview() {
     const comentario = this.miFormularioReview.get('comentario')?.value;
     const calificacion = this.miFormularioReview.get('calificacion')?.value;
     console.log(this.miFormularioReview)
     console.log(comentario)
     console.log(calificacion)
 
-    if(!this.estalogeado){
-      Swal.fire('Error', "Debes logearte para publicar un comentario",'error')
+    if (!this.estalogeado) {
+      Swal.fire('Error', "Debes logearte para publicar un comentario", 'error')
       return
     }
 
@@ -1257,24 +1262,24 @@ export class DetalleComponent implements OnInit, AfterViewInit {
       request: {
         review_id: 0,
         story_id: this.historiaDetalle.story.data[0].storie_id,
-        user_id:this.usuario.id,
-        text_review:comentario,
-        score:calificacion,
+        user_id: this.usuario.id,
+        text_review: comentario,
+        score: calificacion,
       },
     }
 
     this.historiasService.insertarReviews(req).subscribe(
       response => {
         console.log('review:' + JSON.stringify(response));
-        if ( response[0][0].out_rpta === "OK") {
-          Swal.fire('Bien',  "Comentario publicado con éxito",'success')
+        if (response[0][0].out_rpta === "OK") {
+          Swal.fire('Bien', "Comentario publicado con éxito", 'success')
         }
-        else{
-          Swal.fire('Error', response[0][0].out_rpta,'error')
+        else {
+          Swal.fire('Error', response[0][0].out_rpta, 'error')
         }
 
 
-     }
+      }
 
 
     );

@@ -31,6 +31,8 @@ export class HistoriasComponent implements OnInit {
   imageSrc2!: string;
   imageSrc3!: string;
   mostrarLoad: boolean = false;
+  formularioEnviado = false;
+  textoBoton = 'Guardar cambios';
 
   historiasporGuia: any[] = [];
   historiaDetalle: any;
@@ -78,9 +80,9 @@ export class HistoriasComponent implements OnInit {
       titulo: ['', [Validators.required]],
       countrySelect: [[-1], [Validators.required]],
       citySelect: [[-1], [Validators.required]],
-      Nacionalidad: [[-1], [Validators.required]],
+     // Nacionalidad: [[-1], [Validators.required]],
       ModoMigracion: [[-1], [Validators.required]],
-      RutaMigracion: [[-1], [Validators.required]],
+      //RutaMigracion: [[-1], [Validators.required]],
       texto_historia: ['', [Validators.required]],
       fecha: ['', [Validators.required]],
       temas: [this.groupThemeIds, [Validators.required]]
@@ -104,12 +106,18 @@ export class HistoriasComponent implements OnInit {
   }
 
   GetUsuario() {
-    //this.usuario =  this.authService.usuario;
-    this.usuario = this.authService.getUsuario();
+
+   // this.usuario = this.authService.getUsuario();
+   this.authService.getUsuario().subscribe((usuario:any) => {
+    this.usuario = usuario;
+    console.log(this.usuario);
+  });
   }
   GetGuiaId() {
     this.idguia = this.authService.getGuia();
+    console.log(this.idguia)
     this.idguia = Number(this.idguia.replace(/[^0-9]/g, ''));
+    console.log(this.idguia)
   }
   // browse() {
 
@@ -215,8 +223,8 @@ export class HistoriasComponent implements OnInit {
       },
       order: {
 
-        column: null,
-        mode: null
+        column: "t.id",
+        mode: "asc"
       },
       page_size: 100,
       pagination_key: 1
@@ -249,6 +257,7 @@ export class HistoriasComponent implements OnInit {
     this.array = []
     this.historiaDetalle = true
     this.idhistory = guia.id
+    console.log(this.idhistory)
     const requestData = {
       request: {
         story_id: guia.id,
@@ -263,24 +272,19 @@ export class HistoriasComponent implements OnInit {
     };
 
     this.historiaguiaservice.getStoriesDetalle(requestData).subscribe(response => {
-      console.log(response)
-      console.log(response.story.data[0].title)
-      console.log(response.story.data[0].lastname)
-      console.log(response.story.data[0].arrival_date)
-      console.log(response.images_story.totalElements)
-      console.log(response.group_themes.data)
-      // console.log(response.images_story.data.length)
+
       if (response) {
 
         this.historiaDetalle = response;
+        console.log(response.story)
         console.log('a' + this.historiaDetalle)
         this.selectedCountryId = response.story.data[0].contry_id;
 
 
         this.selectedCityId = response.story.data[0].city_id;
-        this.selectedNationalityId = response.story.data[0].nationality_id;
+      //  this.selectedNationalityId = response.story.data[0].nationality_id;
         this.selectedModoMigrationId = response.story.data[0].migration_mode_id;
-        this.selectedRutaMigrationId = response.story.data[0].way_migration_id;
+      //  this.selectedRutaMigrationId = response.story.data[0].way_migration_id;
         this.idhistory = response.story.data[0].storie_id
         this.selectedFecha = response.story.data[0].arrival_date
         // this.flagimage1 = response.images_story.data;
@@ -312,9 +316,9 @@ export class HistoriasComponent implements OnInit {
             titulo: response.story.data[0].title,
             countrySelect: response.story.data[0].contry_id,
             citySelect: response.story.data[0].city_id,
-            Nacionalidad: response.story.data[0].nationality_id,
+        //    Nacionalidad: response.story.data[0].nationality_id,
             ModoMigracion: response.story.data[0].migration_mode_id,
-            RutaMigracion: response.story.data[0].way_migration_id,
+         //   RutaMigracion: response.story.data[0].way_migration_id,
             texto_historia: response.story.data[0].story_text,
             fecha: response.story.data[0].arrival_date,
             temas: this.groupThemeIds,
@@ -620,9 +624,9 @@ export class HistoriasComponent implements OnInit {
       titulo: ['', [Validators.required]],
       countrySelect: [[0], [Validators.required]],
       citySelect: [[0], [Validators.required]],
-      Nacionalidad: [[0], [Validators.required]],
+      //Nacionalidad: [[0], [Validators.required]],
       ModoMigracion: [[0], [Validators.required]],
-      RutaMigracion: [[0], [Validators.required]],
+     // RutaMigracion: [[0], [Validators.required]],
       texto_historia: ['', [Validators.required]],
      fecha: ['', [Validators.required]],
       temas: this.groupThemeIds,
@@ -658,8 +662,8 @@ export class HistoriasComponent implements OnInit {
   }
 
   registroHistoria() {
-    const { titulo, countrySelect, citySelect, Nacionalidad, ModoMigracion, RutaMigracion, texto_historia, fecha, temas } = this.miFormulario.value;
-  // const { titulo, countrySelect, citySelect, ModoMigracion, texto_historia, temas } = this.miFormulario.value;
+    //const { titulo, countrySelect, citySelect, Nacionalidad, ModoMigracion, RutaMigracion, texto_historia, fecha, temas } = this.miFormulario.value;
+   const { titulo, countrySelect, citySelect, ModoMigracion, texto_historia,fecha, temas } = this.miFormulario.value;
     console.log(temas)
     // console.log(temas.length)
     console.log(this.miFormulario.value)
@@ -670,9 +674,14 @@ export class HistoriasComponent implements OnInit {
       return
     }
 
+    this.formularioEnviado = true;
+    this.textoBoton = 'Esperando registro';
+
     if (this.opc == 0) { // edita
       // console.log("abc")
       if (this.imageSrc == '' && this.imageSrc2 == '' && this.imageSrc3 == '') {
+        this.formularioEnviado = false;
+        this.textoBoton = 'Guardar cambios';
         Swal.fire('Error', 'Debe ingresar almenos una imagen', 'error')
         return
       }
@@ -683,15 +692,15 @@ export class HistoriasComponent implements OnInit {
           user_id: this.usuario.id,
           country_id: countrySelect,
           city_id: citySelect,
-          nationality_id: Nacionalidad,
+          nationality_id: null,
           migration_mode_id: ModoMigracion,
-          way_migration_id: RutaMigracion,
+          way_migration_id: null,
           group_theme_id: null,//temas
           title: titulo,
           arrival_date: fecha,
           story_text: texto_historia,
           rating: 0,
-          status: "APROBADO",
+          status: "PENDING",
           group_themes: this.groupThemeIds!.map((id: any) => ({
             group_theme_id: id
           }))
@@ -703,9 +712,13 @@ export class HistoriasComponent implements OnInit {
           //  console.log(res[0].in_id);
           if (res[0][0].out_rpta === "OK") {
             this.modalClose.nativeElement.click();
+            this.formularioEnviado = false;
+            this.textoBoton = 'Guardar cambios';
             this.listahistoriasGuia()
             Swal.fire('Success', 'Historia editada con exito', 'success')
           } else {
+            this.formularioEnviado = false;
+            this.textoBoton = 'Guardar cambios';
             Swal.fire('Error', 'No se pudo editar historia', 'error')
           }
         });
@@ -714,6 +727,8 @@ export class HistoriasComponent implements OnInit {
     }
     else {  //inserta
       if (this.imageSrc == '') {
+        this.formularioEnviado = false;
+        this.textoBoton = 'Guardar cambios';
         Swal.fire('Error', 'Debe ingresar una imagen', 'error')
         return
       }
@@ -724,9 +739,9 @@ export class HistoriasComponent implements OnInit {
           user_id: this.usuario.id,
           country_id: countrySelect,
           city_id: citySelect,
-          nationality_id: Nacionalidad,
+          nationality_id: null,
           migration_mode_id: ModoMigracion,
-          way_migration_id: RutaMigracion,
+          way_migration_id: null,
           group_theme_id: null,//temas
           title: titulo,
           arrival_date: fecha,
@@ -839,12 +854,15 @@ export class HistoriasComponent implements OnInit {
                 }
               );
             }
-
+            this.formularioEnviado = false;
+            this.textoBoton = 'Guardar cambios';
 
             this.modalClose.nativeElement.click();
             this.listahistoriasGuia()
             Swal.fire('!Tu historia ha sido guardada con éxito!', 'Nos tomaremos hasta 72 horas para revisarla. Si tenemos alguna sugerencia, lo haremos por correo', 'success')
           } else {
+            this.formularioEnviado = false;
+            this.textoBoton = 'Guardar cambios';
             Swal.fire('Error', 'No se pudo registrar historia', 'error')
           }
         });
@@ -858,51 +876,7 @@ export class HistoriasComponent implements OnInit {
 
 
 
-  // onChange(id: string, event: any) {
-  //   const arr = this.miFormulario.get('temas') as FormArray;
-  //   //  if(this.groupThemeIds)
-  //   //  {
-  //   //   arr.push(this.groupThemeIds)
-  //   //  }
-  //   // const arr = <FormArray>this.miFormulario.controls['temas']
-  //   const isChecked = (event.target as HTMLInputElement).checked;
-  //   console.log(id)
-  //   console.log('Valor de isChecked:', isChecked);
-  //   if (isChecked) {
-  //     arr.push(new FormControl(id));
-  //     //this.temasFormControls.push(this.fb.group({id}))
-  //     console.log("ab")
-  //     this.array.push({ id });
 
-  //   } else {
-  //     //if(this.historiaDetalle){
-  //     const index = arr.controls?.findIndex(x => x.value == id)
-  //     if (index >= 0) {
-  //       arr.removeAt(index)
-  //       console.log("bc")
-  //     }
-  //     const arrayIndex = this.array.findIndex((item: any) => item.id == id);
-  //     const arrayIndex2 = this.groupThemeIds.findIndex((item: any) => item.id == id);
-  //     if (arrayIndex >= 0) {
-  //       this.array.splice(arrayIndex, 1);
-
-  //       console.log("ID eliminado del array");
-
-  //     }
-  //     if(arrayIndex2>=0){
-  //       this.groupThemeIds.splice(arrayIndex,1);
-  //       console.log(this.groupThemeIds);
-  //     }
-  //     //}
-
-
-  //     //  this.array.pop();
-  //   }
-  //   console.log('formul' + JSON.stringify(this.miFormulario.value))
-  //   console.log(arr.value);
-  //   console.log(this.array)
-
-  // }
 
   onChange(id: string, event: any) {
     const arr = this.miFormulario.get('temas') as FormArray;

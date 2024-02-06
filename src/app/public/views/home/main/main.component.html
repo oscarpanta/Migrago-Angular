@@ -42,7 +42,7 @@ align-items: center;     display: flex;">
             <i class="fas fa-user-circle"></i>
           </a>
           <span class="nombre-usuario dropdown-toggle  me-4" href="#" role="button" id="perfilDropdown"
-            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username}}</span>
+            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username | slice:0:usuario.username.indexOf('@') }}</span>
           <!-- <div class="dropdown-menu" aria-labelledby="perfilDropdown">
             <a class="dropdown-item" href="#">Perfil</a>
             <a class="dropdown-item" href="#">Configuración</a>
@@ -127,7 +127,7 @@ align-items: center;     display: flex;">
               <i class="fas fa-user-circle" style="font-size: 30px;"></i>
             </a>
             <span class="nombre-usuario dropdown-toggle" href="#" role="button" id="perfilDropdown"
-              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username}}</span>
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username | slice:0:usuario.username.indexOf('@') }}</span>
             <div class="dropdown-menu" [ngSwitch]="rolUsuario" aria-labelledby="perfilDropdown">
               <ng-container *ngSwitchCase='"ROLE_CLIENT"'>
                 <a class="dropdown-item" routerLink="/auth/dashboardCliente/agendadas">Agendadas</a>
@@ -338,7 +338,7 @@ align-items: center;     display: flex;">
     <!-- <p [style.padding-right]="'1em'" *ngFor="let tema of Temas; let last = last">
       <span [style.margin-right]="'70px'">{{ formatDescriptionThemes(tema.details.data) }}</span> -->
       <!-- <span ><i class="fas fa-xs fa-circle"></i></span> -->
-  
+
 </div>
 <!-- seccion historias como la tuya -->
 
@@ -484,10 +484,10 @@ align-items: center;     display: flex;">
       <div class="container__verificados__head">
         <div class="container__verificados__head__title">
           <span class="letra__b">Reseñas  </span>
-        
+
         </div>
         <div class="container__verificados__head__title">
-         
+
           <span class="letra__b">de migrantes</span>
         </div>
         <div class="container__verificados__head__subtitle">

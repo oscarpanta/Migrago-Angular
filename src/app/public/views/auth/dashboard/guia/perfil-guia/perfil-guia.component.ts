@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { notZeroValidator } from 'src/app/core/directives/not-zero.directive';
 import { Usuario } from 'src/app/core/interfaces/login.interface';
 import { AutenticacionService } from 'src/app/core/services/autenticacion.service';
 import { Cities } from 'src/app/public/views/interfaces/cities.interface';
@@ -26,7 +28,7 @@ export class PerfilGuiaComponent implements OnInit {
   nationalities: Nationalities[] = []
   rutasmigracion: WayMigration[] = []
   modemigrations: MigrationMode[] = []
-  rubros:any[] = []
+  rubros: any[] = []
   guia: any[] = [];
   miFormulario!: FormGroup;
   // idusuario : any;
@@ -34,6 +36,8 @@ export class PerfilGuiaComponent implements OnInit {
   usuario!: Usuario;
   archivos: any = []
   imageSrc!: string;
+  formularioEnviado = false;
+  textoBoton = 'Guardar';
 
   selectedOption: any = null;
   selectedCountryId: number | null = null;
@@ -41,39 +45,41 @@ export class PerfilGuiaComponent implements OnInit {
   selectedNationalityId: number = 0;
   selectedModoMigrationId: number = 0;
   selectedRutaMigrationId: number = 0;
-  selectedRubroId:number=0;
+  selectedRubroId: number = 0;
   selectedFecha!: Date;
   selectedFechaNac!: Date;
-  guidework!:any;
+  guidework!: any;
   guiaTrabajando!: number;
   selectedFile!: File;
-
+  //selectedMigranteId : number=0
+  isCountrySelectDisabled: boolean = false;
   constructor(private authService: AutenticacionService,
     private country: CountriesService, private fb: FormBuilder, private waymigration: WaysMigrationService,
-    private temas: TemasService, private imagenservice: ImagenesService,private rubroservice:RubroService,
-    private sharedImageService: SharedImageService) {
+    private temas: TemasService, private imagenservice: ImagenesService, private rubroservice: RubroService,
+    private sharedImageService: SharedImageService, private router: Router) {
     this.miFormulario = this.fb.group({
       nombre: ['', [Validators.required]],
-      nacionalidad: ['', [Validators.required]],
+      nacionalidad: [{ value: [0], disabled: true }, [Validators.required, notZeroValidator]],
       apellidos: ['', [Validators.required]],
-      countrySelect: [[0], [Validators.required]],
-      genero: [[0], [Validators.required]],
-      citySelect: [[0], [Validators.required]],
+      countrySelect: [{ value: [0], disabled: true }, [Validators.required, notZeroValidator]],
+      genero: [{ value: [0], disabled: true }, [Validators.required, notZeroValidator]],
+      citySelect: [{ value: [0], disabled: true }, [Validators.required, notZeroValidator]],
       numero: ['', [Validators.required]],
       correo: ['', [Validators.required]],
       fechanac: ['', [Validators.required]],
-      aplicante: [[0], [Validators.required]],
+      aplicante: ['', [Validators.required, notZeroValidator]],
       contenido: [[0], [Validators.required]],
       llegadamascota: [[0], [Validators.required]],
-      rubro: [[0], [Validators.required]],
+      rubro: [[0], [Validators.required, notZeroValidator]],
       guidework: ['0', [Validators.required]],
 
     });
 
   }
   ngOnInit(): void {
+    this.isCountrySelectDisabled = true;
     this.PasosPerfilGuia();
-   // this.entradainput();
+    // this.entradainput();
     this.GetUsuario()
     this.GetGuiaId()
     this.listaPaises()
@@ -352,7 +358,7 @@ export class PerfilGuiaComponent implements OnInit {
   listaRubro() {
     const requestData = {
       request: {
-        rubro_id:null,
+        rubro_id: null,
         in_rubro_name: null,
         status: true
       },
@@ -380,7 +386,12 @@ export class PerfilGuiaComponent implements OnInit {
 
   onCitySelect(event: any) {
     this.selectedCityId = event.target.value;
+
   }
+  // onMigranteSelect(event: any) {
+  //   this.selectedMigranteId= event.target.value;
+
+  // }
   onNationalitySelect(event: any) {
     const selectedNationalityId = event.target.value;
     this.selectedNationalityId = selectedNationalityId
@@ -406,8 +417,11 @@ export class PerfilGuiaComponent implements OnInit {
     this.selectedRutaMigrationId = event.target.value;
   }
   GetUsuario() {
-    //this.usuario =  this.authService.usuario;
-    this.usuario = this.authService.getUsuario();
+    //this.usuario = this.authService.getUsuario();
+    this.authService.getUsuario().subscribe((usuario: any) => {
+      this.usuario = usuario;
+      console.log(this.usuario);
+    });
   }
   GetGuiaId() {
     this.idguia = this.authService.getGuia();
@@ -417,49 +431,73 @@ export class PerfilGuiaComponent implements OnInit {
 
     this.selectedFile = event.target.files[0];
     this.archivos.push(this.selectedFile);
+    // if (this.selectedFile) {
+    //   // cargar la imagen imageSrc
+    //   const reader = new FileReader();
+    //   reader.onload = () => {
+    //     this.imageSrc = reader.result as string;
+    //   };
+    //   reader.readAsDataURL(this.selectedFile);
+    // }
     console.log(event)
     console.log(event.target.files)
     console.log(this.selectedFile)
     console.log(this.archivos)
 
-    const imagen = new FormData();
+    //const imagen = new FormData();
 
-    try {
-      this.archivos.forEach((archivo: any) => {
-        console.log(archivo)
-        imagen.append('file', archivo)
-      });
-      imagen.append('request[id_user]', this.usuario.id.toString());
-      //const url = '/api/stories/guardar_images';
-      //const url = '/api/guardar_images';
-      console.log(imagen)
-      this.imagenservice.enviarImage(imagen).subscribe(
-        (response) => {
-          console.log('Imagen subida con éxito:', response);
+    // try {
+    //   this.archivos.forEach((archivo: any) => {
+    //     console.log(archivo)
+    //     imagen.append('file', archivo)
+    //   });
+    //   imagen.append('request[id_user]', this.usuario.id.toString());
+    //   //const url = '/api/stories/guardar_images';
+    //   //const url = '/api/guardar_images';
+    //   console.log(imagen)
+    //   this.imagenservice.enviarImage(imagen).subscribe(
+    //     (response) => {
+    //       console.log('Imagen subida con éxito:', response);
 
-          this.usuario = {
-            ...this.usuario,
-            photo: response.msg
-          };
-          localStorage.setItem('userdata', JSON.stringify(this.usuario));
-          const imageUrl = this.imagenservice.getImageUrl(response.msg);
-          //this.sharedImageService.changeImage(response.msg, imageUrl);
-        },
-        (error) => {
-          console.error('Error al subir imagen:', error);
-        }
-      );
+    //       this.usuario = {
+    //         ...this.usuario,
+    //         photo: response.msg
+    //       };
+    //       localStorage.setItem('userdata', JSON.stringify(this.usuario));
+    //       this.imagenservice.getImageUrl(response.msg);
+    //       //  console.log(response.msg)
+    //       //this.sharedImageService.changeImage(response.msg, imageUrl);
+    //     },
+    //     (error) => {
+    //       console.error('Error al subir imagen:', error);
+    //     }
+    //   );
 
-    } catch (e) {
-      console.log('ERROR', e)
-    }
+    // } catch (e) {
+    //   console.log('ERROR', e)
+    // }
+
+
+
 
 
   }
 
   cargarUsuario() {
-    if (this.usuario.photo)
-      this.imageSrc = this.imagenservice.getImageUrl(this.usuario.photo);
+    // if (this.usuario.photo)
+    //   this.imageSrc = this.imagenservice.getImageUrl(this.usuario.photo);
+    if (this.usuario.photo) {
+      this.imageSrc = this.imagenservice.getImageUrlUser(this.usuario.photo);
+      // this.imagenservice.getImageUrl(this.usuario.photo)
+      // this.imagenservice.imageUrl$.subscribe(
+      //   (url: string) => {
+
+      //     this.imageSrc = url.toString();
+      //   }
+      // );
+
+
+    }
     else
       this.imageSrc = ''
 
@@ -481,7 +519,7 @@ export class PerfilGuiaComponent implements OnInit {
         this.selectedCityId = response[0].city_id;
         this.guidework = Number(response[0].guide_work);
         this.guiaTrabajando = this.guidework;
-
+        // this.selectedMigranteId =this.guia[0].content_social;
         // this.selectedNationalityId = response.story.data[0].nationality_id;
         //  this.selectedModoMigrationId = response.story.data[0].migration_mode_id;
         //  this.selectedRutaMigrationId = response.story.data[0].way_migration_id;
@@ -508,9 +546,10 @@ export class PerfilGuiaComponent implements OnInit {
         contenido: this.guia[0].content_social,
         llegadamascota: this.guia[0].mascota_flag,
         rubro: this.guia[0].rubro_iid,
-        guidework:this.guidework
+        guidework: this.guidework
       });
-//guide_work
+      console.log(this.miFormulario)
+      //guide_work
 
     });
 
@@ -520,85 +559,177 @@ export class PerfilGuiaComponent implements OnInit {
 
 
   ActualizarPerfil() {
-    const { nombre, nacionalidad, apellidos, countrySelect, genero, citySelect, numero, correo,fechanac
-            ,aplicante,contenido,llegadamascota,rubro,guidework } = this.miFormulario.value;
+    // const { nombre, nacionalidad, apellidos, countrySelect, genero, citySelect, numero, correo, fechanac
+    //   , aplicante, contenido, llegadamascota, rubro, guidework } = this.miFormulario.value;
+    //----
 
+
+    const countrySelectControl = this.miFormulario.get('countrySelect');
+    const citySelectControl = this.miFormulario.get('citySelect');
+    const nacionalidadControl = this.miFormulario.get('nacionalidad');
+    const generoControl = this.miFormulario.get('genero');
+    // Habilitar temporalmente los controles
+    countrySelectControl?.enable();
+    citySelectControl?.enable();
+    nacionalidadControl?.enable();
+    generoControl?.enable();
+
+    const { nombre, nacionalidad, apellidos, countrySelect, genero, citySelect, numero, correo, fechanac, aplicante, contenido, llegadamascota, rubro, guidework } = this.miFormulario.value;
+
+    // Deshabilitar nuevamente los controles
+    countrySelectControl?.disable();
+    citySelectControl?.disable();
+    nacionalidadControl?.disable();
+    generoControl?.disable();
+//----
     console.log(this.miFormulario.value)
 
+    if (this.miFormulario.invalid) {
+      Swal.fire('Error', 'LLene todos los campos porfavor', 'error')
+      return
+    }
 
-      let req = {
-        request: {
-          id_user : this.usuario.id,
-          id_guide: this.guia[0].id_guia,
-          nationality_id:nacionalidad,
-          id_nacionalidad:this.guia[0].id_nacionalidad,
-          dni : null,
-          name : nombre,
-          lastname :apellidos,
-          username : correo,
-          password :"",
-          sexo : genero,
-          photo : "",
-          status : true,
-          phone :numero,
-          birth_date:fechanac,
-          rol:7,
-          country_id:countrySelect,
-          city_id:citySelect,
-          mascota : llegadamascota,
-          contenido_red_social: contenido,
-          guia_trabaja : guidework,
-          rubro_id : rubro,
-          familia_principal: aplicante
+    if ((this.archivos.length == 0 || (this.archivos.every((file: any) => file === undefined))) && this.imageSrc == '') {
+      Swal.fire('Error', 'Debe insertar una imagen', 'error')
+      return
+    }
+
+    this.formularioEnviado = true;
+    this.textoBoton = 'Esperando registro';
 
 
-        }
+    let req = {
+      request: {
+        id_user: this.usuario.id,
+        id_guide: this.guia[0].id_guia,
+        nationality_id: nacionalidad,
+        id_nacionalidad: this.guia[0].id_nacionalidad,
+        dni: null,
+        name: nombre,
+        lastname: apellidos,
+        username: correo,
+        password: "",
+        sexo: genero,
+        photo: "",
+        status: true,
+        phone: numero.toString(),
+        birth_date: fechanac,
+        rol: 7,
+        country_id: countrySelect,
+        city_id: citySelect,
+        mascota: llegadamascota,
+        contenido_red_social: contenido,
+        guia_trabaja: guidework,
+        rubro_id: rubro,
+        familia_principal: aplicante
+
+
       }
-      console.log(req)
-      this.authService.actualizarUsuarioGuia(req)
-        .subscribe(res => {
-          console.log(res.msg);
-          if (res.msg[0].out_rpta === "OK") {
-            //this.lista
-            this.usuario = {
-              ...this.usuario,
-              id: this.usuario.id,
-              dni: this.usuario.dni,
-              name: nombre,
-              lastname: apellidos,
-              username: correo,
-              sex:genero,
-              enabled: true,
-              first_session: true,
-              cod_gen: this.usuario.cod_gen,
-              user_created_id: this.usuario.user_created_id,
-              created_at: this.usuario.created_at,
-              user_updated_id: this.usuario.user_updated_id,
-              updated_at: this.usuario.updated_at,
-              phone:numero,
-              birth_date:fechanac
-            };
-            localStorage.setItem('userdata', JSON.stringify(this.usuario));
+    }
+    console.log(req)
+    this.authService.actualizarUsuarioGuia(req)
+      .subscribe(async res => {
+        console.log(res.msg);
+        if (res.msg[0].out_rpta === "OK") {
+          //this.lista
+          this.usuario = {
+            ...this.usuario,
+            id: this.usuario.id,
+            dni: this.usuario.dni,
+            name: nombre,
+            lastname: apellidos,
+            username: correo,
+            sex: genero,
+            enabled: true,
+            first_session: true,
+            cod_gen: this.usuario.cod_gen,
+            user_created_id: this.usuario.user_created_id,
+            created_at: this.usuario.created_at,
+            user_updated_id: this.usuario.user_updated_id,
+            updated_at: this.usuario.updated_at,
+            phone: numero,
+            birth_date: fechanac,
+            flagdata: "1"
+          };
 
-            this.cargarUsuario()
-            Swal.fire({
-              title: 'Exito',
-              text: 'Datos actualizados',
-              icon: 'success',
-              timer: 2000, // Establece el tiempo en milisegundos (en este caso, 2 segundos)
-              showConfirmButton: false // Oculta el botón de confirmación
+
+          // if ((this.archivos.length !== 0 || this.archivos.some((file: any) => file !== undefined)) && this.imageSrc != '') {
+          if ((this.archivos.length !== 0 || this.archivos.some((file: any) => file !== undefined))) {
+            const imagen = new FormData();
+
+
+            this.archivos.forEach((archivo: any) => {
+              console.log(archivo)
+              imagen.append('file', archivo)
             });
+            imagen.append('request[id_user]', this.usuario.id.toString());
 
-            setTimeout(() => {
-              location.reload();
-            }, 2000);
+            console.log(imagen)
+            this.imagenservice.enviarImage(imagen).subscribe(
+              (response) => {
+                console.log('Imagen subida con éxito:', response);
+                this.usuario = {
+                  ...this.usuario,
+                  photo: response.msg
+                };
+                localStorage.setItem('userdata', JSON.stringify(this.usuario));
+                // this.imagenservice.getImageUrl(response.msg)
+                // this.imagenservice.imageUrl$.subscribe(
+                //   (url: string) => {
+
+                //     //    this.imageSrc = url.toString();
+
+                //     console.log('asgda' + this.imageSrc)
+                //   }
+                // );
+
+              },
+              (error) => {
+                console.error('Error al subir imagen:', error);
+              }
+            );
 
 
-          } else {
-            Swal.fire('Error', 'No se pudo actualizar', 'error')
           }
-        });
+
+          localStorage.setItem('userdata', JSON.stringify(this.usuario));
+
+          this.formularioEnviado = false;
+          this.textoBoton = 'Guardar';
+          this.GetUsuario()
+          Swal.fire({
+            title: 'Exito',
+            text: 'Datos actualizados',
+            icon: 'success',
+            timer: 2000, // Establece el tiempo en milisegundos (en este caso, 2 segundos)
+            showConfirmButton: false // Oculta el botón de confirmación
+          });
+
+          setTimeout(() => {
+            this.router.navigate(['/auth/dashboardGuia/historias']);
+            location.reload();
+
+          }, 2000);
+
+          await this.delay(2000);
+          this.router.navigate(['/auth/dashboardGuia/historias']);
+
+          // Recarga la página después de la redirección
+          location.reload();
 
 
+
+        } else {
+          this.formularioEnviado = false;
+          this.textoBoton = 'Guardar';
+          Swal.fire('Error', 'No se pudo actualizar', 'error')
+        }
+      });
+
+
+  }
+
+  private delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }

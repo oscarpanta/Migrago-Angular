@@ -16,6 +16,7 @@ import { StoriesService } from '../../services/stories.service';
 import { NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Themes } from '../../interfaces/themes.interface';
 import { ImagenesService } from '../../services/imagenes.service';
+import { NgSelectComponent } from '@ng-select/ng-select';
 declare var $: any;
 
 
@@ -42,7 +43,6 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   selectedModes: any[] = [];
   mostrarLoad: boolean = false;
   //citiesss = [];
-  selectedCityIds!: string[];
   //selectedMigrationIds:any = [];
   selectedMigrationIds: string = '';
   selectedTemasIds: string = '';
@@ -58,6 +58,13 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   totalelementos: number = 0; // Total de elementos
 
 
+
+  @ViewChild('pais') countrySelect!:ElementRef;
+  @ViewChild('ciudad') citySelect!:ElementRef;
+  @ViewChild('nacionalidad') nationalitySelect!:ElementRef;
+  @ViewChild('ruta') waySelect!:ElementRef;
+  @ViewChild('temasSelect') temasSelect!: NgSelectComponent;
+  @ViewChild('modesSelect') modesSelect!: NgSelectComponent;
 
   constructor(private http: HttpClient,
     private country: CountriesService, private waymigration: WaysMigrationService,
@@ -396,7 +403,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
   // listaHistorias(idsmigra: string,idstemas:string,idpais:number,idciudad:number,idnacionalidad:number,idruta:number){
   listaHistorias() {
-    this.mostrarLoad=false
+    this.mostrarLoad = false
     const requestData = {
       request: {
         id_country: this.selectedCountryId,
@@ -414,8 +421,8 @@ export class ListadoComponent implements OnInit, AfterViewInit {
         status: "APROBADO"
       },
       order: {
-        column: null,
-        mode: null
+        column: "t.id",
+        mode: "asc"
       },
       page_size: this.tamanopagina,
       pgination_key: this.nropagina
@@ -424,13 +431,21 @@ export class ListadoComponent implements OnInit, AfterViewInit {
     this.historiasService.getStories(requestData).subscribe(
       response => {
         console.log('hist' + JSON.stringify(response));
-        this.mostrarLoad=true
+        this.mostrarLoad = true
         this.resp_historias = response[0].data;
         this.totalelementos = +response[0].totalElements;
         this.resp_historias.forEach(historia => {
           if (historia.photo) {
-            historia.urlImagen = this.imagenservice.getImageUrl(historia.photo);
-          }else{
+
+            // this.imagenservice.getImageUrl(historia.photo)
+            // this.imagenservice.imageUrl$.subscribe(
+            //   (url: string) => {
+
+            //     historia.urlImagen = url.toString();
+            //   }
+            // );
+            historia.urlImagen = this.imagenservice.getImageUrlUser(historia.photo);
+          } else {
             historia.urlImagen = 'assets/images/perfiles/profile1.jpg';
           }
 
@@ -438,6 +453,8 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
           console.log(historia.urlImagen)
         });
+
+
         this.resp_historias.forEach(historia => {
           if (historia.image_story.image_story) {
             historia.urlImagenStory = this.imagenservice.getImageUrlHistoria(historia.image_story.image_story);
@@ -449,6 +466,9 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
           console.log(historia.urlImagenStory)
         });
+
+
+
       }
 
 
@@ -506,12 +526,12 @@ export class ListadoComponent implements OnInit, AfterViewInit {
         console.log('hist' + JSON.stringify(response));
         //   console.log('hist' + JSON.stringify(response));
         this.resp_historias = response[0].data;
-        this.mostrarLoad=true
+        this.mostrarLoad = true
         this.totalelementos = +response[0].totalElements;
         this.resp_historias.forEach(historia => {
           if (historia.photo) {
-            historia.urlImagen = this.imagenservice.getImageUrl(historia.photo);
-          }else{
+            historia.urlImagen = this.imagenservice.getImageUrlUser(historia.photo);
+          } else {
             historia.urlImagen = 'assets/images/perfiles/profile1.jpg';
           }
 
@@ -522,12 +542,12 @@ export class ListadoComponent implements OnInit, AfterViewInit {
         this.resp_historias.forEach(historia => {
           if (historia.image_story.image_story) {
             historia.urlImagenStory = this.imagenservice.getImageUrlHistoria(historia.image_story.image_story);
-          }else{
+          } else {
             historia.urlImagenStory = 'assets/images/imagen_prueba.png';
           }
 
 
-
+          console.log('BAKDAJSHK')
           console.log(historia.urlImagenStory)
         });
 
@@ -537,6 +557,34 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
 
     );
+  }
+
+  limpiar(){
+    this.selectedCountryId=0;
+    this.selectedCityId=0;
+    this.selectedNationalityId=0;
+    this.selectedWayMigrationId=0;
+    this.selectedMigrationIds='';
+    this.selectedTemasIds='';
+
+
+   // const abcd: HTMLElement | null = document.getElementById('countrySelect')
+
+    console.log(this.countrySelect.nativeElement.value)
+    console.log(this.temasSelect)
+
+    if (this.temasSelect) {
+      this.temasSelect.clearModel();
+    }
+    if (this.modesSelect) {
+      this.modesSelect.clearModel();
+    }
+
+    this.countrySelect.nativeElement.value=0
+    this.citySelect.nativeElement.value=0
+    this.nationalitySelect.nativeElement.value=0
+    this.waySelect.nativeElement.value=0
+    this.listaHistorias()
   }
 
 

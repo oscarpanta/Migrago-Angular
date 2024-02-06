@@ -18,14 +18,14 @@
           <form action="">
             <div class="row mb-3">
               <div class="col-lg-12 mb-3">
-                <select id="countrySelect" name="countrySelect" (change)="onCountrySelect($event)"
+                <select id="countrySelect" name="countrySelect" (change)="onCountrySelect($event)" #pais
                   class="form-select form-select-sm" aria-label="Default select example">
                   <option value="0">País a migrar</option>
                   <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}</option>
                 </select>
               </div>
               <div class="col-lg-12 mb-3">
-                <select (change)="onCitySelect($event)" class="form-select form-select-sm"
+                <select (change)="onCitySelect($event)" class="form-select form-select-sm" #ciudad
                   aria-label="Default select example">
                   <option value="0">Selecciona una ciudad</option>
                   <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
@@ -33,15 +33,15 @@
 
               </div>
               <div class="col-lg-12 mb-3">
-                <select (change)="onNationalitySelect($event)" class="form-select form-select-sm"
-                  aria-label="Default select example">
+                <select (change)="onNationalitySelect($event)" class="form-select form-select-sm" #nacionalidad
+                  aria-label="Default select example" >
                   <option value="0" selected>Nacionalidad del guía</option>
                   <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
                     nacionalidad.nationality_name }}</option>
                 </select>
               </div>
               <div class="col-lg-12 mb-3">
-                <select (change)="onWayMigrationSelect($event)" class="form-select form-select-sm"
+                <select (change)="onWayMigrationSelect($event)" class="form-select form-select-sm" #ruta
                   aria-label="Default select example">
                   <option value="0" selected>Ruta de ingreso del guía</option>
                   <option *ngFor="let rutamigracion of rutasmigracion" [value]="rutamigracion.id">{{
@@ -52,6 +52,7 @@
             <div class="row">
               <div class="col-lg-12 mb-3">
                 <a class="btn btn-primary" (click)="filtrarHistorias()">Filtrar</a>
+                <a class="btn btn-primary mt-2" (click)="limpiar()">Limpiar</a>
               </div>
             </div>
 
@@ -73,7 +74,7 @@
 
           <ng-select [items]="temas" bindLabel="description" bindValue="id" [multiple]="true" groupBy="selectedAllGroup"
             [searchWhileComposing]="true" [selectableGroup]="true" placeholder="Elige los temas mas urgentes para ti"
-            (change)="onMaterialGroupChangeTemas($event)">
+            (change)="onMaterialGroupChangeTemas($event)"  #temasSelect>
 
             <ng-template ng-label-tmp let-item="item">
               {{ item.description }}
@@ -91,7 +92,7 @@
 
           <ng-select [items]="modemigrations" bindLabel="description" bindValue="id" [multiple]="true"
             groupBy="selectedAllGroup" [searchWhileComposing]="true" [selectableGroup]="true"
-            placeholder="Modo de migracion" (change)="onMaterialGroupChangeModo($event)">
+            placeholder="Modo de migracion" (change)="onMaterialGroupChangeModo($event)" #modesSelect>
 
             <ng-template ng-label-tmp let-item="item">
               {{ item.description }}
@@ -99,68 +100,17 @@
             <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
               <input id="option-{{ item.value }}" type="checkbox" [ngModel]="item$.selected" />
 
-              <!-- <input id="option-{{ item$.value }}" type="checkbox" [checked]="selectedItems[item$.id]"
-              (change)="onOptionSelect(item$, $event)" /> -->
 
               <label for="option-{{ item.value }}">{{ item.description }}</label>
             </ng-template>
           </ng-select>
 
-          <!-- <p-multiSelect [options]="lstUnidadNegociocb" display="chip" defaultLabel="Seleccione"
-            formControlName="cboUnidadNegocio" optionValue="id" optionLabel="value" (onChange)="changeValue($event)"
-            [ngClass]="{'ng-invalid ng-dirty' : submitted && formBusqueda.controls['cboUnidadNegocio'].invalid}">
-          </p-multiSelect> -->
-          <!-- <ng-select
-          [items]="modemigrations"
-          [multiple]="true"
-          bindLabel="description"
-          groupBy="gender"
-          [selectableGroup]="true"
-          [selectableGroupAsModel]="true"
-          [closeOnSelect]="false"
-          bindValue="id"
-          [(ngModel)]="selectedPeople">
-          <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
-              <input id="item-{{index}}" type="checkbox" (click)="test(item.gender)" [ngModel]="item$.selected" [ngModelOptions]="{ standalone : true }"/> {{item.gender | uppercase}}
-          </ng-template>
-          <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
-              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.name}}
-          </ng-template>
-      </ng-select> -->
 
-
-
-          <!-- <ng-multiselect-dropdown
-          name="description"
-          [placeholder]="'Seleccionar Modo'"
-          [data]="modemigrations"
-          [settings]="dropdownSettings"
-          [(ngModel)]="modoSelected"
-          (onSelect)="onItemSelect($event)"
-          (onSelectAll)="onSelectAll($event)">
-        </ng-multiselect-dropdown> -->
-
-          <!-- <ng-multiselect-dropdown [placeholder]="'Modo de migración'" [data]="modemigrations"
-            [(ngModel)]="selectedModes" [settings]="dropdownSettings" (onSelectAll)="onSelectAll($event)"
-            (onDeSelectAll)="onDeSelectAll($event)" (onItemSelect)="onItemSelect($event)"
-            (onItemDeSelect)="onItemDeSelect($event)">
-          </ng-multiselect-dropdown> -->
-
-          <!-- <select multiple name="opciones2" id="opciones2"> -->
-          <!-- <option value="js">Con familia</option>
-                      <option value="html">Con familia y mascota</option>
-                      <option value="css">Con pareja y sin hijos</option>
-                      <option value="css1">Con pareja y mascota</option>
-                      <option value="css2">Solo</option> -->
-          <!-- <option *ngFor="let modomigracion of modemigrations" [value]="modomigracion.id">{{ modomigracion.description }}</option>
-                  </select> -->
         </div>
       </div>
       <div class="row mt-4">
         <div class="d-flex justify-content-center">
-          <!-- <div class="spinner-border text-primary" *ngIf="!mostrarLoad" role="status">
-            <span class="sr-only">Loading...</span>
-          </div> -->
+
           <ng-container *ngIf="!mostrarLoad">
             <div class="cardskelet loading  me-4" *ngFor="let score of [1, 2, 3,]">
               <div class="imagecard">
@@ -186,23 +136,14 @@
           <div class="card card-container mb-3" *ngFor="let historia of resp_historias">
             <div class="image-content">
 
-              <div class="card-image">
+              <div class="card-image" style="cursor: pointer;">
                 <!-- <img src="assets/images/imagen_prueba.png" class="card-img" alt="fondo"> -->
-                <img [src]="historia.urlImagenStory || 'assets/images/imagen_prueba.png'" class="card-img" alt="fondo">
+                <img [routerLink]="['../detalle']" [queryParams]="{ historia_id: historia.id }" [src]="historia.urlImagenStory || 'assets/images/imagen_prueba.png'" class="card-img" alt="fondo">
               </div>
-              <div class="card-image2">
-                <!-- <ng-container *ngIf="historia.urlImagen">
-                  <img [src]="historia.urlImagen" class="card-img" alt="perfil">
-                </ng-container>
-                <ng-container *ngIf="!historia.urlImagen">
-                  <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
-                </ng-container> -->
-                <img [src]="historia.urlImagen || 'assets/images/perfiles/profile1.jpg'" class="card-img" alt="perfil">
-                <!-- <div class="form-group col-lg-4 mb-3">
-                  <div *ngIf="imageSrc!='';then muestra else nomuestra"></div>
-                  <ng-template #muestra><img [src]="imageSrc" id="preview" class="img-thumbnail"></ng-template>
-                  <ng-template #nomuestra><img src="assets/images/perfiles/perfil.png" id="preview" class="img-thumbnail"></ng-template>
-                </div>     -->
+              <div class="card-image2" style="cursor: pointer;">
+
+                <img [routerLink]="['../detalle']" [queryParams]="{ historia_id: historia.id }" [src]="historia.urlImagen || 'assets/images/perfiles/profile1.jpg'" class="card-img" alt="perfil">
+
               </div>
               <div class="card-image_flag">
                 <img [src]="'assets/images/flags/tiny/'+ historia.flag_img" class="card-img" alt="pais">
@@ -211,8 +152,8 @@
 
             <div class="card-content">
 
-              <p class="description">{{historia.title}}</p>
-              <!-- <span class="autor mb-1">{{historia.name.split(' ')[0]}} {{historia.lastname.split(' ')[0]}}</span> -->
+              <a class="description" style="cursor: pointer;"   [routerLink]="['../detalle']" [queryParams]="{ historia_id: historia.id }"  >{{historia.title}}</a>
+
               <span class="autor mb-1">{{historia.name.split(' ')[0]}} {{historia.lastname.substring(0, 1)}}.</span>
 
               <span class="etiqueta mb-1">{{historia.city_name}}, {{historia.country_name}}</span>
@@ -225,195 +166,14 @@
               </div>
               <div class="footer-content">
 
-                <!-- <a routerLink="../detalle" class="btn btn-light mt-2">Ver Más <i class="fa-solid fa-arrow-right"></i></a> -->
                 <a [routerLink]="['../detalle']" [queryParams]="{ historia_id: historia.id }"
                   class="btn btn-light mt-2">Ver Más <i class="fa-solid fa-arrow-right"></i></a>
-<!--
-                <a href="" class="btn btn-info mt-2">Reserva una cita</a> -->
 
               </div>
 
             </div>
 
           </div>
-
-          <!-- <div class="card card-container mb-2">
-                <div class="image-content">
-
-                  <div class="card-image">
-                    <img src="assets/images/imagen_prueba.png" class="card-img" alt="fondo">
-                  </div>
-                  <div class="card-image2">
-                    <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
-                  </div>
-                  <div class="card-image_flag">
-                    <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
-                  </div>
-                </div>
-
-                <div class="card-content">
-
-                  <p class="description">Al mes conseguí trabajo en ventas.</p>
-                  <span class="autor mb-1">Miguel Panta.</span>
-                  <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
-                  <div class="container_etiquetas mb-1">
-                    <div class="container__body__etiqueta">
-                      Estudios
-                    </div>
-                    <div class="container__body__etiqueta">
-                      Refugio
-                    </div>
-
-                  </div>
-                  <div class="footer-content">
-
-                    <a href="../views/pagina2.php" class="btn btn-light mt-2">Ver Más <i
-                        class="fa-solid fa-arrow-right"></i></a>
-                    <a href="" class="btn btn-info mt-2">Reserva una cita</a>
-
-                  </div>
-
-                </div>
-              </div>
-              <div class="card card-container mb-2">
-                <div class="image-content">
-
-                  <div class="card-image">
-                    <img src="assets/images/imagen_prueba.png" class="card-img" alt="fondo">
-                  </div>
-                  <div class="card-image2">
-                    <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
-                  </div>
-                  <div class="card-image_flag">
-                    <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
-                  </div>
-                </div>
-
-                <div class="card-content">
-
-                  <p class="description">Al mes conseguí trabajo en ventas.</p>
-                  <span class="autor mb-1">Miguel Panta.</span>
-                  <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
-                  <div class="container_etiquetas mb-1">
-                    <div class="container__body__etiqueta">
-                      Estudios
-                    </div>
-                    <div class="container__body__etiqueta">
-                      Refugio
-                    </div>
-
-                  </div>
-                  <div class="footer-content">
-
-                    <a href="../views/pagina2.php" class="btn btn-light mt-2">Ver Más <i
-                        class="fa-solid fa-arrow-right"></i></a>
-                    <a href="" class="btn btn-info mt-2">Reserva una cita</a>
-
-                  </div>
-
-                </div>
-              </div>
-              <div class="card card-container mb-2">
-                <div class="image-content">
-
-                  <div class="card-image">
-                    <img src="assets/images/imagen_prueba.png" class="card-img" alt="fondo">
-                  </div>
-                  <div class="card-image2">
-                    <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
-                  </div>
-                  <div class="card-image_flag">
-                    <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
-                  </div>
-                </div>
-
-                <div class="card-content">
-
-                  <p class="description">Al mes conseguí trabajo en ventas.</p>
-                  <span class="autor mb-1">Miguel Panta.</span>
-                  <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
-                  <div class="container_etiquetas mb-1">
-                    <div class="container__body__etiqueta">
-                      Estudios
-                    </div>
-                    <div class="container__body__etiqueta">
-                      Refugio
-                    </div>
-                  </div>
-                  <div class="footer-content">
-
-                    <a href="../views/pagina2.php" class="btn btn-light mt-2">Ver Más <i
-                        class="fa-solid fa-arrow-right"></i></a>
-                    <a href="" class="btn btn-info mt-2">Reserva una cita</a>
-
-                  </div>
-
-                </div>
-              </div>
-              <div class="card card-container mb-2">
-                <div class="image-content">
-
-                  <div class="card-image">
-                    <img src="assets/images/imagen_prueba.png" class="card-img" alt="fondo">
-                  </div>
-                  <div class="card-image2">
-                    <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
-                  </div>
-                  <div class="card-image_flag">
-                    <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais">
-                  </div>
-                </div>
-
-                <div class="card-content">
-
-                  <p class="description">Al mes conseguí trabajo en ventas.</p>
-                  <span class="autor mb-1">Miguel Panta.</span>
-                  <span class="etiqueta mb-1">Carolina del Norte, Usa</span>
-                  <div class="container_etiquetas mb-1">
-                    <div class="container__body__etiqueta">
-                      Estudios
-                    </div>
-                    <div class="container__body__etiqueta">
-                      Refugio
-                    </div>
-                  </div>
-                  <div class="footer-content">
-
-                    <a href="../views/pagina2.php" class="btn btn-light mt-2">Ver Más <i
-                        class="fa-solid fa-arrow-right"></i></a>
-                    <a href="" class="btn btn-info mt-2">Reserva una cita</a>
-
-                  </div>
-
-                </div>
-              </div> -->
-
-
-
-
-
-          <!-- --paginacion -->
-
-
-
-
-          <!-- <div class="col-md-3 mt-2" style="text-align: right;">
-          <span class="mr-2">Page Size</span>
-
-          <select #myPageSelect (change)="updatePageSize(myPageSelect.value)">
-            <option>2</option>
-            <option selected="true">5</option>
-            <option>10</option>
-            <option>20</option>
-            <option>50</option>
-          </select>
-        </div> -->
-          <!-- find pag -->
-
-
-
-
-
 
         </div>
 
@@ -422,7 +182,6 @@
       <div class="d-flex justify-content-center">
         <ngb-pagination [(page)]="nropagina" [pageSize]="tamanopagina" [collectionSize]="totalelementos" [maxSize]="1"
           [boundaryLinks]="true" (pageChange)="onPageChange(nropagina)">
-          <!-- (pageChange)="listaHistorias() -->
         </ngb-pagination>
       </div>
 
@@ -446,8 +205,7 @@
           <div class="container__historias__items ">
             <div class="container__historias__body__body__item__imagen">
               <picture>
-                <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                          <source media="(min-width: 550px)" srcset="media.png"> -->
+
                 <img src="assets/images/icons/People-mobile.png">
               </picture>
             </div>
@@ -464,8 +222,7 @@
           <div class="container__historias__items">
             <div class="container__historias__body__body__item__imagen">
               <picture>
-                <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                          <source media="(min-width: 550px)" srcset="media.png"> -->
+
                 <img src="assets/images/icons/People-mobile.png">
               </picture>
             </div>
@@ -482,8 +239,7 @@
           <div class="container__historias__items">
             <div class="container__historias__body__body__item__imagen">
               <picture>
-                <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                          <source media="(min-width: 550px)" srcset="media.png"> -->
+
                 <img src="assets/images/icons/Mochila-mobile.png">
               </picture>
             </div>
@@ -500,8 +256,7 @@
           <div class="container__historias__items">
             <div class="container__historias__body__body__item__imagen">
               <picture>
-                <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                          <source media="(min-width: 550px)" srcset="media.png"> -->
+
                 <img src="assets/images/icons/Call--mobile.png">
               </picture>
             </div>

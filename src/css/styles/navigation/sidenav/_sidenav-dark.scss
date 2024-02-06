@@ -2,14 +2,14 @@
 // Append .sb-sidenav-dark to .sb-sidenav to use
 
 .sb-sidenav-dark {
-  background-color: $sidenav-dark-bg;
-  color: $sidenav-dark-color;
+  background-color: #5a2395;
+  color: white;
   .sb-sidenav-menu {
     .sb-sidenav-menu-heading {
       color: $sidenav-dark-heading-color;
     }
     .nav-link {
-      color: $sidenav-dark-link-color;
+      color: white;
       .sb-nav-link-icon {
         color: $sidenav-dark-icon-color;
       }
@@ -28,6 +28,6 @@
     }
   }
   .sb-sidenav-footer {
-    background-color: $sidenav-dark-footer-bg;
+    background-color:#5a2395;
   }
 }

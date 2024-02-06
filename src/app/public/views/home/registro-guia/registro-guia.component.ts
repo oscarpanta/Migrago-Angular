@@ -9,11 +9,14 @@ import { WayMigration } from '../../interfaces/waymigration.interface';
 import { MigrationMode } from '../../interfaces/migration_modes.interface';
 import { AutenticacionService } from 'src/app/core/services/autenticacion.service';
 import Swal from 'sweetalert2';
+import { NotZeroDirective, notZeroValidator } from 'src/app/core/directives/not-zero.directive';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro-guia',
   templateUrl: './registro-guia.component.html',
-  styleUrls: ['./registro-guia.component.css']
+  styleUrls: ['./registro-guia.component.css'],
+
 })
 export class RegistroGuiaComponent {
   countries: Country[] = []
@@ -42,19 +45,19 @@ export class RegistroGuiaComponent {
     this.listaRutasMigracion()
   }
   constructor(private country: CountriesService, private fb: FormBuilder, private waymigration: WaysMigrationService,
-    private authservice: AutenticacionService) {
+    private authservice: AutenticacionService,private router:Router) {
     this.selectedOption = null;
     this.miFormulario = this.fb.group({
       nombre: ['', [Validators.required]],
-      nacionalidad: ['', [Validators.required]],
+      nacionalidad: [[0],  [Validators.required, notZeroValidator]],
       apellidos: ['', [Validators.required]],
-      countrySelect: [[0], [Validators.required]],
-      genero: [[0], [Validators.required]],
-      citySelect: [[0], [Validators.required]],
+      countrySelect: [[0], [Validators.required,notZeroValidator]],
+      genero: ['', [Validators.required,notZeroValidator]],
+      citySelect: [[0], [Validators.required,notZeroValidator]],
       numero: ['', [Validators.required]],
       fecha: ['', [Validators.required]],
       correo: ['', [Validators.required]],
-      RutaMigracion: [[0], [Validators.required]],
+      RutaMigracion: [[0], [Validators.required,notZeroValidator]],
       //ModoMigracion: [[0], [Validators.required]],
       fechaNac: ['', [Validators.required]],
       llegadamascota: [[0], [Validators.required]],
@@ -256,6 +259,11 @@ export class RegistroGuiaComponent {
     const primeraLetraNombre = nombre.charAt(0);
     const contrasena = `${primeraLetraNombre}12345@`;
     console.log(this.miFormulario.value)
+    console.log(this.miFormulario)
+
+    // if(this.miFormulario.controls['estado'].value,this.miFormulario.controls['user_id'].value){
+    //   con
+    // }
 
     // let req = {
     //   request: {
@@ -318,8 +326,14 @@ export class RegistroGuiaComponent {
         console.log(res);
         if (res.msg === "Usuario registrado") {
           this.textoBoton = 'Registrarme';
-          Swal.fire('Registro exitoso', 'Gracias por registrarte. Evaluaremos tu registro en un plazo de 48 horas y te enviaremos un correo para que continúes tu proceso'
-          , 'success')
+          Swal.fire({
+            title: 'Registro exitoso',
+            text: 'Gracias por registrarte. Evaluaremos tu registro en un plazo de 48 horas y te enviaremos un correo para que continúes tu proceso',
+            icon: 'success'
+          }).then(() => {
+            // Redirige a la ruta deseada
+            this.router.navigate(['/home']);
+          });
           this.formularioEnviado = false;
         } else {
           this.textoBoton = 'Registrarme';

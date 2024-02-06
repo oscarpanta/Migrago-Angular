@@ -6,6 +6,7 @@ import { Country } from '../interfaces/countries.interface';
 import { DetalleModoHistoria } from '../interfaces/waymigration.interface';
 import { Data_Story_Reviews } from '../interfaces/reviews.interface';
 import { environment } from 'src/environments/environment';
+import { addTokenHeader } from 'src/app/core/interceptor/interceptor.interceptor';
 
 @Injectable({
   providedIn: 'root'
@@ -49,12 +50,12 @@ export class StoriesService {
   getStoriesGuide(requestData: any): Observable<any>{
     const apiUrl = '/api/stories/list_stories_guia';
     const url = environment.baseUrl  + apiUrl
-    return this.http.post(apiUrl, requestData);
+    return this.http.post(apiUrl, requestData,{context: addTokenHeader()});
   }
   insertarHistoria(requestData: any): Observable<any>{
     const apiUrl = '/api/stories/create';
     const url = environment.baseUrl  + apiUrl
-    return this.http.post(apiUrl, requestData);
+    return this.http.post(apiUrl, requestData,{context: addTokenHeader()});
   }
   insertarReviews(requestData: any): Observable<any>{
     const apiUrl = '/api/stories/reviews/create';
@@ -64,7 +65,7 @@ export class StoriesService {
   CambiarEstadoHistoria(requestData: any): Observable<any>{
     const apiUrl = '/api/stories/updateStatusStorie';
     const url = environment.baseUrl  + apiUrl
-    return this.http.post(apiUrl, requestData);
+    return this.http.post(apiUrl, requestData,{context: addTokenHeader()});
   }
 }
 

@@ -34,7 +34,7 @@ export const sideNavItems: SideNavItems = {
   Guias: {
     icon: 'fas fa-user-circle',
     text: 'Guias',
-    link: '/dashboard',
+    link: '/admin/dashboard/guias',
   },
   Historias: {
     icon: 'fas fa-user-circle',

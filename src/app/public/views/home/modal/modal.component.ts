@@ -11,6 +11,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent {
+
+  ocultarpas: boolean = true;
   @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();  //Salida de evento para cerrar modal
 
   miFormulario:FormGroup=this.fb.group({
@@ -78,4 +80,8 @@ export class ModalComponent {
 
 
     }
+    ocultarpass1() {
+      // a=!a;
+       this.ocultarpas = !this.ocultarpas;
+     }
 }

@@ -40,8 +40,11 @@ export class CambiarContrasenaComponent implements OnInit{
     });
   }
   GetUsuario(){
-    //this.usuario =  this.authService.usuario;
-    this.usuario = this.authService.getUsuario();
+   //this.usuario = this.authService.getUsuario();
+   this.authService.getUsuario().subscribe((usuario:any) => {
+    this.usuario = usuario;
+    console.log(this.usuario);
+  });
   }
   ocultarpass1() {
    // a=!a;

@@ -20,7 +20,12 @@ export class IntentoLoginGuard implements CanActivate {
     if (!this.authService.estalogeado()) {
       return true
     } else {
-      this.router.navigate(['/home']);
+      const userRole = this.authService.getRolUsuario();
+      if (userRole === '"ROLE_CLIENT"' || userRole === '"ROLE_GUIDE"')
+        this.router.navigate(['/home']);
+      else
+        this.router.navigate(['/admin/dashboard']);
+
       return false
     }
 

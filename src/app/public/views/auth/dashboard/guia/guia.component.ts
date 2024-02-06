@@ -25,15 +25,31 @@ export class GuiaComponent implements OnInit {
   }
   ngOnInit(): void {
     this.GetUsuario()
-    this.CargarImagen()
+    // this.CargarImagen()
   }
   GetUsuario() {
-    //this.usuario =  this.authService.usuario;
-    this.usuario = this.authService.getUsuario();
+    //this.usuario = this.authService.getUsuario();
+    this.authService.getUsuario().subscribe((usuario: any) => {
+      this.usuario = usuario;
+      this.CargarImagen()
+      console.log(this.usuario);
+    });
   }
   CargarImagen() {
-    if (this.usuario.photo)
-      this.imageSrc = this.imagenservice.getImageUrl(this.usuario.photo);
+    if (this.usuario.photo) {
+      this.imagenservice.getImageUrl(this.usuario.photo)
+      this.imagenservice.imageUrl$.subscribe(
+        (url) => {
+          console.log(url)
+          this.imageSrc = url.toString();
+        }
+      );
+
+    }
+    // this.imageSrc = this.imagenservice.getImageUrl(this.usuario.photo);
+
+
+
     else
       this.imageSrc = 'assets/images/perfiles/profile1.jpg'
 

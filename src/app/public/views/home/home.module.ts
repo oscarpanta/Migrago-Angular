@@ -14,6 +14,7 @@ import { MainComponent } from './main/main.component';
 import { ModalComponent } from './modal/modal.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { NgxSummernoteModule } from 'ngx-summernote';
+import { NotZeroDirective } from 'src/app/core/directives/not-zero.directive';
 
 
 
@@ -26,7 +27,8 @@ import { NgxSummernoteModule } from 'ngx-summernote';
      RegistroGuiaComponent,
      MainComponent,
     ModalComponent,
-    NosotrosComponent
+    NosotrosComponent,
+    NotZeroDirective
 
   ],
   imports: [

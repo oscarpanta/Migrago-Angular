@@ -20,7 +20,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./historia.component.css']
 })
 export class HistoriaComponent {
-  @ViewChild('modalContent') modalContent: any; // Agrega esta línea
+  @ViewChild('modalContent') modalContent: any;
   historias: any[] = []
   historiasFiltradas: any[] = [];
   searchTerm: string = '';
@@ -31,6 +31,8 @@ export class HistoriaComponent {
   sortedColumn!: string;
   sortedDirection!: string;
   nropagina: number = 1;
+  formularioEnviado = false;
+  textoBoton = 'Guardar cambios';
 
   countries: Country[] = []
   cities: Cities[] = []
@@ -65,16 +67,17 @@ export class HistoriaComponent {
     private temas: TemasService, private imagenservice: ImagenesService,) {
     this.miFormulario = this.fb.group({
       id: ['', [Validators.required]],
-      titulo: ['', [Validators.required]],
-      countrySelect: [[-1], [Validators.required]],
-      citySelect: [[-1], [Validators.required]],
-      Nacionalidad: [[-1], [Validators.required]],
-      ModoMigracion: [[-1], [Validators.required]],
-      RutaMigracion: [[-1], [Validators.required]],
+      titulo: [{value: '', disabled: true}, [Validators.required]],
+      countrySelect: [{value: [-1], disabled: true}, [Validators.required]],
+      citySelect: [{value: [-1], disabled: true}, [Validators.required]],
+      //Nacionalidad: [[-1], [Validators.required]],
+      ModoMigracion: [{value: [-1], disabled: true}, [Validators.required]],
+     // RutaMigracion: [[-1], [Validators.required]],
       estado: [[-1], [Validators.required]],
-      texto_historia: ['', [Validators.required]],
-      fecha: ['', [Validators.required]],
-      temas: [this.groupThemeIds, [Validators.required]],
+      texto_historia: [{value: '', disabled: true}, [Validators.required]],
+      fecha: [{value: '', disabled: true}, [Validators.required]],
+    //  temas: [this.groupThemeIds, [Validators.required]],
+      temas: [{value: this.groupThemeIds, disabled: true}, [Validators.required]],
       user_created_id: ['', [Validators.required]],
     });
   }
@@ -103,8 +106,8 @@ export class HistoriaComponent {
         status: this.selectedEstado
       },
       order: {
-        column: null,
-        mode: null
+        column:"t.id",
+       mode:"desc"
       },
       page_size: this.tamanopagina,
       pgination_key: this.nropagina
@@ -614,9 +617,9 @@ export class HistoriaComponent {
 
 
         this.selectedCityId = response.story.data[0].city_id;
-        this.selectedNationalityId = response.story.data[0].nationality_id;
+       // this.selectedNationalityId = response.story.data[0].nationality_id;
         this.selectedModoMigrationId = response.story.data[0].migration_mode_id;
-        this.selectedRutaMigrationId = response.story.data[0].way_migration_id;
+       // this.selectedRutaMigrationId = response.story.data[0].way_migration_id;
         this.idhistory = response.story.data[0].storie_id
         this.selectedFecha = response.story.data[0].arrival_date
 
@@ -637,9 +640,9 @@ export class HistoriaComponent {
         titulo: response.story.data[0].title,
         countrySelect: response.story.data[0].contry_id,
         citySelect: response.story.data[0].city_id,
-        Nacionalidad: response.story.data[0].nationality_id,
+       // Nacionalidad: response.story.data[0].nationality_id,
         ModoMigracion: response.story.data[0].migration_mode_id,
-        RutaMigracion: response.story.data[0].way_migration_id,
+       // RutaMigracion: response.story.data[0].way_migration_id,
         estado: response.story.data[0].status,
         texto_historia: response.story.data[0].story_text,
         fecha: response.story.data[0].arrival_date,
@@ -696,6 +699,8 @@ export class HistoriaComponent {
 
   }
   registroHistoria() {
+    this.formularioEnviado = true;
+    this.textoBoton = 'Esperando registro';
     const requestData = {
       request: {
         story_id: this.miFormulario.controls['id'].value,
@@ -707,10 +712,16 @@ export class HistoriaComponent {
     this.historiasService.CambiarEstadoHistoria(requestData).subscribe(response => {
       console.log(response)
       if (response) {
-
-        Swal.fire('Hecho', 'Se ha actualizados.', 'success')
+        this.formularioEnviado = false;
+        this.textoBoton = 'Guardar cambios';
+        this.listaHistorias()
+        Swal.fire('Hecho', 'Se ha actualizados.', 'success');
+        this.cerrarModal()
       } else {
-        Swal.fire('Error', 'No se pudo registrar', 'error')
+        this.formularioEnviado = false;
+        this.textoBoton = 'Guardar cambios';
+        Swal.fire('Error', 'No se pudo registrar', 'error');
+        this.cerrarModal()
       }
     })
 
