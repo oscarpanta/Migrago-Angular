@@ -11,6 +11,7 @@ import { ImagenesService } from '../../../services/imagenes.service';
 })
 export class ClienteComponent {
   usuario!: Usuario;
+  cliente: any[] = [];
   imageSrc!: string;
   constructor(private router: Router, private imagenservice: ImagenesService,
     private authService: AutenticacionService,private cdr: ChangeDetectorRef) { }
@@ -25,6 +26,25 @@ export class ClienteComponent {
       this.usuario = usuario;
       console.log(this.usuario);
       this.CargarImagen()
+
+    });
+
+    let req = {
+      request: {
+        id_user: this.usuario.id,
+      }
+    }
+
+    this.authService.getDataCliente(req).subscribe(response => {
+
+
+
+      if (response) {
+
+        this.cliente = response;
+        console.log(this.cliente)
+      }
+
     });
   }
   CargarImagen() {

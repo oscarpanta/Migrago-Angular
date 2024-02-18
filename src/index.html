@@ -10,6 +10,54 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
+  <script src="https://accounts.google.com/gsi/client" async></script>
+
+  <!-- <script src="https://accounts.google.com/gsi/client" async></script> -->
+  <!-- <script>
+    function onTokenReceived(token) {
+      console.log('Token received:', token.credential);
+
+      // Llamada al servicio HTTP para enviar el token al backend
+      fetch('http://localhost:8080/api/auhtGoogle', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id_token: token.credential })
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to send token to backend');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+    function decodeJWTToken(token) {
+      // console.log(token);
+      // console.log(atob(token.split(".")[1]));
+      // console.log(JSON.parse(atob(token.split(".")[1])));
+      localStorage.setItem("tok", JSON.stringify(token));
+      localStorage.setItem("toke", JSON.stringify(atob(token.split(".")[1])));
+      localStorage.setItem("tokes", JSON.stringify(JSON.parse(atob(token.split(".")[1]))));
+      return JSON.parse(atob(token.split(".")[1]));
+    }
+    function handleCredentialResponse(response) {
+      // to decode the credential response.
+      const responsePayload = decodeJWTToken(response.credential);
+      sessionStorage.setItem("loggedInUser", JSON.stringify(responsePayload));
+      sessionStorage.setItem("token", JSON.stringify(response.credential));
+      window.location.href = "/main2";
+    }
+    function handleSignout() {
+      google.accounts.id.disableAutoSelect();
+    }
+  </script> -->
 
   <!-- <link rel="shortcut icon" href="assets/images/icons/Logo-cabecera-mobile.png"> -->
 

@@ -91,7 +91,8 @@
 
 
          <a routerLink="/auth/login"  id="ingresaprinc" class="btn-ingresa-princ btn custom-btn d-lg-block d-none  me-2" *ngIf="!estalogeado">Ingresa</a>
-        <a  class="btn custom-btn me-2 d-lg-block d-none btn-registrate" (click)="openModal(modalContent)" *ngIf="!estalogeado">Registrate</a>
+        <!-- <a  class="btn custom-btn me-2 d-lg-block d-none btn-registrate" (click)="openModal(modalContent)" *ngIf="!estalogeado">Registrate</a> -->
+        <a  class="btn custom-btn me-2 d-lg-block d-none btn-registrate"  routerLink="/auth/registro" *ngIf="!estalogeado">Registrate</a>
 
         <div *ngIf="estalogeado" class="dropdown">
           <div class="perfil-info">

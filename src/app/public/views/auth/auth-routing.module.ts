@@ -7,6 +7,7 @@ import { ValidartokenGuiaGuard } from 'src/app/core/guard/validartoken-guia.guar
 import { IntentoLoginGuard } from 'src/app/core/guard/intento-login.guard';
 import { ReagendarComponent } from './reagendar/reagendar.component';
 import { ReagendarGuard } from 'src/app/core/guard/reagendar.guard';
+import { RegistroComponent } from './registro/registro.component';
 
 
 
@@ -18,6 +19,9 @@ const routes: Routes = [
       {path:'login',component:LoginComponent,
       canActivate: [IntentoLoginGuard],
      // {path:'registro',component:RegisterComponent},
+      } ,
+      {path:'registro',component:RegistroComponent
+
       } ,
      {
       path:'dashboardCliente',

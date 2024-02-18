@@ -7,7 +7,8 @@ import { AutenticacionService } from 'src/app/core/services/autenticacion.servic
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { AuthResponse } from 'src/app/core/interfaces/login.interface';
-
+import { environment } from 'src/environments/environment';
+declare var google: any;
 
 
 @Component({
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     username: ['', [Validators.required]],
     password: ['', [Validators.required]],
   });
+  private clienteid= environment.clientId;
 
   // req = {
   //   username: "",
@@ -31,6 +33,27 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.ocultarpass();
     this.displayService.setNavigationVisibility(false);
+
+    setTimeout(() => {
+      google.accounts.id.initialize({
+        //we need to get client id, so got to
+        client_id: this.clienteid,
+        callback: (resp: any) => {
+          //u'll get client id and token here
+          // u can console here what u will get
+          this.handleLogin(resp);
+        },
+        cancel_on_tap_outside:false
+      });
+
+      google.accounts.id.renderButton(document.getElementById("google-btn"), {
+        theme: 'filled_blue',
+        size: 'large',
+        shape: 'rectangle',
+        width: 300
+      });
+
+     }, 100);
   }
 
   ngOnDestroy(): void {
@@ -125,6 +148,76 @@ export class LoginComponent implements OnInit {
     //   console.log(this.req.username);
     //   console.log(this.req.password);
     // }
+  }
+  private decodeToken(token: string) {
+    return JSON.parse(atob(token.split('.')[1]))  //we need payload of the token i.e 2nd part[1],first part is header i.e [0], 3rd part is secret
+  }
+  handleLogin(resp: any) {
+    //resp : u will get credential from that u need to decrypt the
+    if (resp) {
+
+      console.log(resp.credential)
+      // this.isGoogleAuthenticated = true;
+      const payLoad = this.decodeToken(resp.credential);
+          this.authService.sendTokenToBackend(resp.credential)
+        .subscribe((response:any) => {
+          console.log(response);
+          console.log(response.error);
+          if(response){
+            if(response.error){
+              let _req = {
+                username:payLoad.email ,
+                password: ''
+
+              };
+              this.authService.login(_req).subscribe((res: any) => {
+
+                if (res) {
+                  this.router.navigate(['/auth/dashboardCliente']);
+                }
+                else {
+                  console.log(res)
+                  // this.router.navigate(['/auth/dashboarCliente']);
+                  Swal.fire('Error', res, 'error')
+                }
+
+
+              },
+              (error: any) => {
+
+                Swal.fire('Error', 'Ha ocurrido un error', 'error')
+              }
+
+
+              );
+
+
+            }
+
+
+            else{
+              // sessionStorage.setItem('loggedInUser', JSON.stringify(payLoad));
+              console.log(payLoad)
+              console.log(payLoad.email)
+              console.log(JSON.stringify(response.user))
+               localStorage.setItem('loggedInUser', JSON.stringify(response.user));
+               localStorage.setItem('nextseccion',JSON.stringify(true))
+               this.router.navigate(['auth/registro']);
+            }
+
+          }
+
+
+      }, error => {
+        console.error(error);
+
+      });
+
+      //store it in session
+
+      //naviagte to home page or browse page
+      // this.router.navigate(['browse']);
+    }
   }
 
 }

@@ -31,7 +31,7 @@ align-items: center;     display: flex;">
       <a class="navbar-brand" routerLink="" style="flex-basis: 20%;  display: flex;
       justify-content: flex-start;">
         <!-- Migrago -->
-        <img src="assets/images/icons/LogoMigrago.png" width="110" height="25">
+        <img src="assets/images/icons/LogoMigrago.png" width="130" height="25">
       </a>
 
       <a routerLink="../auth/login" class="btn custom-btn btn-ingresa d-lg-none ms-auto me-4"
@@ -114,13 +114,12 @@ align-items: center;     display: flex;">
 
         <a routerLink="../auth/login" id="ingresa" *ngIf="!estalogeado"
           class="btn-ingresa btn custom-btn d-lg-block d-none  me-2">Ingresa</a>
-        <!-- <a  class="btn custom-btn d-lg-block d-none btn-registrate" data-bs-toggle="modal"
 
-          data-bs-target="#modalRegister"
+        <!-- <a class="btn custom-btn d-lg-block d-none btn-registrate" *ngIf="!estalogeado"
           (click)="openModal(modalContent)">Registrate</a> -->
-        <a class="btn custom-btn d-lg-block d-none btn-registrate" *ngIf="!estalogeado"
-          (click)="openModal(modalContent)">Registrate</a>
 
+          <a class="btn custom-btn d-lg-block d-none btn-registrate" *ngIf="!estalogeado"
+          routerLink="/auth/registro">Registrate</a>
         <div *ngIf="estalogeado" class="dropdown">
           <div class="perfil-info">
             <a class=" perfil-icon">
@@ -213,6 +212,7 @@ align-items: center;     display: flex;">
     <div class="container__70">
       <div class="apartado__index__body">
         <div class="letra__a letra__blanca">
+
           <p class="p_texto">
             Encuentra
           </p>
@@ -231,7 +231,22 @@ align-items: center;     display: flex;">
 
       </div>
       <div class="apartado__index__buscador">
-        <input type="text" class="buscador" placeholder="Busca el país al que estas migrando">
+        <!-- <div class="col-md-8 bg-white px-4 py-5 padding-0 d-flex flex-column align-items-center mx-auto">
+          <div class="row col-lg-10 mx-auto">
+            <div class="mb-4">
+              <div class="form-group"> -->
+                <!-- <input type="text" class="buscador" placeholder="Busca el país al que estas migrando"> -->
+                <input type="text" class="form-control" placeholder="Busca el país al que estas migrando">
+                <span class="fa fa-solid fa-circle-arrow-right arrow-icon "></span>
+
+              <!-- </div>
+            </div>
+          </div>
+
+        </div> -->
+
+
+
 
       </div>
     </div>
@@ -333,11 +348,10 @@ align-items: center;     display: flex;">
 </div> -->
 <div class="marquee p-cinta" style="display: flex; align-items: center; justify-content: center;">
   <p [style.padding-right]="last ? '0em':'5em'" *ngFor="let tema of Temas; let last = last">
-    <span [style.margin-right]="last ? '0' : '70px'">{{ formatDescriptionThemes(tema.details.data) }}</span>
-    <span *ngIf="!last"><i class="fas fa-xs fa-circle"></i></span>
-    <!-- <p [style.padding-right]="'1em'" *ngFor="let tema of Temas; let last = last">
-      <span [style.margin-right]="'70px'">{{ formatDescriptionThemes(tema.details.data) }}</span> -->
-      <!-- <span ><i class="fas fa-xs fa-circle"></i></span> -->
+    <!-- <span [style.margin-right]="last ? '0' : '70px'">{{ formatDescriptionThemes(tema.details.data) }}</span>
+    <span *ngIf="!last"><i class="fas fa-xs fa-circle"></i></span> -->
+    <span *ngIf="!last"><i class="fas fa-xs fa-circle me-3"></i></span><span [style.margin-right]="last ? '0' : '70px'">{{ formatDescriptionThemes(tema.details.data) }}</span>
+
 
 </div>
 <!-- seccion historias como la tuya -->
@@ -417,11 +431,27 @@ align-items: center;     display: flex;">
 
       </div>
       <div class="container__historias__imagen">
-        <picture>
-          <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                  <source media="(min-width: 550px)" srcset="media.png"> -->
+        <!-- <picture>
+
           <img src="assets/images/imagen_video.png">
-        </picture>
+        </picture> -->
+                  <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                  <source media="(min-width: 550px)" srcset="media.png"> -->
+        <div class="col-xl-12">
+          <div class="card">
+              <div class="card-body" style="padding: 0;">
+<!--
+                  <h4 class="card-title">Responsive embed video 4:3</h4>
+                  <p class="card-title-desc">Aspect ratios can be customized with modifier classes.</p> -->
+
+                  <!-- 4:3 aspect ratio -->
+                  <div class="embed-responsive embed-responsive-4by3" style="
+                  height: 700px;">
+                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/1y_kfWUCFDQ"></iframe>
+                  </div>
+              </div>
+          </div>
+      </div> <!-- end col -->
 
         <!-- <iframe width="1080" height="1920"
         src=" https://youtube.com/shorts/eMKlPCvHmnE?si=e4m96KnoVayNI_U2"
@@ -977,6 +1007,7 @@ align-items: center;     display: flex;">
     </div>
   </div>
 </section>
+
 <!-- seccion quiero unirme -->
 <section>
 

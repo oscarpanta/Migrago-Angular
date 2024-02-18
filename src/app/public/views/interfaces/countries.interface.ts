@@ -8,5 +8,7 @@ export interface Country {
   created_at:Date;
   user_updated_id:bigint;
   updated_at:Date;
+  flag_img:string;
+  cod_country:string;
 
 }

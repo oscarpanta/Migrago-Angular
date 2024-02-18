@@ -12,6 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistroComponent } from './registro/registro.component';
 import { ReagendarComponent } from './reagendar/reagendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { CoreModule } from 'src/app/core/core.module';
 
 
 
@@ -33,7 +36,10 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     FormsModule,
     AuthRoutingModule,
     FullCalendarModule,
-   ReactiveFormsModule
+   ReactiveFormsModule,
+   NgSelectModule,
+   NgbModule,
+   CoreModule
   ],
   exports:[
     RouterModule

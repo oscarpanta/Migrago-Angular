@@ -26,25 +26,32 @@ import {
   StripeCardElementOptions,
   StripeElementsOptions,
 } from '@stripe/stripe-js';
+import { Nationalities } from '../../interfaces/nationalities.interface';
+import { Cities } from '../../interfaces/cities.interface';
+import { Country } from '../../interfaces/countries.interface';
+import { CountriesService } from '../../services/countries.service';
+import { notZeroValidator } from 'src/app/core/directives/not-zero.directive';
+import { environment } from 'src/environments/environment';
 
 
 // import Swiper from 'swiper';
 declare let Swiper: any;
 declare var bootstrap: any;
 declare var $: any;
-
+declare var google: any;
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
   styleUrls: ['./detalle.component.css']
 })
-export class DetalleComponent implements OnInit, AfterViewInit {
+export class DetalleComponent implements OnInit{
   //isInfoExtraVisible = false;
   @ViewChild('siguienteBtn') siguienteBtn!: ElementRef;
   @ViewChild('modalContinuacion') modalContinuacion!: any;
   @ViewChildren('checkboxes') checkboxes!: QueryList<ElementRef>;
   @ViewChild('modalLogin') modalLogin: any;
   @ViewChild('modalPagos') modalPagos: any;
+  @ViewChild('modalRegister') modalRegister: any;
   @ViewChild(StripeCardComponent, { static: false }) card!: StripeCardComponent;
 
   storyId!: number;
@@ -70,8 +77,26 @@ export class DetalleComponent implements OnInit, AfterViewInit {
   estalogeado: boolean = false;
   rolUsuario: string | null = "";
 
+  countries: Country[] = [];
+  paismigra: Country[] = []
+  cities: Cities[] = [];
+  nationalities: Nationalities[] = []
+
+  // selectedCountryId: number | null = null;
+  // selectedCityId: number = 0;
+  selectedCountryId: number | null = null;
+  selectedCityId: number | null = null;
+  selectedNationalityId: number = 0;
+  selectedPaisMigraId: number = 0;
+  ocultarpas: boolean = true;
+  textoBoton = 'Registrarse';
+
+  selectedOption: any ;
+  options :any;
+
 
   currentSection = 1;
+  seccion=1;
   selectedDate: string | null = null;
   showEventList: boolean = true;
   showSection3: boolean = false;
@@ -122,8 +147,22 @@ export class DetalleComponent implements OnInit, AfterViewInit {
   });
   formularioEnviado = false;
   miFormularioRegistro: FormGroup = this.fb.group({
-    email: ['', [Validators.required]],
-    password: ['', [Validators.required]],
+    // email: ['', [Validators.required]],
+    // password: ['', [Validators.required]],
+    email:['',[Validators.required,Validators.minLength(5)]],
+    password:['',[Validators.required,Validators.minLength(6)]],
+    nombre: ['', [Validators.required]],
+    apellidos: ['', [Validators.required]],
+    fechanac: ['', [Validators.required]],
+    genero: ['', [Validators.required, notZeroValidator]],
+    nacionalidad: [[0], [Validators.required, notZeroValidator]],
+    // countrySelect: [[0], [Validators.required, notZeroValidator]],
+    // citySelect: [[0], [Validators.required, notZeroValidator]],
+    countrySelect: ['', [Validators.required, notZeroValidator]],
+    citySelect: ['', [Validators.required, notZeroValidator]],
+    fechatentativa: ['', [Validators.required]],
+    numero: ['', [Validators.required]],
+    paismigra: [[0], [Validators.required, notZeroValidator]],
   });
 
   calificacionSeleccionada: number | null = null;
@@ -159,10 +198,13 @@ export class DetalleComponent implements OnInit, AfterViewInit {
     amount: [100, [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
   });
 
+  private clienteid= environment.clientId;
+  tipolog = 0;
+  cargando:boolean=false;
   //historiaDetalle: any[] = [];
   constructor(private route: ActivatedRoute,
     private historiasService: StoriesService, private modalService: NgbModal, private disponibleService: AvailabilitiesService,
-    private imagenservice: ImagenesService, private fb: FormBuilder, private temas: TemasService,
+    private imagenservice: ImagenesService, private fb: FormBuilder, private temas: TemasService,private country: CountriesService,
     private bookingService: BookingsService, private changeDetector: ChangeDetectorRef, private authService: AutenticacionService,
     private datePipe: DatePipe, private router: Router, private stripeService: StripeService) {
     this.miFormulario = this.fb.group({
@@ -172,98 +214,96 @@ export class DetalleComponent implements OnInit, AfterViewInit {
     });
   }
   ngAfterViewInit() {
-    const fechainicio = localStorage.getItem('fechainicio');
-    const fechafin = localStorage.getItem('fechafin');
-    let temasGuardados;
-    const temasGuardadosString = localStorage.getItem('temas');
-    const historiaString = localStorage.getItem('historia');
-    if (historiaString) {
-      const historiaData = JSON.parse(historiaString);
+    // const fechainicio = localStorage.getItem('fechainicio');
+    // const fechafin = localStorage.getItem('fechafin');
+    // let temasGuardados;
+    // const temasGuardadosString = localStorage.getItem('temas');
+    // const historiaString = localStorage.getItem('historia');
+    // if (historiaString) {
+    //   const historiaData = JSON.parse(historiaString);
 
-      const storieId = historiaData.storie_id;
-      const title = historiaData.title;
-    }
+    //   const storieId = historiaData.storie_id;
+    //   const title = historiaData.title;
+    // }
 
-    if (temasGuardadosString !== null) {
-      temasGuardados = JSON.parse(temasGuardadosString);
-    }
-    if (fechainicio && fechafin) {
-      const confirmarRegistro = confirm('¿Deseas registrar la cita?');
+    // if (temasGuardadosString !== null) {
+    //   temasGuardados = JSON.parse(temasGuardadosString);
+    // }
+    // if (fechainicio && fechafin) {
+    //   const confirmarRegistro = confirm('¿Deseas registrar la cita?');
 
-      if (confirmarRegistro) {
-        if (this.usuario.name === null) {
-          localStorage.removeItem('fechainicio');
-          localStorage.removeItem('fechafin');
-          localStorage.removeItem('temas');
-          localStorage.removeItem('historia')
+    //   if (confirmarRegistro) {
+    //     if (this.usuario.name === null) {
+    //       localStorage.removeItem('fechainicio');
+    //       localStorage.removeItem('fechafin');
+    //       localStorage.removeItem('temas');
+    //       localStorage.removeItem('historia')
 
-          Swal.fire('Error', 'Debes actualizar tu perfil para solicitar una cita', 'error')
-          return
-        }
-        console.log(this.usuario)
+    //       Swal.fire('Error', 'Debes actualizar tu perfil para solicitar una cita', 'error')
+    //       return
+    //     }
+    //     console.log(this.usuario)
 
-        this.router.navigate(['/historias/pagoCita']);
-        // let req = {
-        //   request: {
-        //     booking_id: 0,
-        //     story_id: this.storyId,
-        //     user_id: this.usuario.id,
-        //     time_booking: 60,
-        //     price_booking: 90,
-        //     startDate_booking: fechainicio,
-        //     endDate_booking: fechafin,
-        //     link_meeting: "",
-        //     payment_method: "Stripe Payment",
-        //     reason_cancel: "",
-        //     user_cancel_id: this.usuario.id,
-        //     in_status: "CREADO",
-        //     group_themes: temasGuardados.map((id: any) => ({
-        //       group_theme_id: id,
-        //       question: ""
-        //     }))
+    //     this.router.navigate(['/historias/pagoCita']);
+    //   }
+    //   else {
+    //     localStorage.removeItem('fechainicio');
+    //     localStorage.removeItem('fechafin');
+    //     localStorage.removeItem('temas');
+    //     localStorage.removeItem('historia')
+    //   }
 
-        //   }
-        // }
-        // console.log(req)
-        // this.bookingService.crearBooking(req)
-        //   .subscribe(res => {
-        //     if (res[0][0].out_rpta === "OK") {
 
-        //       Swal.fire('Success', 'Cita registrada', 'success')
-        //     } else {
-        //       Swal.fire('Error', 'No se pudo registrar', 'error')
-        //     }
-        //   });
-      }
-      else {
-        localStorage.removeItem('fechainicio');
-        localStorage.removeItem('fechafin');
-        localStorage.removeItem('temas');
-        localStorage.removeItem('historia')
-      }
-      // Limpiar localStorage
-
-    }
+    // }
   }
   ngOnInit(): void {
-    this.logeado()
+    // this.pasos();
+    setTimeout(() => {
+      google.accounts.id.initialize({
+        //we need to get client id, so got to
+        client_id: this.clienteid,
+        callback: (resp: any) => {
+          //u'll get client id and token here
+          // u can console here what u will get
+          this.handleLogin(resp);
+        },
+        cancel_on_tap_outside:false
+      });
+
+      google.accounts.id.renderButton(document.getElementById("google-btn"), {
+        theme: 'filled_blue',
+        size: 'large',
+        shape: 'rectangle',
+        width: 500
+      });
+
+      this.route.queryParams.subscribe(params => {
+        this.storyId = params['historia_id'];
+        if (this.storyId) {
+          this.obtenerDetalleHistoria(this.storyId);
+          this.obtenerDataTema();
+          //  this.CargarEvents();
+          // this.obtenerDetallesMiembros(this.storyId);
+          // this.obtenerHistoriaImages(this.storyId);
+          // this.obtenerHistoriaReviews(this.storyId);
+          console.log(this.diferenciames)
+
+        }
+      });
+
+     }, 100);
+    this.logeado();
+
+    this.listaPaises();
+    this.listaNacionalidades();
     //this.GetUsuario()
     this.diferenciames = 0;
-    this.route.queryParams.subscribe(params => {
-      this.storyId = params['historia_id'];
-      if (this.storyId) {
-        this.obtenerDetalleHistoria(this.storyId);
-        this.obtenerDataTema();
-        //  this.CargarEvents();
-        // this.obtenerDetallesMiembros(this.storyId);
-        // this.obtenerHistoriaImages(this.storyId);
-        // this.obtenerHistoriaReviews(this.storyId);
-        console.log(this.diferenciames)
 
-      }
-    });
+
     console.log(this.historiaDetalle)
     //this.obtenerDetalleHistoria(1)
+
+
 
 
   }
@@ -611,7 +651,8 @@ export class DetalleComponent implements OnInit, AfterViewInit {
     // localStorage.setItem('fechafin', fechafin);
     // localStorage.setItem('temas', JSON.stringify(this.groupThemeIds));
     // localStorage.setItem('historia', JSON.stringify(this.historiaDetalle.story.data[0]));
-    this.mandarlocalstorage()
+    this.mandarlocalstorage();
+
     console.log(this.miFormulario.value)
     this.modalService.open(this.modalLogin, { backdrop: 'static', keyboard: false, ariaLabelledBy: 'modalLogin' }).result.then(
       (result) => {
@@ -653,7 +694,17 @@ export class DetalleComponent implements OnInit, AfterViewInit {
           //   localStorage.setItem('fechainicio', fechainicio);
           //   localStorage.setItem('fechafin', fechafin);
           //   localStorage.setItem('temas', JSON.stringify(this.groupThemeIds));
-          location.reload();
+          this.modalService.dismissAll();
+            this.formularioEnviado = false;
+            this.textoBoton = 'Registrarse';
+            // setTimeout(() => {
+              this.router.navigate(['/historias/pagoCita']);
+              setTimeout(() => {
+                location.reload(); // Recarga la página después de 2 segundos
+              }, 1000);
+            // }, 2000);
+
+
 
         }
         else if (res[0].roles[0].role_name == 'ROLE_GUIDE') {
@@ -681,25 +732,80 @@ export class DetalleComponent implements OnInit, AfterViewInit {
     // }
   }
   registroUsuario() {
+    console.log(this.miFormulario.value);
+    const {email,password,nombre, apellidos, fechanac, genero, nacionalidad, countrySelect, citySelect,
+      fechatentativa,numero,paismigra} = this.miFormularioRegistro.value;
+
+   this.textoBoton = 'Esperando registro';
     this.formularioEnviado = true;
+
+    const fechaNacimiento = new Date(fechanac);
+    const hoy = new Date();
+    const edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+
+    if (edad < 18) {
+      this.textoBoton = 'Registrarme';
+      this.formularioEnviado = false;
+      Swal.fire('Error', 'Debes ser mayor de 18 años para registrarte.', 'error');
+      return; // Detener el proceso de registro
+    }
+
+    const selectedCountry = this.countries.find((option: any) => option.id === countrySelect);
+    const codCountry = selectedCountry ? selectedCountry.cod_country : '';
+
+    // Concatena el código de país con el número de teléfono
+    const phoneNumber = codCountry + numero.toString();
     //  console.log(this.miFormulario.value);
-    const { email, password } = this.miFormularioRegistro.value;
+    // const { email, password } = this.miFormularioRegistro.value;
+    // let req = {
+    //   request: {
+    //     id: 0,
+    //     dni: null,
+    //     name: null,
+    //     lastname: null,
+    //     username: email,
+    //     password: password,
+    //     sexo: null,
+    //     photo: null,
+    //     status: true,
+    //     phone: null,
+    //     birth_date: null,
+    //     rol: 6
+
+    //   }
+
+    // };
+
     let req = {
       request: {
-        id: 0,
-        dni: null,
-        name: null,
-        lastname: null,
+        id:0,
+        dni:null,
+        name:nombre,
+        lastname:apellidos,
         username: email,
         password: password,
-        sexo: null,
-        photo: null,
-        status: true,
-        phone: null,
-        birth_date: null,
-        rol: 6
-
+        sexo:genero,
+        photo:null,
+        status:true,
+        phone:numero.toString(),
+        birth_date:fechanac,
+        tipo_login:this.tipolog,
+        rol:6
+      },
+      customer: {
+        country_id: countrySelect,
+        city_id: citySelect,
+        nationality_id: nacionalidad,
+        social_network: null,
+        country_migration: paismigra,
+        family_migration:null,
+        date_tentative: fechatentativa
       }
+
+    };
+    let reqlogin= {
+      username: email,
+      password: password
 
     };
     this.authService.registro(req)
@@ -707,32 +813,55 @@ export class DetalleComponent implements OnInit, AfterViewInit {
         console.log(res);
         // console.log(res[0][0].out_rpta);
         if (res.msg === "Usuario registrado") {
-          this.formularioEnviado = false;
+
           Swal.fire({
             title: 'Registrado',
             text: 'Registro exitoso',
             icon: 'success',
-            timer: 2000,
-            showConfirmButton: false
+            // timer: 2000,
+            // showConfirmButton: false
+          }).then(() => {
+            this.modalService.dismissAll();
+            this.authService.login(reqlogin).subscribe((res: any) => {
+              if (res) {
+                this.formularioEnviado = false;
+                this.textoBoton = 'Registrarse';
+                // setTimeout(() => {
+                  this.router.navigate(['/historias/pagoCita']);
+                  setTimeout(() => {
+                    location.reload(); // Recarga la página después de 2 segundos
+                  }, 1000);
+                // }, 2000);
+
+              }
+
+            },
+              (error: any) => {
+                this.formularioEnviado = false;
+                this.textoBoton = 'Registrarse';
+                console.error('Error:');
+                Swal.fire('Error', 'Datos incorrectos', 'error')
+              }
+            );
           });
 
 
-          setTimeout(() => {
-            this.abrirmodallogin();
-          }, 2000);
-          //   Swal.fire('Registrado', 'Registrado con éxito, ahora puedes iniciar sesión', 'success')
+          // setTimeout(() => {
+          //   this.abrirmodallogin();
+          // }, 2000);
 
-          //   this.abrirmodallogin()
         }
         else {
+          this.formularioEnviado = false;
+          this.textoBoton = 'Registrarse';
           console.log(res)
           Swal.fire('Error', "Este usuario ya se encuentra registrado", 'error')
-          this.formularioEnviado = false;
+
         }
       },
         (error: any) => {
-          //  console.error('Error:', error);
           this.formularioEnviado = false;
+          this.textoBoton = 'Registrarse';
           Swal.fire('Error', 'Datos incorrectos', 'error')
         }
 
@@ -992,6 +1121,7 @@ export class DetalleComponent implements OnInit, AfterViewInit {
   limpiar() {
     this.groupThemeIds = []
     this.currentSection = 1
+    this.seccion=1;
     this.showEventList = true
     this.miFormulario = this.fb.group({
       //abc:['',[Validators.required]],
@@ -1284,6 +1414,344 @@ export class DetalleComponent implements OnInit, AfterViewInit {
 
     );
 
+  }
+  ocultarpass1() {
+    // a=!a;
+     this.ocultarpas = !this.ocultarpas;
+   }
+   sesion(){
+    this.modalService.dismissAll();
+    this.router.navigate(['/auth/login']);
+   }
+  //  pasos(){
+
+
+  //       const navigateToFormStep = (stepNumber: number): void => {
+  //         /**
+  //         * Hide all form steps.
+  //         */
+
+  //         document.querySelectorAll(".form-step").forEach((formStepElement: Element) => {
+  //             formStepElement.classList.add("d-none");
+  //         });
+  //         /**
+  //         * Mark all form steps as unfinished.
+  //         */
+  //         document.querySelectorAll(".form-stepper-list").forEach((formStepHeader: Element) => {
+  //             formStepHeader.classList.add("form-stepper-unfinished");
+  //             formStepHeader.classList.remove("form-stepper-active", "form-stepper-completed");
+  //         });
+  //         /**
+  //         * Show the current form step (as passed to the function).
+  //         */
+  //         document.querySelector("#step-" + stepNumber)?.classList.remove("d-none");
+  //         /**
+  //         * Select the form step circle (progress bar).
+  //         */
+  //         const formStepCircle = document.querySelector(`li[step="${stepNumber}"]`);
+  //         /**
+  //         * Mark the current form step as active.
+  //         */
+  //         formStepCircle?.classList.remove("form-stepper-unfinished", "form-stepper-completed");
+  //         formStepCircle?.classList.add("form-stepper-active");
+  //         /**
+  //         * Loop through each form step circles.
+  //         * This loop will continue up to the current step number.
+  //         * Example: If the current step is 3,
+  //         * then the loop will perform operations for step 1 and 2.
+  //         */
+  //         for (let index = 0; index < stepNumber; index++) {
+  //             /**
+  //             * Select the form step circle (progress bar).
+  //             */
+  //             const formStepCircle = document.querySelector(`li[step="${index}"]`);
+  //             /**
+  //             * Check if the element exist. If yes, then proceed.
+  //             */
+  //             if (formStepCircle) {
+  //                 /**
+  //                 * Mark the form step as completed.
+  //                 */
+  //                 formStepCircle.classList.remove("form-stepper-unfinished", "form-stepper-active");
+  //                 formStepCircle.classList.add("form-stepper-completed");
+  //             }
+  //         }
+  //         };
+  //         /**
+  //         * Select all form navigation buttons, and loop through them.
+  //         */
+  //         document.querySelectorAll(".btn-navigate-form-step").forEach((formNavigationBtn: Element) => {
+  //         /**
+  //         * Add a click event listener to the button.
+  //         */
+  //         formNavigationBtn.addEventListener("click", () => {
+  //             /**
+  //             * Get the value of the step.
+  //             */
+
+  //             const stepNumber = parseInt(formNavigationBtn.getAttribute("step_number") || "0");
+  //             /**
+  //             * Call the function to navigate to the target form step.
+  //             */
+  //             navigateToFormStep(stepNumber);
+  //         });
+  //         });
+
+
+
+  //   }
+   listaPaises() {
+    const requestData = {
+      request: {
+        contry_name: null,
+        status: true
+      },
+      order: {
+
+        column: null,
+        mode: null
+      },
+      page_size: 100,
+      pgination_key: 1
+    };
+
+    this.country.getCountries(requestData).subscribe(
+      response => {
+        this.countries = response[0].data;
+        this.paismigra = response[0].data;
+        this.options = this.countries.map(country => {
+          return {
+            id: country.id, // o el campo de identificación correspondiente
+            text: country.country_name,
+            image: `assets/images/flags/tiny/${country.flag_img}`, // Asegúrate de que las imágenes estén ubicadas correctamente
+            cod:country.cod_country
+          };
+        });
+        if (this.options && this.options.length > 0) {
+          this.selectedOption = {
+            id: this.options[0].id,
+            text: this.options[0].text,
+            image: this.options[0].image,
+            cod:this.options[0].cod
+          };
+        }
+      }
+
+    );
+  }
+  listaCiudades() {
+    if (this.selectedCountryId !== null) {
+      const req = {
+
+        request: {
+          country_id: this.selectedCountryId,
+          city_name: null,
+          status: true
+        },
+        order: {
+          column: null,
+          mode: null
+        },
+        page_size: 100,
+        pgination_key: 1
+
+      };
+
+      this.country.getAllCities(req).subscribe(
+
+        response => {
+          this.cities = response[0].data;
+
+        }
+
+      )
+
+    }
+    else {
+      this.cities = [];
+
+    }
+
+
+  }
+  listaNacionalidades() {
+    const requestData = {
+      request: {
+        nationality_name: null,
+        status: true
+      },
+      order: {
+        column: null,
+        mode: null
+      },
+      page_size: 100,
+      pgination_key: 1
+    };
+
+    this.country.getNationalities(requestData).subscribe(
+      response => {
+        console.log('Nacionalidades=' + JSON.stringify(response));
+        this.nationalities = response[0].data;
+        //  this.nationalities = response;
+        console.log(this.nationalities)
+
+      },
+      error => {
+        console.error('Error :', error);
+      }
+
+
+    );
+  }
+  // onCountrySelect(event: any) {
+  //   const selectedCountryId = event.target.value;
+  //   this.selectedCountryId = selectedCountryId;
+  //   this.listaCiudades();
+  // }
+  // onCitySelect(event: any) {
+  //   this.selectedCityId = event.target.value;
+  // }
+
+  onCountrySelect(selectedCountryId: number)  {
+    // const selectedCountryId = event.target.value;
+    this.selectedCountryId = selectedCountryId;
+    this.selectedCityId =null;
+    this.listaCiudades();
+    if(selectedCountryId){
+      const selectedCountryop = this.options.find((option:any) => option.id === selectedCountryId);
+
+      if (selectedCountryop) {
+        // Actualiza la variable selectedOption con el país seleccionado
+        this.selectedOption = {
+          id: selectedCountryop.id,
+          text: selectedCountryop.text,
+          image: selectedCountryop.image,
+          cod:selectedCountryop.cod
+        };
+      }
+    }
+
+  }
+  onCitySelect(selectedCityId: number) {
+    this.selectedCityId = selectedCityId;
+  }
+  onNationalitySelect(event: any) {
+    const selectedNationalityId = event.target.value;
+    this.selectedNationalityId = selectedNationalityId
+    console.log(this.selectedNationalityId)
+  }
+  onPaisMigraSelect(event: any) {
+    const selectedpaisID = event.target.value;
+    this.selectedPaisMigraId = selectedpaisID
+    console.log(this.selectedPaisMigraId)
+  }
+   camposVacios(): boolean {
+    const emailControl = this.miFormularioRegistro.get('email');
+    const passwordControl = this.miFormularioRegistro.get('password');
+
+    const emailValid = emailControl?.valid && emailControl.value.length >= 5;
+    const passwordValid = passwordControl?.valid && passwordControl.value.length >= 6;
+
+    return !emailValid || !passwordValid;
+  }
+
+  siguienteSection() {
+    this.seccion++;
+  }
+  onOptionSelect(option: any) {
+    // Manejar la opción seleccionada
+    this.selectedOption = option;
+    console.log('Selected:', option);
+
+    //   this.cdr.detectChanges();
+
+  }
+  private decodeToken(token: string) {
+    return JSON.parse(atob(token.split('.')[1]))  //we need payload of the token i.e 2nd part[1],first part is header i.e [0], 3rd part is secret
+  }
+  handleLogin(resp: any) {
+    //resp : u will get credential from that u need to decrypt the
+    this.cargando=true;
+    if (resp) {
+
+      const payLoad = this.decodeToken(resp.credential);
+          this.authService.sendTokenToBackend(resp.credential)
+        .subscribe((response:any) => {
+          console.log(response);
+          console.log(response.error);
+          if(response){
+            if(response.error){
+              let _req = {
+                username:payLoad.email ,
+                password: ''
+
+              };
+              this.authService.login(_req).subscribe((res: any) => {
+
+                if (res) {
+                  this.cargando=false
+                  this.mandarlocalstorage()
+                  this.modalService.dismissAll();
+                  this.router.navigate(['/historias/pagoCita']);
+                }
+                else {
+                  this.cargando=false
+                  console.log(res)
+                  Swal.fire('Error', res, 'error')
+                }
+
+
+              },
+              (error: any) => {
+                this.cargando=false
+                Swal.fire('Error', 'Ha ocurrido un error', 'error')
+              }
+
+
+              );
+
+
+            }
+
+
+            else{
+              this.cargando=false
+              this.abrirmodalRegister()
+              this.miFormulario.get('nombre')?.setValue(payLoad.given_name);
+              this.miFormulario.get('apellidos')?.setValue(payLoad.family_name);
+              this.miFormulario.get('email')?.setValue(payLoad.email);
+              this.miFormulario.get('password')?.clearValidators();
+              this.miFormulario.get('password')?.updateValueAndValidity();
+
+              this.tipolog = 1;
+              this.seccion=2;
+            }
+
+          }
+
+
+      }, error => {
+        this.cargando=false
+        console.error(error);
+
+      });
+
+
+    }
+  }
+
+  abrirmodalRegister() {
+    this.modalService.dismissAll();
+
+    console.log(this.miFormulario.value)
+    this.modalService.open(this.modalRegister, { backdrop: 'static', keyboard: false, ariaLabelledBy: 'modalRegister' }).result.then(
+      (result) => {
+
+      },
+      (reason) => {
+
+      }
+    );
   }
 }
 

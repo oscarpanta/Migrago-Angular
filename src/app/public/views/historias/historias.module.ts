@@ -15,6 +15,9 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { NgxStripeModule } from 'ngx-stripe';
 import { environment } from 'src/environments/environment';
 import { PagoCitaComponent } from './pago-cita/pago-cita.component';
+import { CoreModule } from 'src/app/core/core.module';
+import { ModalComponent } from '../home/modal/modal.component';
+import { HomeModule } from '../home/home.module';
 
 
 
@@ -26,7 +29,7 @@ import { PagoCitaComponent } from './pago-cita/pago-cita.component';
 
     HistoriasComponent,
      DetalleComponent,
-     PagoCitaComponent
+     PagoCitaComponent,
   ],
   imports: [
     CommonModule,
@@ -35,10 +38,12 @@ import { PagoCitaComponent } from './pago-cita/pago-cita.component';
     FormsModule,
     NgSelectModule,
     HistoriasRoutingModule,
+    CoreModule,
     FullCalendarModule,
     NgbModule,
     NgbProgressbarModule,
     NgxStripeModule.forRoot(environment.stripe.publicKey),
+    HomeModule
   ],
   providers:[
     NgbActiveModal,

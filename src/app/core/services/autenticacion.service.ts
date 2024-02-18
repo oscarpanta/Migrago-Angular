@@ -140,7 +140,9 @@ export class AutenticacionService {
             localStorage.setItem('guia', JSON.stringify(resp[0].guia.id_guia));
           }
           if (resp[0].cliente != null) {
-            localStorage.setItem('cliente', JSON.stringify(resp[0].cliente.id));
+            // localStorage.setItem('cliente', JSON.stringify(resp[0].cliente.id));
+            localStorage.setItem('cliente', JSON.stringify(resp[0].cliente.customer_id));
+
           }
 
           this._usuario = {
@@ -230,7 +232,16 @@ export class AutenticacionService {
     return this.http.post(apiUrl, requestData,{context: addTokenHeader()});
   }
 
-
+  sendTokenToBackend(idToken: string) {
+    const body = { id_token: idToken };
+    const apiUrl = '/api/auhtGoogle';
+    return this.http.post(apiUrl, body);
+  }
+  usuarioEmail(requestData: any): Observable<any> {
+    const apiUrl = '/api/auhtUser';
+    // return this.http.post(apiUrl, requestData);
+    return this.http.post(apiUrl, requestData);
+  }
 
 
   logout() {

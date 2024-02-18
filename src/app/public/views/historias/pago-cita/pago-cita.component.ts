@@ -194,7 +194,7 @@ export class PagoCitaComponent implements OnInit {
                         this.formularioEnviado = false;
                         Swal.fire({
                           title: 'Exito',
-                          text: 'Se ha registrado con Éxito',
+                          text: 'Has pagado tu cita con éxito',
                           icon: 'success',
                           timer: 2000, // Establece el tiempo en milisegundos (en este caso, 2 segundos)
                           showConfirmButton: false // Oculta el botón de confirmación

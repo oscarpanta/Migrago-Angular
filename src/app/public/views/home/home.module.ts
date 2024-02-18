@@ -15,7 +15,8 @@ import { ModalComponent } from './modal/modal.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { NgxSummernoteModule } from 'ngx-summernote';
 import { NotZeroDirective } from 'src/app/core/directives/not-zero.directive';
-
+import { CoreModule } from 'src/app/core/core.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -28,7 +29,7 @@ import { NotZeroDirective } from 'src/app/core/directives/not-zero.directive';
      MainComponent,
     ModalComponent,
     NosotrosComponent,
-    NotZeroDirective
+    // NotZeroDirective
 
   ],
   imports: [
@@ -37,12 +38,16 @@ import { NotZeroDirective } from 'src/app/core/directives/not-zero.directive';
     HomeRoutingModule,
     ReactiveFormsModule,
     NgbModule,
+    NgSelectModule,
    // NgbModalModule
-   NgxSummernoteModule
+   NgxSummernoteModule,
+   CoreModule
+
 
   ],
   exports: [
     RouterModule,
+    ModalComponent
 
   ],
   providers:[

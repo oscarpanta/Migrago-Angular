@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReplaceSlashPipePipe } from './pipes/replace-slash-pipe.pipe';
+import { NotZeroDirective } from './directives/not-zero.directive';
 
 //import { HttpCoreService } from './services/http-core.service';
 
@@ -10,13 +11,13 @@ import { ReplaceSlashPipePipe } from './pipes/replace-slash-pipe.pipe';
   declarations: [
 
 
-       // NotZeroDirective
+       NotZeroDirective
   ],
   imports: [
     CommonModule
   ],
   exports:[
-    //NotZeroDirective
+    NotZeroDirective
   ],
   providers: [
   //  HttpCoreService,

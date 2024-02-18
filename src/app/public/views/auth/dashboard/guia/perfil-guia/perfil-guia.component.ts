@@ -621,7 +621,8 @@ export class PerfilGuiaComponent implements OnInit {
         contenido_red_social: contenido,
         guia_trabaja: guidework,
         rubro_id: rubro,
-        familia_principal: aplicante
+        familia_principal: aplicante,
+        tipo_login:0
 
 
       }

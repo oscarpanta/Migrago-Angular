@@ -439,10 +439,10 @@ export class PerfilComponent implements OnInit {
       return
     }
     console.log(this.archivos)
-    if ((this.archivos.length == 0 || (this.archivos.every((file: any) => file === undefined))) && this.imageSrc == '') {
-      Swal.fire('Error', 'Debe insertar una imagen', 'error')
-      return
-    }
+    // if ((this.archivos.length == 0 || (this.archivos.every((file: any) => file === undefined))) && this.imageSrc == '') {
+    //   Swal.fire('Error', 'Debe insertar una imagen', 'error')
+    //   return
+    // }
 
     this.formularioEnviado = true;
     this.textoBoton = 'Esperando registro';
@@ -451,7 +451,7 @@ export class PerfilComponent implements OnInit {
       request: {
         id_user: this.usuario.id,
         // id_customer: this.cliente[0].id,
-        id_customer: this.cliente[0].id,
+        id_customer: this.cliente[0].customer_id,
         dni: null,
         name: nombre,
         lastname: apellidos,
@@ -469,8 +469,8 @@ export class PerfilComponent implements OnInit {
         social_network: redsocial,
         country_migration: paismigra,
         family_migration: migrafamilia,
-        date_tentative: fechatentativa
-
+        date_tentative: fechatentativa,
+        tipo_login:0
 
 
       }

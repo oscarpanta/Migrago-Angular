@@ -26,34 +26,44 @@ export class RegistroGuiaComponent {
   modemigrations: MigrationMode[] = []
   miFormulario!: FormGroup;
   formularioEnviado = false;
-  selectedOption: any = null;
-  selectedCountryId: number  = 0;
-  selectedCityId: number = 0;
+  selectedOption: any ;
+  // selectedCountryId: number  = 1;
+  // selectedCityId: number = 0;
+  selectedCountryId: number | null = null;
+  selectedCityId: number | null = null;
+
   selectedNationalityId: number = 0;
   selectedModoMigrationId: number = 0;
   selectedRutaMigrationId: number = 0;
   selectedFecha!: Date;
   selectedFechaNac!: Date;
   textoBoton = 'Registrarme';
+
+  options :any;
+
   ngOnInit(): void {
     //this.selectedOption = null;
-    this.selectedOption = this.options[0]; // Opción por defecto después de la carga
+
     this.listaModoMigracion()
     this.listaPaises()
     this.listaNacionalidades()
 
     this.listaRutasMigracion()
+
+    // console.log(this.options)
+    // console.log(this.selectedOption)
+
   }
   constructor(private country: CountriesService, private fb: FormBuilder, private waymigration: WaysMigrationService,
     private authservice: AutenticacionService,private router:Router) {
-    this.selectedOption = null;
+
     this.miFormulario = this.fb.group({
       nombre: ['', [Validators.required]],
       nacionalidad: [[0],  [Validators.required, notZeroValidator]],
       apellidos: ['', [Validators.required]],
-      countrySelect: [[0], [Validators.required,notZeroValidator]],
+      countrySelect: ['', [Validators.required]],
       genero: ['', [Validators.required,notZeroValidator]],
-      citySelect: [[0], [Validators.required,notZeroValidator]],
+      citySelect: ['', [Validators.required]],
       numero: ['', [Validators.required]],
       fecha: ['', [Validators.required]],
       correo: ['', [Validators.required]],
@@ -67,11 +77,10 @@ export class RegistroGuiaComponent {
     });
   }
 
-  options = [
-    { text: 'Peru', image: 'assets/images/flags/tiny/Peru.png' },
-    { text: 'EE.UU', image: 'assets/images/flags/tiny/United_States_of_America.png' },
-    // ... Agregar más opciones con rutas de imágenes
-  ];
+  // options = [
+  //   { text: 'Peru', image: 'assets/images/flags/tiny/Peru.png' },
+  //   { text: 'EE.UU', image: 'assets/images/flags/tiny/United_States_of_America.png' },
+  // ];
 
   onOptionSelect(option: any) {
     // Manejar la opción seleccionada
@@ -99,7 +108,23 @@ export class RegistroGuiaComponent {
     this.country.getCountries(requestData).subscribe(
       response => {
         this.countries = response[0].data;
-
+        this.options = this.countries.map(country => {
+          return {
+            id: country.id, // o el campo de identificación correspondiente
+            text: country.country_name,
+            image: `assets/images/flags/tiny/${country.flag_img}`, // Asegúrate de que las imágenes estén ubicadas correctamente
+            cod:country.cod_country
+          };
+        });
+        if (this.options && this.options.length > 0) {
+          this.selectedOption = {
+            id: this.options[0].id,
+            text: this.options[0].text,
+            image: this.options[0].image,
+            cod:this.options[0].cod
+          };
+        }
+        console.log(this.options);
       }
 
     );
@@ -220,14 +245,39 @@ export class RegistroGuiaComponent {
 
     );
   }
-  onCountrySelect(event: any) {
-    const selectedCountryId = event.target.value;
+  // onCountrySelect(event: any) {
+  //   const selectedCountryId = event.target.value;
+  //   this.selectedCountryId = selectedCountryId;
+  //   this.listaCiudades();
+  // }
+  // onCitySelect(event: any) {
+  //   this.selectedCityId = event.target.value;
+  // }
+  onCountrySelect(selectedCountryId: number)  {
+    // const selectedCountryId = event.target.value;
     this.selectedCountryId = selectedCountryId;
+    this.selectedCityId =null;
     this.listaCiudades();
+
+    if(selectedCountryId){
+      const selectedCountryop = this.options.find((option:any) => option.id === selectedCountryId);
+
+      if (selectedCountryop) {
+        // Actualiza la variable selectedOption con el país seleccionado
+        this.selectedOption = {
+          id: selectedCountryop.id,
+          text: selectedCountryop.text,
+          image: selectedCountryop.image,
+          cod:selectedCountryop.cod
+        };
+      }
+    }
+    console.log(this.selectedOption)
   }
-  onCitySelect(event: any) {
-    this.selectedCityId = event.target.value;
+  onCitySelect(selectedCityId: number) {
+    this.selectedCityId = selectedCityId;
   }
+
   onNationalitySelect(event: any) {
     const selectedNationalityId = event.target.value;
     this.selectedNationalityId = selectedNationalityId
@@ -261,6 +311,16 @@ export class RegistroGuiaComponent {
     console.log(this.miFormulario.value)
     console.log(this.miFormulario)
 
+    const fechaNacimiento = new Date(fechaNac);
+    const hoy = new Date();
+    const edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+
+    if (edad < 18) {
+      this.textoBoton = 'Registrarme';
+      this.formularioEnviado = false;
+      Swal.fire('Error', 'Debes ser mayor de 18 años para registrarte.', 'error');
+      return; // Detener el proceso de registro
+    }
     // if(this.miFormulario.controls['estado'].value,this.miFormulario.controls['user_id'].value){
     //   con
     // }
@@ -294,6 +354,12 @@ export class RegistroGuiaComponent {
     //     status: "PENDING"
     //   }
     // }
+      // Obtén el código de país seleccionado
+  const selectedCountry = this.options.find((option: any) => option.id === countrySelect);
+  const codCountry = selectedCountry ? selectedCountry.cod : '';
+
+  // Concatena el código de país con el número de teléfono
+  const phoneNumber = codCountry + numero.toString(); // numero concat
     let req = {
       request: {
         id: 0,
@@ -305,8 +371,9 @@ export class RegistroGuiaComponent {
         sexo: genero,
         photo: null,
         status: true,
-        phone: numero.toString(),
+        phone: numero.toString(), // phoneNumber es el num concat
         birth_date: fechaNac,
+        tipo_login:0,
         rol: 7,
       },
       guide: {

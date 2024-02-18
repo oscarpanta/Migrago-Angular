@@ -43,6 +43,8 @@ export class AgendadasComponent {
   GetClienteId() {
     this.idcliente = this.authService.getCliente()?.trim();
     this.idcliente = Number(this.idcliente.replace(/[^0-9]/g, ''));
+    console.log('idcg'+this.idcliente)
+
 
   }
   GetUsuario() {
@@ -53,6 +55,7 @@ export class AgendadasComponent {
     });
   }
   listaAgendadasGuia() {
+    console.log('idc'+this.idcliente)
     const requestData = {
       request: {
         booking_id: null,
@@ -69,6 +72,8 @@ export class AgendadasComponent {
       page_size: 100,
       pgination_key: 1
     };
+    console.log('reques')
+    console.log(requestData)
 
     this.agendadasService.getBooking(requestData).subscribe(
       response => {

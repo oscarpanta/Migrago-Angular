@@ -39,7 +39,7 @@
           placeholder="Apellidos">
 
       </div>
-      <div class="form-group col-lg-6 mb-3">
+      <!-- <div class="form-group col-lg-6 mb-3">
         <p class="p-bold-300-10-black">Pais de Residencia Actual*
           <label class="letra_gris">(público)</label>
         </p>
@@ -51,7 +51,19 @@
           </option>
         </select>
 
+      </div> -->
+      <div class="form-group col-lg-6 mb-3">
+        <p class="p-bold-300-10-black">Pais de Residencia Actual*
+          <label class="letra_gris">(público)</label>
+        </p>
+        <ng-select formControlName="countrySelect"
+        (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"   placeholder="Pais"
+        aria-label="Default select example">
+        <!-- <ng-option value="0" disabled>Pais</ng-option> -->
+          <ng-option *ngFor="let country of countries"  [value]="country.id">{{country.country_name}}</ng-option>
+       </ng-select>
       </div>
+
       <div class="form-group col-lg-6 mb-3">
 
         <p class="p-bold-300-10-black">Género*</p>
@@ -63,7 +75,7 @@
 
         </select>
       </div>
-      <div class="form-group col-lg-6 mb-3">
+      <!-- <div class="form-group col-lg-6 mb-3">
         <p class="p-bold-300-10-black">Ciudad de residencia actual*
           <label class="letra_gris">(público)</label>
         </p>
@@ -72,18 +84,30 @@
           <option value="0" disabled>Selecciona una ciudad</option>
           <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
         </select>
+      </div> -->
+      <div class="form-group col-lg-6 mb-3">
+        <p class="p-bold-300-10-black">Ciudad de residencia actual*
+          <label class="letra_gris">(público)</label>
+        </p>
+        <ng-select formControlName="citySelect"
+        name="citySelect"  (ngModelChange)="onCitySelect($event)"  placeholder="Selecciona una ciudad"
+         [(ngModel)]="selectedCityId" aria-label="Default select example">
+
+          <ng-option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</ng-option>
+       </ng-select>
       </div>
+
       <div class="form-group col-lg-6 mb-3">
 
         <p class="p-bold-300-10-black">Número de WhatsApp*</p>
         <div class="d-flex">
-          <div ngbDropdown class="image-dropdown">
-            <a type="button" class="select-paises btn " id="dropdownBasic1" ngbDropdownToggle>
+          <div ngbDropdown class="image-dropdown" >
+            <a type="button" class="select-paises btn " id="dropdownBasic1" ngbDropdownToggle disabled>
               <img [src]="selectedOption?.image" alt="{{ selectedOption?.text }}" class="option-image">
 
             </a>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <a type="button" ngbDropdownItem *ngFor="let option of options" (click)="onOptionSelect(option)">
+              <a type="button" ngbDropdownItem *ngFor="let option of options" (click)="onOptionSelect(option)" disabled>
                 <img [src]="option.image" alt="{{ option.text }}" class="option-image">
                 {{ option.text }}
               </a>

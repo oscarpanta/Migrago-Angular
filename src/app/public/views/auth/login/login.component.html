@@ -15,6 +15,10 @@
         </div>
         <div class="row mb-5">
           <span class="titulo-login" style="font-size: 27pt;">¡Bienvenido!</span>
+          <div id="google-btn" style="
+          text-align: -webkit-center;">
+
+          </div>
         </div>
         <div class="row mb-5">
           <!-- <form> -->
@@ -35,7 +39,7 @@
                   placeholder="Establecer contraseña">
                 <span class="fa  password-icon show-password fa-eye"></span> -->
                 <input type="password" id="inputPassword" formControlName="password" name="password" class="form-control password1"
-                [type]="ocultarpas ? 'password' : 'text'" placeholder="Establecer contraseña" required>
+                [type]="ocultarpas ? 'password' : 'text'" placeholder="Contraseña" required>
 
               <span class="fa  password-icon show-password1 " [ngClass]="{'fa-eye': ocultarpas, 'fa-eye-slash': !ocultarpas }"
                 (click)="ocultarpass1()"></span>

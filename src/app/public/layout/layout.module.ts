@@ -8,7 +8,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { ContenidoComponent } from './components/contenido/contenido.component';
 
 import { RegistroModalComponent } from './components/registro-modal/registro-modal.component';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NotZeroDirective } from 'src/app/core/directives/not-zero.directive';
+import { CoreModule } from 'src/app/core/core.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -18,6 +21,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     FooterComponent,
     HeaderComponent,
     RegistroModalComponent,
+    // NotZeroDirective
 
   ],
   imports: [
@@ -25,7 +29,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     FormsModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule,
+    NgbModule,
+    CoreModule
   ],
   exports:[
     ContenidoComponent

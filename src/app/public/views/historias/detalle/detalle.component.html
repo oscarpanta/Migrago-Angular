@@ -477,7 +477,8 @@
 
             </div>
             <div class="row col-lg-12 mb-2" *ngIf="usuario">
-              <p *ngIf="historiaDetalle">Hola {{usuario.name}}, déjanos un comentario sobre tu experiencia con {{ historiaDetalle.story.data[0].name.split(' ')[0] }}</p>
+              <p *ngIf="historiaDetalle">Hola {{usuario.name}}, déjanos un comentario sobre tu experiencia con {{
+                historiaDetalle.story.data[0].name.split(' ')[0] }}</p>
             </div>
             <form class="form-login" autocomplete="off" [formGroup]="miFormularioReview">
               <div class="row col-lg-12 mb-2">
@@ -539,7 +540,7 @@
           </div>
 
           <div class="row mb-3" *ngIf="historiaDetalle">
-            <span class="p-bold-500-18-detalle" >
+            <span class="p-bold-500-18-detalle">
               {{ historiaDetalle.story.data[0].name.split(' ')[0] }} {{
               historiaDetalle.story.data[0].lastname.substring(0, 1) }}.
             </span>
@@ -588,7 +589,8 @@
           <div class="row mb-3 " *ngIf="historiaDetalle">
             <!-- <span class="p-bold-500-20">$ 90.00</span> -->
             <ng-container *ngIf="usuario">
-              <span class="p-bold-500-20" *ngIf="historiaDetalle.story.data[0].user_created_id === usuario.id">Precio de tu Cita</span>
+              <span class="p-bold-500-20" *ngIf="historiaDetalle.story.data[0].user_created_id === usuario.id">Precio de
+                tu Cita</span>
             </ng-container>
 
             <span class="p-bold-500-20">${{historiaDetalle.rates.data[0].price}}.00</span>
@@ -616,6 +618,7 @@
 
 </div>
 
+<!-- <button (click)="abrirmodalregistro(modalLogin2)">ABCD</button> -->
 
 <!-- zona de modales      -->
 
@@ -669,7 +672,8 @@
             </div> -->
             <div class="form-check" #checkboxes *ngFor="let temas of historiaDetalle.group_themes.data">
               <input class="form-check-input" type="checkbox" [value]="temas.group_themes_id"
-                [checked]="groupThemeIds.includes(temas.group_themes_id)" (change)="onChange(temas.group_themes_id, $event)">
+                [checked]="groupThemeIds.includes(temas.group_themes_id)"
+                (change)="onChange(temas.group_themes_id, $event)">
               <label class="form-check-label" for="flexCheckDefault ">
                 {{temas.description}}
 
@@ -842,7 +846,11 @@
 </button> -->
 
 <ng-template #modalLogin let-modal>
+  <div id="google-btn2" style="
+  text-align: -webkit-center;">
 
+
+</div>
 
   <div class="modal-contenido">
 
@@ -868,16 +876,22 @@
           </div>
           <div class="row btn-social">
             <div class="">
-              <a data-bs-toggle="modal" data-bs-target="#modalRegister" data-bs-dismiss="modal"
+              <!-- <a data-bs-toggle="modal" data-bs-target="#modalRegister" data-bs-dismiss="modal"
                 class="btn  mb-2  btn-facebook"><i class="fa-brands fa-facebook"></i> Continuar con
-                Facebook</a>
+                Facebook</a> -->
             </div>
             <div class="">
-              <a href="" class="btn  mb-2  btn-google"><i class="fa-brands fa-google-plus-g"></i> Continuar con
-                Google</a>
+              <div id="google-btn2" style="
+              text-align: -webkit-center;">
+
+
+              </div>
+              <!-- <div class="spinner-border" role="status" *ngIf="!cargando">
+
+              </div> -->
             </div>
             <div class="">
-              <a href="" class="btn mb-2  btn-aple"><i class="fa-brands fa-apple"></i> Continuar con Apple</a>
+
             </div>
 
 
@@ -926,7 +940,8 @@
             </div>
 
             <div class="col-lg-7">
-              <a (click)="abrirmodalregistro(modalRegister)" class="p-normal-300-10 link-dashboard">Registrate en
+              <a (click)="abrirmodalregistro(modalRegister)" class="p-normal-300-10 link-dashboard"
+                style="cursor: pointer;">Registrate en
                 MigraGo</a>
             </div>
 
@@ -949,6 +964,31 @@
 </ng-template>
 
 
+
+<ng-template #modalLogin2 let-modal>
+  <div class="modal-contenido">
+
+    <div class="modal-body modal-login">
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')" style="
+         background: none;
+        float: right;
+        border: 0;
+        margin: 0.2rem">
+        <!-- <span aria-hidden="true">&times;</span> -->
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <app-modal></app-modal>
+
+
+
+    </div>
+
+  </div>
+
+
+</ng-template>
+
 <ng-template #modalRegister let-modal>
 
 
@@ -959,14 +999,13 @@
         background: none;
     float: right;
     border: 0">
-        <!-- <span aria-hidden="true">&times;</span> -->
         <i class="fa-solid fa-xmark"></i>
       </button>
 
 
 
 
-      <div class="row ">
+      <!-- <div class="row ">
         <div class="col-md-6 d-none d-md-block padding-0">
           <img src="assets/images/icons/shutterstock.jpg" class="img-fluid" style="min-height:100%;" />
         </div>
@@ -995,13 +1034,13 @@
           <div class="row col-lg-12">
             <form class="form-login" autocomplete="off" [formGroup]="miFormularioRegistro"
               (ngSubmit)="registroUsuario()">
-              <!-- <form class="form-login"> -->
+
               <div class="mb-4">
                 <div class="form-group">
 
                   <input type="email" formControlName="email" class="form-control" id="txtCorreo"
                     aria-describedby="emailHelp" placeholder="Correo electrónico">
-                  <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+
                 </div>
               </div>
 
@@ -1022,8 +1061,6 @@
               <div class="mb-4">
                 <button type="submit" class="btn btn-primary" [disabled]="formularioEnviado">Registrarse</button>
               </div>
-
-              <!-- </form> -->
 
             </form>
 
@@ -1046,20 +1083,315 @@
           </div>
         </div>
 
+      </div> -->
+
+
+      <div class="row">
+        <div class="col-lg-12 mx-auto">
+
+          <div class="row mt-4">
+
+            <div id="multi-step-form-container">
+              <!-- Form Steps / Progress Bar -->
+              <ul class="form-stepper form-stepper-horizontal text-center mx-auto pl-0">
+                <!-- Step 1 -->
+                <li class="form-stepper-active text-center form-stepper-list" step="1">
+                  <a class="mx-2">
+                    <span class="form-stepper-circle">
+                      <span>1</span>
+                    </span>
+                    <div class="label">Crear cuenta</div>
+                  </a>
+                </li>
+                <!-- Step 2 -->
+                <li class="form-stepper-unfinished text-center form-stepper-list" step="2">
+                  <a class="mx-2">
+                    <span class="form-stepper-circle text-muted">
+                      <span>2</span>
+                    </span>
+                    <div class="label text-muted">Completar datos</div>
+                  </a>
+                </li>
+
+
+              </ul>
+              <!-- Step Wise Form Content -->
+              <form class="form-login" id="userAccountSetupForm" name="userAccountSetupForm"
+                [formGroup]="miFormularioRegistro" (ngSubmit)="registroUsuario()">
+                <!-- Step 1 Content -->
+
+                <!-- <h2 class="font-normal">Datos personales</h2> -->
+                <!-- Step 1 input fields -->
+                <div class="mt-3" *ngIf="seccion === 1">
+                  <div class="row">
+
+                    <div class="col-md-8 bg-white px-4 py-5 padding-0 d-flex flex-column align-items-center mx-auto">
+                      <div class="row mb-4">
+                        <h2 class="titulo-login">Únete a Migrago</h2>
+                      </div>
+
+                      <div class="row btn-social">
+
+                        <!-- <div class="">
+                          <a href="" class="btn  mb-2  btn-facebook"><i class="fa-brands fa-facebook"></i> Continuar con
+                            Facebook</a>
+                        </div>
+                        <div class="">
+                          <a href="" class="btn  mb-2  btn-google"><i class="fa-brands fa-google-plus-g"></i> Continuar
+                            con Google</a>
+                        </div> -->
+                        <div id="google-btn2" style="
+                        text-align: -webkit-center;">
+                        </div>
+
+                      </div>
+                      <div class="row">
+                        <p>o</p>
+                      </div>
+                      <div class="row col-lg-10 mx-auto">
+
+                        <div class="mb-4">
+                          <div class="form-group">
+
+                            <input type="email" formControlName="email" class="form-control" id="txtCorreo"
+                              aria-describedby="emailHelp" placeholder="Correo electrónico">
+                            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                          </div>
+                        </div>
+
+                        <div class="mb-4">
+                          <div class="form-group">
+
+
+                            <input type="password" id="inputPassword" formControlName="password" name="password"
+                              class="form-control password1" [type]="ocultarpas ? 'password' : 'text'"
+                              placeholder="Establecer contraseña" required>
+
+                            <span class="fa  password-icon show-password1 "
+                              [ngClass]="{'fa-eye': ocultarpas, 'fa-eye-slash': !ocultarpas }"
+                              (click)="ocultarpass1()"></span>
+
+
+                          </div>
+
+
+                        </div>
+
+                        <div class="mt-3 col-md-12 mx-auto mb-3">
+                          <button class="btn btn-primary btn-navigate-form-step" type="button" step_number="2"
+                            (click)="siguienteSection()" [disabled]="camposVacios()">Siguiente</button>
+                        </div>
+
+
+                      </div>
+                      <div class="row col-lg-8 text-center">
+                        <span class="p-normal-300-10-black">Al unirme, acepto recibir correos electrónicos de
+                          MigraGo.</span>
+                      </div>
+                      <div class="col-lg-12 linea_black"></div>
+                      <div class="row col-lg-10 text-center">
+                        <div class="col-lg-6">
+                          <span class="p-normal-300-10-black">¿Ya eres miembro?</span>
+                        </div>
+
+                        <div class="col-lg-6">
+                          <a (click)="abrirmodallogin()" class="p-normal-300-10 link-dashboard"
+                            style="cursor: pointer;">Inicia sesión</a>
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+
+
+
+
+
+                <!-- Step 3 Content, default hidden on page load. -->
+
+                <!-- Step 3 input fields -->
+                <div *ngIf="seccion === 2">
+                  <div class="mt-3">
+                    <div class="mb-4 d-flex flex-column align-items-center">
+                      <h2 class="titulo-login">¡A un paso de terminar!</h2>
+                      <p class="titulo-login-small">Queremos saber un poco más de ti, será breve</p>
+                    </div>
+
+                    <div class="row px-4 py-5 d-flex align-items-end">
+
+
+
+                      <div class="form-group col-lg-6 mb-3">
+
+                        <p>Nombres:</p>
+                        <input type="text" formControlName="nombre" name="" class="form-control" value="Miguel Angel"
+                          placeholder="">
+
+                      </div>
+                      <div class="form-group col-lg-6 mb-3">
+
+                        <p>Apellidos:</p>
+                        <input type="text" formControlName="apellidos" class="form-control" value="Panta Chapoñan"
+                          placeholder="">
+
+                      </div>
+                      <!-- <div class="form-group col-lg-6 mb-3">
+
+                                                          <p>Pais de residencia actual:</p>
+                                                          <select formControlName="countrySelect" appNotZero
+                                                          (change)="onCountrySelect($event)" [(ngModel)]="selectedCountryId" class="form-select form-select-normal"
+                                                          aria-label="Default select example">
+                                                          <option value="0" selected disabled> País</option>
+                                                          <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}
+                                                          </option>
+                                                        </select>
+                                                      </div> -->
+                      <div class="form-group col-lg-6 mb-3">
+                        <p class="p-bold-300-10-black">Pais de Residencia Actual*
+                          <label class="letra_gris">(público)</label>
+                        </p>
+                        <ng-select formControlName="countrySelect" (ngModelChange)="onCountrySelect($event)"
+                          [(ngModel)]="selectedCountryId" placeholder="Pais" aria-label="Default select example">
+                          <!-- <ng-option value="0" disabled>Pais</ng-option> -->
+                          <ng-option *ngFor="let country of countries"
+                            [value]="country.id">{{country.country_name}}</ng-option>
+                        </ng-select>
+                      </div>
+                      <div class="form-group col-lg-6 mb-3">
+
+                        <p>Número de teléfono:</p>
+                        <div class="d-flex">
+                          <div ngbDropdown class="image-dropdown">
+                            <a type="button" class="select-paises btn " id="dropdownBasic1" ngbDropdownToggle disabled>
+                              <img [src]="selectedOption?.image" alt="{{ selectedOption?.text }}" class="option-image">
+
+                            </a>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                              <a type="button" ngbDropdownItem *ngFor="let option of options"
+                                (click)="onOptionSelect(option)" disabled>
+                                <img [src]="option.image" alt="{{ option.text }}" class="option-image">
+                                {{ option.text }}
+                              </a>
+                            </div>
+                          </div>
+                          <input type="number" name="" formControlName="numero" class="form-control form-control-sm"
+                            value="" placeholder="">
+                        </div>
+                      </div>
+                      <!-- <div class="form-group col-lg-6 mb-3">
+
+                                                          <p>Ciudad de residencia actual:</p>
+                                                          <select name="citySelect" formControlName="citySelect" (change)="onCitySelect($event)" appNotZero
+                                                          class="form-select form-select-sm" [(ngModel)]="selectedCityId" aria-label="Default select example">
+                                                          <option value="0" selected disabled>Selecciona una ciudad</option>
+                                                          <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
+                                                        </select>
+                                                      </div> -->
+                      <div class="form-group col-lg-6 mb-3">
+                        <p class="p-bold-300-10-black">Ciudad de residencia actual*
+                          <label class="letra_gris">(público)</label>
+                        </p>
+                        <ng-select formControlName="citySelect" name="citySelect" (ngModelChange)="onCitySelect($event)"
+                          placeholder="Selecciona una ciudad" [(ngModel)]="selectedCityId"
+                          aria-label="Default select example">
+
+                          <ng-option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</ng-option>
+                        </ng-select>
+                      </div>
+                      <div class="form-group col-lg-6 mb-3">
+
+                        <p>Fecha de nacimiento:</p>
+                        <input type="date" name="" formControlName="fechanac" class="form-control form-control-sm"
+                          value="" placeholder="">
+
+                      </div>
+                      <div class="form-group col-lg-6 mb-3">
+
+                        <p>Fecha de llegada al país de residencia:</p>
+                        <input type="date" name="" formControlName="fechatentativa" class="form-control form-control-sm"
+                          value="" placeholder="">
+
+                      </div>
+                      <div class="form-group col-lg-6 mb-3">
+
+                        <p>Género:</p>
+                        <select class="form-select form-select-sm form-select-normal"
+                          aria-label="Default select example" formControlName="genero" appNotZero>
+                          <option selected value="0" disabled>Seleccione</option>
+                          <option value="M">Masculino</option>
+                          <option value="F">Femenino</option>
+
+                        </select>
+                      </div>
+                      <!-- <div class="form-group col-lg-6 mb-3">
+
+                                                          <p>Ruta de ingreso al país:</p>
+                                                          <select class="form-select form-select-sm form-select-normal" aria-label="Default select example">
+                                                              <option selected>Seleccione</option>
+                                                              <option value="1">Masculino</option>
+                                                              <option value="2">Femenino</option>
+
+                                                          </select>
+                                                      </div> -->
+                      <div class="form-group col-lg-6 mb-3">
+
+                        <p>Nacionalidad:</p>
+                        <select formControlName="nacionalidad" (change)="onNationalitySelect($event)" appNotZero
+                          class="form-select form-select-sm form-select-normal" [(ngModel)]="selectedNationalityId"
+                          aria-label="Default select example">
+                          <option value="0" selected disabled>Nacionalidad del guía</option>
+                          <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
+                            nacionalidad.nationality_name }}</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group col-lg-6 mb-3">
+
+                        <p>¿A que pais desea migrar?</p>
+                        <select formControlName="paismigra" (change)="onPaisMigraSelect($event)" appNotZero
+                          class="form-select form-select-sm form-select-normal" [(ngModel)]="selectedPaisMigraId"
+                          aria-label="Default select example">
+                          <option value="0" selected disabled>Pais migra</option>
+                          <option *ngFor="let pais of paismigra" [value]="pais.id">{{
+                            pais.country_name }}</option>
+                        </select>
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="my-3 col-md-6 mx-auto">
+                    <!-- <button class="btn btn-primary btn-navigate-form-step" type="button" step_number="1">Anterior</button> -->
+                    <button type="submit" class="btn btn-primary"
+                      [disabled]="miFormularioRegistro.invalid || formularioEnviado">{{ textoBoton }}</button>
+                  </div>
+                </div>
+
+
+              </form>
+            </div>
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+
       </div>
 
 
 
 
 
-
-
-
     </div>
-    <!-- <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="modal.close('Cerrar')">Cerrar</button>
-      <button type="button" class="btn btn-primary" (click)="modal.close('Guardar')">Guardar</button>
-    </div>  -->
 
   </div>
 
@@ -1131,7 +1463,7 @@
 </ng-template> -->
 
 
-<!-- Modal reserva cita-->
+<!--
 <div class="modal fade" id="modalReservaCita" tabindex="-1" aria-labelledby="modalReservaCita" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -1206,7 +1538,7 @@
   </div>
 </div>
 
-<!--  -->
+
 
 <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalRegister" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -1247,7 +1579,7 @@
 
                     <input type="email" class="form-control" id="txtCorreo" aria-describedby="emailHelp"
                       placeholder="Correo electrónico">
-                    <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+
                   </div>
                 </div>
 
@@ -1281,7 +1613,8 @@
               </div>
 
               <div class="col-lg-7">
-                <a data-bs-dismiss="modal" class="p-normal-300-10 link-dashboard">Registrate en MigraGo</a>
+                <a data-bs-dismiss="modal" class="p-normal-300-10 link-dashboard" style="cursor: pointer;">Registrate en
+                  MigraGo</a>
               </div>
 
             </div>
@@ -1294,8 +1627,7 @@
     </div>
   </div>
 </div>
-<!-- -- -->
-<!-- Modal para el registro por web -->
+
 <div class="modal fade" id="modalRegister" tabindex="-1" aria-labelledby="modalRegister" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -1315,8 +1647,11 @@
                   Facebook</a>
               </div>
               <div class="">
-                <a href="" class="btn  mb-2  btn-google"><i class="fa-brands fa-google-plus-g"></i> Continuar con
-                  Google</a>
+                <div id="google-btn" style="
+                text-align: -webkit-center;">
+
+
+</div>
               </div>
               <div class="">
                 <a href="" class="btn mb-2  btn-aple"><i class="fa-brands fa-apple"></i> Continuar con Apple</a>
@@ -1334,7 +1669,6 @@
 
                     <input type="email" class="form-control" id="txtCorreo" aria-describedby="emailHelp"
                       placeholder="Correo electrónico">
-                    <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
                   </div>
                 </div>
 
@@ -1380,5 +1714,5 @@
 
     </div>
   </div>
-</div>
-<!-- -- -->
+</div> -->
+

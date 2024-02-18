@@ -12,6 +12,7 @@ import { SharedImageService } from '../../../services/shared-image.service';
 })
 export class GuiaComponent implements OnInit {
   usuario!: Usuario;
+  guia: any[] = [];
   imageSrc!: string;
   constructor(private router: Router, private imagenservice: ImagenesService,
     private authService: AutenticacionService, private sharedImageService: SharedImageService, private cdr: ChangeDetectorRef) {
@@ -33,6 +34,23 @@ export class GuiaComponent implements OnInit {
       this.usuario = usuario;
       this.CargarImagen()
       console.log(this.usuario);
+    });
+    let req = {
+      request: {
+        id_user: this.usuario.id,
+      }
+    }
+
+    this.authService.getDataGuia(req).subscribe(response => {
+
+
+
+      if (response) {
+
+        this.guia = response;
+        console.log(this.guia)
+      }
+
     });
   }
   CargarImagen() {
