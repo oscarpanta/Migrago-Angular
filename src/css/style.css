@@ -202,8 +202,26 @@ color: white;
   background-repeat: no-repeat;
   /* background-attachment: fixed; */
   height: 45rem;
+  /* height: calc(100% - 90%); */
 
 }
+
+  /* home
+   */
+   .apartado__index__buscador{
+    width: 40%;
+   }
+   .apartado__index__buscador input{
+    border-radius: 20px;
+   }
+   .apartado__index__buscador .arrow-icon{
+    float: right;
+    position: relative;
+    margin: -35px 5px 0 0;
+    cursor: pointer;
+    color: #48259b;
+    font-size: xx-large;
+   }
 .apartado__index__body{
   padding: 2.5em 0 1em 0em;
   font-size: 50pt;
@@ -227,7 +245,7 @@ color: white;
   padding: 4em 4em;
   font-size: 13pt;
   position: absolute;
-  top:40rem;
+  top: calc(100% - 15em);
   left: 0;
   right: 0;
   width: 75%;
@@ -243,7 +261,7 @@ color: white;
 .container__azul__body{
   text-align: center;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   padding: 25px;
@@ -254,8 +272,8 @@ color: white;
   font-family: 'Inter Light';
 }
 .container__azul__body__item__imagen{
-  padding: 10px;
-  height: 100px;
+  padding: 15px;
+  height: auto;
 }
 .container__azul__body__item__imagen img{
   width: 70px;
@@ -263,7 +281,7 @@ color: white;
 .container__azul__body__item__title{
   /* font-weight: bold; */
   font-family: "Inter";
-  font-size: 16pt;
+  font-size: 12pt;
 }
 .container__azul__body__item__text{
   font-family: "Inter light";
@@ -314,7 +332,7 @@ color: white;
   padding: 5rem 0;
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between
 }
 .container__historias__body{
@@ -323,7 +341,7 @@ color: white;
 
 .container__historias__body__title{
   font-size: 35pt;
-  margin-bottom: -2rem;
+  margin-bottom: 0rem;
 }
 .container__historias__body__subtitle{
   font-size: 18pt;
@@ -334,6 +352,7 @@ color: white;
 }
 .container__historias__body__head{
   padding: 0em 0;
+  line-height: 2em;
 }
 .container__historias__body__body__item__title{
   color: #f98900;
@@ -1086,12 +1105,12 @@ adicionales
   color: initial;
 }
 .card-image_flag{
-  width: 100%;
+  /* width: 100%; */
   position: absolute;
   height: auto;
   /* width: 216px; */
-  top: 105%;
-  left: 30%
+  top:calc(250px - 20px);
+  left:calc(200px - 105px)
 
 }
 .card-image_flag .card-img{
@@ -1823,7 +1842,40 @@ ul.form-stepper li a .form-stepper-circle {
           padding: 3em 6em;
       }
  }
+ @media (max-width: 968px) {
 
+  .container__70{
+    max-width: 100%;
+    padding: 2em;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .apartado__index__body{
+    width: 100%;
+    text-align: center;
+  }
+  .apartado__combinado{
+    padding-top: 15em;
+  }
+  .apartado__index__buscador{
+   width: calc(100%);
+  }
+  .container__azul{
+    width: calc(100% - 50px);
+    padding: 1em 1em;
+    
+  }
+  .container__rutas{
+    padding: 0;
+  }
+  .container__60{
+    max-width: 100%;
+    padding: 2em;
+  }
+}
 /* / Móviles en horizontal o tablets en vertical
  ------------------------------------------------------------------------- / */
 @media (max-width: 768px) {
@@ -1842,12 +1894,30 @@ ul.form-stepper li a .form-stepper-circle {
       height: 100%;
       padding: 3rem;
   }
+  .container__historias__body{
+    width: 100%;
+    text-align: center;
+  }
+  .container__historias__body__body__item{
+    max-width: 100%;
+    justify-content: center;
+  }
+  .container__historias__body__head{
+    text-align: center;
+  }
+  .container__historias__body__subtitle{
+    width: 100%;
+  }
+  .container__historias{
+    justify-content: center;
+  }
+ 
 }
 /* tamaño de maximo 460  */
 @media (max-width: 460px) {
 
   .apartado__index{
-       background-position: 64% 100%;
+       background-position: 35% 100%;
   }
   .apartado__index__body{
       width: 100%;
@@ -1985,13 +2055,15 @@ ul.form-stepper li a .form-stepper-circle {
       font-size: 8pt;
   }
   .container__historias__reales__head{
-      margin: 1em 0;
+      padding: 1em 0;
+      text-align: center;
+
   }
   .card-content{
       padding: 35px 15px;
   }
   .card-image{
-      height: 150px;
+      height: auto;
   }
   .container__verificados{
       margin: 0;
@@ -2032,6 +2104,7 @@ ul.form-stepper li a .form-stepper-circle {
   }
   .container__azul{
       padding: 1em 1em;
+      font-size: 12pt;
   }
   .container__azul__body{
       flex-direction: column;
@@ -2081,18 +2154,21 @@ ul.form-stepper li a .form-stepper-circle {
   .container__historias__body__body__item{
       text-align: center;
       flex-direction: column;
+      align-items: center;
   }
   .container__historias__body__title{
       font-size: 20pt;
   }
   .container__historias__body__head{
       padding: 1em 0;
+      line-height: 2em;
   }
   .container__historias__body__subtitle{
       font-size: 12pt;
   }
   .container__historias__body__body__item__title {
       font-size: 25pt;
+      padding-bottom: 0.5em;
   }
   .container__historias__body__body__item__text{
       font-size: 12pt;
@@ -2144,8 +2220,8 @@ ul.form-stepper li a .form-stepper-circle {
 
   }
   .btn-whatsapp img{
-      width: 50px;
-      height: 50px;
+      width: 120px;
+      height: 120px;
   }
   .button_ver_mas{
       margin-left: 7rem;
@@ -2287,19 +2363,24 @@ border-radius: 5px;
     height: 100%;
     padding: 3rem;
 }
+.container__historias__body__body__item__body{
+  width: 80%;
+  margin-left: 0;
+}
 }
 /* tamaño de maximo 460  */
 @media (max-width: 460px) {
 
 .apartado__index{
-     background-position: 64% 100%;
+     background-position: 35% 100%;
 }
 .apartado__index__body{
     width: 100%;
     color: #fff;
     text-align: center;
-    font-size: 25pt;
-    padding: 10em 0 1em 0;
+    font-size: 30pt;
+    padding: 8em 0 1em 0;
+    line-height: 2em;
 }
 .buscador{
     width: 100%;
@@ -2383,6 +2464,7 @@ padding: 2em 2em;
 .container__historias__reales__head__title{
     width: 100%;
     font-size: 20pt;
+    line-height: 2em;
 }
 .container__historias__reales__head__subtitle{
     width: 100%;
@@ -2430,13 +2512,13 @@ padding: 2em 2em;
     font-size: 8pt;
 }
 .container__historias__reales__head{
-    margin: 1em 0;
+    padding: 1em 0;
 }
 .card-content{
     padding: 35px 15px;
 }
 .card-image{
-    height: 150px;
+    height: auto;
 }
 .container__verificados{
     margin: 0;
@@ -2582,13 +2664,17 @@ justify-content: space-between;
 }
 .container__azul__body__item__imagen img {
     width: 30px;
+    height: auto;
 }
 .apartado__combinado {
     padding-top: 10rem;
 }
 .btn-whatsapp img{
-    width: 50px;
-    height: 50px;
+    width: 120px;
+    height: 120px;
+}
+.btn-whatsapp{
+  right: 0;
 }
 .button_ver_mas{
     margin-left: 7rem;
@@ -2652,21 +2738,5 @@ justify-content: space-between;
   padding-top: 100%; }
 
 
-  /* home
-   */
-   .apartado__index__buscador{
-    width: 40%;
-   }
-   .apartado__index__buscador input{
-    border-radius: 20px;
-   }
-   .apartado__index__buscador .arrow-icon{
-    float: right;
-    position: relative;
-    margin: -35px 5px 0 0;
-    cursor: pointer;
-    color: #48259b;
-    font-size: xx-large;
-   }
 
 
