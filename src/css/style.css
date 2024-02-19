@@ -245,7 +245,7 @@ color: white;
   padding: 4em 4em;
   font-size: 13pt;
   position: absolute;
-  top: calc(100% - 15em);
+  top: calc(100% - 10em);
   left: 0;
   right: 0;
   width: 75%;
@@ -526,6 +526,7 @@ object-fit: cover;
 /* border-radius: 50%; */
 /* border: 4px solid #4070F4; */
 border-radius: 15px 15px 0 0;
+height: 230px;
 }
 .card-image2 .card-img{
   height: 85px;
@@ -1865,6 +1866,7 @@ ul.form-stepper li a .form-stepper-circle {
   }
   .container__azul{
     width: calc(100% - 50px);
+    top: calc(100% - 8em);
     padding: 1em 1em;
     
   }
@@ -1875,6 +1877,26 @@ ul.form-stepper li a .form-stepper-circle {
     max-width: 100%;
     padding: 2em;
   }
+  .container__verificados__texto_main{
+    width: 100%;
+    padding: 2em;
+  }
+  .container__verificados__head__title{
+    text-align: center;
+    width: 100%;
+  }
+  .container__resenias{
+    max-width: 100%;
+    padding: 2em;
+  }
+  .container__verificados__texto{
+    text-align: center;
+  }
+  .container__unirme{
+    max-width: 100%;
+    padding: 2em;
+  }
+  
 }
 /* / Móviles en horizontal o tablets en vertical
  ------------------------------------------------------------------------- / */
@@ -2083,8 +2105,9 @@ ul.form-stepper li a .form-stepper-circle {
       /* text-align: end; */
   }
   .container__verificados__head__title{
-      max-width: 60%;
+      max-width: 100%;
       font-size: 20pt;
+      line-height: 2em;
 
   }
   .container__verificados__head__subtitle{
@@ -2537,7 +2560,7 @@ padding: 2em 2em;
     /* text-align: end; */
 }
 .container__verificados__head__title{
-    max-width: 60%;
+    max-width: 100%;
     font-size: 20pt;
 
 }
