@@ -618,7 +618,7 @@
 
 </div>
 
-<!-- <button (click)="abrirmodalregistro(modalLogin2)">ABCD</button> -->
+<button (click)="abrirmodallogin()">ABCD</button>
 
 <!-- zona de modales      -->
 
@@ -846,11 +846,7 @@
 </button> -->
 
 <ng-template #modalLogin let-modal>
-  <div id="google-btn2" style="
-  text-align: -webkit-center;">
 
-
-</div>
 
   <div class="modal-contenido">
 
@@ -881,7 +877,7 @@
                 Facebook</a> -->
             </div>
             <div class="">
-              <div id="google-btn2" style="
+              <div id="google-btn" style="
               text-align: -webkit-center;">
 
 
@@ -965,11 +961,11 @@
 
 
 
-<ng-template #modalLogin2 let-modal>
+<ng-template #modalLogin2 let-modal >
   <div class="modal-contenido">
 
     <div class="modal-body modal-login">
-      <button type="button" class="close" (click)="modal.dismiss('Cross click')" style="
+      <button type="button" class="close" (click)="cerrarModal()" style="
          background: none;
         float: right;
         border: 0;
@@ -978,9 +974,9 @@
         <i class="fa-solid fa-xmark"></i>
       </button>
 
-      <app-modal></app-modal>
-
-
+      <!-- <app-modal></app-modal> -->
+      <!-- <app-modal-login (openModalRegister)="openModalRegister()" (nextseccion)="nextseccion($event)"></app-modal-login> -->
+      <app-modal-login (openModalRegister)="openModalRegister()" (dataRegister)="nextseccion($event)"></app-modal-login>
 
     </div>
 
@@ -989,7 +985,7 @@
 
 </ng-template>
 
-<ng-template #modalRegister let-modal>
+<ng-template #modalRegister let-modal >
 
 
   <div class="modal-contenido">
@@ -1002,7 +998,7 @@
         <i class="fa-solid fa-xmark"></i>
       </button>
 
-
+      <app-modal-registro (openModalLogin)="openModalLogin()" [dataPasar]="data"></app-modal-registro>
 
 
       <!-- <div class="row ">
@@ -1086,15 +1082,15 @@
       </div> -->
 
 
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-lg-12 mx-auto">
 
           <div class="row mt-4">
 
             <div id="multi-step-form-container">
-              <!-- Form Steps / Progress Bar -->
+
               <ul class="form-stepper form-stepper-horizontal text-center mx-auto pl-0">
-                <!-- Step 1 -->
+
                 <li class="form-stepper-active text-center form-stepper-list" step="1">
                   <a class="mx-2">
                     <span class="form-stepper-circle">
@@ -1103,7 +1099,7 @@
                     <div class="label">Crear cuenta</div>
                   </a>
                 </li>
-                <!-- Step 2 -->
+
                 <li class="form-stepper-unfinished text-center form-stepper-list" step="2">
                   <a class="mx-2">
                     <span class="form-stepper-circle text-muted">
@@ -1115,13 +1111,10 @@
 
 
               </ul>
-              <!-- Step Wise Form Content -->
+
               <form class="form-login" id="userAccountSetupForm" name="userAccountSetupForm"
                 [formGroup]="miFormularioRegistro" (ngSubmit)="registroUsuario()">
-                <!-- Step 1 Content -->
 
-                <!-- <h2 class="font-normal">Datos personales</h2> -->
-                <!-- Step 1 input fields -->
                 <div class="mt-3" *ngIf="seccion === 1">
                   <div class="row">
 
@@ -1132,14 +1125,6 @@
 
                       <div class="row btn-social">
 
-                        <!-- <div class="">
-                          <a href="" class="btn  mb-2  btn-facebook"><i class="fa-brands fa-facebook"></i> Continuar con
-                            Facebook</a>
-                        </div>
-                        <div class="">
-                          <a href="" class="btn  mb-2  btn-google"><i class="fa-brands fa-google-plus-g"></i> Continuar
-                            con Google</a>
-                        </div> -->
                         <div id="google-btn2" style="
                         text-align: -webkit-center;">
                         </div>
@@ -1155,7 +1140,7 @@
 
                             <input type="email" formControlName="email" class="form-control" id="txtCorreo"
                               aria-describedby="emailHelp" placeholder="Correo electrónico">
-                            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+
                           </div>
                         </div>
 
@@ -1208,12 +1193,6 @@
 
 
 
-
-
-
-                <!-- Step 3 Content, default hidden on page load. -->
-
-                <!-- Step 3 input fields -->
                 <div *ngIf="seccion === 2">
                   <div class="mt-3">
                     <div class="mb-4 d-flex flex-column align-items-center">
@@ -1239,24 +1218,12 @@
                           placeholder="">
 
                       </div>
-                      <!-- <div class="form-group col-lg-6 mb-3">
-
-                                                          <p>Pais de residencia actual:</p>
-                                                          <select formControlName="countrySelect" appNotZero
-                                                          (change)="onCountrySelect($event)" [(ngModel)]="selectedCountryId" class="form-select form-select-normal"
-                                                          aria-label="Default select example">
-                                                          <option value="0" selected disabled> País</option>
-                                                          <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}
-                                                          </option>
-                                                        </select>
-                                                      </div> -->
                       <div class="form-group col-lg-6 mb-3">
                         <p class="p-bold-300-10-black">Pais de Residencia Actual*
                           <label class="letra_gris">(público)</label>
                         </p>
                         <ng-select formControlName="countrySelect" (ngModelChange)="onCountrySelect($event)"
                           [(ngModel)]="selectedCountryId" placeholder="Pais" aria-label="Default select example">
-                          <!-- <ng-option value="0" disabled>Pais</ng-option> -->
                           <ng-option *ngFor="let country of countries"
                             [value]="country.id">{{country.country_name}}</ng-option>
                         </ng-select>
@@ -1282,15 +1249,6 @@
                             value="" placeholder="">
                         </div>
                       </div>
-                      <!-- <div class="form-group col-lg-6 mb-3">
-
-                                                          <p>Ciudad de residencia actual:</p>
-                                                          <select name="citySelect" formControlName="citySelect" (change)="onCitySelect($event)" appNotZero
-                                                          class="form-select form-select-sm" [(ngModel)]="selectedCityId" aria-label="Default select example">
-                                                          <option value="0" selected disabled>Selecciona una ciudad</option>
-                                                          <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
-                                                        </select>
-                                                      </div> -->
                       <div class="form-group col-lg-6 mb-3">
                         <p class="p-bold-300-10-black">Ciudad de residencia actual*
                           <label class="letra_gris">(público)</label>
@@ -1327,16 +1285,6 @@
 
                         </select>
                       </div>
-                      <!-- <div class="form-group col-lg-6 mb-3">
-
-                                                          <p>Ruta de ingreso al país:</p>
-                                                          <select class="form-select form-select-sm form-select-normal" aria-label="Default select example">
-                                                              <option selected>Seleccione</option>
-                                                              <option value="1">Masculino</option>
-                                                              <option value="2">Femenino</option>
-
-                                                          </select>
-                                                      </div> -->
                       <div class="form-group col-lg-6 mb-3">
 
                         <p>Nacionalidad:</p>
@@ -1365,7 +1313,7 @@
 
                   </div>
                   <div class="my-3 col-md-6 mx-auto">
-                    <!-- <button class="btn btn-primary btn-navigate-form-step" type="button" step_number="1">Anterior</button> -->
+
                     <button type="submit" class="btn btn-primary"
                       [disabled]="miFormularioRegistro.invalid || formularioEnviado">{{ textoBoton }}</button>
                   </div>
@@ -1385,7 +1333,7 @@
 
         </div>
 
-      </div>
+      </div> -->
 
 
 

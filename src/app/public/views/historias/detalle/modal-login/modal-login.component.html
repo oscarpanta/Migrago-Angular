@@ -1,0 +1,83 @@
+<div class="row ">
+  <div class="col-md-6 d-none d-md-block padding-0">
+    <img src="assets/images/icons/shutterstock.jpg" class="img-fluid" style="min-height:100%;" />
+  </div>
+  <div class="col-md-6 bg-white px-4 py-5 padding-0 d-flex flex-column align-items-center">
+    <div class="row mb-4">
+      <span class="titulo-login-small">Inicia sesión en Migrago</span>
+    </div>
+    <div class="row btn-social">
+      <div class="">
+        <!-- <a data-bs-toggle="modal" data-bs-target="#modalRegister" data-bs-dismiss="modal"
+          class="btn  mb-2  btn-facebook"><i class="fa-brands fa-facebook"></i> Continuar con
+          Facebook</a> -->
+      </div>
+      <div class="">
+        <div id="google-btn" style="
+        text-align: -webkit-center;">
+
+
+        </div>
+        <!-- <div class="spinner-border" role="status" *ngIf="!cargando">
+
+        </div> -->
+      </div>
+      <div class="">
+
+      </div>
+
+
+    </div>
+    <div class="row">
+      <p>o</p>
+    </div>
+    <div class="row col-lg-12">
+      <form class="login100-form" autocomplete="off" [formGroup]="miFormularioLogin" (ngSubmit)="login()">
+        <div class="mb-4">
+          <div class="form-group">
+
+            <input type="email" class="form-control" id="txtCorreo" aria-describedby="emailHelp"
+              formControlName="username">
+            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <div class="form-group">
+
+
+            <input type="password" name="password" class="form-control password1" value="clave"
+              placeholder="Establecer contraseña" formControlName="password">
+            <span class="fa  password-icon show-password fa-eye"></span>
+
+
+          </div>
+
+
+        </div>
+
+        <div class="mb-4">
+          <button type="submit" class="btn btn-primary">Inicia sesión</button>
+        </div>
+
+      </form>
+    </div>
+    <div class="row text-align-left">
+      <a href="" class="p-normal-300-10 link-dashboard">¿Olvidastes tu contraseña?</a>
+    </div>
+    <div class="col-lg-12 linea_black"></div>
+    <div class="row col-lg-12">
+      <div class="col-lg-5">
+        <span class="p-normal-300-10-black">¿No tienes cuenta?</span>
+      </div>
+
+      <div class="col-lg-7">
+        <a (click)="abrirmodalregistro()" class="p-normal-300-10 link-dashboard"
+          style="cursor: pointer;">Registrate en
+          MigraGo</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>

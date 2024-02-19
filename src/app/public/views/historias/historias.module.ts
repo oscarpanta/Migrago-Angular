@@ -18,6 +18,8 @@ import { PagoCitaComponent } from './pago-cita/pago-cita.component';
 import { CoreModule } from 'src/app/core/core.module';
 import { ModalComponent } from '../home/modal/modal.component';
 import { HomeModule } from '../home/home.module';
+import { ModalRegistroComponent } from './detalle/modal-registro/modal-registro.component';
+import { ModalLoginComponent } from './detalle/modal-login/modal-login.component';
 
 
 
@@ -30,6 +32,8 @@ import { HomeModule } from '../home/home.module';
     HistoriasComponent,
      DetalleComponent,
      PagoCitaComponent,
+     ModalRegistroComponent,
+     ModalLoginComponent,
   ],
   imports: [
     CommonModule,

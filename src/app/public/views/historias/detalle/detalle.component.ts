@@ -49,10 +49,14 @@ export class DetalleComponent implements OnInit{
   @ViewChild('siguienteBtn') siguienteBtn!: ElementRef;
   @ViewChild('modalContinuacion') modalContinuacion!: any;
   @ViewChildren('checkboxes') checkboxes!: QueryList<ElementRef>;
-  @ViewChild('modalLogin') modalLogin: any;
+  @ViewChild('modalLogin2') modalLogin: any;
   @ViewChild('modalPagos') modalPagos: any;
   @ViewChild('modalRegister') modalRegister: any;
   @ViewChild(StripeCardComponent, { static: false }) card!: StripeCardComponent;
+  modalLoginOpened: boolean = false;
+  modalRegisterOpened: boolean = false;
+
+
 
   storyId!: number;
   cantidadresenas: number = 0;
@@ -201,6 +205,7 @@ export class DetalleComponent implements OnInit{
   private clienteid= environment.clientId;
   tipolog = 0;
   cargando:boolean=false;
+  data:any;
   //historiaDetalle: any[] = [];
   constructor(private route: ActivatedRoute,
     private historiasService: StoriesService, private modalService: NgbModal, private disponibleService: AvailabilitiesService,
@@ -1122,7 +1127,8 @@ export class DetalleComponent implements OnInit{
     this.groupThemeIds = []
     this.currentSection = 1
     this.seccion=1;
-    this.showEventList = true
+    this.showEventList = true;
+    this.data=undefined;
     this.miFormulario = this.fb.group({
       //abc:['',[Validators.required]],
       temas: [this.groupThemeIds],
@@ -1752,6 +1758,24 @@ export class DetalleComponent implements OnInit{
 
       }
     );
+  }
+
+  openModalLogin() {
+    // this.modalLoginOpened = true;
+    // this.modalRegisterOpened = false; // Asegúrate de cerrar el modal de registro al abrir el de login
+    this.abrirmodallogin()
+  }
+
+  openModalRegister() {
+
+    this.abrirmodalRegister()
+  }
+  nextseccion(data:any){
+   console.log('data emitido:'+data)
+  // this.seccion=secc
+  console.log(data)
+  this.data=data
+
   }
 }
 
