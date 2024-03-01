@@ -135,13 +135,101 @@ background-color: #e4e4e4;">
 
                 </div>
 
-                <!-- <div class="form-group mb-3 col-lg-6">
-                  <p class="p-bold-300-10-black">DNI</p>
 
-                  <input type="text" id="" formControlName="dni" class="input_historia form-control form-control-sm">
 
-                </div> -->
 
+
+
+                <div class="form-group col-lg-6 mb-3">
+                  <p>Pais de residencia actual:</p>
+                  <select id="countrySelect" formControlName="countrySelect" name="countrySelect"
+                    class="form-select form-select-sm"  (change)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"
+                    aria-label="Default select example"  >
+                    <option value="0" selected disabled>País a migrar</option>
+                    <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}
+                    </option>
+                  </select>
+
+                </div>
+
+                <div class="form-group col-lg-6 mb-3">
+                  <p>Ciudad de residencia actual:</p>
+                  <select name="citySelect" formControlName="citySelect"
+                    class="form-select form-select-sm"  aria-label="Default select example">
+                    <option value="0" selected disabled>Selecciona una ciudad</option>
+                    <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
+                  </select>
+
+                </div>
+
+                <div class="form-group col-lg-6 mb-3">
+                  <p>Nacionalidad:</p>
+
+                  <select formControlName="nacionalidad"
+                    class="form-select form-select-sm form-select-normal"
+                    aria-label="Default select example">
+                    <option value="0" selected disabled>Nacionalidad del guía</option>
+                    <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
+                      nacionalidad.nationality_name }}</option>
+                  </select>
+
+                </div>
+                <div class="form-group mb-3 col-lg-6">
+                  <p class="p-bold-300-10-black">Telefono</p>
+
+                  <input type="number" name="" formControlName="numero" class="form-control form-control-sm" value=""
+                  placeholder="">
+
+                </div>
+                <div class="form-group mb-3 col-lg-6">
+
+                  <p>Fecha de nacimiento:</p>
+                  <input type="date" name="" formControlName="fechanac" class="form-control form-control-sm" value="" readonly
+                    placeholder="">
+
+                </div>
+                <div class="form-group mb-3 col-lg-6">
+                  <p>¿Creas contenido (videos) en redes sociales?*</p>
+                  <select formControlName="contenido" class="form-select form-select-sm form-select-normal"
+                    aria-label="Default select example" >
+                    <option selected value="" disabled>Seleccione</option>
+                    <option value="0">No</option>
+                    <option value="1">Si</option>
+
+                  </select>
+
+                </div>
+                <div class="form-group mb-3 col-lg-6">
+
+                  <p>Llegó con mascotas</p>
+                  <select formControlName="llegadamascota" class="form-select form-select-sm form-select-normal">
+                    <option selected value="" disabled>Seleccione</option>
+
+                    <option value="0">No</option>
+                    <option value="1">Si</option>
+
+                  </select>
+                </div>
+                <div class="form-group mb-3 col-lg-6">
+                  <p class="p-bold-300-10-black">Ruta de ingreso al país*
+                    <label class="letra_gris">(público)</label>
+                  </p>
+                  <select formControlName="RutaMigracion"
+                    class="form-select form-select-normal" aria-label="Default select example">
+                    <option value="0" selected disabled>Ruta Migracion</option>
+                    <option *ngFor="let ruta of rutasmigracion" [value]="ruta.id">{{
+                      ruta.name_way_migration }}</option>
+                  </select>
+                </div>
+                <div class="form-group col-lg-6 mb-3">
+
+                  <p class="p-bold-300-10-black">¿Cuando llegastes al país?*
+                    <label class="letra_gris">(público)</label>
+                  </p>
+                  <input type="date" name="" formControlName="fecha"
+                    class="form-control form-control-sm" value="" placeholder="">
+
+                </div>
                 <div class="form-group mb-3 col-lg-6">
 
                   <p class="p-parrafo">Estado</p>
@@ -152,8 +240,6 @@ background-color: #e4e4e4;">
                     <option value="RECHAZADO">RECHAZADO</option>
                   </select>
                 </div>
-
-
 
                 <div class="form-group mb-3">
                   <p class="p-bold-300-10-black">Detalle de la historia:</p>

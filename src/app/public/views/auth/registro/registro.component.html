@@ -1,303 +1,325 @@
-<div class="row">
-  <div class="col-lg-8 mx-auto">
+<div class="row form_registro">
+  <div>
+    <div class="col-lg-8 col-11 mx-auto">
 
-     <div class="row mt-4">
+      <div class="row my-4">
 
-                 <div id="multi-step-form-container">
-                     <!-- Form Steps / Progress Bar -->
-                     <ul class="form-stepper form-stepper-horizontal text-center mx-auto pl-0">
-                         <!-- Step 1 -->
-                         <li class="form-stepper-active text-center form-stepper-list" step="1">
-                             <a class="mx-2">
-                                 <span class="form-stepper-circle">
-                                     <span>1</span>
-                                 </span>
-                                 <div class="label">Crear cuenta</div>
-                             </a>
-                         </li>
-                         <!-- Step 2 -->
-                         <li class="form-stepper-unfinished text-center form-stepper-list" step="2">
-                             <a class="mx-2">
-                                 <span class="form-stepper-circle text-muted">
-                                     <span>2</span>
-                                 </span>
-                                 <div class="label text-muted">Completar datos</div>
-                             </a>
-                         </li>
+                  <div id="multi-step-form-container">
+                      <!-- Form Steps / Progress Bar -->
+                      <ul class="form-stepper form-stepper-horizontal text-center mx-auto pl-0">
+                          <!-- Step 1 -->
+                          <li class="form-stepper-active text-center form-stepper-list" step="1">
+                              <a class="mx-2">
+                                  <span class="form-stepper-circle">
+                                      <span>1</span>
+                                  </span>
+                                  <div class="label">Crear cuenta</div>
+                              </a>
+                          </li>
+                          <!-- Step 2 -->
+                          <li class="form-stepper-unfinished text-center form-stepper-list" step="2">
+                              <a class="mx-2">
+                                  <span class="form-stepper-circle text-muted">
+                                      <span>2</span>
+                                  </span>
+                                  <div class="label text-muted">Completar datos</div>
+                              </a>
+                          </li>
 
 
-                     </ul>
-                     <!-- Step Wise Form Content -->
-                     <form class="form-login" id="userAccountSetupForm" name="userAccountSetupForm"
-                      [formGroup]="miFormulario"
-                      (ngSubmit)="registro()">
-                         <!-- Step 1 Content -->
-                         <!-- <section id="step-1" class="form-step"> -->
-                             <!-- <h2 class="font-normal">Datos personales</h2> -->
-                             <!-- Step 1 input fields -->
-                             <div class="mt-3" *ngIf="seccion === 1">
+                      </ul>
+                      <!-- Step Wise Form Content -->
+                      <form class="form-login" id="userAccountSetupForm" name="userAccountSetupForm"
+                       [formGroup]="miFormulario"
+                       (ngSubmit)="registro()">
+                          <!-- Step 1 Content -->
+                          <!-- <section id="step-1" class="form-step"> -->
+                              <!-- <h2 class="font-normal">Datos personales</h2> -->
+                              <!-- Step 1 input fields -->
+                              <div class="mt-3" *ngIf="seccion === 1">
 
-                                 <div class="row">
+                                  <div class="row">
 
-                                     <div class="col-md-8 bg-white px-4 py-5 padding-0 d-flex flex-column align-items-center mx-auto">
-                                         <div class="row mb-4">
-                                             <h2 class="titulo-login">Únete a Migrago</h2>
-                                         </div>
-
-                                         <div class="row btn-social">
-                                             <div class="">
-                                                 <a href="" class="btn  mb-2  btn-facebook"><i class="fa-brands fa-facebook"></i> Continuar con Facebook</a>
-                                             </div>
-                                         <div class="">
-                                                 <!-- <a href="" class="btn  mb-2  btn-google"><i class="fa-brands fa-google-plus-g"></i> Continuar con Google</a> -->
-                                                 <div id="google-btn" style="
-                                                 text-align: -webkit-center;">
-
-                                                 </div>
-                                                 <div class="spinner-border" role="status" *ngIf="cargando">
-
-                                                </div>
+                                      <div class="col-md-8 bg-white px-4 py-5 padding-0 d-flex flex-column align-items-center mx-auto form_registro_estilo">
+                                          <div class="row mb-4">
+                                              <h2 class="titulo-login">Únete a Migrago</h2>
                                           </div>
 
+                                          <div class="row btn-social">
+                                              <!-- <div class="">
+                                                  <a (click)="loginFace()" class="btn  mb-2  btn-facebook"><i class="fa-brands fa-facebook"></i> Continuar con Facebook</a>
+                                              </div> -->
+                                           <div class="">
+                                                  <!-- <a href="" class="btn  mb-2  btn-google"><i class="fa-brands fa-google-plus-g"></i> Continuar con Google</a> -->
+                                                  <div id="google-btn" style="
+                                                  text-align: -webkit-center;">
 
-                                         </div>
-                                         <div class="row">
-                                             <p>o</p>
-                                         </div>
-                                         <div class="row col-lg-10 mx-auto">
-
-                                                 <div class="mb-4">
-                                                     <div class="form-group">
-
-                                                      <input type="email" formControlName="email" class="form-control" id="txtCorreo" aria-describedby="emailHelp"
-                                                      placeholder="Correo electrónico">
-                                                         <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
-                                                     </div>
-                                                 </div>
-
-                                                 <div class="mb-4">
-                                                     <div class="form-group">
-
-
-                                                      <input type="password" id="inputPassword" formControlName="password" name="password" class="form-control password1"
-                                                      [type]="ocultarpas ? 'password' : 'text'" placeholder="Establecer contraseña" required>
-
-                                                    <span class="fa  password-icon show-password1 " [ngClass]="{'fa-eye': ocultarpas, 'fa-eye-slash': !ocultarpas }"
-                                                      (click)="ocultarpass1()"></span>
-
-
-                                                     </div>
-
+                                                  </div>
+                                                  <div class="spinner-border" role="status" *ngIf="cargando">
 
                                                  </div>
-
-                                                 <div class="mt-3 col-md-12 mx-auto mb-3">
-                                                     <button class="btn btn-primary btn-navigate-form-step" type="button" step_number="2" (click)="siguienteSection()" [disabled]="camposVacios()">Siguiente</button>
-                                                 </div>
+                                           </div>
 
 
-                                         </div>
-                                         <div class="row col-lg-8 text-center">
-                                             <span class="p-normal-300-10-black">Al unirme, acepto recibir correos electrónicos de MigraGo.</span>
-                                         </div>
-                                         <div class="col-lg-12 linea_black"></div>
-                                         <div class="row col-lg-10 text-center">
-                                             <div class="col-lg-6">
-                                                 <span class="p-normal-300-10-black">¿Ya eres miembro?</span>
-                                             </div>
+                                          </div>
+                                          <div class="row">
+                                              <p>o</p>
+                                          </div>
+                                          <div class="row col-lg-10 mx-auto">
 
-                                             <div class="col-lg-6">
-                                              <a (click)="sesion()" class="p-normal-300-10 link-dashboard" style="cursor: pointer;">Inicia sesión</a>
-                                             </div>
+                                                  <div class="mb-4">
+                                                      <div class="form-group">
 
-                                         </div>
-                                     </div>
-                                 </div>
-
-                             </div>
-
-
-
-
-
-                         <!-- </section> -->
-                         <!-- Step 3 Content, default hidden on page load. -->
-                         <!-- <section id="step-2" class="form-step d-none"> -->
-                             <!-- Step 3 input fields -->
-                             <div class="mt-3" *ngIf="seccion === 2">
-                                 <div class="mb-4 d-flex flex-column align-items-center">
-                                     <h2 class="titulo-login">¡A un paso de terminar!</h2>
-                                     <p class="titulo-login-small">Queremos saber un poco más de ti, será breve</p>
-                                 </div>
-
-                                 <div class="row px-4 py-5 d-flex align-items-end">
-
-
-
-                                             <div class="form-group col-lg-6 mb-3">
-
-                                                 <p>Nombres:</p>
-                                                 <input type="text" formControlName="nombre" name="" class="form-control" value="Miguel Angel" placeholder="" >
-
-                                             </div>
-                                             <div class="form-group col-lg-6 mb-3">
-
-                                                 <p>Apellidos:</p>
-                                                 <input type="text" formControlName="apellidos"  class="form-control" value="Panta Chapoñan" placeholder="" >
-
-                                             </div>
-                                             <!-- <div class="form-group col-lg-6 mb-3">
-
-                                                 <p>Pais de residencia actual:</p>
-                                                 <select formControlName="countrySelect" appNotZero
-                                                 (change)="onCountrySelect($event)" [(ngModel)]="selectedCountryId" class="form-select form-select-normal"
-                                                 aria-label="Default select example">
-                                                 <option value="0" selected disabled> País</option>
-                                                 <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}
-                                                 </option>
-                                               </select>
-                                             </div> -->
-                                             <div class="form-group col-lg-6 mb-3">
-                                              <p class="p-bold-300-10-black">Pais de Residencia Actual*
-                                                <label class="letra_gris">(público)</label>
-                                              </p>
-                                              <ng-select formControlName="countrySelect"
-                                              (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"   placeholder="Pais"
-                                              aria-label="Default select example">
-                                              <!-- <ng-option value="0" disabled>Pais</ng-option> -->
-                                                <ng-option *ngFor="let country of countries"  [value]="country.id">{{country.country_name}}</ng-option>
-                                             </ng-select>
-                                            </div>
-                                             <div class="form-group col-lg-6 mb-3">
-
-                                                 <p>Número de teléfono:</p>
-                                                 <div class="d-flex">
-                                                  <div ngbDropdown class="image-dropdown" >
-                                                    <a type="button" class="select-paises btn " id="dropdownBasic1" ngbDropdownToggle disabled>
-                                                      <img [src]="selectedOption?.image" alt="{{ selectedOption?.text }}" class="option-image">
-
-                                                    </a>
-                                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                                      <a type="button" ngbDropdownItem *ngFor="let option of options" (click)="onOptionSelect(option)" disabled>
-                                                        <img [src]="option.image" alt="{{ option.text }}" class="option-image">
-                                                        {{ option.text }}
-                                                      </a>
-                                                    </div>
+                                                       <input type="email" formControlName="email" class="form-control" id="txtCorreo" aria-describedby="emailHelp"
+                                                       placeholder="Correo electrónico">
+                                                          <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                                                      </div>
                                                   </div>
 
-                                                  <input type="number" name="" formControlName="numero" class="form-control form-control-sm" value=""
+                                                  <div class="mb-4">
+                                                      <div class="form-group">
+
+
+                                                       <input type="password" id="inputPassword" formControlName="password" name="password" class="form-control password1"
+                                                       [type]="ocultarpas ? 'password' : 'text'" placeholder="Establecer contraseña" required>
+
+                                                     <span class="fa  password-icon show-password1 " [ngClass]="{'fa-eye': ocultarpas, 'fa-eye-slash': !ocultarpas }"
+                                                       (click)="ocultarpass1()"></span>
+
+
+                                                      </div>
+
+
+                                                  </div>
+
+                                                  <div class="mt-3 col-md-12 mx-auto mb-3">
+                                                      <button class="btn btn-primary btn-navigate-form-step" type="button" step_number="2" (click)="siguienteSection()" [disabled]="camposVacios()">Siguiente</button>
+                                                  </div>
+
+
+                                          </div>
+                                          <div class="row col-lg-8 text-center">
+                                              <span class="p-normal-300-10-black">Al unirme, acepto recibir correos electrónicos de MigraGo.</span>
+                                          </div>
+                                          <div class="col-lg-12 linea_black"></div>
+                                          <div class="row col-lg-10 text-center">
+                                              <div class="col-lg-6">
+                                                  <span class="p-normal-300-10-black">¿Ya eres miembro?</span>
+                                              </div>
+
+                                              <div class="col-lg-6">
+                                               <a (click)="sesion()" class="p-normal-300-10 link-dashboard" style="cursor: pointer;">Inicia sesión</a>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+
+                              </div>
+
+
+
+
+
+                          <!-- </section> -->
+                          <!-- Step 3 Content, default hidden on page load. -->
+                          <!-- <section id="step-2" class="form-step d-none"> -->
+                              <!-- Step 3 input fields -->
+                              <div class="mt-3 form_registro_estilo" *ngIf="seccion === 2">
+                                  <div class="mb-4 d-flex flex-column align-items-center ">
+                                      <h2 class="titulo-login">¡A un paso de terminar!</h2>
+                                      <p class="titulo-login-small">Queremos saber un poco más de ti, será breve</p>
+                                  </div>
+
+                                  <div class="row px-4 py-5 d-flex align-items-end">
+
+
+
+                                              <div class="form-group col-lg-6 mb-3">
+
+                                                  <p>Nombres:</p>
+                                                  <input type="text" formControlName="nombre" name="" class="form-control" value="Miguel Angel" placeholder="" >
+
+                                              </div>
+                                              <div class="form-group col-lg-6 mb-3">
+
+                                                  <p>Apellidos:</p>
+                                                  <input type="text" formControlName="apellidos"  class="form-control" value="Panta Chapoñan" placeholder="" >
+
+                                              </div>
+                                              <!-- <div class="form-group col-lg-6 mb-3">
+
+                                                  <p>Pais de residencia actual:</p>
+                                                  <select formControlName="countrySelect" appNotZero
+                                                  (change)="onCountrySelect($event)" [(ngModel)]="selectedCountryId" class="form-select form-select-normal"
+                                                  aria-label="Default select example">
+                                                  <option value="0" selected disabled> País</option>
+                                                  <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}
+                                                  </option>
+                                                </select>
+                                              </div> -->
+                                              <div class="form-group col-lg-6 mb-3">
+                                               <p class="p-bold-300-10-black">Pais de Residencia Actual*
+                                                 <label class="letra_gris">(público)</label>
+                                               </p>
+                                               <ng-select formControlName="countrySelect"
+                                               (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"   placeholder="Pais"
+                                               aria-label="Default select example">
+                                               <!-- <ng-option value="0" disabled>Pais</ng-option> -->
+                                                 <ng-option *ngFor="let country of countries"  [value]="country.id">{{country.country_name}}</ng-option>
+                                              </ng-select>
+                                             </div>
+                                              <div class="form-group col-lg-6 mb-3">
+
+                                                  <p>Número de teléfono:</p>
+                                                  <div class="d-flex">
+                                                   <div ngbDropdown class="image-dropdown" >
+                                                     <a type="button" class="select-paises btn " id="dropdownBasic1" ngbDropdownToggle disabled>
+                                                       <img [src]="selectedOption?.image" alt="{{ selectedOption?.text }}" class="option-image">
+
+                                                     </a>
+                                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                       <a type="button" ngbDropdownItem *ngFor="let option of options" (click)="onOptionSelect(option)" disabled>
+                                                         <img [src]="option.image" alt="{{ option.text }}" class="option-image">
+                                                         {{ option.text }}
+                                                       </a>
+                                                     </div>
+                                                   </div>
+
+                                                   <input type="number" name="" formControlName="numero" class="form-control form-control-sm" value=""
+                                                   placeholder="">
+
+                                                 </div>
+
+
+
+
+
+
+
+
+
+                                              </div>
+                                              <!-- <div class="form-group col-lg-6 mb-3">
+
+                                                  <p>Ciudad de residencia actual:</p>
+                                                  <select name="citySelect" formControlName="citySelect" (change)="onCitySelect($event)" appNotZero
+                                                  class="form-select form-select-sm" [(ngModel)]="selectedCityId" aria-label="Default select example">
+                                                  <option value="0" selected disabled>Selecciona una ciudad</option>
+                                                  <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
+                                                </select>
+                                              </div> -->
+                                              <div class="form-group col-lg-6 mb-3">
+                                               <p class="p-bold-300-10-black">Ciudad de residencia actual*
+                                                 <label class="letra_gris">(público)</label>
+                                               </p>
+                                               <ng-select formControlName="citySelect"
+                                               name="citySelect"  (ngModelChange)="onCitySelect($event)"  placeholder="Selecciona una ciudad"
+                                                [(ngModel)]="selectedCityId" aria-label="Default select example">
+
+                                                 <ng-option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</ng-option>
+                                              </ng-select>
+                                             </div>
+                                              <div class="form-group col-lg-6 mb-3">
+
+                                                  <p>Fecha de nacimiento:</p>
+                                                  <input type="date" name="" formControlName="fechanac" class="form-control form-control-sm" value=""
                                                   placeholder="">
 
-                                                </div>
+                                              </div>
+                                              <div class="form-group col-lg-6 mb-3">
 
+                                                  <p>Fecha de llegada al país de residencia:</p>
+                                                  <input type="date" name="" formControlName="fechatentativa" class="form-control form-control-sm" value=""
+                                                  placeholder="">
 
+                                              </div>
+                                              <div class="form-group col-lg-6 mb-3">
 
+                                                  <p>Género:</p>
+                                                  <select class="form-select form-select-sm form-select-normal" aria-label="Default select example"
+                                                  formControlName="genero" appNotZero>
+                                                      <option selected value="" disabled>Seleccione</option>
+                                                      <option value="M">Masculino</option>
+                                                      <option value="F">Femenino</option>
 
+                                                  </select>
+                                              </div>
+                                              <!-- <div class="form-group col-lg-6 mb-3">
 
+                                                  <p>Ruta de ingreso al país:</p>
+                                                  <select class="form-select form-select-sm form-select-normal" aria-label="Default select example">
+                                                      <option selected>Seleccione</option>
+                                                      <option value="1">Masculino</option>
+                                                      <option value="2">Femenino</option>
 
+                                                  </select>
+                                              </div> -->
+                                              <div class="form-group col-lg-6 mb-3">
 
+                                                  <p>Nacionalidad:</p>
+                                                  <select formControlName="nacionalidad" (change)="onNationalitySelect($event)" appNotZero
+                                                  class="form-select form-select-sm form-select-normal" [(ngModel)]="selectedNationalityId"
+                                                  aria-label="Default select example">
+                                                  <option value="0" selected disabled>Nacionalidad del guía</option>
+                                                  <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
+                                                    nacionalidad.nationality_name }}</option>
+                                                </select>
+                                              </div>
 
+                                              <div class="form-group col-lg-6 mb-3">
 
-                                             </div>
-                                             <!-- <div class="form-group col-lg-6 mb-3">
-
-                                                 <p>Ciudad de residencia actual:</p>
-                                                 <select name="citySelect" formControlName="citySelect" (change)="onCitySelect($event)" appNotZero
-                                                 class="form-select form-select-sm" [(ngModel)]="selectedCityId" aria-label="Default select example">
-                                                 <option value="0" selected disabled>Selecciona una ciudad</option>
-                                                 <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
-                                               </select>
-                                             </div> -->
-                                             <div class="form-group col-lg-6 mb-3">
-                                              <p class="p-bold-300-10-black">Ciudad de residencia actual*
-                                                <label class="letra_gris">(público)</label>
-                                              </p>
-                                              <ng-select formControlName="citySelect"
-                                              name="citySelect"  (ngModelChange)="onCitySelect($event)"  placeholder="Selecciona una ciudad"
-                                               [(ngModel)]="selectedCityId" aria-label="Default select example">
-
-                                                <ng-option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</ng-option>
-                                             </ng-select>
-                                            </div>
-                                             <div class="form-group col-lg-6 mb-3">
-
-                                                 <p>Fecha de nacimiento:</p>
-                                                 <input type="date" name="" formControlName="fechanac" class="form-control form-control-sm" value=""
-                                                 placeholder="">
-
-                                             </div>
-                                             <div class="form-group col-lg-6 mb-3">
-
-                                                 <p>Fecha de llegada al país de residencia:</p>
-                                                 <input type="date" name="" formControlName="fechatentativa" class="form-control form-control-sm" value=""
-                                                 placeholder="">
-
-                                             </div>
-                                             <div class="form-group col-lg-6 mb-3">
-
-                                                 <p>Género:</p>
-                                                 <select class="form-select form-select-sm form-select-normal" aria-label="Default select example"
-                                                 formControlName="genero" appNotZero>
-                                                     <option selected value="0" disabled>Seleccione</option>
-                                                     <option value="M">Masculino</option>
-                                                     <option value="F">Femenino</option>
-
-                                                 </select>
-                                             </div>
-                                             <!-- <div class="form-group col-lg-6 mb-3">
-
-                                                 <p>Ruta de ingreso al país:</p>
-                                                 <select class="form-select form-select-sm form-select-normal" aria-label="Default select example">
-                                                     <option selected>Seleccione</option>
-                                                     <option value="1">Masculino</option>
-                                                     <option value="2">Femenino</option>
-
-                                                 </select>
-                                             </div> -->
-                                             <div class="form-group col-lg-6 mb-3">
-
-                                                 <p>Nacionalidad:</p>
-                                                 <select formControlName="nacionalidad" (change)="onNationalitySelect($event)" appNotZero
-                                                 class="form-select form-select-sm form-select-normal" [(ngModel)]="selectedNationalityId"
+                                               <p>¿A que pais desea migrar?</p>
+                                               <select formControlName="paismigra" (change)="onPaisMigraSelect($event)" appNotZero
+                                                 class="form-select form-select-sm form-select-normal" [(ngModel)]="selectedPaisMigraId"
                                                  aria-label="Default select example">
-                                                 <option value="0" selected disabled>Nacionalidad del guía</option>
-                                                 <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
-                                                   nacionalidad.nationality_name }}</option>
+                                                 <option value="0" selected disabled>Pais migra</option>
+                                                 <option *ngFor="let pais of paismigra" [value]="pais.id">{{
+                                                   pais.country_name }}</option>
                                                </select>
                                              </div>
 
                                              <div class="form-group col-lg-6 mb-3">
+                                               <p>Migras con tu familia:</p>
+                                               <select class="form-select form-select-sm form-select-normal" formControlName="migrafamilia" appNotZero
+                                                 aria-label="Default select example">
+                                                 <option selected value="" disabled>Seleccione</option>
+                                                 <option value="1">Si</option>
+                                                 <option value="2">No</option>
 
-                                              <p>¿A que pais desea migrar?</p>
-                                              <select formControlName="paismigra" (change)="onPaisMigraSelect($event)" appNotZero
-                                                class="form-select form-select-sm form-select-normal" [(ngModel)]="selectedPaisMigraId"
-                                                aria-label="Default select example">
-                                                <option value="0" selected disabled>Pais migra</option>
-                                                <option *ngFor="let pais of paismigra" [value]="pais.id">{{
-                                                  pais.country_name }}</option>
-                                              </select>
-                                            </div>
+                                               </select>
 
+                                             </div>
+                                             <div class="form-group col-lg-6 mb-3">
+                                               <p>¿Cómo nos encontraste?:</p>
+                                               <select formControlName="redsocial" class="form-select form-select-sm form-select-normal" appNotZero
+                                                 aria-label="Default select example">
+                                                 <option selected value="" disabled>Seleccione</option>
+                                                 <option value="1">Facebook</option>
+                                                 <option value="2">Instagram</option>
+                                                 <option value="3">Linkedin</option>
+                                               </select>
 
+                                             </div>
 
+                                  </div>
+
+                                  <div class="my-3 col-md-6 mx-auto">
+                                   <!-- <button class="btn btn-primary btn-navigate-form-step" type="button" step_number="1">Anterior</button> -->
+                                   <button type="submit" class="btn btn-primary" [disabled]="miFormulario.invalid || formularioEnviado">{{ textoBoton }}</button>
+                                   <!-- {{ miFormulario.errors | json }}
+                                   {{miFormulario.get('password')?.value| json}}
+                                   {{miFormulario.get('nombre')?.value | json}}
+                                   {{miFormulario.get('email')?.value | json}} -->
                                  </div>
 
-                                 <div class="my-3 col-md-6 mx-auto">
-                                  <!-- <button class="btn btn-primary btn-navigate-form-step" type="button" step_number="1">Anterior</button> -->
-                                  <button type="submit" class="btn btn-primary" [disabled]="miFormulario.invalid || formularioEnviado">{{ textoBoton }}</button>
-                                  <!-- {{ miFormulario.errors | json }}
-                                  {{miFormulario.get('password')?.value| json}}
-                                  {{miFormulario.get('nombre')?.value | json}}
-                                  {{miFormulario.get('email')?.value | json}} -->
-                                </div>
+                              </div>
 
-                             </div>
+                          <!-- </section> -->
+                      </form>
+                  </div>
 
-                         <!-- </section> -->
-                     </form>
-                 </div>
-
-     </div>
+      </div>
 
 
 
@@ -305,6 +327,9 @@
 
 
 
- </div>
+    </div>
+
+  </div>
+
 
 </div>

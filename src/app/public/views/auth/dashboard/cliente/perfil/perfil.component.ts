@@ -49,6 +49,7 @@ export class PerfilComponent implements OnInit {
       this.GetUsuario()
     this.GetClienteId()
     this.listaPaises()
+    this.listaPaisMigra()
     this.listaNacionalidades()
 
     this.cargarUsuario()
@@ -59,10 +60,10 @@ export class PerfilComponent implements OnInit {
     this.miFormulario = this.fb.group({
       nombre: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
-      correo: ['', [Validators.required]],
-      fechanac: ['', [Validators.required]],
-      genero: [[0], [Validators.required, notZeroValidator]],
-      nacionalidad: [[0], [Validators.required, notZeroValidator]],
+      correo: [{ value: '', disabled: true }, [Validators.required]],
+      fechanac: [{ value: '', disabled: true }, [Validators.required]],
+      genero: [{ value: [0], disabled: true }, [Validators.required, notZeroValidator]],
+      nacionalidad: [{ value: [0], disabled: true }, [Validators.required, notZeroValidator]],
       countrySelect: [[0], [Validators.required, notZeroValidator]],
       citySelect: [[0], [Validators.required, notZeroValidator]],
       migrafamilia: [[0], [Validators.required, notZeroValidator]],
@@ -184,7 +185,8 @@ export class PerfilComponent implements OnInit {
     const requestData = {
       request: {
         contry_name: null,
-        status: true
+        status: true,
+        flag_tipo: 2
       },
       order: {
 
@@ -198,6 +200,30 @@ export class PerfilComponent implements OnInit {
     this.country.getCountries(requestData).subscribe(
       response => {
         this.countries = response[0].data;
+        // this.paismigra = response[0].data;
+
+      }
+
+    );
+  }
+  listaPaisMigra() {
+    const requestData = {
+      request: {
+        contry_name: null,
+        status: true,
+        flag_tipo: 1
+      },
+      order: {
+
+        column: null,
+        mode: null
+      },
+      page_size: 100,
+      pgination_key: 1
+    };
+
+    this.country.getCountries(requestData).subscribe(
+      response => {
         this.paismigra = response[0].data;
 
       }
@@ -360,17 +386,17 @@ export class PerfilComponent implements OnInit {
   }
 
   cargarUsuario() {
-       // if (this.usuario.photo)
+    // if (this.usuario.photo)
     //   this.imageSrc = this.imagenservice.getImageUrl(this.usuario.photo);
     if (this.usuario.photo) {
       this.imageSrc = this.imagenservice.getImageUrlUser(this.usuario.photo);
-     // this.imagenservice.getImageUrl(this.usuario.photo)
-     // this.imagenservice.imageUrl$.subscribe(
-     //   (url: string) => {
+      // this.imagenservice.getImageUrl(this.usuario.photo)
+      // this.imagenservice.imageUrl$.subscribe(
+      //   (url: string) => {
 
-     //     this.imageSrc = url.toString();
-     //   }
-     // );
+      //     this.imageSrc = url.toString();
+      //   }
+      // );
 
     }
     else
@@ -424,9 +450,25 @@ export class PerfilComponent implements OnInit {
   }
 
   ActualizarPerfil() {
+
+    const correoControl = this.miFormulario.get('correo');
+    const fechaNacControl = this.miFormulario.get('fechanac');
+    const nacionalidadControl = this.miFormulario.get('nacionalidad');
+    const generoControl = this.miFormulario.get('genero');
+    // Habilitar temporalmente los controles
+    correoControl?.enable();
+    fechaNacControl?.enable();
+    nacionalidadControl?.enable();
+    generoControl?.enable();
+
     const { nombre, apellidos, correo, fechanac, genero, nacionalidad, countrySelect, citySelect, migrafamilia,
       fechatentativa, redsocial, paismigra } = this.miFormulario.value;
 
+
+    correoControl?.disable();
+    fechaNacControl?.disable();
+    nacionalidadControl?.disable();
+    generoControl?.disable();
 
 
     console.log(this.miFormulario.value)
@@ -470,7 +512,7 @@ export class PerfilComponent implements OnInit {
         country_migration: paismigra,
         family_migration: migrafamilia,
         date_tentative: fechatentativa,
-        tipo_login:0
+        tipo_login: 0
 
 
       }

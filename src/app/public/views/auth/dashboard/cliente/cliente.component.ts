@@ -64,7 +64,9 @@ export class ClienteComponent {
 
 
     else
-      this.imageSrc = 'assets/images/perfiles/profile1.jpg'
+      // this.imageSrc = 'assets/images/perfiles/profile1.jpg'
+      this.imageSrc = 'assets/images/perfiles/perfil.png'
+
 
     console.log(this.usuario.photo)
     // if (newImageUrl) {

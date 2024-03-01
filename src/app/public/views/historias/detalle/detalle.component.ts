@@ -1510,7 +1510,8 @@ export class DetalleComponent implements OnInit{
     const requestData = {
       request: {
         contry_name: null,
-        status: true
+        status: true,
+        flag_tipo: 1
       },
       order: {
 

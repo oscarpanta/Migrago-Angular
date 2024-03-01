@@ -107,7 +107,7 @@
       </div>
 
     </div>
-    <div *ngIf="i % 2 !== 0" class="container-fluid d-grid gap-3 container__70_gris container_2em_10em">
+    <div *ngIf="i % 2 !== 0" class="container-fluid d-grid gap-3 container__70_gris container_2em_10em d-lg-block d-none">
       <div class="row">
         <div class="col-lg 6">
           <ngb-carousel *ngIf="tema && tema.images.data.length > 0">
@@ -133,6 +133,39 @@
           <p>
             {{tema.description_complete}}
           </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div *ngIf="i % 2 !== 0" class="container-fluid d-grid gap-3 container__70_gris container_2em_10em  d-block d-lg-none">
+      <div class="row">
+
+
+        <div class="col-lg 6">
+          <p class="p-normal-20-naranja">
+            {{tema.title_description}}
+          </p>
+          <div class="linea_orange"></div>
+          <p class="p-bold-500-20">{{ formatDescriptionThemes(tema.details.data) }}</p>
+          <p>
+            {{tema.description_complete}}
+          </p>
+        </div>
+        <div class="col-lg 6">
+          <ngb-carousel *ngIf="tema && tema.images.data.length > 0">
+            <ng-template ngbSlide *ngFor="let image of tema.images.data">
+              <div class="picsum-img-wrapper">
+                <!-- <img [src]="'assets/images/images_themes/'+ tema.images.data" alt="Random first slide" /> -->
+                <img [src]="'assets/images/images_themes/' +image.image_group_themes" alt="Imagen del tema" />
+              </div>
+              <!-- <div class="carousel-caption">
+                <h3>First slide label</h3>
+                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              </div> -->
+            </ng-template>
+            </ngb-carousel>
         </div>
 
       </div>

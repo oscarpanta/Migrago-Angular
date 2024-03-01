@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, NgZone, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -12,12 +12,14 @@ import { CountriesService } from '../../services/countries.service';
 import { LayoutService } from 'src/app/public/layout/layout.service';
 import { environment } from 'src/environments/environment';
 declare var google: any;
+declare var FB:any;
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit,OnDestroy {
+
 
   ocultarpas: boolean = true;
   textoBoton = 'Registrarse';
@@ -43,7 +45,7 @@ export class RegistroComponent implements OnInit,OnDestroy {
   @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();  //Salida de evento para cerrar modal
 
   private clienteid = environment.clientId;
-  constructor(private fb: FormBuilder,
+  constructor(private fb: FormBuilder,private _ngZone:NgZone,
     private router: Router,
     private authService: AutenticacionService, private country: CountriesService, private displayService: LayoutService,
     private activeModal: NgbActiveModal, private modalService: NgbModal) {
@@ -60,6 +62,8 @@ export class RegistroComponent implements OnInit,OnDestroy {
       fechatentativa: ['', [Validators.required]],
       numero: ['', [Validators.required]],
       paismigra: [[0], [Validators.required, notZeroValidator]],
+      migrafamilia: ['', [Validators.required, notZeroValidator]],
+      redsocial: ['', [Validators.required, notZeroValidator]],
     });
 
   }
@@ -108,9 +112,9 @@ export class RegistroComponent implements OnInit,OnDestroy {
 
       google.accounts.id.renderButton(document.getElementById("google-btn"), {
         theme: 'filled_blue',
-        size: 'large',
+        size: 'medium',
         shape: 'rectangle',
-        width: 500
+        // width: 500
       });
 
     }, 100);
@@ -120,6 +124,7 @@ export class RegistroComponent implements OnInit,OnDestroy {
     //https://developers.google.com/identity/gsi/web/reference/js-reference - reference for below configuration
 
     this.listaPaises();
+    this.listaPaisMigra()
     this.listaNacionalidades()
   }
   ngOnDestroy(): void {
@@ -140,7 +145,7 @@ export class RegistroComponent implements OnInit,OnDestroy {
     console.log(this.miFormulario.value);
 
     const { email, password, nombre, apellidos, fechanac, genero, nacionalidad, countrySelect, citySelect,
-      fechatentativa, numero, paismigra } = this.miFormulario.value;
+      fechatentativa, numero, paismigra,migrafamilia,redsocial } = this.miFormulario.value;
 
     const passwordValidators = this.isGoogleAuthenticated ? [] : [Validators.required];
 
@@ -195,9 +200,9 @@ export class RegistroComponent implements OnInit,OnDestroy {
         country_id: countrySelect,
         city_id: citySelect,
         nationality_id: nacionalidad,
-        social_network: null,
+        social_network: redsocial,
         country_migration: paismigra,
-        family_migration: null,
+        family_migration: migrafamilia,
         date_tentative: fechatentativa
       }
 
@@ -370,7 +375,8 @@ export class RegistroComponent implements OnInit,OnDestroy {
     const requestData = {
       request: {
         contry_name: null,
-        status: true
+        status: true,
+        flag_tipo: 2
       },
       order: {
 
@@ -384,7 +390,7 @@ export class RegistroComponent implements OnInit,OnDestroy {
     this.country.getCountries(requestData).subscribe(
       response => {
         this.countries = response[0].data;
-        this.paismigra = response[0].data;
+        // this.paismigra = response[0].data;
         this.options = this.countries.map(country => {
           return {
             id: country.id, // o el campo de identificación correspondiente
@@ -406,6 +412,32 @@ export class RegistroComponent implements OnInit,OnDestroy {
 
     );
   }
+  listaPaisMigra() {
+    const requestData = {
+      request: {
+        contry_name: null,
+        status: true,
+        flag_tipo: 1
+      },
+      order: {
+
+        column: null,
+        mode: null
+      },
+      page_size: 100,
+      pgination_key: 1
+    };
+
+    this.country.getCountries(requestData).subscribe(
+      response => {
+        this.paismigra = response[0].data;
+
+
+      }
+
+    );
+  }
+
   listaCiudades() {
     if (this.selectedCountryId !== null) {
       const req = {
@@ -621,10 +653,6 @@ export class RegistroComponent implements OnInit,OnDestroy {
 
         });
 
-      //store it in session
-
-      //naviagte to home page or browse page
-      // this.router.navigate(['browse']);
     }
   }
   navigateToFormStep(stepNumber: number): void {
@@ -638,6 +666,72 @@ export class RegistroComponent implements OnInit,OnDestroy {
     const formStepCircle = document.querySelector(`li[step="${stepNumber}"]`);
     formStepCircle?.classList.remove("form-stepper-unfinished", "form-stepper-completed");
     formStepCircle?.classList.add("form-stepper-active");
+  }
+
+
+  async loginFace() {
+    FB.login(async (result: any) => {
+      console.log(result)
+        await this.authService.LoginWithFacebook(result.authResponse.accessToken).subscribe(
+            (response:any)=>{
+              this.isGoogleAuthenticated = true;
+              this._ngZone.run(()=>{
+
+                console.log(response)
+                if (response.error) {
+                  let _req = {
+                    username: response.user.email,
+                    //password: sha256.sha256(password).toString().toUpperCase(),
+                    password: ''
+
+                  };
+                  this.authService.login(_req).subscribe((res: any) => {
+
+                    if (res) {
+                      this.cargando=false
+                      this.router.navigate(['/auth/dashboardCliente']);
+                    }
+                    else {
+                      this.cargando=false
+                      console.log(res)
+                      // this.router.navigate(['/auth/dashboarCliente']);
+                      Swal.fire('Error', res, 'error')
+                    }
+
+
+                  },
+                    (error: any) => {
+                      this.cargando=false
+                      Swal.fire('Error', 'Ha ocurrido un error', 'error')
+                    }
+
+
+                  );
+
+
+                }
+                else {
+                  this.cargando=false
+
+                  this.miFormulario.get('nombre')?.setValue(response.user.given_name);
+                  this.miFormulario.get('apellidos')?.setValue(response.user.family_name);
+                  this.miFormulario.get('email')?.setValue(response.user.email);
+                  this.miFormulario.get('password')?.clearValidators();
+                  this.miFormulario.get('password')?.updateValueAndValidity();
+
+                  this.tipolog = 1;
+
+                  this.navigateToFormStep(2);
+                  this.seccion++
+                }
+              })},
+            (error:any)=>{
+              console.log(error)
+            }
+
+        )
+
+    }, { scope: 'email' });
   }
 
 }

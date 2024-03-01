@@ -94,7 +94,8 @@ export class RegistroGuiaComponent {
     const requestData = {
       request: {
         contry_name: null,
-        status: true
+        status: true,
+        flag_tipo: 1
       },
       order: {
 
@@ -129,6 +130,7 @@ export class RegistroGuiaComponent {
 
     );
   }
+
   listaCiudades() {
     if (this.selectedCountryId !== null) {
       const req = {

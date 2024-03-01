@@ -955,3 +955,48 @@ margin-left: 0.3rem;
   text-decoration: none;
   cursor: not-allowed;
 }
+
+.login100-form .padding-form-princ{
+  padding: 3rem 8rem!important;
+}
+
+.form_registro{
+  background-color: #4680ff;
+}
+.form_registro .form_registro_estilo{
+  border-radius: 20px;
+  background-color: white;
+}
+/* responsive */
+@media (max-width: 992px) {
+  .demo-app-sidebar {
+    max-width: 650px;
+  }
+}
+@media (max-width: 768px) {
+  .login100-form .padding-form-princ{
+    padding: 3rem 0rem!important;
+  }
+  .demo-app-sidebar {
+    max-width: 500px;
+  }
+
+}
+@media (max-width: 576px) {
+  .btn-ingresa,.btn-ingresa-princ {
+
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+  .demo-app-sidebar {
+    max-width: 320px;
+  }
+  .fc .fc-toolbar{
+    display: block;
+  }
+
+}
+
+
+
+

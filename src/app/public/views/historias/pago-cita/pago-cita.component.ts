@@ -149,7 +149,8 @@ export class PagoCitaComponent implements OnInit {
                 Swal.fire('Error', 'Ocurrio un error al pagar:'+ result.error.message, 'error')
               } else {
                 if (result.paymentIntent.status === 'succeeded') {
-                  this.jitsiService.moveRoom(this.jitsiService.namePrincipalRoom, true, this.usuario.name,this.usuario.username);
+                  // this.jitsiService.moveRoom(this.jitsiService.namePrincipalRoom, true, this.usuario.name,this.usuario.username);
+                  this.jitsiService.moveRoom(historiaData.title+this.usuario.name, true, this.usuario.name,this.usuario.username);
                   const link = this.jitsiService.getIFrameSrc();
                   console.log(link)
                   console.log('Pago exitoso');

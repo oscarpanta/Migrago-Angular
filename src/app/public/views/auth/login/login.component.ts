@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/public/layout/layout.service';
 import * as sha512 from 'js-sha512';
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 import { AuthResponse } from 'src/app/core/interfaces/login.interface';
 import { environment } from 'src/environments/environment';
 declare var google: any;
-
+declare var FB:any;
 
 @Component({
   selector: 'app-login',
@@ -17,6 +17,7 @@ declare var google: any;
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   ocultarpas: boolean = true;
 
   miFormulario: FormGroup = this.fb.group({
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
   //   username: "",
   //   password: "",
   // };
-  constructor(private fb: FormBuilder, private router: Router, private displayService: LayoutService, private authService: AutenticacionService) { }
+  constructor(private fb: FormBuilder, private router: Router, private displayService: LayoutService,
+    private authService: AutenticacionService,private _ngZone:NgZone) { }
   ngOnInit(): void {
     this.ocultarpass();
     this.displayService.setNavigationVisibility(false);
@@ -48,9 +50,9 @@ export class LoginComponent implements OnInit {
 
       google.accounts.id.renderButton(document.getElementById("google-btn"), {
         theme: 'filled_blue',
-        size: 'large',
+        size: 'medium',
         shape: 'rectangle',
-        width: 300
+        // width: 300
       });
 
      }, 100);
@@ -218,6 +220,60 @@ export class LoginComponent implements OnInit {
       //naviagte to home page or browse page
       // this.router.navigate(['browse']);
     }
+  }
+
+  async loginFace() {
+    FB.login(async (result: any) => {
+      console.log(result)
+        await this.authService.LoginWithFacebook(result.authResponse.accessToken).subscribe(
+            (response:any)=>{
+              this._ngZone.run(()=>{
+
+                console.log(response)
+                if(response.error){
+                  let _req = {
+                    username: response.user.email,
+                    password: ''
+
+                  };
+                  this.authService.login(_req).subscribe((res: any) => {
+
+                    if (res) {
+                      this.router.navigate(['/auth/dashboardCliente']);
+                    }
+                    else {
+                      console.log(res)
+                      // this.router.navigate(['/auth/dashboarCliente']);
+                      Swal.fire('Error', res, 'error')
+                    }
+
+
+                  },
+                  (error: any) => {
+
+                    Swal.fire('Error', 'Ha ocurrido un error', 'error')
+                  }
+
+
+                  );
+
+
+                }
+
+
+                else{
+                   localStorage.setItem('loggedInUser', JSON.stringify(response.user));
+                   localStorage.setItem('nextseccion',JSON.stringify(true))
+                   this.router.navigate(['auth/registro']);
+                }
+              })},
+            (error:any)=>{
+              console.log(error)
+            }
+
+        )
+
+    }, { scope: 'email' });
   }
 
 }

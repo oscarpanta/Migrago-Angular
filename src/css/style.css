@@ -158,7 +158,9 @@ font-weight: bold;
 .p-cinta-close{
   width: 5%;
 }
-
+.p-cinta-close i{
+  font-size: 20px;
+}
 /* cinta verde */
 
 /* marquee */
@@ -245,7 +247,7 @@ color: white;
   padding: 4em 4em;
   font-size: 13pt;
   position: absolute;
-  top: calc(100% - 10em);
+  top: calc(100% - 7em);
   left: 0;
   right: 0;
   width: 75%;
@@ -915,7 +917,8 @@ width: 60%;
 .footer{
   background: #333333;
   color: #FFF;
-  padding: 2em 5em;
+  /* padding: 2em 5em; */
+  padding: 2em 14em;
 }
 .footer__head{
   display: flex;
@@ -925,14 +928,15 @@ width: 60%;
   margin: 2em 0;
 }
 .footer__parte1{
-  width: 40%;
+  width: 50%;
   font-size: 10pt;
 }
 .logo__footer img{
   width: 150px;
 }
 .footer__parte{
-  width: 30%;
+  /* width: 25%; */
+  width: 50%;
 }
 .iconos__redes{
   margin-top: 2em;
@@ -1868,7 +1872,7 @@ ul.form-stepper li a .form-stepper-circle {
     width: calc(100% - 50px);
     top: calc(100% - 8em);
     padding: 1em 1em;
-    
+
   }
   .container__rutas{
     padding: 0;
@@ -1896,7 +1900,7 @@ ul.form-stepper li a .form-stepper-circle {
     max-width: 100%;
     padding: 2em;
   }
-  
+
 }
 /* / Móviles en horizontal o tablets en vertical
  ------------------------------------------------------------------------- / */
@@ -1933,7 +1937,7 @@ ul.form-stepper li a .form-stepper-circle {
   .container__historias{
     justify-content: center;
   }
- 
+
 }
 /* tamaño de maximo 460  */
 @media (max-width: 460px) {
@@ -2470,10 +2474,13 @@ padding: 2em 2em;
     font-size: 8pt;
 }
 .logo__footer img{
-    width: auto;
+    /* width: auto; */
+    width: 250px;
 }
 .iconos__redes img{
-    width: auto;
+    /* width: auto; */
+    width: 40px;
+    margin-bottom: 1rem;
 }
 .container__migrar{
    height: auto;
@@ -2762,4 +2769,66 @@ justify-content: space-between;
 
 
 
+
+/* responsivos */
+
+/* responsive */
+.tamaño_footer_parte{
+  display: flex;
+  width: 50%;
+}
+
+@media (max-width: 992px) {
+
+  .container_10em{
+    padding: 7em 2em;
+    }
+    .footer {
+      padding: 2em 2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .container__historias__reales__body{
+    justify-content: center;
+  }
+  .container_2em_10em{
+    padding: 1em 1em;
+  }
+
+
+}
+
+@media (max-width: 576px) {
+  .container__historias__items{
+    width: 100%;
+    text-align: center;
+  }
+  .tamaño_footer_parte{
+    width: 100%;
+    gap: 0rem 4rem;
+  }
+  .img_flotante{
+    border-radius: 15px;
+    height:350px;
+    ;max-width: 280px;
+    }
+    .card-image-flag-small{
+
+      left: 0%;
+      padding-left: 80px;
+    }
+    .card-image-flag-tiny {
+
+      left: 0%;
+      padding-left: 80px;
+    }
+  /* .unete_main .p-bold-500-20{
+    font-size: 14pt;
+  }
+  .unete_main .p-bold-500-20{
+    font-size: 10pt;
+  } */
+
+}
 

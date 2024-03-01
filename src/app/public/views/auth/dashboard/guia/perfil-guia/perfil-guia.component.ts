@@ -220,7 +220,8 @@ export class PerfilGuiaComponent implements OnInit {
     const requestData = {
       request: {
         contry_name: null,
-        status: true
+        status: true,
+        flag_tipo: 1
       },
       order: {
 

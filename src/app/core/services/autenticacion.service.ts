@@ -242,6 +242,11 @@ export class AutenticacionService {
     // return this.http.post(apiUrl, requestData);
     return this.http.post(apiUrl, requestData);
   }
+  LoginWithFacebook(credentials: string):Observable<any> {
+    const body = { id_token: credentials };
+    const apiUrl = '/api/auhtFacebook';
+    return this.http.post(apiUrl,body);
+  }
 
 
   logout() {

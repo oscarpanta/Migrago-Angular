@@ -3,9 +3,8 @@
 
   <div class="container-fluid ">
     <div class="row ">
-      <div class="col-md-6 bg-white p-5 padding-0" style="
-      padding: 3rem 8rem!important;">
-        <div class="row login-logo text-center mb-4 ">
+      <div class="col-md-6 bg-white p-5 padding-form-princ">
+        <div class="row login-logo text-center mb-3 ">
           <picture>
             <!-- <source media="(min-width: 900px)" srcset="grande.png">
                           <source media="(min-width: 550px)" srcset="media.png">  -->
@@ -15,10 +14,14 @@
         </div>
         <div class="row mb-5">
           <span class="titulo-login" style="font-size: 27pt;">¡Bienvenido!</span>
+          <!-- <div class="">
+            <a (click)="loginFace()" class="btn  mb-2  btn-facebook"><i class="fa-brands fa-facebook"></i> Continuar con Facebook</a>
+        </div> -->
           <div id="google-btn" style="
           text-align: -webkit-center;">
 
           </div>
+
         </div>
         <div class="row mb-5">
           <!-- <form> -->
@@ -53,6 +56,12 @@
             </div>
             <div class="d-grid gap-2 col-8 mx-auto mb-4">
               <button type="submit" class="btn btn-primary" [disabled]="miFormulario.invalid">Inicia sesión</button>
+
+                <span class="p-normal-300-10-black text-center">¿No tienes cuenta?
+                  <a routerLink="/auth/registro" class="ms-2 p-normal-300-10 link-dashboard"
+                style="cursor: pointer  ;font-weight: bold;">Registrate en MigraGo</a>
+                </span>
+
             </div>
 
           <!-- </form> -->

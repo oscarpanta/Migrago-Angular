@@ -59,6 +59,8 @@ export class ModalRegistroComponent implements OnInit {
     fechatentativa: ['', [Validators.required]],
     numero: ['', [Validators.required]],
     paismigra: [[0], [Validators.required, notZeroValidator]],
+    migrafamilia: ['', [Validators.required, notZeroValidator]],
+    redsocial: ['', [Validators.required, notZeroValidator]],
   });
 
   private clienteid= environment.clientId;
@@ -127,6 +129,7 @@ export class ModalRegistroComponent implements OnInit {
 
     this.pasos();
     this.listaPaises();
+    this.listaPaisMigra()
     this.listaNacionalidades()
   }
 
@@ -145,7 +148,7 @@ export class ModalRegistroComponent implements OnInit {
     console.log(this.miFormularioRegistro.value);
 
     const { email, password, nombre, apellidos, fechanac, genero, nacionalidad, countrySelect, citySelect,
-      fechatentativa, numero, paismigra } = this.miFormularioRegistro.value;
+      fechatentativa, numero, paismigra,migrafamilia,redsocial  } = this.miFormularioRegistro.value;
 
     const passwordValidators = this.isGoogleAuthenticated ? [] : [Validators.required];
 
@@ -200,9 +203,9 @@ export class ModalRegistroComponent implements OnInit {
         country_id: countrySelect,
         city_id: citySelect,
         nationality_id: nacionalidad,
-        social_network: null,
+        social_network: redsocial,
         country_migration: paismigra,
-        family_migration: null,
+        family_migration: migrafamilia,
         date_tentative: fechatentativa
       }
 
@@ -376,7 +379,8 @@ export class ModalRegistroComponent implements OnInit {
       const requestData = {
         request: {
           contry_name: null,
-          status: true
+          status: true,
+          flag_tipo: 2
         },
         order: {
 
@@ -390,7 +394,7 @@ export class ModalRegistroComponent implements OnInit {
       this.country.getCountries(requestData).subscribe(
         response => {
           this.countries = response[0].data;
-          this.paismigra = response[0].data;
+          // this.paismigra = response[0].data;
           this.options = this.countries.map(country => {
             return {
               id: country.id, // o el campo de identificación correspondiente
@@ -407,6 +411,31 @@ export class ModalRegistroComponent implements OnInit {
               cod:this.options[0].cod
             };
           }
+
+        }
+
+      );
+    }
+    listaPaisMigra() {
+      const requestData = {
+        request: {
+          contry_name: null,
+          status: true,
+          flag_tipo: 1
+        },
+        order: {
+
+          column: null,
+          mode: null
+        },
+        page_size: 100,
+        pgination_key: 1
+      };
+
+      this.country.getCountries(requestData).subscribe(
+        response => {
+          this.paismigra = response[0].data;
+
 
         }
 

@@ -350,7 +350,7 @@ align-items: center;     display: flex;">
   <p [style.padding-right]="last ? '0em':'5em'" *ngFor="let tema of Temas; let last = last">
     <!-- <span [style.margin-right]="last ? '0' : '70px'">{{ formatDescriptionThemes(tema.details.data) }}</span>
     <span *ngIf="!last"><i class="fas fa-xs fa-circle"></i></span> -->
-    <span *ngIf="!last"><i class="fas fa-xs fa-circle me-3"></i></span><span [style.margin-right]="last ? '0' : '70px'">{{ formatDescriptionThemes(tema.details.data) }}</span>
+    <span *ngIf="!last"><i class="fas fa-xs fa-circle me-2"></i></span><span [style.margin-right]="last ? '0' : '70px'">{{ formatDescriptionThemes(tema.details.data) }}</span>
 
 
 </div>
@@ -446,7 +446,7 @@ align-items: center;     display: flex;">
 
                   <!-- 4:3 aspect ratio -->
                   <div class="embed-responsive embed-responsive-4by3" style="
-                  height: 700px;">
+                  height: 600px;">
                       <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/1y_kfWUCFDQ"></iframe>
                   </div>
               </div>

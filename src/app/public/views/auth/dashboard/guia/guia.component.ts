@@ -69,7 +69,9 @@ export class GuiaComponent implements OnInit {
 
 
     else
-      this.imageSrc = 'assets/images/perfiles/profile1.jpg'
+          // this.imageSrc = 'assets/images/perfiles/profile1.jpg'
+          this.imageSrc = 'assets/images/perfiles/perfil.png'
+
 
     console.log(this.usuario.photo)
     // if (newImageUrl) {
