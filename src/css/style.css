@@ -246,12 +246,12 @@ color: white;
   border-radius: 10px;
   padding: 4em 4em;
   font-size: 13pt;
-  position: absolute;
+  /* position: absolute;
   top: calc(100% - 7em);
   left: 0;
-  right: 0;
+  right: 0; */
   width: 75%;
-  margin: auto;
+  margin: -25em auto 0em auto;
 }
 .container__azul__head{
   text-align: center;
@@ -813,7 +813,7 @@ width: 60%;
 .container__verificados__head__title{
   font-size: 35pt;
   font-weight: bold;
-  max-width: 50%;
+  max-width: 100%;
   margin-top: -1.5rem;
 }
 .container__verificados__head__subtitle{
@@ -848,14 +848,14 @@ width: 60%;
   margin: 0 auto;
 }
 .container__resenias__body{
-  width:  65%;
+  width:  100%;
   /* padding: 0 5em; */
 
-  position: absolute;
+  /* position: absolute;
   top: 240rem;
   left: 0;
-  right: 0;
-  margin: 0 auto;
+  right: 0; */
+  margin: -28em auto 5em auto;
 }
 .container__resenias .card-content{
   width: 60%;
@@ -1846,6 +1846,28 @@ ul.form-stepper li a .form-stepper-circle {
       .container__70_gris{
           padding: 3em 6em;
       }
+      .container__azul{
+        
+        /* top: calc(100% - 8em); */
+        margin: -20em auto 0em auto;
+       
+    
+      }
+      .apartado__index__body{
+        width: 100%;
+        text-align: center;
+      }
+      .apartado__index__buscador{
+        width: calc(100%);
+       }
+       .container__resenias__body{
+        /* width: 100%;
+        top: 200rem */
+        /* position: relative;
+        top:0;
+        width: 100%; */
+        margin: -25em auto 5em auto;
+    }
  }
  @media (max-width: 968px) {
 
@@ -1858,10 +1880,10 @@ ul.form-stepper li a .form-stepper-circle {
     align-items: center;
 
   }
-  .apartado__index__body{
-    width: 100%;
-    text-align: center;
-  }
+ .container__verificados__head{
+  text-align: center;
+  max-width: 100%;
+ }
   .apartado__combinado{
     padding-top: 15em;
   }
@@ -1870,7 +1892,8 @@ ul.form-stepper li a .form-stepper-circle {
   }
   .container__azul{
     width: calc(100% - 50px);
-    top: calc(100% - 8em);
+    /* top: calc(100% - 8em); */
+    margin: -15em auto 0em auto;
     padding: 1em 1em;
 
   }
@@ -2207,8 +2230,8 @@ ul.form-stepper li a .form-stepper-circle {
   .container__resenias__body{
       /* width: 100%;
       top: 200rem */
-      position: relative;
-      top:0;
+      /* position: relative;
+      top:0; */
       width: 100%;
   }
   .container__resenias{
@@ -2523,6 +2546,11 @@ padding: 2em 2em;
 .description{
     font-size: 12pt;
 }
+.container__verificados__imagen img{
+  width: 100%;
+  /* height: 45rem; */
+  border-radius: 0;
+}
 .texto{
     font-size: 8pt;
     -webkit-line-clamp: 5;
@@ -2660,9 +2688,10 @@ justify-content: space-between;
 .container__resenias__body{
     /* width: 100%;
     top: 200rem */
-    position: relative;
+    /* position: relative;
     top:0;
-    width: 100%;
+    width: 100%; */
+    margin: auto;
 }
 .container__resenias{
     height: auto;
