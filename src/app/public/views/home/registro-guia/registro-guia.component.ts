@@ -32,7 +32,7 @@ export class RegistroGuiaComponent {
   selectedCountryId: number | null = null;
   selectedCityId: number | null = null;
 
-  selectedNationalityId: number = 0;
+  selectedNationalityId: number | null = null;
   selectedModoMigrationId: number = 0;
   selectedRutaMigrationId: number = 0;
   selectedFecha!: Date;
@@ -40,6 +40,8 @@ export class RegistroGuiaComponent {
   textoBoton = 'Registrarme';
 
   options :any;
+
+  emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
   ngOnInit(): void {
     //this.selectedOption = null;
@@ -59,14 +61,14 @@ export class RegistroGuiaComponent {
 
     this.miFormulario = this.fb.group({
       nombre: ['', [Validators.required]],
-      nacionalidad: [[0],  [Validators.required, notZeroValidator]],
+      nacionalidad: ['',  [Validators.required, notZeroValidator]],
       apellidos: ['', [Validators.required]],
       countrySelect: ['', [Validators.required]],
       genero: ['', [Validators.required,notZeroValidator]],
       citySelect: ['', [Validators.required]],
       numero: ['', [Validators.required]],
       fecha: ['', [Validators.required]],
-      correo: ['', [Validators.required]],
+      correo: ['', [Validators.required,Validators.pattern(this.emailPattern)]],
       RutaMigracion: [[0], [Validators.required,notZeroValidator]],
       //ModoMigracion: [[0], [Validators.required]],
       fechaNac: ['', [Validators.required]],
@@ -102,7 +104,7 @@ export class RegistroGuiaComponent {
         column: null,
         mode: null
       },
-      page_size: 100,
+      page_size: 200,
       pgination_key: 1
     };
 
@@ -144,7 +146,7 @@ export class RegistroGuiaComponent {
           column: null,
           mode: null
         },
-        page_size: 100,
+        page_size: 2000,
         pgination_key: 1
 
       };
@@ -280,10 +282,15 @@ export class RegistroGuiaComponent {
     this.selectedCityId = selectedCityId;
   }
 
-  onNationalitySelect(event: any) {
-    const selectedNationalityId = event.target.value;
+  // onNationalitySelect(event: any) {
+  //   const selectedNationalityId = event.target.value;
+  //   this.selectedNationalityId = selectedNationalityId
+  //   console.log(this.selectedNationalityId)
+  // }
+  onNationalitySelect(selectedNationalityId: number) {
+
     this.selectedNationalityId = selectedNationalityId
-    console.log(this.selectedNationalityId)
+
   }
   onFecha(event: any) {
     this.selectedFecha = event.target.value;
@@ -412,6 +419,13 @@ export class RegistroGuiaComponent {
         }
       });
 
+  }
+  getTooltipMessage(): string {
+    if (this.miFormulario.get('correo')?.hasError('pattern')) {
+      return 'Use un correo válido';
+    } else {
+      return 'Llene todos los campos por favor';
+    }
   }
 
 }

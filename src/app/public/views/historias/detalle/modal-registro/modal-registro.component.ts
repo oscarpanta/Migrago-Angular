@@ -33,32 +33,38 @@ export class ModalRegistroComponent implements OnInit {
   selectedCountryId: number | null = null;
   selectedCityId: number | null = null;
 
-  selectedNationalityId: number = 0;
-  selectedPaisMigraId: number = 0;
+
+
+
+  selectedNationalityId: number | null = null;
+  selectedPaisMigraId: number | null = null;
+
   selectedOption: any ;
   options :any;
   // miFormulario!: FormGroup;
   @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();  //Salida de evento para cerrar modal
 
-
+  emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
   miFormularioRegistro: FormGroup = this.fb.group({
     // email: ['', [Validators.required]],
     // password: ['', [Validators.required]],
-    email:['',[Validators.required,Validators.minLength(5)]],
+    email: ['', [Validators.required,Validators.pattern(this.emailPattern)]],
     password:['',[Validators.required,Validators.minLength(6)]],
     nombre: ['', [Validators.required]],
     apellidos: ['', [Validators.required]],
     fechanac: ['', [Validators.required]],
     genero: ['', [Validators.required, notZeroValidator]],
-    nacionalidad: [[0], [Validators.required, notZeroValidator]],
+    nacionalidad: ['', [Validators.required, notZeroValidator]],
+    //nacionalidad: [[0], [Validators.required, notZeroValidator]],
     // countrySelect: [[0], [Validators.required, notZeroValidator]],
     // citySelect: [[0], [Validators.required, notZeroValidator]],
     countrySelect: ['', [Validators.required, notZeroValidator]],
     citySelect: ['', [Validators.required, notZeroValidator]],
     fechatentativa: ['', [Validators.required]],
     numero: ['', [Validators.required]],
-    paismigra: [[0], [Validators.required, notZeroValidator]],
+    // paismigra: [[0], [Validators.required, notZeroValidator]],
+    paismigra: ['', [Validators.required, notZeroValidator]],
     migrafamilia: ['', [Validators.required, notZeroValidator]],
     redsocial: ['', [Validators.required, notZeroValidator]],
   });
@@ -428,7 +434,7 @@ export class ModalRegistroComponent implements OnInit {
           column: null,
           mode: null
         },
-        page_size: 100,
+        page_size: 200,
         pgination_key: 1
       };
 
@@ -454,7 +460,7 @@ export class ModalRegistroComponent implements OnInit {
             column: null,
             mode: null
           },
-          page_size: 100,
+          page_size: 2000,
           pgination_key: 1
 
         };
@@ -530,13 +536,12 @@ export class ModalRegistroComponent implements OnInit {
     onCitySelect(selectedCityId: number) {
       this.selectedCityId = selectedCityId;
     }
-    onNationalitySelect(event: any) {
-      const selectedNationalityId = event.target.value;
+    onNationalitySelect(selectedNationalityId: number) {
       this.selectedNationalityId = selectedNationalityId
       console.log(this.selectedNationalityId)
     }
-    onPaisMigraSelect(event: any) {
-      const selectedpaisID = event.target.value;
+    onPaisMigraSelect(selectedpaisID: number) {
+      //const selectedpaisID = event.target.value;
       this.selectedPaisMigraId = selectedpaisID
       console.log(this.selectedPaisMigraId)
     }

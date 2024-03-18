@@ -731,13 +731,14 @@ nav .btn{
 /* Credito Pago */
 
 .checkout-form {
-  max-width: 400px;
+  max-width: 100%;
   margin: auto;
   padding: 50px;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .text-pago {
   text-align: center;
 }
@@ -792,6 +793,40 @@ nav .btn{
   margin-right: 10px; /* Ajusta el espacio entre el ngx-stripe-card-number y el ícono */
 }
 
+.detallepago_form,.container_pago {
+  max-width: 100%;
+  margin: auto;
+  /* padding: 2rem; */
+  background-color: white;
+  border-radius: 10px;
+
+}
+
+.detallepago_form .citapago,.container_pago .citapago{
+
+  border-radius: 10px;
+  border-color: rgba(169, 168, 168, 0.803);
+  /* padding: 2rem; */
+  box-shadow: 0 0 0 0.1rem rgba(86, 83, 90, 0.37)
+}
+
+.citapago .letranegra{
+  font-size: 16px;
+  font-weight: bolder;
+}
+.citapago .letranormal{
+  font-size: 10pt;
+  font-family: 'Inter light';
+}
+.citapago .form-group{
+  /* line-height: 1; */
+}
+.citapago .titulo-pago{
+  text-align: center;
+  /* color: #f98900; */
+  font-size: 20pt;
+  font-weight: 700;
+}
 /* .button-pago:hover {
   background-color: #0056b3;
 } */
@@ -967,15 +1002,31 @@ margin-left: 0.3rem;
   border-radius: 20px;
   background-color: white;
 }
+.form_registro ul{
+  padding: 0 14rem;
+}
+
 /* responsive */
+@media (max-width: 1200px) {
+  .login100-form .padding-form-princ{
+    padding: 3rem 2rem!important;
+  }
+}
 @media (max-width: 992px) {
   .demo-app-sidebar {
     max-width: 650px;
   }
+  .login100-form .padding-form-princ{
+    padding: 3rem 0rem!important;
+  }
+
 }
 @media (max-width: 768px) {
   .login100-form .padding-form-princ{
     padding: 3rem 0rem!important;
+  }
+  .form_registro ul{
+    padding: 0 0rem;
   }
   .demo-app-sidebar {
     max-width: 500px;

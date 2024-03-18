@@ -43,7 +43,7 @@ export class HistoriasComponent implements OnInit {
   rutasmigracion: WayMigration[] = []
   modemigrations: MigrationMode[] = []
   selectedCountryId: number | null = null;
-  selectedCityId: number = 0;
+  selectedCityId: number | null = null;
   //idhistoria: any;
 
   selectedNationalityId: number = 0;
@@ -78,8 +78,8 @@ export class HistoriasComponent implements OnInit {
     // this.temasForm = this.fb.group({});
     this.miFormulario = this.fb.group({
       titulo: ['', [Validators.required]],
-      countrySelect: [[-1], [Validators.required]],
-      citySelect: [[-1], [Validators.required]],
+      countrySelect: ['', [Validators.required]],
+      citySelect: ['', [Validators.required]],
      // Nacionalidad: [[-1], [Validators.required]],
       ModoMigracion: [[-1], [Validators.required]],
       //RutaMigracion: [[-1], [Validators.required]],
@@ -373,7 +373,7 @@ export class HistoriasComponent implements OnInit {
         column: null,
         mode: null
       },
-      page_size: 100,
+      page_size: 200,
       pgination_key: 1
     };
 
@@ -398,7 +398,7 @@ export class HistoriasComponent implements OnInit {
           column: null,
           mode: null
         },
-        page_size: 100,
+        page_size: 2000,
         pgination_key: 1
 
       };
@@ -531,14 +531,22 @@ export class HistoriasComponent implements OnInit {
   }
 
 
-  onCountrySelect(event: any) {
-    const selectedCountryId = event.target.value;
+  onCountrySelect(selectedCountryId: number) {
     this.selectedCountryId = selectedCountryId;
+    this.selectedCityId =null;
     this.listaCiudades();
   }
-  onCitySelect(event: any) {
-    this.selectedCityId = event.target.value;
+  onCitySelect(selectedCityId: number) {
+    this.selectedCityId = selectedCityId;
   }
+  // onCountrySelect(event: any) {
+  //   this.selectedCountryId = event.target.value;
+  //   this.selectedCityId =null;
+  //   this.listaCiudades();
+  // }
+  // onCitySelect(event: any) {
+  //   this.selectedCityId = event.target.value;
+  // }
   onNationalitySelect(event: any) {
     const selectedNationalityId = event.target.value;
     this.selectedNationalityId = selectedNationalityId

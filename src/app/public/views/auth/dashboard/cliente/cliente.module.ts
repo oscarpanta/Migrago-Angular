@@ -8,6 +8,7 @@ import { CambiarContrasenaComponent } from './cambiar-contrasena/cambiar-contras
 import { HistoricoComponent } from './historico/historico.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AgendadasComponent } from './agendadas/agendadas.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { AgendadasComponent } from './agendadas/agendadas.component';
     FormsModule,
     ReactiveFormsModule,
     ClienteRoutingModule,
+    NgSelectModule
 
   ]
 })

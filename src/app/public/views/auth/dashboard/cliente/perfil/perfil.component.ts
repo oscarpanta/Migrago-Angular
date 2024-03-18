@@ -33,10 +33,11 @@ export class PerfilComponent implements OnInit {
   imageSrc!: string;
   formularioEnviado = false;
   textoBoton = 'Guardar';
+  cambiarCiudad:boolean=false;
 
   selectedOption: any = null;
   selectedCountryId: number | null = null;
-  selectedCityId: number = 0;
+  selectedCityId: number | null = 0;
   selectedNationalityId: number = 0;
   selectedModoMigrationId: number = 0;
   selectedRutaMigrationId: number = 0;
@@ -65,7 +66,7 @@ export class PerfilComponent implements OnInit {
       genero: [{ value: [0], disabled: true }, [Validators.required, notZeroValidator]],
       nacionalidad: [{ value: [0], disabled: true }, [Validators.required, notZeroValidator]],
       countrySelect: [[0], [Validators.required, notZeroValidator]],
-      citySelect: [[0], [Validators.required, notZeroValidator]],
+      citySelect: ['', [Validators.required, notZeroValidator]],
       migrafamilia: [[0], [Validators.required, notZeroValidator]],
       fechatentativa: ['', [Validators.required]],
       redsocial: [[0], [Validators.required, notZeroValidator]],
@@ -193,7 +194,7 @@ export class PerfilComponent implements OnInit {
         column: null,
         mode: null
       },
-      page_size: 100,
+      page_size: 200,
       pgination_key: 1
     };
 
@@ -218,7 +219,7 @@ export class PerfilComponent implements OnInit {
         column: null,
         mode: null
       },
-      page_size: 100,
+      page_size: 200,
       pgination_key: 1
     };
 
@@ -243,7 +244,7 @@ export class PerfilComponent implements OnInit {
           column: null,
           mode: null
         },
-        page_size: 100,
+        page_size: 5000,
         pgination_key: 1
 
       };
@@ -295,25 +296,46 @@ export class PerfilComponent implements OnInit {
     );
   }
 
-  onCountrySelect(event: any) {
-    const selectedCountryId = event.target.value;
+  // onCountrySelect(event: any) {
+  //   const selectedCountryId = event.target.value;
+  //   this.selectedCountryId = selectedCountryId;
+  //   this.listaCiudades();
+  // }
+  onCountrySelect(selectedCountryId: number) {
+    // const selectedCountryId = event.target.value;
+    console.log('eje2')
     this.selectedCountryId = selectedCountryId;
+    console.log(this.cambiarCiudad)
+    if(this.cambiarCiudad)
+      this.selectedCityId = null
+    // this.miFormulario.get('citySelect')?.setValue(null);
+
     this.listaCiudades();
   }
-  onCitySelect(event: any) {
-    this.selectedCityId = event.target.value;
+  // onCitySelect(event: any) {
+  //   this.selectedCityId = event.target.value;
+  // }
+  onCitySelect(selectedCityId: number) {
+    this.cambiarCiudad=true
+    console.log(this.cambiarCiudad)
+    this.selectedCityId = selectedCityId;
+
   }
+
   onNationalitySelect(event: any) {
     const selectedNationalityId = event.target.value;
     this.selectedNationalityId = selectedNationalityId
     console.log(this.selectedNationalityId)
   }
-  onPaisMigraSelect(event: any) {
-    const selectedpaisID = event.target.value;
+  // onPaisMigraSelect(event: any) {
+  //   const selectedpaisID = event.target.value;
+  //   this.selectedPaisMigraId = selectedpaisID
+  //   console.log(this.selectedPaisMigraId)
+  // }
+  onPaisMigraSelect(selectedpaisID: number) {
     this.selectedPaisMigraId = selectedpaisID
-    console.log(this.selectedPaisMigraId)
-  }
 
+  }
   onFecha(event: any) {
     this.selectedFecha = event.target.value;
   }
@@ -417,16 +439,21 @@ export class PerfilComponent implements OnInit {
       if (response) {
 
         this.cliente = response;
-        console.log(this.cliente)
+
         this.selectedCountryId = response[0].country_id;
         this.selectedCityId = response[0].city_id;
         this.selectedNationalityId = response[0].nationality_id;
         this.selectedPaisMigraId = response[0].country_migration;
-        this.listaCiudades();
+        // this.listaCiudades();
+
 
 
       }
       const formattedDate = new Date(this.cliente[0].date_tentative).toISOString().substr(0, 10);
+      this.selectedCityId =this.cliente[0].city_id;
+      console.log(this.miFormulario)
+      console.log(this.cliente[0].country_id)
+      console.log(this.cliente[0].city_id)
       this.miFormulario.patchValue({
         nombre: this.usuario.name,
         apellidos: this.usuario.lastname,
@@ -441,8 +468,8 @@ export class PerfilComponent implements OnInit {
         redsocial: this.cliente[0].social_network_id,
         paismigra: this.cliente[0].country_migration
       });
-
-
+      console.log("abcd")
+      console.log(this.miFormulario)
     });
 
 
@@ -621,4 +648,5 @@ export class PerfilComponent implements OnInit {
         }
       );
   }
+
 }

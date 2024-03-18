@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ModalComponent } from './agenda/modal/modal.component';
 import { PipesModule } from 'src/app/core/pipes/pipes.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 //import { ReplaceSlashPipePipe } from 'src/app/core/pipes/replace-slash-pipe.pipe';
 
 //import { Select2Module } from 'ng2-select2';
@@ -42,7 +43,8 @@ import { PipesModule } from 'src/app/core/pipes/pipes.module';
     ReactiveFormsModule,
     NgbModule,
     FullCalendarModule,
-    PipesModule
+    PipesModule,
+    NgSelectModule,
 
 
 

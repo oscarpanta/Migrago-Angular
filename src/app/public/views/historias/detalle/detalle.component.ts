@@ -1170,7 +1170,8 @@ export class DetalleComponent implements OnInit{
         guide_id: this.guiaid,
         dateNow: fechaFormateada,
         dateRequest: date,
-        status: true
+        status: true,
+        flag:1
       },
       order: {
         column: null,
@@ -1324,7 +1325,8 @@ export class DetalleComponent implements OnInit{
         guide_id: this.guiaid,
         dateNow: fechaFormateada,
         dateRequest: null,
-        status: true
+        status: true,
+        flag:1
       },
       order: {
         column: null,
@@ -1518,7 +1520,7 @@ export class DetalleComponent implements OnInit{
         column: null,
         mode: null
       },
-      page_size: 100,
+      page_size: 200,
       pgination_key: 1
     };
 
@@ -1559,7 +1561,7 @@ export class DetalleComponent implements OnInit{
           column: null,
           mode: null
         },
-        page_size: 100,
+        page_size: 2000,
         pgination_key: 1
 
       };

@@ -18,6 +18,7 @@ import { AutenticacionService } from 'src/app/core/services/autenticacion.servic
 import { Usuario } from 'src/app/core/interfaces/login.interface';
 import { Router } from '@angular/router';
 import { JitsiService } from '../../services/jitsi.service';
+import { DateService } from 'src/app/core/utils/date.service';
 
 @Component({
   selector: 'app-pago-cita',
@@ -27,6 +28,7 @@ import { JitsiService } from '../../services/jitsi.service';
 export class PagoCitaComponent implements OnInit {
   //
   //@ViewChild(StripeCardComponent, { static: false }) card!: StripeCardComponent;
+  data:any
   @ViewChild(StripeCardNumberComponent) card!: StripeCardNumberComponent;
   usuario!: Usuario;
   formularioEnviado = false;
@@ -56,7 +58,7 @@ export class PagoCitaComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private stripeService: StripeService, private modalService: NgbModal,
     private bookingService: BookingsService, private authService: AutenticacionService, private router: Router,
-      private jitsiService:JitsiService) { }
+      private jitsiService:JitsiService,private fechaservice:DateService) { }
   ngOnInit(): void {
     this.GetUsuario()
     this.paymentForm.patchValue({
@@ -76,6 +78,23 @@ export class PagoCitaComponent implements OnInit {
       this.usuario = usuario;
       console.log(this.usuario);
     });
+    const historiaString = localStorage.getItem('historia');
+    const fechaInicioString = localStorage.getItem('fechainicio');
+    let fechaInicio: Date;
+    if (historiaString && fechaInicioString !== null) {
+      fechaInicio = new Date(fechaInicioString);
+      this.data  = {
+        historia: JSON.parse(historiaString),
+        // fechainicio: localStorage.getItem('fechainicio'),
+        fechainicio: this.fechaservice.formatDatetimeToString(fechaInicio),
+        duracion: '60 minutos',
+
+      };
+      console.log(this.data)
+      // this.data = JSON.parse(historiaString);
+      // this.data
+    }
+
   }
 
 
@@ -150,7 +169,7 @@ export class PagoCitaComponent implements OnInit {
               } else {
                 if (result.paymentIntent.status === 'succeeded') {
                   // this.jitsiService.moveRoom(this.jitsiService.namePrincipalRoom, true, this.usuario.name,this.usuario.username);
-                  this.jitsiService.moveRoom(historiaData.title+this.usuario.name, true, this.usuario.name,this.usuario.username);
+                  this.jitsiService.moveRoom(historiaData.title+'-'+this.usuario.name, true, this.usuario.name,this.usuario.username);
                   const link = this.jitsiService.getIFrameSrc();
                   console.log(link)
                   console.log('Pago exitoso');

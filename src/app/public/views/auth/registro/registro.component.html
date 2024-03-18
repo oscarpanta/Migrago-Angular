@@ -73,7 +73,10 @@
                                                        <input type="email" formControlName="email" class="form-control" id="txtCorreo" aria-describedby="emailHelp"
                                                        placeholder="Correo electrónico">
                                                           <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
-                                                      </div>
+                                                          <div *ngIf="miFormulario.get('email')?.invalid && miFormulario.get('email')?.hasError('pattern')" class="text-danger">
+                                                            El correo es inválido
+                                                          </div>
+                                                        </div>
                                                   </div>
 
                                                   <div class="mb-4">
@@ -82,6 +85,9 @@
 
                                                        <input type="password" id="inputPassword" formControlName="password" name="password" class="form-control password1"
                                                        [type]="ocultarpas ? 'password' : 'text'" placeholder="Establecer contraseña" required>
+                                                       <div *ngIf="miFormulario.get('password')?.invalid && miFormulario.get('password')?.hasError('minlength')" class="text-danger">
+                                                        Contraseña minimo de 6 caracteres
+                                                      </div>
 
                                                      <span class="fa  password-icon show-password1 " [ngClass]="{'fa-eye': ocultarpas, 'fa-eye-slash': !ocultarpas }"
                                                        (click)="ocultarpass1()"></span>
@@ -165,7 +171,7 @@
                                                <ng-select formControlName="countrySelect"
                                                (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"   placeholder="Pais"
                                                aria-label="Default select example">
-                                               <!-- <ng-option value="0" disabled>Pais</ng-option> -->
+
                                                  <ng-option *ngFor="let country of countries"  [value]="country.id">{{country.country_name}}</ng-option>
                                               </ng-select>
                                              </div>
@@ -258,25 +264,37 @@
                                               <div class="form-group col-lg-6 mb-3">
 
                                                   <p>Nacionalidad:</p>
-                                                  <select formControlName="nacionalidad" (change)="onNationalitySelect($event)" appNotZero
+                                                  <!-- <select formControlName="nacionalidad" (change)="onNationalitySelect($event)" appNotZero
                                                   class="form-select form-select-sm form-select-normal" [(ngModel)]="selectedNationalityId"
                                                   aria-label="Default select example">
-                                                  <option value="0" selected disabled>Nacionalidad del guía</option>
+                                                  <option value="0" selected disabled>Nacionalidad</option>
                                                   <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
                                                     nacionalidad.nationality_name }}</option>
-                                                </select>
+                                                </select> -->
+                                                <ng-select formControlName="nacionalidad" appNotZero
+                                                (ngModelChange)="onNationalitySelect($event)" [(ngModel)]="selectedNationalityId"  placeholder="Nacionalidad"
+                                                aria-label="Default select example">
+
+                                                  <ng-option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{ nacionalidad.nationality_name}}</ng-option>
+                                               </ng-select>
                                               </div>
 
                                               <div class="form-group col-lg-6 mb-3">
 
                                                <p>¿A que pais desea migrar?</p>
-                                               <select formControlName="paismigra" (change)="onPaisMigraSelect($event)" appNotZero
+                                               <!-- <select formControlName="paismigra" (change)="onPaisMigraSelect($event)" appNotZero
                                                  class="form-select form-select-sm form-select-normal" [(ngModel)]="selectedPaisMigraId"
                                                  aria-label="Default select example">
                                                  <option value="0" selected disabled>Pais migra</option>
                                                  <option *ngFor="let pais of paismigra" [value]="pais.id">{{
                                                    pais.country_name }}</option>
-                                               </select>
+                                               </select> -->
+                                               <ng-select formControlName="paismigra" appNotZero
+                                               (ngModelChange)="onPaisMigraSelect($event)" [(ngModel)]="selectedPaisMigraId"   placeholder="Pais Migra"
+                                               aria-label="Default select example">
+
+                                                 <ng-option *ngFor="let pais of paismigra" [value]="pais.id">{{pais.country_name}}</ng-option>
+                                              </ng-select>
                                              </div>
 
                                              <div class="form-group col-lg-6 mb-3">

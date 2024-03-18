@@ -23,13 +23,19 @@
       <div class="form-group col-lg-6 mb-3">
         <p class="p-bold-300-10-black">Nacionalidad*</p>
 
-        <select formControlName="nacionalidad" appNotZero (change)="onNationalitySelect($event)"
+        <!-- <select formControlName="nacionalidad" appNotZero (change)="onNationalitySelect($event)"
           class="form-select  form-select-normal" [(ngModel)]="selectedNationalityId"
           aria-label="Default select example">
           <option value="0" selected disabled>Nacionalidad del guía</option>
           <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
             nacionalidad.nationality_name }}</option>
-        </select>
+        </select> -->
+        <ng-select formControlName="nacionalidad" appNotZero
+        (ngModelChange)="onNationalitySelect($event)" [(ngModel)]="selectedNationalityId"   placeholder="Nacionalidad del guia"
+        aria-label="Default select example">
+
+          <ng-option *ngFor="let nacionalidad of nationalities"  [value]="nacionalidad.id">{{nacionalidad.nationality_name }}</ng-option>
+       </ng-select>
       </div>
       <div class="form-group col-lg-6 mb-3">
         <p class="p-bold-300-10-black">Apellidos*
@@ -223,7 +229,8 @@
         </div>
       </div>
       <div class="col-lg-6 mb-3"  >
-        <div [ngbTooltip]="miFormulario.invalid ? 'Llene todos los campos porfavor' : ''">
+        <!-- <div [ngbTooltip]="miFormulario.invalid ? 'Llene todos los campos porfavor' : ''"> -->
+          <div [ngbTooltip]="miFormulario.invalid ? getTooltipMessage() : ''">
           <button  type="submit" class="btn btn-primary" [disabled]="miFormulario.invalid || formularioEnviado">{{ textoBoton }}</button>
         </div>
 

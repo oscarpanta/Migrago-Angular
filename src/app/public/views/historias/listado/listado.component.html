@@ -19,27 +19,44 @@
           <form action="">
             <div class="row mb-3">
               <div class="col-lg-12 mb-3">
-                <select id="countrySelect" name="countrySelect" (change)="onCountrySelect($event)" #pais
+                <!-- <select id="countrySelect" name="countrySelect" (change)="onCountrySelect($event)" #pais
                   class="form-select form-select-sm" aria-label="Default select example">
                   <option value="0">País a migrar</option>
                   <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}</option>
-                </select>
+                </select> -->
+                <ng-select name="countrySelect"
+                (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"   placeholder="Pais"
+                aria-label="Default select example">
+
+                  <ng-option *ngFor="let country of countries"  [value]="country.id">{{country.country_name}}</ng-option>
+               </ng-select>
               </div>
               <div class="col-lg-12 mb-3">
-                <select (change)="onCitySelect($event)" class="form-select form-select-sm" #ciudad
+                <!-- <select (change)="onCitySelect($event)" class="form-select form-select-sm" #ciudad
                   aria-label="Default select example">
                   <option value="0">Selecciona una ciudad</option>
                   <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
-                </select>
+                </select> -->
+                <ng-select name="citySelect"
+                (ngModelChange)="onCitySelect($event)"  placeholder="Selecciona una ciudad"
+                 [(ngModel)]="selectedCityId" aria-label="Default select example">
 
+                  <ng-option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</ng-option>
+               </ng-select>
               </div>
               <div class="col-lg-12 mb-3">
-                <select (change)="onNationalitySelect($event)" class="form-select form-select-sm" #nacionalidad
+                <!-- <select (change)="onNationalitySelect($event)" class="form-select form-select-sm" #nacionalidad
                   aria-label="Default select example" >
                   <option value="0" selected>Nacionalidad del guía</option>
                   <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
                     nacionalidad.nationality_name }}</option>
-                </select>
+                </select> -->
+                <ng-select  #nacionalidad name="nacionalidad"
+                (ngModelChange)="onNationalitySelect($event)" [(ngModel)]="selectedNationalityId"   placeholder="Nacionalidad del guia"
+                aria-label="Default select example">
+                <!-- <ng-option value="0" disabled>Pais</ng-option> -->
+                  <ng-option *ngFor="let nacionalidad of nationalities"  [value]="nacionalidad.id">{{nacionalidad.nationality_name }}</ng-option>
+               </ng-select>
               </div>
               <div class="col-lg-12 mb-3">
                 <select (change)="onWayMigrationSelect($event)" class="form-select form-select-sm" #ruta

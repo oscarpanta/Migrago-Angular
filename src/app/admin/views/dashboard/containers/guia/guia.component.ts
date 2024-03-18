@@ -63,14 +63,14 @@ export class GuiaComponent implements OnInit{
       request: {
         contry_name: null,
         status: true,
-        flag_tipo: null
+        flag_tipo: 1
       },
       order: {
 
         column: null,
         mode: null
       },
-      page_size: 100,
+      page_size: 200,
       pgination_key: 1
     };
 
@@ -96,7 +96,7 @@ export class GuiaComponent implements OnInit{
           column: null,
           mode: null
         },
-        page_size: 100,
+        page_size: 2000,
         pgination_key: 1
 
       };
@@ -231,6 +231,7 @@ export class GuiaComponent implements OnInit{
 
 
     this.authService.getDetalleGuia(guia.id).subscribe(response => {
+      console.log(response)
       console.log(response.guide.user_city)
       this.selectedCountryId=response.guide.user_country;
       this.listaCiudades()

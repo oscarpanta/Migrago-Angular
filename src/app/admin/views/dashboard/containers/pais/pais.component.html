@@ -55,7 +55,7 @@
     </table>
     <div class="d-flex justify-content-between p-2">
       <ngb-pagination [collectionSize]="total$" [(page)]="nropagina"
-        [pageSize]="tamanopagina" (pageChange)="onPageChange(nropagina)" >
+        [pageSize]="tamanopagina" (pageChange)="onPageChange(nropagina)" [maxSize]="10">
       </ngb-pagination>
       <select class="custom-select" style="width: auto"
         name="pageSize" [(ngModel)]="tamanopagina" (change)="onPageSizeChange()">

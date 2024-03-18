@@ -5,7 +5,7 @@
 
   <div id="multi-step-form-container">
     <!-- Form Steps / Progress Bar -->
-    <ul class="form-stepper form-stepper-horizontal text-center "  >
+    <ul class="form-stepper form-stepper-horizontal text-center ">
       <!-- Step 1 -->
       <li class="form-stepper-active text-center form-stepper-list" step="1">
         <a class="mx-2">
@@ -110,34 +110,50 @@
             </div>
             <div class="form-group col-lg-12 mb-3">
               <p>¿A que pais desea migrar?:</p>
-              <select formControlName="paismigra" (change)="onPaisMigraSelect($event)"
+              <!-- <select formControlName="paismigra" (change)="onPaisMigraSelect($event)"
                 class="form-select form-select-sm form-select-normal" [(ngModel)]="selectedPaisMigraId"
                 aria-label="Default select example">
                 <option value="0" selected disabled>Pais migra</option>
                 <option *ngFor="let pais of paismigra" [value]="pais.id">{{
                   pais.country_name }}</option>
-              </select>
+              </select> -->
+              <ng-select formControlName="paismigra"  (ngModelChange)="onPaisMigraSelect($event)"  bindLabel="name"
+                [(ngModel)]="selectedPaisMigraId" placeholder="Pais Migra" aria-label="Default select example">
+
+                <ng-option *ngFor="let pais of paismigra" [value]="pais.id">{{pais.country_name}}</ng-option>
+              </ng-select>
 
             </div>
             <div class="form-group col-lg-12 mb-3">
               <p>¿Pais que reside?:</p>
-              <select id="countrySelect" formControlName="countrySelect" name="countrySelect"
+              <!-- <select id="countrySelect" formControlName="countrySelect" name="countrySelect"
                 (change)="onCountrySelect($event)" [(ngModel)]="selectedCountryId" class="form-select form-select-sm"
                 aria-label="Default select example">
                 <option value="0" selected disabled>País a migrar</option>
                 <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}
                 </option>
-              </select>
+              </select> -->
+              <ng-select formControlName="countrySelect"  bindLabel="name"
+              (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"   placeholder="Pais"
+              aria-label="Default select example">
+
+                <ng-option *ngFor="let country of countries"  [value]="country.id">{{country.country_name}}</ng-option>
+             </ng-select>
 
             </div>
             <div class="form-group col-lg-12 mb-3">
               <p>Ciudad de residencia actual:</p>
-              <select name="citySelect" formControlName="citySelect" (change)="onCitySelect($event)"
+              <!-- <select name="citySelect" formControlName="citySelect" (change)="onCitySelect($event)"
                 class="form-select form-select-sm" [(ngModel)]="selectedCityId" aria-label="Default select example">
                 <option value="0" selected disabled>Selecciona una ciudad</option>
                 <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
-              </select>
+              </select> -->
+              <ng-select formControlName="citySelect"  bindLabel="name" [(ngModel)]="selectedCityId"
+              (ngModelChange)="onCitySelect($event)"  placeholder="Selecciona una ciudad"
+               aria-label="Default select example">
 
+                <ng-option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</ng-option>
+             </ng-select>
             </div>
 
             <div class="form-group col-lg-12 mb-3">
@@ -175,7 +191,7 @@
             <div class="form-group col-lg-4 mb-3">
               <div *ngIf="imageSrc!='';then muestra else nomuestra"></div>
               <ng-template #muestra><img [src]="imageSrc" id="preview"
-                style="max-width: 200px;height: 12rem; width: 100%;"></ng-template>
+                  style="max-width: 200px;height: 12rem; width: 100%;"></ng-template>
               <ng-template #nomuestra><img src="assets/images/perfiles/perfil.png" id="preview"
                   class="img-thumbnail"></ng-template>
 
@@ -211,7 +227,8 @@
         <div class="mt-3 d-grid gap-2 d-md-flex justify-content-md-end">
           <button class="btn btn-primary btn-navigate-form-step" type="button" step_number="2">Anterior</button>
 
-          <button class="btn btn-primary submit-btn" type="submit" [disabled]="formularioEnviado">{{ textoBoton }}</button>
+          <button class="btn btn-primary submit-btn" type="submit" [disabled]="formularioEnviado">{{ textoBoton
+            }}</button>
         </div>
       </section>
     </form>

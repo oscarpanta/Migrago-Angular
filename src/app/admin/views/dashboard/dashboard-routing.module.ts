@@ -6,6 +6,7 @@ import { GuiaComponent } from './containers/guia/guia.component';
 import { SBRouteData } from '../../navigation/models/navigation.model';
 import { PaisComponent } from './containers/pais/pais.component';
 import { HistoriaComponent } from './containers/historia/historia.component';
+import { BlogComponent } from './containers/blog/blog.component';
 
 const routes: Routes = [
 {
@@ -60,6 +61,22 @@ const routes: Routes = [
           },
           {
             text: 'Tabla de Historias',
+            active: true,
+          },
+        ],
+      } as SBRouteData,
+    },
+    {
+      path: 'blog', component: BlogComponent,
+      data: {
+        title: 'Table de Blogs',
+        breadcrumbs: [
+          {
+            text: 'Dashboard',
+            link: '/dashboard',
+          },
+          {
+            text: 'Tabla de Blogs',
             active: true,
           },
         ],

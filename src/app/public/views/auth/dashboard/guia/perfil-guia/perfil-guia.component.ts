@@ -228,7 +228,7 @@ export class PerfilGuiaComponent implements OnInit {
         column: null,
         mode: null
       },
-      page_size: 100,
+      page_size: 200,
       pgination_key: 1
     };
 
@@ -253,7 +253,7 @@ export class PerfilGuiaComponent implements OnInit {
           column: null,
           mode: null
         },
-        page_size: 100,
+        page_size: 2000,
         pgination_key: 1
 
       };

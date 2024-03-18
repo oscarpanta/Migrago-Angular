@@ -1,0 +1,119 @@
+<ng-container *ngIf="blogs">
+
+  <section>
+    <div class="container-fluid px-0 container__detalle__blog__imagen">
+      <div class=" row col-12 ms-0">
+        <div class="container__blog__imagen__inicio px-0">
+          <picture>
+
+            <!-- <img src="assets/images/1200x1500-min.jpeg"> -->
+            <img  [src]="blogs[0].urlImagen">
+
+          </picture>
+        </div>
+
+
+
+      </div>
+    </div>
+
+  </section>
+
+  <section>
+    <div class="container-fluid container__detalle__blog">
+      <div class="col-12 ms-0 px-lg-5  py-4">
+
+        <div class="padding__body__blog">
+          <div class="container__detalle__blog__head col-lg-10 col-md-11 col-12 col-xl-8">
+            <div class="container__detalle__blog__head__title">
+              <span class="letra__b">{{blogs[0].title}}</span>
+            </div>
+          </div>
+          <div class="col-12 row container__detalle__blog__body ms-0">
+            <div class="col-lg-8 px-lg-2 px-0">
+              <div class="container__detalle__blog__head__subtitle col-lg-12">
+                <span [innerHTML]="blogs[0].text_breve_blog"></span>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="card-content-footer">
+                  <div class="card-image3">
+                    <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
+                  </div>
+                  <div class="card-content-footer-autor">
+                    <span class="autor">{{blogs[0].name}} {{blogs[0].lastname}}</span>
+                    <span class="etiqueta">{{blogs[0].created_at}} </span>
+                  </div>
+                </div>
+                <div class="detalle__etiquetas ">
+                  <div class="detalle__body__etiquetas ">
+                    Entrevista
+                  </div>
+                  <div class="detalle__body__etiquetas ">
+                    Testimonio
+                  </div>
+                </div>
+              </div>
+              <span class="description-detalle" [innerHTML]="blogs[0].text_blog"></span>
+
+
+                  <div class=" px-md-0 px-4">
+                    <picture>
+
+                      <img  [src]="blogs[0].urlImagen">
+
+                    </picture>
+                  </div>
+
+
+            </div>
+            <div class="col-lg-4 container_leidos p-4 mt-lg-0 mt-4">
+              <div class="leidos">
+                Más leídos
+              </div>
+              <div class="leidos_contenido my-4 px-2">
+                Cada minuto migra 50 personas en el mundoa un nuevo destino
+              </div>
+              <div class="leidos_contenido my-4 px-2">
+                Cada minuto migra 50 personas en el mundoa un nuevo destino
+              </div>
+              <div class="leidos_contenido my-4 px-2">
+                Cada minuto migra 50 personas en el mundoa un nuevo destino
+              </div>
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+
+
+
+
+      </div>
+    </div>
+
+  </section>
+  <section>
+    <div class="container-fluid d-grid gap-3  container_blog_descubre">
+      <div class="px-lg-5">
+        <div class="row col-12">
+
+          <div class="col-sm-8">
+            <p class="p-bold-500-20 text-center">Encuentra historias como la tuya</p>
+          </div>
+          <div class="col-sm-4">
+            <a routerLink="/historias" class="btn btn-primary p-bold-500-18">Descubre Historias</a>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+</ng-container>
+
+

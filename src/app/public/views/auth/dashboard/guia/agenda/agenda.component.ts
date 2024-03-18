@@ -18,6 +18,7 @@ import { AvailabilitiesService } from 'src/app/public/views/services/availabilit
 import { AutenticacionService } from 'src/app/core/services/autenticacion.service';
 import { Usuario } from 'src/app/core/interfaces/login.interface';
 import Swal from 'sweetalert2';
+import { DateService } from 'src/app/core/utils/date.service';
 @Component({
   selector: 'app-agenda',
   templateUrl: './agenda.component.html',
@@ -79,7 +80,7 @@ export class AgendaComponent implements OnInit{
   currentEvents: EventApi[] = [];
 
   constructor(private changeDetector: ChangeDetectorRef, private activeModal: NgbModal,private disponibleService:AvailabilitiesService,
-              private authService:AutenticacionService) {
+              private authService:AutenticacionService,private fechaservice:DateService) {
 
   }
   ngOnInit(): void {
@@ -142,17 +143,34 @@ export class AgendaComponent implements OnInit{
       const fechaInicial = new Date(selectInfo.startStr + 'T' + result.horaInicial );
       const fechaFinal = new Date(selectInfo.startStr + 'T' + result.horaFinal);
 
+      const fechaInicialUTC = new Date(fechaInicial.getTime() + fechaInicial.getTimezoneOffset() * 60000);
+const fechaFinalUTC = new Date(fechaFinal.getTime() + fechaFinal.getTimezoneOffset() * 60000);
+
+
         // El usuario hizo clic en "Guardar Evento"
       console.log('Guardando evento...');
       console.log(`Inicial: ${result.horaInicial}, Final: ${result.horaFinal}`);
       console.log(fechaInicial)
       console.log(fechaFinal)
+      console.log(fechaInicialUTC)
+      console.log(fechaFinalUTC)
+
       console.log(fechaInicial.toISOString())
       console.log(fechaFinal.toISOString())
+      console.log(fechaInicialUTC.toISOString())
+      console.log(fechaFinalUTC.toISOString())
+
       console.log(fechaInicial.toLocaleString())
       console.log(fechaFinal.toLocaleString())
+      console.log(fechaInicialUTC.toLocaleString())
+      console.log(fechaFinalUTC.toLocaleString())
+
+      console.log(fechaInicialUTC.toISOString().slice(0, 16).replace('T', ' '))
+
       console.log(fechaInicial.toLocaleString("en-US"))
       console.log(fechaFinal.toLocaleString("en-US"))
+
+      console.log(this.fechaservice.formatDatetimeToStringGlobal(fechaInicial))
       if (fechaInicial < fechaFinal) {
 
         let req = {
@@ -160,8 +178,13 @@ export class AgendaComponent implements OnInit{
             guide_id: this.guiaid,
             user_id: this.usuario.id,
             id_availability: 0,
-            start_date: fechaInicial.toLocaleString(),
-            end_date: fechaFinal.toLocaleString(),
+            // start_date: fechaInicial.toLocaleString(),
+            // end_date: fechaFinal.toLocaleString(),
+            start_date: this.fechaservice.formatDatetimeToStringGlobal(fechaInicial),
+            end_date: this.fechaservice.formatDatetimeToStringGlobal(fechaFinal),
+            // start_date: fechaInicial.toISOString().slice(0, 16).replace('T', ' '), // Formato YYYY-MM-DDTHH:mm
+            // end_date: fechaFinal.toISOString().slice(0, 16).replace('T', ' '), // Formato YYYY-MM-DDTHH:mm
+
             status: true,
           },
           order: {
@@ -175,7 +198,7 @@ export class AgendaComponent implements OnInit{
 
         this.disponibleService.crearDisponibilidad(req).subscribe(response => {
           console.log(response)
-          if (response.msg[0].out_rpta=="OK") {
+          if (response.msg.out_rpta=="OK") {
 
             // calendarApi.addEvent(
             //   {
@@ -200,7 +223,7 @@ export class AgendaComponent implements OnInit{
 
           }
          else {
-          Swal.fire('Error', 'No se pudo registrar', 'error')
+          Swal.fire('Error',response.msg.msg, 'error')
           }
 
 
@@ -263,14 +286,14 @@ export class AgendaComponent implements OnInit{
 
       this.disponibleService.crearDisponibilidad(req).subscribe(response => {
         console.log(response)
-        if (response.msg[0].out_rpta=="OK") {
+        if (response.msg.out_rpta=="OK") {
           clickInfo.event.remove();
           this.CargarEvents()
           Swal.fire('Hecho', 'Se ha eliminado con exito', 'success')
 
         }
        else {
-        Swal.fire('Error', 'No se pudo elimminar', 'error')
+        Swal.fire('Error', response.msg.msg, 'error')
         }
       });
 
@@ -401,7 +424,8 @@ export class AgendaComponent implements OnInit{
         guide_id:this.guiaid,
         dateNow: fechaFormateada,
         dateRequest:null,
-        status:true
+        status:true,
+        flag:0
       },
       order: {
         column: null,

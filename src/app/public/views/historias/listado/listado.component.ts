@@ -47,8 +47,11 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   selectedMigrationIds: string = '';
   selectedTemasIds: string = '';
   //selectedCountryId: number = 0; // Para almacenar el id del país seleccionado
-  selectedCityId: number = 0; // Para almacenar el id de la ciudad seleccionada
-  selectedNationalityId: number = 0; // Para almacenar el id de la nacionalidad seleccionada
+  // selectedCityId: number = 0; // Para almacenar el id de la ciudad seleccionada
+  // selectedNationalityId: number = 0; // Para almacenar el id de la nacionalidad seleccionada
+  selectedCityId: number | null = null;
+
+  selectedNationalityId: number | null = null;
   selectedWayMigrationId: number = 0; // Para almacenar el id de la ruta de migración seleccionada
   //selectedItems: { [id: string]: boolean } = {};
   resp_historias: any[] = []
@@ -235,7 +238,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
         column: null,
         mode: null
       },
-      page_size: 100,
+      page_size: 200,
       pgination_key: 1
     };
 
@@ -272,7 +275,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
           column: null,
           mode: null
         },
-        page_size: 100,
+        page_size: 2000,
         pgination_key: 1
 
       };
@@ -487,19 +490,31 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
 
 
-  onCountrySelect(event: any) {
-    const selectedCountryId = event.target.value;
+  // onCountrySelect(event: any) {
+  //   const selectedCountryId = event.target.value;
+  //   this.selectedCountryId = selectedCountryId;
+  //   this.listaCiudades();
+  // }
+  onCountrySelect(selectedCountryId: number) {
+
     this.selectedCountryId = selectedCountryId;
     this.listaCiudades();
   }
-  onCitySelect(event: any) {
-    this.selectedCityId = event.target.value;
+  // onCitySelect(event: any) {
+  //   this.selectedCityId = event.target.value;
+  // }
+  onCitySelect(selectedCityId: number) {
+    this.selectedCityId = selectedCityId;
   }
 
-  onNationalitySelect(event: any) {
-    this.selectedNationalityId = event.target.value;
-  }
+  // onNationalitySelect(event: any) {
+  //   this.selectedNationalityId = event.target.value;
+  // }
+  onNationalitySelect(selectedNationalityId: number) {
 
+    this.selectedNationalityId = selectedNationalityId
+
+  }
   onWayMigrationSelect(event: any) {
     this.selectedWayMigrationId = event.target.value;
   }
@@ -561,9 +576,12 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   }
 
   limpiar(){
-    this.selectedCountryId=0;
-    this.selectedCityId=0;
-    this.selectedNationalityId=0;
+    // this.selectedCountryId=0;
+    // this.selectedCityId=0;
+    // this.selectedNationalityId=0;
+    this.selectedCountryId=null;
+    this.selectedCityId=null;
+    this.selectedNationalityId=null;
     this.selectedWayMigrationId=0;
     this.selectedMigrationIds='';
     this.selectedTemasIds='';
@@ -571,7 +589,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
    // const abcd: HTMLElement | null = document.getElementById('countrySelect')
 
-    console.log(this.countrySelect.nativeElement.value)
+    // console.log(this.countrySelect.nativeElement.value)
     console.log(this.temasSelect)
 
     if (this.temasSelect) {
@@ -581,10 +599,10 @@ export class ListadoComponent implements OnInit, AfterViewInit {
       this.modesSelect.clearModel();
     }
 
-    this.countrySelect.nativeElement.value=0
-    this.citySelect.nativeElement.value=0
-    this.nationalitySelect.nativeElement.value=0
-    this.waySelect.nativeElement.value=0
+    // this.countrySelect.nativeElement.value=0
+    // this.citySelect.nativeElement.value=0
+    // this.nationalitySelect.nativeElement.value=0
+    // this.waySelect.nativeElement.value=0
     this.listaHistorias()
   }
 

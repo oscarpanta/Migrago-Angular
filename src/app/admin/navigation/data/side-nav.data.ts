@@ -8,7 +8,7 @@ export const sideNavSections: SideNavSection[] = [
 
   {
     text: 'TABLES',
-    items: ['Paises', 'Guias','Historias'],
+    items: ['Paises', 'Guias','Historias','Blogs'],
   },
   // {
   //     text: 'INTERFACE',
@@ -40,6 +40,11 @@ export const sideNavItems: SideNavItems = {
     icon: 'fas fa-user-circle',
     text: 'Historias',
     link: '/admin/dashboard/historia',
+  },
+  Blogs: {
+    icon: 'fas fa-user-circle',
+    text: 'Blogs',
+    link: '/admin/dashboard/blog',
   },
   // layouts: {
   //   icon: 'columns',

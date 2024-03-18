@@ -121,7 +121,8 @@ export class ReagendarComponent implements OnInit {
         guide_id: this.guiaid,
         dateNow: fechaFormateada,
         dateRequest: date,
-        status: true
+        status: true,
+        flag:1
       },
       order: {
         column: null,
@@ -298,7 +299,8 @@ export class ReagendarComponent implements OnInit {
         guide_id: this.guiaid,
         dateNow: fechaFormateada,
         dateRequest: null,
-        status: true
+        status: true,
+        flag:1
       },
       order: {
         column: null,

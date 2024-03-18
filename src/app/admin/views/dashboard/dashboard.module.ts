@@ -16,6 +16,8 @@ import { DataGuiaComponent } from './containers/guia/data-guia/data-guia.compone
 import { DataHistoriaComponent } from './containers/historia/data-historia/data-historia.component';
 import { DashboardComponent } from './containers/dashboard/dashboard.component';
 import { PaisComponent } from './containers/pais/pais.component';
+import { BlogComponent } from './containers/blog/blog.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { PaisComponent } from './containers/pais/pais.component';
     DataGuiaComponent,
     DataHistoriaComponent,
     DashboardComponent,
-    PaisComponent
+    PaisComponent,
+    BlogComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +42,8 @@ import { PaisComponent } from './containers/pais/pais.component';
     NavigationModule,
     RouterModule,
     DashboardRoutingModule,
-    NgbModule
+    NgbModule,
+    EditorModule
   ],
   providers:[
     NgbActiveModal
