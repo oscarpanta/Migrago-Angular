@@ -35,15 +35,26 @@
           <p class="p-normal-300-16">{{agendada.title}}</p>
         </div>
         <div class="row mb-3">
-          <div class="container_etiquetas mt-1">
+          <div class="container_etiquetas mt-1" style="
+          justify-content: space-between;">
             <div class="container__body__etiqueta__dashboard">
-              {{agendada.status}}
+              <span>{{agendada.status}}</span>
+
+            </div>
+             <div >
+              <span class="p-normal-300-12 btn btn-primary">CLICK PARA VER DETALLES</span>
+
             </div>
 
           </div>
         </div>
-        <div class="row">
-          <p class="p-normal-300-12">Reservada el {{agendada.booking_start_date}}</p>
+        <!-- <div class="row">
+            <span class="p-normal-300-12">Reservada el {{agendada.booking_start_date}}</span>
+            <span>RESERVADO</span>
+        </div> -->
+        <div class="d-flex justify-content-between">
+          <span class="p-normal-300-12">Reservada el {{agendada.booking_start_date}}</span>
+          <span class="text-danger" *ngIf="agendada.flag_preguntas>0"><i class="fa-solid fa-circle-exclamation text-danger"></i> TIENES PREGUNTAS</span>
         </div>
       </div>
     </div>
@@ -73,7 +84,9 @@
                 </div>
                 <div class="col-lg-8" *ngIf="agendadaSeleccionada">
                   <p class="p-bold-500 p-texto" *ngIf="agendadaSeleccionada.name">{{agendadaSeleccionada.name}}</p>
+
                   <p class="p-normal-300 p-texto" *ngIf="agendadaSeleccionada.nationality_name">{{agendadaSeleccionada.nationality_name}}</p>
+
                   <p class="p-normal-300 p-texto"*ngIf="agendadaSeleccionada.country_name">Migrará a {{agendadaSeleccionada.country_name}}</p>
                 </div>
               </div>
@@ -83,8 +96,8 @@
               <div class="card">
                 <div class="card-body text-center d-inline">
                   <p class="p-texto p-bold-300-9">Cita: </p>
-                  <p class="p-normal-300-18 p-texto">{{agendadaSeleccionada?.booking_start_date | date:'EEE. dd MMM'}}</p>
-                  <span class="badge bg-primary">{{agendadaSeleccionada?.booking_start_date | date:'hh:mm a'}}</span>
+                  <p class="p-normal-300-18 p-texto">{{agendadaSeleccionada?.datestart | date:'EEE. dd MMM'}}</p>
+                  <span class="badge bg-primary">{{agendadaSeleccionada?.datestart | date:'hh:mm a'}}</span>
                   <!-- <p class="p-normal-300-18 p-texto">Jue. 23 ago </p>
                   <span class="badge bg-primary">18:00 pm</span> -->
                 </div>
@@ -119,7 +132,7 @@
                   <span class="p-bold-500-20">Temas <span class="p-300">de interés elegidos</span></span>
                 </div>
                 <div class="row col-lg-8 mx-auto mb-3">
-                  <p class="p-bold-400-14">El usuario ha elegido estos 3 temas para su cita de 60 minutos. </p>
+                  <p class="p-bold-400-14">El usuario ha elegido estos temas para su cita de 60 minutos. </p>
                 </div>
                 <div class="row col-lg-8 mx-auto p-normal-300-12 categorias mb-3">
                   <p *ngFor="let temas of agendadasDetalle">{{temas.description}}</p>

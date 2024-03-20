@@ -6,6 +6,7 @@ import { BookingsService } from 'src/app/public/views/services/bookings.service'
 import Swal from 'sweetalert2';
 //import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import { DateService } from 'src/app/core/utils/date.service';
 
 //registerLocaleData(localeEs);
 @Component({
@@ -23,7 +24,7 @@ export class AgendadasGuiaComponent implements OnInit{
   citaid:any;
   mostrarLoad: boolean = false;
   constructor(private agendadasService: BookingsService, private authService: AutenticacionService,
-              private fb: FormBuilder,) {
+              private fb: FormBuilder,private fechaservice:DateService) {
     this.miFormulario = this.fb.group({
       motivo:['', [Validators.required]],
       // fechainicio: ['', [Validators.required]],
@@ -72,10 +73,24 @@ export class AgendadasGuiaComponent implements OnInit{
 
     this.agendadasService.getBooking(requestData).subscribe(
       response => {
+        console.log(response)
         this.mostrarLoad=true
         console.log('agendadas=' + JSON.stringify(response));
         this.agendadasGuia = response[0].data;
+
+
+        // this.agendadasGuia[0].dateeee=this.agendadasGuia[0].booking_start_date
         console.log(this.agendadasGuia)
+
+        this.agendadasGuia.forEach((date:any) => {
+
+          date.datestart = date.booking_start_date
+
+
+
+      });
+
+      this.agendadasGuia[0].booking_start_date=this.fechaservice.formatDatetimeToString(this.agendadasGuia[0].booking_start_date)
 
       }
 

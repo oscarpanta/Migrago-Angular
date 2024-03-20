@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/core/interfaces/login.interface';
 import { AutenticacionService } from 'src/app/core/services/autenticacion.service';
+import { DateService } from 'src/app/core/utils/date.service';
 import { BookingsService } from 'src/app/public/views/services/bookings.service';
 import Swal from 'sweetalert2';
 
@@ -27,7 +28,7 @@ export class AgendadasComponent {
   detailGroupThemeIds: string[] = [];
 
   constructor(private agendadasService: BookingsService, private authService: AutenticacionService,
-    private router: Router, private fb: FormBuilder) {
+    private router: Router, private fb: FormBuilder,private fechaservice:DateService) {
     this.miFormulario = this.fb.group({
       preguntas: this.fb.array([])
     });
@@ -78,7 +79,10 @@ export class AgendadasComponent {
     this.agendadasService.getBooking(requestData).subscribe(
       response => {
         console.log('agendadas=' + JSON.stringify(response));
+
         this.agendadasCliente = response[0].data;
+        this.agendadasCliente[0].booking_start_date=this.fechaservice.formatDatetimeToString(this.agendadasCliente[0].booking_start_date)
+        // this.agendadasCliente.
         console.log(this.agendadasCliente)
         this.cantTemas = response[0].totalElements;
       }

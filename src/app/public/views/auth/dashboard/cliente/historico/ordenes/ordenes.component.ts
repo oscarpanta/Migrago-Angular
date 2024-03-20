@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AutenticacionService } from 'src/app/core/services/autenticacion.service';
+import { DateService } from 'src/app/core/utils/date.service';
 import { BookingsService } from 'src/app/public/views/services/bookings.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class OrdenesComponent implements OnInit {
   agendadasCliente: any[] = [];
  // agendadaSeleccionada: any;
   idcliente:any;
-  constructor(private agendadasService: BookingsService, private authService: AutenticacionService,) {}
+  constructor(private agendadasService: BookingsService, private authService: AutenticacionService,private fechaservice:DateService) {}
   ngOnInit(): void {
     this.GetClienteId()
     this.listaAgendadasGuia()
@@ -48,6 +49,8 @@ export class OrdenesComponent implements OnInit {
       response => {
         console.log('agendadas=' + JSON.stringify(response));
         this.agendadasCliente= response[0].data;
+        this.agendadasCliente[0].booking_start_date=this.fechaservice.formatDatetimeToString(this.agendadasCliente[0].booking_start_date)
+
         console.log(this.agendadasCliente)
 
       }

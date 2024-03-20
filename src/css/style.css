@@ -1862,6 +1862,7 @@ ul.form-stepper li a .form-stepper-circle {
   width: 100%;
   /* height: 45rem; */
   height: -webkit-fill-available;
+  max-height: 30rem;
   padding:1rem 0rem
 }
 
