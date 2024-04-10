@@ -15,6 +15,8 @@ import { Usuario } from 'src/app/core/interfaces/login.interface';
 import { environment } from 'src/environments/environment';
 import { TemasService } from '../../services/temas.service';
 import { ImagenesService } from '../../services/imagenes.service';
+import { CountriesService } from '../../services/countries.service';
+import { Country } from '../../interfaces/countries.interface';
 declare var $: any;
 //import * as $ from 'jquery';
 
@@ -29,6 +31,10 @@ declare var $: any;
 
 export class MainComponent implements OnInit,AfterViewInit{
   @ViewChild('modalRegister') miModal: ElementRef | undefined
+
+  selectedCountryId: number | null = null;
+  countries: Country[] = []
+
   rutasmigracion:WayMigration[]=[];
   usuario!: Usuario;
   //historias:Stories[]=[]
@@ -41,7 +47,7 @@ export class MainComponent implements OnInit,AfterViewInit{
  // private swiper!:Swiper;
 
   constructor(private router: Router,private elRef:ElementRef, private modalService: NgbModal,
-              private displayService: LayoutService,
+              private displayService: LayoutService, private country: CountriesService,
               private heroesService: HeroeService,
               private rutamigracionService: WaysMigrationService,
               private historiasService:StoriesService,
@@ -74,6 +80,7 @@ export class MainComponent implements OnInit,AfterViewInit{
       }
     }
     this.displayService.setNavigationVisibility(false);
+    this.listaPaises();
     this.listaRutasMigracion();
     this.obtenerDataTema()
     this.listaHistorias();
@@ -224,6 +231,46 @@ export class MainComponent implements OnInit,AfterViewInit{
 
 
 
+  }
+  listaPaises() {
+    const requestData = {
+      request: {
+        contry_name: null,
+        status: true,
+        flag_tipo: 1
+      },
+      order: {
+
+        column: null,
+        mode: null
+      },
+      page_size: 200,
+      pgination_key: 1
+    };
+
+    this.country.getCountries(requestData).subscribe(
+      response => {
+        console.log('Paises=' + JSON.stringify(response));
+        this.countries = response[0].data;
+        console.log(this.countries)
+        // console.log('obtenido='+this.countries.id)
+
+      }
+
+
+      // (response) => {
+      //   console.log('Response:', response);
+      //   // Aquí puedes manejar la respuesta como desees
+      // },
+      // (error) => {
+      //   console.error('Error:', error);
+      //   // Aquí puedes manejar el error
+      // }
+    );
+  }
+  onCountrySelect(selectedCountryId: number) {
+
+    this.selectedCountryId = selectedCountryId;
   }
   listaRutasMigracion(){
     const requestData = {
@@ -404,6 +451,9 @@ export class MainComponent implements OnInit,AfterViewInit{
       const lastTheme = themes.pop(); // Remover el último tema
       return themes.join(', ') + ' y ' + lastTheme;
     }
+  }
+  redirectToListado(selectedCountryId: number | null) {
+    this.router.navigate(['/historias/listado'], { queryParams: { countryId: selectedCountryId } });
   }
 
 }

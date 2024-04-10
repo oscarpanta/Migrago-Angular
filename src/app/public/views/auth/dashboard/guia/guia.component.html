@@ -1,101 +1,301 @@
 <div class="container-fluid d-grid gap-3 container__70_gris">
 
   <div class="row mt-lg-0 mt-5">
-      <div class="col-lg-4 py-3 mt-lg-0 mt-5">
-          <div class="card ">
-              <div class="card-body p-4 mt-3">
-                  <div class="row mb-4 d-flex align-items-center">
-                      <div class="col-lg-4">
-                                  <div class="card card-container_menu image-content-perfil">
+    <div class="col-lg-4 py-3 mt-lg-0 mt-5">
+      <div class="card ">
+        <div class="card-body p-4 mt-3">
+          <div class="row mb-4 d-flex align-items-center">
+            <div class="col-lg-4">
+              <div class="card card-container_menu image-content-perfil">
 
-                                       <div class="card-image-small">
-                                                           <img [src]="imageSrc"  class="card-img-small" alt="perfil">
-                                       </div>
-                                       <div class="card-image-flag-tiny" *ngIf="guia[0]">
-                                          <img src="assets/images/flags/tiny/{{ guia[0].flag_img }}" class="card-img" alt="pais">
-                                       </div>
-                                  </div>
-                      </div>
-                      <div class="col-lg-8">
-                          <span class="p-bold-500">{{usuario.name}}</span> <br>
-                          <span class="p-normal-300">{{usuario.username}}</span>
-                      </div>
-
-                      <div class="col-lg-12 mt-3 d-flex flex-column align-items-center justify-content-center ">
-                        <span style="color: darkgrey;">Balance</span>
-                        <p class="mb-0" style="font-size: 20pt;">$ 1500.00</p>
-                        <span style="font-size: 7pt;">Transfiere a tu cuenta</span>
-                      </div>
-
-                  </div>
-                  <hr>
-                  <div class="row mt-4 px-3 mb-2 d-flex flex-column">
-                    <div class="row mb-3 justify-content-between">
-                        <div class="col-lg-2">
-                            <i class="fa-regular fa-chart-simple"></i>
-                        </div>
-                        <div class="col-lg-9">
-                            <a routerLink="./dashboard" class="link-dashboard"> Dashboard</a>
-                        </div>
-                    </div>
-                    <div class="row mb-3 justify-content-between">
-                        <div class="col-lg-2">
-                            <i class="fa-regular fa-comment-dots"></i>
-                        </div>
-                        <div class="col-lg-9"  [ngbTooltip]="(usuario.flagdata === '0') ? 'Debes actualizar tu perfil para crear historias' : ''">
-                            <a routerLink="./historias"  class="link-dashboard" [ngClass]="{'disabled-link': usuario.flagdata === '0'}"> Mis historias</a>
-                        </div>
-                    </div>
-                    <div class="row mb-3 justify-content-between">
-                        <div class="col-lg-2">
-                            <i class="fa-regular fa-calendar-days"></i>
-                        </div>
-                        <div class="col-lg-9">
-                            <a routerLink="./agenda"  class="link-dashboard"> Agenda</a>
-                        </div>
-                    </div>
-                    <div class="row mb-3 justify-content-between">
-                        <div class="col-lg-2">
-                            <i class="fa-regular fa-paperclip"></i>
-                        </div>
-                        <div class="col-lg-9" >
-                            <a routerLink="./agendadas"  class="link-dashboard" > Citas agendadas</a>
-                        </div>
-                    </div>
-                    <div class="row mb-3 justify-content-between">
-                        <div class="col-lg-2">
-                            <i class="fa-regular fa-user"></i>
-                        </div>
-                        <div class="col-lg-9" [ngbTooltip]="(usuario.flagpass === '0') ? 'Actualiza tu contraseña' : ''">
-                            <a routerLink="./perfil" class="link-dashboard" [ngClass]="{'disabled-link': usuario.flagpass === '0'}"> Actualizar perfil</a>
-                        </div>
-                    </div>
-                    <div class="row mb-3 justify-content-between">
-                        <div class="col-lg-2">
-                            <i class="fa-solid fa-user-lock"></i>
-                        </div>
-                        <div class="col-lg-9">
-                            <a routerLink="./cambiar"  class="link-dashboard"> Cambiar contraseña</a>
-                        </div>
-                    </div>
-
-
+                <div class="card-image-small">
+                  <img [src]="imageSrc" class="card-img-small" alt="perfil">
                 </div>
-
-                  <div class="row ">
-                      <div class="col-lg-12">
-                              <a href="" (click)="logout()" class="btn btn-primary">Salir</a>
-                          </div>
-                  </div>
+                <div class="card-image-flag-tiny" *ngIf="guia[0]">
+                  <img src="assets/images/flags/tiny/{{ guia[0].flag_img }}" class="card-img" alt="pais">
+                </div>
               </div>
+            </div>
+            <div class="col-lg-8">
+              <span class="p-bold-500">{{usuario.name}}</span> <br>
+              <span class="p-normal-300">{{usuario.username}}</span>
+            </div>
+
+            <div class="col-lg-12 mt-3 d-flex flex-column align-items-center justify-content-center ">
+              <span style="color: darkgrey;">Balance</span>
+              <p class="mb-0" style="font-size: 20pt;" *ngIf="guia[0]">$ {{guia[0].amount_price}}</p>
+              <!-- <p class="mb-0" style="font-size: 20pt;" >$ {{usuario.amount}}</p> -->
+
+              <span style="font-size: 7pt;">Transfiere a tu cuenta</span>
+              <button class="cobrar col-lg-4 col-8 btn btn-primary" (click)="abrirmodal(modalCobrar)">Cobrar</button>
+            </div>
+
           </div>
+          <hr>
+          <div class="row mt-4 px-3 mb-2 d-flex flex-column">
+            <div class="row mb-3 justify-content-between">
+              <div class="col-lg-2">
+                <i class="fa-regular fa-chart-simple"></i>
+              </div>
+              <div class="col-lg-9">
+                <a routerLink="./dashboard" class="link-dashboard"> Dashboard</a>
+              </div>
+            </div>
+            <div class="row mb-3 justify-content-between">
+              <div class="col-lg-2">
+                <i class="fa-regular fa-comment-dots"></i>
+              </div>
+              <div class="col-lg-9"
+                [ngbTooltip]="(usuario.flagdata === '0') ? 'Debes actualizar tu perfil para crear historias' : ''">
+                <a routerLink="./historias" class="link-dashboard"
+                  [ngClass]="{'disabled-link': usuario.flagdata === '0'}"> Mis historias</a>
+              </div>
+            </div>
+            <div class="row mb-3 justify-content-between">
+              <div class="col-lg-2">
+                <i class="fa-regular fa-calendar-days"></i>
+              </div>
+              <div class="col-lg-9">
+                <a routerLink="./agenda" class="link-dashboard"> Agenda</a>
+              </div>
+            </div>
+            <div class="row mb-3 justify-content-between">
+              <div class="col-lg-2">
+                <i class="fa-regular fa-paperclip"></i>
+              </div>
+              <div class="col-lg-9">
+                <a routerLink="./agendadas" class="link-dashboard"> Citas agendadas</a>
+              </div>
+            </div>
+            <div class="row mb-3 justify-content-between">
+              <div class="col-lg-2">
+                <i class="fa-regular fa-user"></i>
+              </div>
+              <div class="col-lg-9" [ngbTooltip]="(usuario.flagpass === '0') ? 'Actualiza tu contraseña' : ''">
+                <a routerLink="./perfil" class="link-dashboard" [ngClass]="{'disabled-link': usuario.flagpass === '0'}">
+                  Actualizar perfil</a>
+              </div>
+            </div>
+            <div class="row mb-3 justify-content-between">
+              <div class="col-lg-2">
+                <i class="fa-solid fa-user-lock"></i>
+              </div>
+              <div class="col-lg-9">
+                <a routerLink="./cambiar" class="link-dashboard"> Cambiar contraseña</a>
+              </div>
+            </div>
+            <div class="row mb-3 justify-content-between">
+              <div class="col-lg-2">
+                <i class="fa-brands fa-cc-paypal"></i>
+              </div>
+              <div class="col-lg-9">
+                <a class="link-dashboard" (click)="abrirmodal(modalPaypal)" style="cursor: pointer;">Cuenta Usuario Paypal</a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row ">
+            <div class="col-lg-12">
+              <a href="" (click)="logout()" class="btn btn-primary">Salir</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-lg-8">
-        <router-outlet></router-outlet>
-      </div>
+    </div>
+    <div class="col-lg-8">
+      <router-outlet></router-outlet>
+    </div>
 
   </div>
 
 
 
 </div>
+
+
+<ng-template #modalCobrar let-modal>
+
+
+  <div class="modal-contenido">
+
+    <div class="modal-body modal-login">
+      <button type="button" class="close" (click)="cerrarModal()" style="
+        background: none;
+    float: right;
+    border: 0">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+
+      <div class="row">
+        <div class="col-lg-12 mx-auto">
+
+          <div class="row mt-4">
+
+
+
+
+            <form class="form-login" id="userAccountSetupForm" name="userAccountSetupForm"
+              [formGroup]=" miFormularioCobrar" (ngSubmit)="RegistroCobrar()">
+
+
+              <div class="row">
+
+                <div class="col-md-8 bg-white px-4 py-5 padding-0 d-flex flex-column align-items-center mx-auto">
+                  <div class="row mb-4">
+                    <h2 class="titulo-login">Cobrar Dinero</h2>
+                  </div>
+
+                  <div class="row col-lg-10 mx-auto">
+
+                    <div class="mb-4">
+                      <div class="form-group">
+                        <p>Monto a Cobrar:</p>
+                        <input type="number" formControlName="monto" class="form-control" id="txtCorreo"
+                          aria-describedby="emailHelp" placeholder="Monto">
+                        <div
+                          *ngIf="miFormularioCobrar.get('monto')?.invalid && miFormularioCobrar.get('monto')?.hasError('max')"
+                          class="text-danger">
+                          El monto debe ser menor a lo que tienes.
+                        </div>
+
+
+                      </div>
+                    </div>
+
+
+
+
+                  </div>
+                  <div class="row col-lg-8 text-center">
+
+                    <button class="btn btn-primary">Cobrar</button>
+
+
+
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+            </form>
+
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+
+</ng-template>
+
+
+<ng-template #modalPaypal let-modal>
+
+
+  <div class="modal-contenido">
+
+    <div class="modal-body modal-login">
+      <button type="button" class="close" (click)="cerrarModal()" style="
+        background: none;
+    float: right;
+    border: 0">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+
+      <div class="row">
+        <div class="col-lg-12 mx-auto">
+
+          <div class="row mt-4">
+
+
+
+
+            <form class="form-login" id="userAccountSetupForm" name="userAccountSetupForm"
+              [formGroup]="miFormularioPaypal" (ngSubmit)="RegistroPaypal()">
+
+
+              <div class="row">
+
+                <div class="col-md-8 bg-white px-4 py-5 padding-0 d-flex flex-column align-items-center mx-auto">
+                  <div class="row mb-4">
+                    <h2 class="titulo-login">Cuenta Paypal</h2>
+                  </div>
+
+                  <div class="row col-lg-10 mx-auto">
+
+                    <div class="mb-4">
+                      <div class="form-group">
+                        <p>Correo Paypal:</p>
+                        <input type="text" formControlName="email" class="form-control" id="txtCorreo"
+                          aria-describedby="emailHelp" placeholder="Correo">
+                          <div *ngIf="miFormularioPaypal.get('email')?.invalid && miFormularioPaypal.get('email')?.hasError('pattern')" class="text-danger">
+                            El correo es inválido
+                          </div>
+
+
+                      </div>
+                    </div>
+
+
+
+
+                  </div>
+                  <div class="row col-lg-8 text-center">
+
+                    <button class="btn btn-primary" [disabled]="formularioEnviadoPaypal || miFormularioPaypal.invalid">{{ textoBotonPaypal
+                    }}</button>
+
+
+
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+            </form>
+
+
+          </div>
+
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+
+</ng-template>

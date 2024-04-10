@@ -28,6 +28,16 @@ export class BlogService {
     const url = environment.baseUrl  + apiUrl
     return this.http.post(apiUrl, requestData);
   }
+  listaGetBlog(requestData: any): Observable<any> {
+    const apiUrl = '/api/blogs/getBlog'
+    const url = environment.baseUrl  + apiUrl
+    return this.http.post(apiUrl, requestData);
+  }
+  listaCategorias(requestData: any): Observable<any> {
+    const apiUrl = '/api/blogs/listCategory'
+    const url = environment.baseUrl  + apiUrl
+    return this.http.post(apiUrl, requestData);
+  }
   getImageUrlBlog(fileName: string) {
     return this.baseUrl+`/uploads/img_blog/${fileName}`;
 

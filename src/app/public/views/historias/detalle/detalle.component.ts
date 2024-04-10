@@ -879,6 +879,7 @@ export class DetalleComponent implements OnInit{
     localStorage.setItem('fechafin', this.miFormulario.get('fechafin')?.value);
     localStorage.setItem('temas', JSON.stringify(this.groupThemeIds));
     localStorage.setItem('historia', JSON.stringify(this.historiaDetalle.story.data[0]));
+    localStorage.setItem('monto', JSON.stringify(this.historiaDetalle.rates[0].price));
   }
   // abrirmodal(content: any){
 

@@ -224,6 +224,12 @@ color: white;
     color: #48259b;
     font-size: xx-large;
    }
+   .apartado__index__buscador .ng-select .ng-select-container{
+    border-radius: 20px;
+   }
+   .apartado__index__buscador .ng-select .ng-arrow-wrapper , .apartado__index__buscador .ng-select .ng-clear-wrapper{
+    display: none;
+   }
 .apartado__index__body{
   padding: 2.5em 0 1em 0em;
   font-size: 50pt;
@@ -797,7 +803,35 @@ background-color: #1a46f1;
   border-radius: 5px;
   margin-right: 5px;
 }
+.container_share_facebook{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  justify-content: flex-start;
+  margin-top: 1rem;
+}
+.container_share_facebook button{
+  width: 50px;
+}
+/* .container_share_body_facebook{
+  background-color: #ededed;
+  border-radius: 5px;
+  margin-right: 5px;
+  padding: 5px 10px;
+  max-width: 250px;
+  font-size: 8pt;
+  color: initial;
+  cursor: pointer;
+} */
+.container_share_facebook button{
+  background-color: #fff3;
+  color: #000;
+}
 
+.container_share_facebook button:hover{
+  background-color: #3558a3;
+}
 /* seccion migrantes verificados */
 /* .container_verificador_main{
   background: #94e0bc;
@@ -1939,11 +1973,15 @@ ul.form-stepper li a .form-stepper-circle {
   color: #333333;
 
 }
+.description-detalle img{
+  display: block;
+  margin: auto;
+}
 
 
 
 .container__blog__head{
-  margin-bottom: 4em;
+  margin-bottom: 2em;
   line-height: 1.2;
 }
 .container__blog__head__title{
@@ -1993,6 +2031,11 @@ ul.form-stepper li a .form-stepper-circle {
 .container__blog__nuestro .container__historias__reales__body{
   justify-content: space-around;
 }
+
+.cobrar{
+  width: 80%;
+}
+
 /* / Escritorios muy anchos
  ------------------------------------------------------------------------- */
  /* @media (max-width: 1200px) {

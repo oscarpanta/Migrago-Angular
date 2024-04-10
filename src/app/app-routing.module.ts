@@ -44,10 +44,10 @@ const routes: Routes = [
         path: 'temas',
         loadChildren: () => import('./public/views/temas/temas.module').then(m => m.TemasModule)
       },
-      // {
-      //   path: 'blog',
-      //   loadChildren: () => import('./public/views/blog/blog.module').then(m => m.BlogModule)
-      // },
+      {
+        path: 'blog',
+        loadChildren: () => import('./public/views/blog/blog.module').then(m => m.BlogModule)
+      },
       {
         path: 'auth',
         loadChildren: () => import('./public/views/auth/auth.module').then(m => m.AuthModule),

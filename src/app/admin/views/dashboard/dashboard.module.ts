@@ -18,6 +18,7 @@ import { DashboardComponent } from './containers/dashboard/dashboard.component';
 import { PaisComponent } from './containers/pais/pais.component';
 import { BlogComponent } from './containers/blog/blog.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     RouterModule,
     DashboardRoutingModule,
     NgbModule,
+    NgSelectModule,
     EditorModule
   ],
   providers:[

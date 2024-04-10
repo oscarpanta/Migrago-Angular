@@ -80,10 +80,17 @@ export class AgendadasComponent {
       response => {
         console.log('agendadas=' + JSON.stringify(response));
 
+        console.log( response[0].data[0].booking_start_date)
+          response[0].data.forEach((date:any) => {
+            date.booking_start_date=this.fechaservice.formatDatetimeToString(date.booking_start_date)
+
+      });
+
         this.agendadasCliente = response[0].data;
-        this.agendadasCliente[0].booking_start_date=this.fechaservice.formatDatetimeToString(this.agendadasCliente[0].booking_start_date)
+        // this.agendadasCliente[0].booking_start_date=this.fechaservice.formatDatetimeToString(this.agendadasCliente[0].booking_start_date)
         // this.agendadasCliente.
         console.log(this.agendadasCliente)
+
         this.cantTemas = response[0].totalElements;
       }
 

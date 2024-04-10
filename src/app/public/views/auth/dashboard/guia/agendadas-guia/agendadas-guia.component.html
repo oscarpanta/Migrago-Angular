@@ -96,8 +96,10 @@
               <div class="card">
                 <div class="card-body text-center d-inline">
                   <p class="p-texto p-bold-300-9">Cita: </p>
-                  <p class="p-normal-300-18 p-texto">{{agendadaSeleccionada?.datestart | date:'EEE. dd MMM'}}</p>
-                  <span class="badge bg-primary">{{agendadaSeleccionada?.datestart | date:'hh:mm a'}}</span>
+                  <!-- <p class="p-normal-300-18 p-texto">{{agendadaSeleccionada?.datestart | date:'EEE. dd MMM'}}</p>
+                  <span class="badge bg-primary">{{agendadaSeleccionada?.datestart | date:'hh:mm a'}}</span> -->
+                  <p class="p-normal-300-18 p-texto">{{agendadaSeleccionada?.start | date:'EEE. dd MMM'}}</p>
+                  <span class="badge bg-primary">{{agendadaSeleccionada?.start | date:'hh:mm a'}}</span>
                   <!-- <p class="p-normal-300-18 p-texto">Jue. 23 ago </p>
                   <span class="badge bg-primary">18:00 pm</span> -->
                 </div>

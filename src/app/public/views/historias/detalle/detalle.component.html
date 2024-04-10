@@ -594,8 +594,10 @@
                 tu Cita</span>
             </ng-container>
 
-            <span class="p-bold-500-20">${{historiaDetalle.rates.data[0].price}}.00</span>
-            <span class="p-normal-300">1 sesión - {{historiaDetalle.rates.data[0].time_rate}}</span>
+            <!-- <span class="p-bold-500-20">${{historiaDetalle.rates.data[0].price}}.00</span>
+            <span class="p-normal-300">1 sesión - {{historiaDetalle.rates.data[0].time_rate}}</span> -->
+            <span class="p-bold-500-20">${{historiaDetalle.rates[0].price}}</span>
+            <span class="p-normal-300">1 sesión - {{historiaDetalle.rates[0].time_rate}}</span>
           </div>
           <div class="row">
             <div class="col-lg-12 mt-3 mb-3">

@@ -76,21 +76,20 @@ export class AgendadasGuiaComponent implements OnInit{
         console.log(response)
         this.mostrarLoad=true
         console.log('agendadas=' + JSON.stringify(response));
+
+        response[0].data.forEach((date:any) => {
+          date.start=date.booking_start_date
+          date.booking_start_date=this.fechaservice.formatDatetimeToString(date.booking_start_date)
+
+    });
+
         this.agendadasGuia = response[0].data;
 
 
         // this.agendadasGuia[0].dateeee=this.agendadasGuia[0].booking_start_date
         console.log(this.agendadasGuia)
 
-        this.agendadasGuia.forEach((date:any) => {
 
-          date.datestart = date.booking_start_date
-
-
-
-      });
-
-      this.agendadasGuia[0].booking_start_date=this.fechaservice.formatDatetimeToString(this.agendadasGuia[0].booking_start_date)
 
       }
 

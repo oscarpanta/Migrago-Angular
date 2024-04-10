@@ -33,7 +33,9 @@ export class BlogComponent  {
   blogs: any[] = []
   blogsFiltradas: any[] = [];
   searchTerm: string = '';
-
+  categorias: any[] = [];
+  selectedItems: any[] = [];
+  selectedMigrationIds: string = '';
   tamanopagina: number = 6;
 
   total$: number = 0;
@@ -69,12 +71,16 @@ export class BlogComponent  {
       // user_created_id: ['', [Validators.required]],
       textobreve: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
+      fecha: ['', [Validators.required]],
+      // categoria: ['', [Validators.required]],
+      categoria: [[], [Validators.required]]
     });
   }
 
   ngOnInit(): void {
     this.GetUsuario()
     this.listaBlogs()
+    this.listaCategorias()
   }
 
   GetUsuario() {
@@ -95,7 +101,9 @@ export class BlogComponent  {
       request: {
         blog_id: null,
         user_id: null,
-        status: true
+        status: true,
+        titulo:"",
+        flag : null
       },
       order: {
         column:null,
@@ -140,6 +148,31 @@ export class BlogComponent  {
       });
   }
 
+  listaCategorias() {
+    const requestData = {
+      request: {
+        category_id:null,
+        status: true,
+        titulo:null
+      },
+      order: {
+
+        column: null,
+        mode: null
+      },
+      page_size: 100,
+      pgination_key: 1
+    };
+
+    this.blogService.listaCategorias(requestData).subscribe(
+      response => {
+        console.log('Modos Migracion' + JSON.stringify(response));
+        this.categorias = response[0].data;
+        console.log(this.categorias)
+
+      }
+    );
+  }
 
   buscarLocalmente() {
     if (this.searchTerm.trim() === '') {
@@ -173,7 +206,11 @@ export class BlogComponent  {
   }
   registroBlog() {
     //const { titulo, countrySelect, citySelect, Nacionalidad, ModoMigracion, RutaMigracion, texto_historia, fecha, temas } = this.miFormulario.value;
-    const { id, titulo, estado, textobreve, descripcion } = this.miFormulario.value;
+    const { id, titulo, estado, textobreve, descripcion,fecha,categoria } = this.miFormulario.value;
+
+    const categoriasString = categoria.join(',');
+
+    console.log(categoriasString);
 
 
     this.formularioEnviado = true;
@@ -189,6 +226,8 @@ export class BlogComponent  {
       }
 
       if (this.opc == 0){
+
+
         console.log('abcd')
         const imagen1 = new FormData();
 
@@ -204,12 +243,14 @@ export class BlogComponent  {
         imagen1.append('text_breve', textobreve);
         imagen1.append('text_blog', descripcion);
         imagen1.append('status',estado);
-
+        imagen1.append('fecha_publicacion',fecha);
+        imagen1.append('categorias',categoriasString);
         this.blogService.registrarBlog(imagen1).subscribe(
           (response) => {
             this.formularioEnviado = false;
             this.textoBoton = 'Guardar cambios';
             this.cerrarModal()
+            this.listaBlogs()
 
             Swal.fire('Hecho', 'Blog registrado correctamente', 'success');
           },
@@ -254,6 +295,8 @@ export class BlogComponent  {
         imagen1.append('text_breve', textobreve);
         imagen1.append('text_blog', descripcion);
         imagen1.append('status',estado);
+        imagen1.append('fecha_publicacion',fecha);
+        imagen1.append('categorias',categoriasString);
 
         console.log(id)
         console.log( this.usuario.id.toString())
@@ -355,7 +398,7 @@ export class BlogComponent  {
     this.opc = 1;
 
 
-
+      console.log(blog)
     // if (this.selectedEstado == "")
     //   this.selectedEstado = null
 
@@ -363,7 +406,9 @@ export class BlogComponent  {
       request: {
         blog_id: blog.id,
         user_id: null,
-        status: true
+        status: true,
+        titulo:"",
+        flag : null
       },
       order: {
         column:null,
@@ -373,19 +418,25 @@ export class BlogComponent  {
       pgination_key: 1
     };
 
-    this.blogService.listaBlogs(requestData).subscribe(
+    this.blogService.listaGetBlog(requestData).subscribe(
 
       response => {
         console.log(response);
       console.log( response[0].data[0].title,)
 
+       const categoriasSeleccionadas = blog.detalle.map((categoria: any) => categoria.id);
+       const formattedDate = new Date(response[0].data[0].fecha_publication).toISOString().substr(0, 10);
       this.miFormulario.patchValue({
         id: response[0].data[0].id,
         titulo:  response[0].data[0].title,
         estado:  response[0].data[0].status,
         textobreve:response[0].data[0].text_breve_blog,
-        descripcion: response[0].data[0].text_blog
+        descripcion: response[0].data[0].text_blog,
+        // categoria:['1','2']
+         categoria:categoriasSeleccionadas,
+         fecha:formattedDate
       });
+      console.log(this.miFormulario.value)
      // console.log(this.miFormulario)
        this.imageSrc = this.blogService.getImageUrlBlog(response[0].data[0].imagen);
 
@@ -393,80 +444,7 @@ export class BlogComponent  {
 
 
 
-    // this.blogsService.getStoriesDetalle(requestData).subscribe(response => {
 
-    //   if (response) {
-
-    //     this.selectedCountryId = response.story.data[0].contry_id;
-
-
-    //     this.selectedCityId = response.story.data[0].city_id;
-    //     // this.selectedNationalityId = response.story.data[0].nationality_id;
-    //     this.selectedModoMigrationId = response.story.data[0].migration_mode_id;
-    //     // this.selectedRutaMigrationId = response.story.data[0].way_migration_id;
-    //     this.idhistory = response.story.data[0].storie_id
-    //     this.selectedFecha = response.story.data[0].arrival_date
-
-
-
-    //     // this.cdr.detectChanges();
-    //   }
-    //   if (response.group_themes.data) {
-    //     this.groupThemeIds = response.group_themes.data.map((theme: { group_themes_id: any; }) => theme.group_themes_id);
-    //     console.log("groupthemeids:" + this.groupThemeIds)
-    //   }
-    //   console.log(response);
-
-
-    //   this.miFormulario.patchValue({
-    //     id: response.story.data[0].storie_id,
-    //     titulo: response.story.data[0].title,
-    //     countrySelect: response.story.data[0].contry_id,
-    //     citySelect: response.story.data[0].city_id,
-    //     // Nacionalidad: response.story.data[0].nationality_id,
-    //     ModoMigracion: response.story.data[0].migration_mode_id,
-    //     // RutaMigracion: response.story.data[0].way_migration_id,
-    //     estado: response.story.data[0].status,
-    //     texto_historia: response.story.data[0].story_text,
-    //     fecha: response.story.data[0].arrival_date,
-    //     temas: this.groupThemeIds,
-    //     user_created_id: response.story.data[0].user_created_id
-    //   });
-
-    //   console.log(this.miFormulario.value)
-
-    //   if (response.images_story.data.length > 0) {
-
-    //     for (const image of response.images_story.data) {
-    //       if (image.flag === '1') {
-    //         this.imageSrc = this.imagenservice.getImageUrlHistoria(image.image_story);
-    //       } else if (image.flag === '2') {
-    //         this.imageSrc2 = this.imagenservice.getImageUrlHistoria(image.image_story);
-    //       } else if (image.flag === '3') {
-    //         this.imageSrc3 = this.imagenservice.getImageUrlHistoria(image.image_story);
-    //       }
-    //     }
-    //     if (!response.images_story.data.some((image: any) => image.flag === '1')) {
-    //       this.imageSrc = '';
-    //     }
-    //     if (!response.images_story.data.some((image: any) => image.flag === '2')) {
-    //       this.imageSrc2 = '';
-    //     }
-    //     if (!response.images_story.data.some((image: any) => image.flag === '3')) {
-    //       this.imageSrc3 = '';
-    //     }
-    //   }
-    //   else {
-    //     this.imageSrc = '';
-    //     this.imageSrc2 = '';
-    //     this.imageSrc3 = ''
-    //   }
-
-
-    // });
-
-
-    // $('#modalEditarHistoria').modal('show');
 
   }
 
@@ -477,6 +455,19 @@ export class BlogComponent  {
   cerrarModal() {
     this.modalService.dismissAll();
     this.miFormulario.reset();
+
+  }
+
+  onMaterialGroupChangeModo(event: any[]) {
+
+    if (Array.isArray(event)) {
+      this.selectedItems = event;
+      const selectedIds = this.selectedItems.map(item => item.id);
+      this.selectedMigrationIds = selectedIds.join(',');
+      console.log(event);
+      console.log(this.selectedMigrationIds);
+      console.log(this.miFormulario.get('categoria'))
+    }
 
   }
 

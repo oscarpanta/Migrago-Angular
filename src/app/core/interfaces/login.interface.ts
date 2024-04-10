@@ -24,6 +24,7 @@ export interface Usuario{
   birth_date:Date;
   flagdata:string;
   flagpass:string;
+  account_paypal:string
 
 }
 export interface Roles{

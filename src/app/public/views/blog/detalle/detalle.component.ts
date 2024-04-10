@@ -12,6 +12,7 @@ export class DetalleComponent implements OnInit{
 
   blogdId !: number;
   blogs: any;
+  leidos:any;
 
   constructor(private route: ActivatedRoute,private blogService:BlogService,private fechaservice:DateService){}
   ngOnInit(): void {
@@ -30,7 +31,9 @@ export class DetalleComponent implements OnInit{
       request: {
         blog_id: blogId,
         user_id: null,
-        status: true
+        status: true,
+        titulo:'',
+        flag : null
       },
       order: {
         column: null,
@@ -40,13 +43,17 @@ export class DetalleComponent implements OnInit{
       pgination_key: 1
     };
 
-    this.blogService.listaBlogs(requestData).subscribe(
+    this.blogService.listaGetBlog(requestData).subscribe(
 
       response => {
         //        console.log('hist' + JSON.stringify(response));
         //    this.mostrarLoad=true
         console.log(response);
         this.blogs = response[0].data;
+        this.leidos=response[0].views
+
+        console.log(this.leidos)
+        console.log(this.leidos[0])
 
         this.blogs.forEach((blog:any) => {
 
@@ -61,6 +68,17 @@ export class DetalleComponent implements OnInit{
 
     );
 
+  }
+  shareOnFacebook() {
+    // URL de tu blog que quieres compartir
+    // const blogUrl = window.location.href;
+    const blogUrl="https://migratego.com/temas"
+
+    // Genera la URL de compartir de Facebook
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(blogUrl)}`;
+
+    // Abre una nueva ventana para compartir en Facebook
+    window.open(facebookShareUrl, '_blank');
   }
 
 }

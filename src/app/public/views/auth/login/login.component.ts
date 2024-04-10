@@ -1,5 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LayoutService } from 'src/app/public/layout/layout.service';
 import * as sha512 from 'js-sha512';
 import * as sha256 from 'js-sha256'
@@ -18,6 +18,7 @@ declare var FB:any;
 })
 export class LoginComponent implements OnInit {
 
+  redirectUrl:any='';
   ocultarpas: boolean = true;
 
   miFormulario: FormGroup = this.fb.group({
@@ -31,8 +32,10 @@ export class LoginComponent implements OnInit {
   //   password: "",
   // };
   constructor(private fb: FormBuilder, private router: Router, private displayService: LayoutService,
-    private authService: AutenticacionService,private _ngZone:NgZone) { }
+    private authService: AutenticacionService,private _ngZone:NgZone, private activadtedRoute:ActivatedRoute) { }
   ngOnInit(): void {
+    this.redirectUrl=this.activadtedRoute.snapshot.queryParamMap.get('redirectUrl') || '/auth/dashboardGuia'
+
     this.ocultarpass();
     this.displayService.setNavigationVisibility(false);
 
@@ -67,6 +70,9 @@ export class LoginComponent implements OnInit {
     this.ocultarpas = !this.ocultarpas;
   }
   ocultarpass() {
+    setTimeout(() => {
+
+    },100)
     window.addEventListener("load", function () {
 
       // icono para mostrar contraseña
@@ -115,7 +121,8 @@ export class LoginComponent implements OnInit {
         else if (res[0].roles[0].role_name == 'ROLE_GUIDE') {
 
           if (res[0].usuario.flagpass === '0') {
-            this.router.navigate(['/auth/dashboardGuia/cambiar']);
+             this.router.navigate(['/auth/dashboardGuia/cambiar']);
+
             Swal.fire({
               title: 'Alerta',
               text: 'Debes cambiar tu contraseña',
@@ -126,7 +133,9 @@ export class LoginComponent implements OnInit {
           }
           else
            {
-            this.router.navigate(['/auth/dashboardGuia']);}
+            // this.router.navigate(['/auth/dashboardGuia']);
+            this.router.navigateByUrl(this.redirectUrl);
+          }
 
 
 

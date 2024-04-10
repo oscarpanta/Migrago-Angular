@@ -53,7 +53,7 @@ export class PagoCitaComponent implements OnInit {
   paymentForm: FormGroup = this.fb.group({
     name: ['', [Validators.required]],
     email: ['', [Validators.required]],
-    amount: [90, [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+    amount: [0, [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
   });
 
   constructor(private fb: FormBuilder, private stripeService: StripeService, private modalService: NgbModal,
@@ -63,8 +63,7 @@ export class PagoCitaComponent implements OnInit {
     this.GetUsuario()
     this.paymentForm.patchValue({
       name: this.usuario.name,
-      email: this.usuario.username,
-      amount: 90,
+      email: this.usuario.username
     })
    this.paymentForm.get('name')?.disable();
     //this.paymentForm.get('email')?.disable();
@@ -80,6 +79,10 @@ export class PagoCitaComponent implements OnInit {
     });
     const historiaString = localStorage.getItem('historia');
     const fechaInicioString = localStorage.getItem('fechainicio');
+    this.paymentForm.get('amount')?.setValue(localStorage.getItem('monto'));
+
+
+
     let fechaInicio: Date;
     if (historiaString && fechaInicioString !== null) {
       fechaInicio = new Date(fechaInicioString);
@@ -117,6 +120,8 @@ export class PagoCitaComponent implements OnInit {
         let temasGuardados: any;
         const temasGuardadosString = localStorage.getItem('temas');
         const historiaString = localStorage.getItem('historia');
+
+
         let historiaData: any
         if (historiaString) {
           historiaData = JSON.parse(historiaString);

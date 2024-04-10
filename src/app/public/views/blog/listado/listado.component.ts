@@ -11,6 +11,7 @@ import { DateService } from 'src/app/core/utils/date.service';
   styleUrls: ['./listado.component.css']
 })
 export class ListadoComponent implements OnInit{
+
   resp_historias: any[] = []
   blogs: any[] = []
 
@@ -18,7 +19,7 @@ export class ListadoComponent implements OnInit{
   tamanopagina: number = 9; // Tamaño de página
   totalelementos: number = 0; // Total de elementos
   mostrarLoad: boolean = false;
-
+  titulo=''
 
   selectedCountryId: number = 0;
   selectedMigrationIds: string = '';
@@ -45,13 +46,15 @@ export class ListadoComponent implements OnInit{
       request: {
         blog_id: null,
         user_id: null,
-        status: true
+        status: true,
+        titulo:this.titulo,
+        flag : 1
       },
       order: {
         column: null,
         mode: null
       },
-      page_size: 100,
+      page_size: this.tamanopagina,
       pgination_key: this.nropagina
     };
 
@@ -149,8 +152,13 @@ export class ListadoComponent implements OnInit{
     this.nropagina = page;
 
     this.listaBlogs();
-    //this.filtrado()
 
+
+  }
+  onChangeBlog($event: any) {
+    const nuevoTitulo = $event.target.value;
+    this.titulo=nuevoTitulo
+    this.listaBlogs()
   }
 
 }

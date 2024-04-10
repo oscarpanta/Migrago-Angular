@@ -105,11 +105,11 @@ align-items: center;     display: flex;">
 
 
       <div class="botonesnav" style="align-items: center;justify-content: center;flex-basis: 50%;">
-        <select id="language" class="d-lg-block d-none idioma" style="color: #fff;">
+        <!-- <select id="language" class="d-lg-block d-none idioma" style="color: #fff;">
           <option value="English">ES</option>
           <option value="Spanish">EN</option>
 
-        </select>
+        </select> -->
 
 
         <a routerLink="../auth/login" id="ingresa" *ngIf="!estalogeado"
@@ -236,8 +236,7 @@ align-items: center;     display: flex;">
             <div class="mb-4">
               <div class="form-group"> -->
                 <!-- <input type="text" class="buscador" placeholder="Busca el país al que estas migrando"> -->
-                <input type="text" class="form-control" placeholder="Busca el país al que estas migrando">
-                <span class="fa fa-solid fa-circle-arrow-right arrow-icon "></span>
+
 
               <!-- </div>
             </div>
@@ -245,9 +244,15 @@ align-items: center;     display: flex;">
 
         </div> -->
 
+        <!-- <input type="text" class="form-control" placeholder="Busca el país al que estas migrando">
+        <span class="fa fa-solid fa-circle-arrow-right arrow-icon "></span> -->
+        <ng-select name="countrySelect"
+        (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"   placeholder="Busca el país al que estas migrando"
+        aria-label="Default select example">
 
-
-
+          <ng-option *ngFor="let country of countries"  [value]="country.id">{{country.country_name}}</ng-option>
+       </ng-select>
+       <span class="fa fa-solid fa-circle-arrow-right arrow-icon " (click)="redirectToListado(selectedCountryId)"></span>
       </div>
     </div>
 

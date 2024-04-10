@@ -7,7 +7,7 @@
           <picture>
 
             <!-- <img src="assets/images/1200x1500-min.jpeg"> -->
-            <img  [src]="blogs[0].urlImagen">
+            <img [src]="blogs[0].urlImagen">
 
           </picture>
         </div>
@@ -46,17 +46,26 @@
                   </div>
                 </div>
                 <div class="detalle__etiquetas ">
-                  <div class="detalle__body__etiquetas ">
-                    Entrevista
+
+                  <div class="detalle__body__etiquetas" *ngFor="let detalle of blogs[0].detalle">
+                    {{detalle.descripcion}}
                   </div>
-                  <div class="detalle__body__etiquetas ">
-                    Testimonio
-                  </div>
+
                 </div>
               </div>
+
+            <div class="container_share_facebook">
+
+              <span class="me-2">Compartir en:</span>
+              <button class="fa-brands fa-facebook-f btn btn-primary" (click)="shareOnFacebook()"
+                ></button>
+              <!-- <button  class="btn btn-primary p-bold-500-18">Compartir en Facebook</button> -->
+
+
+          </div>
               <span class="description-detalle" [innerHTML]="blogs[0].text_blog"></span>
 
-<!--
+              <!--
                   <div class=" px-md-0 px-4">
                     <picture>
 
@@ -71,16 +80,17 @@
               <div class="leidos">
                 Más leídos
               </div>
-              <div class="leidos_contenido my-4 px-2">
+              <div class="leidos_contenido my-4 px-2" *ngFor="let leido of leidos[0]">
+                <span [routerLink]="['../detalle']" [queryParams]="{ blog_id: leido.id }" style="cursor: pointer;">{{leido.title}}</span>
+              </div>
+              <!-- <div class="leidos_contenido my-4 px-2">
                 Cada minuto migra 50 personas en el mundoa un nuevo destino
               </div>
               <div class="leidos_contenido my-4 px-2">
                 Cada minuto migra 50 personas en el mundoa un nuevo destino
-              </div>
-              <div class="leidos_contenido my-4 px-2">
-                Cada minuto migra 50 personas en el mundoa un nuevo destino
-              </div>
+              </div> -->
             </div>
+
 
 
 
@@ -115,5 +125,3 @@
     </div>
   </section>
 </ng-container>
-
-

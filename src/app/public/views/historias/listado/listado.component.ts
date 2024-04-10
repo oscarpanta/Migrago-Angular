@@ -17,6 +17,7 @@ import { NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Themes } from '../../interfaces/themes.interface';
 import { ImagenesService } from '../../services/imagenes.service';
 import { NgSelectComponent } from '@ng-select/ng-select';
+import { ActivatedRoute } from '@angular/router';
 declare var $: any;
 
 
@@ -69,7 +70,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   @ViewChild('temasSelect') temasSelect!: NgSelectComponent;
   @ViewChild('modesSelect') modesSelect!: NgSelectComponent;
 
-  constructor(private http: HttpClient,
+  constructor(private http: HttpClient, private route: ActivatedRoute,
     private country: CountriesService, private waymigration: WaysMigrationService,
     private historiasService: StoriesService, private paginationConfig: NgbPaginationConfig, private imagenservice: ImagenesService,) {
     this.paginationConfig.maxSize = 1;
@@ -82,6 +83,12 @@ export class ListadoComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
+    this.route.queryParams.subscribe(params => {
+      const countryId = params['countryId'];
+      if (countryId) {
+        this.selectedCountryId = countryId;
+      }
+    });
     this.filtrado();
     this.listaPaises();
     this.listaCiudades();

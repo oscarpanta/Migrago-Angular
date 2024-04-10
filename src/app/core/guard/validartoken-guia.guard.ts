@@ -9,9 +9,9 @@ import { AutenticacionService } from '../services/autenticacion.service';
 export class ValidartokenGuiaGuard implements CanActivate {
   constructor(private authService: AutenticacionService,
     private router:Router){}
-  canActivate(): Observable<boolean> | boolean{
+ canActivate(route:ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean{
     if(!this.authService.estalogeado()){
-      this.router.navigate(['/auth/login']);
+      this.router.navigate(['/auth/login'],{queryParams:{redirectUrl:state.url}});
       return false;
     }else{
       const userRole = this.authService.getRolUsuario();

@@ -163,7 +163,8 @@ export class AutenticacionService {
             phone: resp[0].usuario.phone,
             birth_date: resp[0].usuario.birth_date,
             flagdata:resp[0].usuario.flagdata,
-            flagpass:resp[0].usuario.flagpass
+            flagpass:resp[0].usuario.flagpass,
+            account_paypal:resp[0].usuario.account_paypal,
           };
           // this.mibehaviorsubject.next(this._usuario)
           console.log(this._usuario);
@@ -207,7 +208,8 @@ export class AutenticacionService {
               phone: resp[0].usuario.phone,
               birth_date: resp[0].usuario.birth_date,
               flagdata:resp[0].usuario.flagdata,
-              flagpass:resp[0].usuario.flagpass
+              flagpass:resp[0].usuario.flagpass,
+              account_paypal:resp[0].usuario.account_paypal,
             };
           }
           else {
@@ -246,6 +248,10 @@ export class AutenticacionService {
     const body = { id_token: credentials };
     const apiUrl = '/api/auhtFacebook';
     return this.http.post(apiUrl,body);
+  }
+  userPaypal(requestData: any):Observable<any> {
+    const apiUrl = '/api/updatePaypal';
+    return this.http.post(apiUrl, requestData,{context: addTokenHeader()});
   }
 
 
