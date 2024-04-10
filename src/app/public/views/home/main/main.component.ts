@@ -17,6 +17,8 @@ import { TemasService } from '../../services/temas.service';
 import { ImagenesService } from '../../services/imagenes.service';
 import { CountriesService } from '../../services/countries.service';
 import { Country } from '../../interfaces/countries.interface';
+import { BlogService } from '../../services/blog.service';
+import { DateService } from 'src/app/core/utils/date.service';
 declare var $: any;
 //import * as $ from 'jquery';
 
@@ -45,13 +47,15 @@ export class MainComponent implements OnInit,AfterViewInit{
   estalogeado : boolean = false;
   rolUsuario : string |null ="";
  // private swiper!:Swiper;
+ blogs: any[] = []
 
   constructor(private router: Router,private elRef:ElementRef, private modalService: NgbModal,
               private displayService: LayoutService, private country: CountriesService,
               private heroesService: HeroeService,
               private rutamigracionService: WaysMigrationService,
               private historiasService:StoriesService,
-              private authService:AutenticacionService,private temasService:TemasService,private imagenservice: ImagenesService ) {
+              private authService:AutenticacionService,private temasService:TemasService,private imagenservice: ImagenesService,
+              private blogService: BlogService, private fechaservice:DateService ) {
 
               }
   ngAfterViewInit(): void {
@@ -86,6 +90,7 @@ export class MainComponent implements OnInit,AfterViewInit{
     this.listaHistorias();
     console.log(this.rolUsuario)
     this.logeado();
+    this.listaBlogs()
   }
 
   ngOnDestroy(): void {
@@ -456,4 +461,45 @@ export class MainComponent implements OnInit,AfterViewInit{
     this.router.navigate(['/historias/listado'], { queryParams: { countryId: selectedCountryId } });
   }
 
+  listaBlogs() {
+
+    // if (this.selectedEstado == "")
+    //   this.selectedEstado = null
+
+    const requestData = {
+      request: {
+        blog_id: null,
+        user_id: null,
+        status: true,
+        titulo:"",
+        flag : 1
+      },
+      order: {
+        column: null,
+        mode: null
+      },
+      page_size: 100,
+      pgination_key: 1
+    };
+
+    this.blogService.listaBlogs(requestData).subscribe(
+
+      response => {
+        //        console.log('hist' + JSON.stringify(response));
+        //    this.mostrarLoad=true
+        console.log(response);
+        this.blogs = response[0].data;
+
+
+        this.blogs.forEach(blog => {
+
+            blog.urlImagen = this.blogService.getImageUrlBlog(blog.imagen);
+            blog.created_at=this.fechaservice.formatDateToString(blog.created_at)
+
+
+        });
+      }
+
+    );
+  }
 }
