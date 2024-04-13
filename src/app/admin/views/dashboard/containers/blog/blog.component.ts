@@ -109,8 +109,8 @@ export class BlogComponent  {
         column:null,
         mode: null
       },
-      page_size: 100,
-      pgination_key: 1
+      page_size: this.tamanopagina,
+      pgination_key: this.nropagina
     };
 
     this.blogService.listaBlogs(requestData).subscribe(

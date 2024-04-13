@@ -106,9 +106,14 @@ export class PagoCitaComponent implements OnInit {
     this.formularioEnviado = true;
     if(this.card){
       if (this.paymentForm.valid || this.paymentForm.disabled) {
-        const { name,email } = this.paymentForm.value;
+        const montoControl = this.paymentForm.get('amount');
+        montoControl?.enable();
+        const { name,email,amount } = this.paymentForm.value;
+
+        montoControl?.disable();
+
         console.log(this.usuario)
-        console.log(this.paymentForm.value)
+        console.log(this.paymentForm)
         //let historia = this.historiaDetalle.story.data[0].title
 
         // if (localStorage.getItem('historia')) {
@@ -133,11 +138,13 @@ export class PagoCitaComponent implements OnInit {
         if (temasGuardadosString !== null) {
           temasGuardados = JSON.parse(temasGuardadosString);
         }
-
+        console.log(amount)
+        // console.log(parseInt(amount))
+        console.log(Number(amount))
 
         let req = {
 
-          amount: 9000,
+          amount: amount * 100,
           email: email,
           storie: historiaData.title
 
@@ -179,13 +186,15 @@ export class PagoCitaComponent implements OnInit {
                   console.log(link)
                   console.log('Pago exitoso');
                   //  const { temas, fechainicio, fechafin } = this.miFormulario.value;
+                  console.log(amount)
+                  console.log(Number(amount))
                   let req = {
                     request: {
                       booking_id: 0,
                       story_id: historiaData.storie_id,
                       user_id: this.usuario.id,
                       time_booking: 60,
-                      price_booking: 90,
+                      price_booking: Number(amount),
                       startDate_booking: fechainicio,
                       endDate_booking: fechafin,
                       link_meeting: link,
