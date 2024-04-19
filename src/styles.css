@@ -292,6 +292,7 @@ ul{
 
   .navh .navbar-nav {
     flex-direction: row;
+ 
   }
 
   .navh .navbar-nav .nav-link {
@@ -367,8 +368,9 @@ ul{
 
 @media (min-width: 992px) {
   nav .container_nav {
-    flex-basis: 65%;
-
+    /* flex-basis: 65%; */
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
 }

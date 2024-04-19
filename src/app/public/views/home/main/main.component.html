@@ -259,13 +259,8 @@ align-items: center;     display: flex;">
   </div>
 </section>
 
-
-
-<section>
-  <div class="apartado__combinado">
-    <!-- seccion azul -->
-
-    <div class="container__azul">
+<section class="container__azul">
+    <div class="container__azul__content">
       <div class="container__azul__head">
         <p>¿Cómo funciona?</p>
       </div>
@@ -273,8 +268,7 @@ align-items: center;     display: flex;">
         <div class="container__azul__body__item">
           <div class="container__azul__body__item__imagen">
             <picture>
-              <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                              <source media="(min-width: 550px)" srcset="media.png"> -->
+           
               <img src="assets/images/icons/geo.png">
             </picture>
           </div>
@@ -293,8 +287,7 @@ align-items: center;     display: flex;">
         <div class="container__azul__body__item">
           <div class="container__azul__body__item__imagen">
             <picture>
-              <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                              <source media="(min-width: 550px)" srcset="media.png"> -->
+             
               <img src="assets/images/icons/cora.png">
             </picture>
           </div>
@@ -312,8 +305,7 @@ align-items: center;     display: flex;">
         <div class="container__azul__body__item">
           <div class="container__azul__body__item__imagen">
             <picture>
-              <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                              <source media="(min-width: 550px)" srcset="media.png"> -->
+            
               <img src="assets/images/icons/calen.png">
             </picture>
           </div>
@@ -330,6 +322,13 @@ align-items: center;     display: flex;">
         </div>
       </div>
     </div>
+</section>
+
+<section>
+  <div class="apartado__combinado">
+    <!-- seccion azul -->
+
+    
 
     <!-- seccion inferior -->
     <div class="container__60">
@@ -530,100 +529,103 @@ align-items: center;     display: flex;">
 <!-- seccion reseñas de migrantes -->
 <section>
   <div class="container__resenias">
-    <div class="container__verificados__texto">
-      <div class="container__verificados__head">
-        <div class="container__verificados__head__title">
-          <span class="letra__b">Reseñas  </span>
-
-        </div>
-        <div class="container__verificados__head__title">
-
-          <span class="letra__b">de migrantes</span>
-        </div>
-        <div class="container__verificados__head__subtitle">
-          que ahora viven en un nuevo país
-        </div>
-
-      </div>
-
-    </div>
-    <div class="container__resenias__body__back">
-      <div class="slide-container swiper">
-        <div class="slide-content3">
-
-          <div class="card-wrapper swiper-wrapper card-resenia-main">
-            <div class="swiper-slide card-resenia">
-
-              <div class="card-content">
-
-                <p class="description-resenia">“LoremC ipsum dolor sit amet, con-sectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat”</p>
-                <span class="autor">Miguel Panta.</span>
-                <span class="etiqueta">Verificado</span>
-
-
-              </div>
-              <div class="image-content">
-
-                <div class="card-image">
-                  <img src="assets/images/imagen_resenia.png" alt="" class="card-img">
-                </div>
-
-              </div>
-            </div>
-            <!-- <div class="swiper-slide card-resenia">
-
-              <div class="card-content">
-
-                <p class="description-resenia">“LoremA ipsum dolor sit amet, con-sectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat”</p>
-                <span class="autor">Miguel Panta.</span>
-                <span class="etiqueta">Verificado</span>
-
-
-              </div>
-              <div class="image-content">
-
-                <div class="card-image">
-                  <img src="assets/images/imagen_resenia.png" alt="" class="card-img">
-                </div>
-
-              </div>
-            </div>
-            <div class="swiper-slide card-resenia">
-
-              <div class="card-content">
-
-                <p class="description-resenia">“LoremB ipsum dolor sit amet, con-sectetuer adipiscing elit, sed diam
-                  nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat”</p>
-                <span class="autor">Miguel Panta.</span>
-                <span class="etiqueta">Verificado</span>
-
-
-              </div>
-              <div class="image-content">
-
-                <div class="card-image">
-                  <img src="assets/images/imagen_resenia.png" alt="" class="card-img">
-                </div>
-
-              </div>
-            </div> -->
-
+    <div class="container__content">
+      <div class="container__verificados__texto">
+        <div class="container__verificados__head">
+          <div class="container__verificados__head__title">
+            <span class="letra__b">Reseñas  </span>
+  
           </div>
-          <div class="container__pagination__navigation">
-            <div class="swiper-pagination"></div>
-            <div class="btn_navigation">
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next"></div>
-            </div>
+          <div class="container__verificados__head__title">
+  
+            <span class="letra__b">de migrantes</span>
           </div>
-
-
+          <div class="container__verificados__head__subtitle">
+            que ahora viven en un nuevo país
+          </div>
+  
         </div>
-
+  
+      </div>
+      <div class="container__resenias__body__back">
+        <div class="slide-container swiper">
+          <div class="slide-content3">
+  
+            <div class="card-wrapper swiper-wrapper card-resenia-main">
+              <div class="swiper-slide card-resenia">
+  
+                <div class="card-content">
+  
+                  <p class="description-resenia">“LoremC ipsum dolor sit amet, con-sectetuer adipiscing elit, sed diam
+                    nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat”</p>
+                  <span class="autor">Miguel Panta.</span>
+                  <span class="etiqueta">Verificado</span>
+  
+  
+                </div>
+                <div class="image-content">
+  
+                  <div class="card-image">
+                    <img src="assets/images/imagen_resenia.png" alt="" class="card-img">
+                  </div>
+  
+                </div>
+              </div>
+              <!-- <div class="swiper-slide card-resenia">
+  
+                <div class="card-content">
+  
+                  <p class="description-resenia">“LoremA ipsum dolor sit amet, con-sectetuer adipiscing elit, sed diam
+                    nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat”</p>
+                  <span class="autor">Miguel Panta.</span>
+                  <span class="etiqueta">Verificado</span>
+  
+  
+                </div>
+                <div class="image-content">
+  
+                  <div class="card-image">
+                    <img src="assets/images/imagen_resenia.png" alt="" class="card-img">
+                  </div>
+  
+                </div>
+              </div>
+              <div class="swiper-slide card-resenia">
+  
+                <div class="card-content">
+  
+                  <p class="description-resenia">“LoremB ipsum dolor sit amet, con-sectetuer adipiscing elit, sed diam
+                    nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat”</p>
+                  <span class="autor">Miguel Panta.</span>
+                  <span class="etiqueta">Verificado</span>
+  
+  
+                </div>
+                <div class="image-content">
+  
+                  <div class="card-image">
+                    <img src="assets/images/imagen_resenia.png" alt="" class="card-img">
+                  </div>
+  
+                </div>
+              </div> -->
+  
+            </div>
+            <div class="container__pagination__navigation">
+              <div class="swiper-pagination"></div>
+              <div class="btn_navigation">
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+              </div>
+            </div>
+  
+  
+          </div>
+  
+        </div>
       </div>
     </div>
+  
   </div>
 
 </section>
@@ -631,89 +633,91 @@ align-items: center;     display: flex;">
 <section>
   <div class="container_verificador_main">
     <div class="container__verificados">
-      <div class="container__verificados__texto_main">
-        <div class="container__verificados__head">
-          <div class="container__verificados__head__title">
-            <span class="letra__b">Migrantes</span>
+      <div class="container__content">
+        <div class="container__verificados__texto_main">
+          <div class="container__verificados__head">
+            <div class="container__verificados__head__title">
+              <span class="letra__b">Migrantes</span>
+            </div>
+            <div class="container__verificados__head__title">
+              <span class="letra__b">verificados</span>
+            </div>
+            <div class="container__verificados__head__subtitle">
+              dispuestos a ayudarte a migrar con seguridad
+            </div>
+  
           </div>
-          <div class="container__verificados__head__title">
-            <span class="letra__b">verificados</span>
-          </div>
-          <div class="container__verificados__head__subtitle">
-            dispuestos a ayudarte a migrar con seguridad
-          </div>
-
-        </div>
-        <div class="container__verificados__body">
-          <div class="container__verificados__body__item">
-            <div class="container__azul__body__item__imagen">
-              <picture>
-                <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                    <source media="(min-width: 550px)" srcset="media.png"> -->
-                <img src="assets/images/icons/chat150.png">
-              </picture>
+          <div class="container__verificados__body">
+            <div class="container__verificados__body__item">
+              <div class="container__azul__body__item__imagen">
+                <picture>
+                  <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                      <source media="(min-width: 550px)" srcset="media.png"> -->
+                  <img src="assets/images/icons/chat150.png">
+                </picture>
+              </div>
+              <div class="container__azul__body__item__title">
+                Variedad de historias
+              </div>
+              <div class="container__azul__body__item__text">
+                Podrían ser como la tuya con información precisa, real y conﬁable
+              </div>
             </div>
-            <div class="container__azul__body__item__title">
-              Variedad de historias
+            <div class="container__verificados__body__item">
+              <div class="container__azul__body__item__imagen">
+                <picture>
+                  <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                      <source media="(min-width: 550px)" srcset="media.png"> -->
+                  <img src="assets/images/icons/Very150.png">
+                </picture>
+              </div>
+              <div class="container__azul__body__item__title">
+                Migrantes veriﬁcados
+              </div>
+              <div class="container__azul__body__item__text">
+                Podrían ser como la tuya con información precisa, real y conﬁable
+              </div>
             </div>
-            <div class="container__azul__body__item__text">
-              Podrían ser como la tuya con información precisa, real y conﬁable
+            <div class="container__verificados__body__item">
+              <div class="container__azul__body__item__imagen">
+                <picture>
+                  <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                      <source media="(min-width: 550px)" srcset="media.png"> -->
+                  <img src="assets/images/icons/Visa150.png">
+                </picture>
+              </div>
+              <div class="container__azul__body__item__title">
+                Tu pago está protegido
+              </div>
+              <div class="container__azul__body__item__text">
+                Podrían ser como la tuya con información precisa, real y conﬁable
+              </div>
             </div>
-          </div>
-          <div class="container__verificados__body__item">
-            <div class="container__azul__body__item__imagen">
-              <picture>
-                <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                    <source media="(min-width: 550px)" srcset="media.png"> -->
-                <img src="assets/images/icons/Very150.png">
-              </picture>
-            </div>
-            <div class="container__azul__body__item__title">
-              Migrantes veriﬁcados
-            </div>
-            <div class="container__azul__body__item__text">
-              Podrían ser como la tuya con información precisa, real y conﬁable
-            </div>
-          </div>
-          <div class="container__verificados__body__item">
-            <div class="container__azul__body__item__imagen">
-              <picture>
-                <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                    <source media="(min-width: 550px)" srcset="media.png"> -->
-                <img src="assets/images/icons/Visa150.png">
-              </picture>
-            </div>
-            <div class="container__azul__body__item__title">
-              Tu pago está protegido
-            </div>
-            <div class="container__azul__body__item__text">
-              Podrían ser como la tuya con información precisa, real y conﬁable
-            </div>
-          </div>
-          <div class="container__verificados__body__item">
-            <div class="container__azul__body__item__imagen">
-              <picture>
-                <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                    <source media="(min-width: 550px)" srcset="media.png"> -->
-                <img src="assets/images/icons/Fono150.png">
-              </picture>
-            </div>
-            <div class="container__azul__body__item__title">
-              Soporte en línea
-            </div>
-            <div class="container__azul__body__item__text">
-              Podrían ser como la tuya con información precisa, real y conﬁable
+            <div class="container__verificados__body__item">
+              <div class="container__azul__body__item__imagen">
+                <picture>
+                  <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                      <source media="(min-width: 550px)" srcset="media.png"> -->
+                  <img src="assets/images/icons/Fono150.png">
+                </picture>
+              </div>
+              <div class="container__azul__body__item__title">
+                Soporte en línea
+              </div>
+              <div class="container__azul__body__item__text">
+                Podrían ser como la tuya con información precisa, real y conﬁable
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="container__verificados__imagen">
+    
+      <!-- <div class="container__verificados__imagen">
         <picture>
-          <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                <source media="(min-width: 550px)" srcset="media.png"> -->
+       
           <img src="assets/images/1200x1500-min.jpeg">
         </picture>
-      </div>
+      </div> -->
 
 
     </div>
@@ -803,20 +807,26 @@ align-items: center;     display: flex;">
 <section>
 
   <div class="container__unirme__main">
-    <div class="container__unirme">
-      <div class="container__unirme__head">
-        <div class="container__unirme__head__title">
-          <span class="">Comparte tu historia</span>
-        </div>
-        <div class="container__unirme__head__subtitle">
-          Si eres nuevo en un país desarrollado, puedes recuperar tu inversión compartiendo tu experiencia con futuros
-          emigrantes de todo el mundo.
+    <div class="container__70">
+      <div class="container_content_unrime">
+        <div class="container__unirme">
+          <div class="container__unirme__head">
+            <div class="container__unirme__head__title">
+              <span class="">Comparte tu historia</span>
+            </div>
+            <div class="container__unirme__head__subtitle">
+              Si eres nuevo en un país desarrollado, puedes recuperar tu inversión compartiendo tu experiencia con futuros
+              emigrantes de todo el mundo.
+            </div>
+          </div>
+          <div class="container__unirme__body">
+            <a routerLink="./registroGuia" class="btn_unirme">Quiero unirme</a>
+          </div>
         </div>
       </div>
-      <div class="container__unirme__body">
-        <a routerLink="./registroGuia" class="btn_unirme">Quiero unirme</a>
-      </div>
+    
     </div>
+   
 
   </div>
 </section>
