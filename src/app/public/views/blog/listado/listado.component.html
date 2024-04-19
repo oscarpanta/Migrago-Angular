@@ -1,249 +1,175 @@
 
 <section>
-  <div class="container__blog container-fluid ">
-    <div class=" row col-12 ms-0">
-
-      <div class="col-lg-8 px-lg-5 col-md-6 col-12">
-        <div class="padding__body__blog">
-          <div class="container__blog__head">
-            <div class="container__blog__head__title">
-              <span class="letra__b">Cada minuto migran 50 personas en el mundo a un nuevo destino</span>
-            </div>
-
-          </div>
-          <div class="container__blog__body">
-
-            <p class="description-resenia">“LoremC ipsum dolor sit amet, con-sectetuer adipiscing elit, sed diam
-              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat”</p>
-            <div class="col-lg-6 text-center ms-lg-4 ms-0">
-              <a routerLink="/historias" class="btn  mt-2">Ver Más <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-
-          </div>
-
-        </div>
-
-
-      </div>
-      <div class="container__blog__imagen col-lg-4 col-md-6  col-12 px-md-0 px-4">
-        <picture>
-
-          <img src="assets/images/1200x1500-min.jpeg">
-        </picture>
-      </div>
-
-
-    </div>
-  </div>
-
-</section>
-
-<section>
-  <div class="container-fluid d-grid gap-3  container_blog_descubre">
-    <div class="px-lg-5">
-      <div class="row col-12">
-
-        <div class="col-sm-8">
-          <p class="p-bold-500-20 text-center">Encuentra historias como la tuya</p>
-        </div>
-        <div class="col-sm-4">
-          <a routerLink="/historias" class="btn btn-primary p-bold-500-18">Descubre Historias</a>
-        </div>
-
-      </div>
-    </div>
-
-
-  </div>
-</section>
-
-
-
-<section>
-  <div class="container__blog__nuestro container-fluid ">
-    <div class="row col-12 ms-0">
-
-      <div class="col-lg-12 px-lg-5">
-        <div class="padding__body__blog">
-          <div class="container__blog__head">
-            <div class="container__blog__head__title mb-1 ">
-              <span class="letra__b__bold">Más de nuestro blog</span>
-            </div>
-            <div class="container__verificados__head__subtitle">Últimos posts
-            </div>
-          </div>
-          <div class="d-flex justify-content-center">
-            <div class="col-8 p-5">
-              <label class="container__verificados__head__subtitle">Buscar Por Titulo:</label>
-              <input type="text" class="form-control text-center" placeholder="Nombre del blog" (keyup)="onChangeBlog($event)">
-            </div>
-          </div>
-
-
-
-          <div>
-
-            <div class="d-flex align-content-center flex-wrap container__historias__reales__body">
-
-
-
-              <div class="card card-container mb-3" *ngFor="let blog of blogs">
-                <div class="image-content">
-
-                  <div class="card-image" style="cursor: pointer;">
-
-                    <img [routerLink]="['./detalle']" [queryParams]="{ blog_id: blog.id }"
-                      [src]="blog.urlImagen || 'assets/images/imagen_prueba.png'" class="card-img" alt="fondo">
-                  </div>
-
-                </div>
-
-                <div class="card-content-main">
-                  <p class="description">{{blog.title}}</p>
-                  <span class="texto" [innerHTML]="blog.text_breve_blog"></span>
-                  <div class="container__etiquetas">
-                    <div class="container__body__etiqueta" *ngFor="let detalle of blog.detalle">
-                     {{detalle.descripcion}}
-                    </div>
-                    <!-- <div class="container__body__etiqueta">
-                      Testimonio
-                    </div> -->
-                  </div>
-                  <div class="card-content-footer">
-                    <div class="card-image3">
-                      <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
-                    </div>
-                    <div class="card-content-footer-autor">
-                      <span class="autor">{{blog.name}} {{blog.lastname}}</span>
-                      <span class="etiqueta">{{blog.created_at}}</span>
-                    </div>
-
-                  </div>
-
-                </div>
-
+  <div class="container_verificador_main ">
+    <div class="container-fluid container__70 container__temas">
+      <div class=" row col-12 ms-0">
+  
+        <div class="col-lg-8 px-lg-5 col-md-6 col-12">
+          <div class="">
+            <div class="container__blog__head">
+              <div class="container__blog__head__title">
+                <span class="letra__b">Cada minuto migran 50 personas en el mundo a un nuevo destino</span>
               </div>
+  
+            </div>
+            <div class="container__blog__body">
+  
+              <p class="description-resenia">“LoremC ipsum dolor sit amet, con-sectetuer adipiscing elit, sed diam
+                nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat”</p>
+              <div class="col-lg-6 text-center ms-lg-4 ms-0">
+                <a routerLink="/historias" class="btn  mt-2">Ver Más <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+  
+            </div>
+  
+          </div>
+  
+  
+        </div>
+        <div class="container__blog__imagen col-lg-4 col-md-6  col-12 px-md-0 px-4">
+          <picture>
+  
+            <img src="assets/images/1200x1500-min.jpeg">
+          </picture>
+        </div>
+  
+  
+      </div>
+    </div>
+  </div>
+ 
+
+</section>
+
+<section>
+  <div class="container__azul">
+    <div class="container-fluid d-grid gap-3 container__70">
+      <div class="px-lg-5">
+        <div class="row col-12">
+  
+          <div class="col-sm-8">
+            <p class="p-bold-500-20 text-center">Encuentra historias como la tuya</p>
+          </div>
+          <div class="col-sm-4">
+            <a routerLink="/historias" class="btn btn-primary p-bold-500-18">Descubre Historias</a>
+          </div>
+  
+        </div>
+      </div>
+  
+  
+    </div>
+  </div>
+ 
+</section>
 
 
 
-
-
+<section>
+  <div class="container__gris">
+    <div class="container-fluid container__70 ">
+      <div class="row col-12 ms-0">
+  
+        <div class="col-lg-12 px-lg-5">
+          <div class="">
+            <div class="container__blog__head">
+              <div class="container__blog__head__title mb-1 ">
+                <span class="letra__b__bold">Más de nuestro blog</span>
+              </div>
+              <div class="container__verificados__head__subtitle">Últimos posts
+              </div>
             </div>
             <div class="d-flex justify-content-center">
-              <ngb-pagination [(page)]="nropagina" [pageSize]="tamanopagina" [collectionSize]="totalelementos"
-                [maxSize]="1" [boundaryLinks]="true" (pageChange)="onPageChange(nropagina)">
-              </ngb-pagination>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- <section>
-  <div class="container__migrar">
-    <div class="container__70">
-      <div class="container__historias__reales">
-        <div class="container__historias__reales__head">
-          <div class="container__historias__reales__head__title">
-            <span class="letra__b">Antes de migrar</span>
-          </div>
-          <div class="container__historias__reales__head__subtitle">
-            debes saber esto. últimos post
-          </div>
-
-        </div>
-        <div class="container__historias__reales__body">
-
-          <div class="slide-container swiper">
-            <div class="slide-content5">
-              <div class="btn_navigation">
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
+              <div class="col-8 p-5">
+                <label class="container__verificados__head__subtitle">Buscar Por Titulo:</label>
+                <input type="text" class="form-control text-center" placeholder="Nombre del blog" (keyup)="onChangeBlog($event)">
               </div>
-
-              <div class="card-wrapper swiper-wrapper cards">
-                <div class="card swiper-slide" *ngFor="let blog of blogs">
+            </div>
+  
+  
+  
+            <div>
+  
+              <div class="d-flex align-content-center flex-wrap container__historias__reales__body">
+  
+  
+  
+                <div class="card card-container mb-3" *ngFor="let blog of blogs">
                   <div class="image-content">
-
-                    <div class="card-image">
-                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+  
+                    <div class="card-image" style="cursor: pointer;">
+  
+                      <img [routerLink]="['./detalle']" [queryParams]="{ blog_id: blog.id }"
+                        [src]="blog.urlImagen || 'assets/images/imagen_prueba.png'" class="card-img" alt="fondo">
                     </div>
-
+  
                   </div>
+  
                   <div class="card-content-main">
-
                     <p class="description">{{blog.title}}</p>
-                    <span class="texto">
-                      Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum
-                      ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N.
-                      del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de
-                      tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que
-                      tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al
-                      original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales
-                      contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por
-                      ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
-                    </span>
+                    <span class="texto" [innerHTML]="blog.text_breve_blog"></span>
                     <div class="container__etiquetas">
-                      <div class="container__body__etiqueta">
-                        Entrevista
+                      <div class="container__body__etiqueta" *ngFor="let detalle of blog.detalle">
+                       {{detalle.descripcion}}
                       </div>
-                      <div class="container__body__etiqueta">
+                      <!-- <div class="container__body__etiqueta">
                         Testimonio
-                      </div>
+                      </div> -->
                     </div>
                     <div class="card-content-footer">
                       <div class="card-image3">
                         <img src="assets/images/perfiles/profile1.jpg" alt="" class="card-img">
                       </div>
                       <div class="card-content-footer-autor">
-                        <span class="autor">Miguel Panta.</span>
-                        <span class="etiqueta">20/06&1993</span>
+                        <span class="autor">{{blog.name}} {{blog.lastname}}</span>
+                        <span class="etiqueta">{{blog.created_at}}</span>
                       </div>
-
+  
                     </div>
-
-
+  
                   </div>
-
+  
                 </div>
-
+  
+  
+  
+  
+  
               </div>
-
+              <div class="d-flex justify-content-center">
+                <ngb-pagination [(page)]="nropagina" [pageSize]="tamanopagina" [collectionSize]="totalelementos"
+                  [maxSize]="1" [boundaryLinks]="true" (pageChange)="onPageChange(nropagina)">
+                </ngb-pagination>
+              </div>
             </div>
-
-
+  
           </div>
-
-
         </div>
-        <div class="container__historias__reales__link">
-          <a href="" class="btn_ver_informacion">Ver más información</a>
-        </div>
+  
       </div>
     </div>
   </div>
-</section> -->
+  
+</section>
 
 <section>
-  <div class="container-fluid d-grid gap-3  container_blog_descubre">
-    <div class="px-lg-5">
-      <div class="row col-12">
-
-        <div class="col-sm-8">
-          <p class="p-bold-500-20 text-center">Encuentra historias como la tuya</p>
+  <div class="container__azul">
+    <div class="container-fluid d-grid gap-3 container__70">
+      <div class="px-lg-5">
+        <div class="row col-12">
+  
+          <div class="col-sm-8">
+            <p class="p-bold-500-20 text-center">Encuentra historias como la tuya</p>
+          </div>
+          <div class="col-sm-4">
+            <a routerLink="/historias" class="btn btn-primary p-bold-500-18">Descubre Historias</a>
+          </div>
+  
         </div>
-        <div class="col-sm-4">
-          <a routerLink="/historias" class="btn btn-primary p-bold-500-18">Descubre Historias</a>
-        </div>
-
       </div>
+  
+  
     </div>
-
-
   </div>
+ 
 </section>

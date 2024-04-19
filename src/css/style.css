@@ -281,7 +281,7 @@ color: white;
   align-items: center;
   flex-wrap: wrap;
   padding: 25px;
-  max-width: 1000px;
+  /* max-width: 1000px; */
   margin: 0 auto;
 }
 .container__azul__body__item{
@@ -1137,8 +1137,10 @@ adicionales
 }
 .card-container{
   /* max-width: 245px; */
-  max-width: 300px;
-  min-width: 300px;
+  /* max-width: 300px;
+  min-width: 300px; */
+  max-width: 250px;
+  min-width: 290px;
 }
 .card-container_menu{
   /* max-width: 245px; */
@@ -1177,12 +1179,19 @@ adicionales
   color: #5a2395;
   font-size: 10pt;
 }
-
+.container__gris{
+  background: #ededed; 
+}
+.container__temas{
+  padding-top: 10em;
+}
 .container__70_gris{
   /* max-width: 70%;
   margin: 0 auto; */
-  padding: 5em 8em;
-  background: #ededed;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5em 0;
+  /* background: #ededed; */
 }
 .autor{
   font-size: 13pt;
@@ -2131,7 +2140,9 @@ ul.form-stepper li a .form-stepper-circle {
   .footer__content{
     padding: 2em;
   }
-
+  .container__temas{
+    padding-top:10em;
+  }
  }
 
  @media (max-width: 1024px) {
@@ -2230,6 +2241,7 @@ ul.form-stepper li a .form-stepper-circle {
     padding: 2em;
     /* padding: 3rem 0; */
   }
+
   .apartado__index{
     height: 42rem;
   }
@@ -2251,6 +2263,9 @@ ul.form-stepper li a .form-stepper-circle {
     justify-content: center;
     align-items: center; */
 
+  }
+  .container__temas{
+    padding-top:10em;
   }
  .container__verificados__head{
   text-align: center;
@@ -2494,9 +2509,9 @@ ul.form-stepper li a .form-stepper-circle {
     gap: 0rem 4rem;
   }
   .img_flotante{
-    border-radius: 15px;
-    height:350px;
-    ;max-width: 280px;
+    /* border-radius: 15px; */
+    /* height:350px;
+    ;max-width: 280px; */
     }
     .card-image-flag-small{
 
@@ -2612,6 +2627,7 @@ ul.form-stepper li a .form-stepper-circle {
 
 /* tamaño de maximo 460  */
 @media (max-width: 460px) {
+ 
   .container__content{
     padding: 0;
   }
@@ -2707,6 +2723,9 @@ ul.form-stepper li a .form-stepper-circle {
   }
   .container__70{
       padding: 2em 2em;
+  }
+  .container__temas{
+    padding-top:5em;
   }
   .container__historias__reales{
       padding: 0;
@@ -3037,9 +3056,9 @@ width: 350px;
 text-align: center;
 } */
 .img_flotante{
-border-radius: 15px;
+/* border-radius: 15px;
 height:400px;
-;max-width: 350px;
+;max-width: 350px; */
 }
 .img_border_radio{
 border-radius: 5px;
@@ -3181,6 +3200,9 @@ padding: 1em;
 }
 .container__70{
     padding: 1em;
+}
+.container__temas{
+  padding-top:10em;
 }
 .container__historias__reales{
     padding: 0;

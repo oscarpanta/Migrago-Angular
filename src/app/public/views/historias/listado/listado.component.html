@@ -1,381 +1,383 @@
-
-<div class="container-fluid d-grid gap-3 container__70_gris">
-  <div class="row mt-lg-3 mt-4">
-    <div class="col-lg-12">
-      <div class="card ">
-        <div class="card-body text-center">
-          <h5 class="card-title letra__b__bold">Banner/Tutorial</h5>
+<div class="container__gris">
+  <div class="container-fluid d-grid gap-3 container__70">
+    <div class="row mt-lg-3 mt-4">
+      <div class="col-lg-12">
+        <div class="card ">
+          <div class="card-body text-center">
+            <h5 class="card-title letra__b__bold">Banner/Tutorial</h5>
+          </div>
         </div>
       </div>
+  
     </div>
-
-  </div>
-  <div class="row mt-1">
-    <div class="col-lg-3">
-      <div class="card ">
-        <div class="card-body">
-          <h5 class="card-title letra__b__bold mt-3">Filtrar por</h5>
-          <div class="linea_black"></div>
-          <form action="">
-            <div class="row mb-3">
-              <div class="col-lg-12 mb-3">
-                <!-- <select id="countrySelect" name="countrySelect" (change)="onCountrySelect($event)" #pais
-                  class="form-select form-select-sm" aria-label="Default select example">
-                  <option value="0">País a migrar</option>
-                  <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}</option>
-                </select> -->
-                <ng-select name="countrySelect"
-                (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"   placeholder="Pais"
-                aria-label="Default select example">
-
-                  <ng-option *ngFor="let country of countries"  [value]="country.id">{{country.country_name}}</ng-option>
-               </ng-select>
-              </div>
-              <div class="col-lg-12 mb-3">
-                <!-- <select (change)="onCitySelect($event)" class="form-select form-select-sm" #ciudad
+    <div class="row mt-1">
+      <div class="col-lg-3">
+        <div class="card ">
+          <div class="card-body">
+            <h5 class="card-title letra__b__bold mt-3">Filtrar por</h5>
+            <div class="linea_black"></div>
+            <form action="">
+              <div class="row mb-3">
+                <div class="col-lg-12 mb-3">
+                  <!-- <select id="countrySelect" name="countrySelect" (change)="onCountrySelect($event)" #pais
+                    class="form-select form-select-sm" aria-label="Default select example">
+                    <option value="0">País a migrar</option>
+                    <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}</option>
+                  </select> -->
+                  <ng-select name="countrySelect"
+                  (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"   placeholder="Pais"
                   aria-label="Default select example">
-                  <option value="0">Selecciona una ciudad</option>
-                  <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
-                </select> -->
-                <ng-select name="citySelect"
-                (ngModelChange)="onCitySelect($event)"  placeholder="Selecciona una ciudad"
-                 [(ngModel)]="selectedCityId" aria-label="Default select example">
-
-                  <ng-option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</ng-option>
-               </ng-select>
-              </div>
-              <div class="col-lg-12 mb-3">
-                <!-- <select (change)="onNationalitySelect($event)" class="form-select form-select-sm" #nacionalidad
-                  aria-label="Default select example" >
-                  <option value="0" selected>Nacionalidad del guía</option>
-                  <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
-                    nacionalidad.nationality_name }}</option>
-                </select> -->
-                <ng-select  #nacionalidad name="nacionalidad"
-                (ngModelChange)="onNationalitySelect($event)" [(ngModel)]="selectedNationalityId"   placeholder="Nacionalidad del guia"
-                aria-label="Default select example">
-                <!-- <ng-option value="0" disabled>Pais</ng-option> -->
-                  <ng-option *ngFor="let nacionalidad of nationalities"  [value]="nacionalidad.id">{{nacionalidad.nationality_name }}</ng-option>
-               </ng-select>
-              </div>
-              <div class="col-lg-12 mb-3">
-                <select (change)="onWayMigrationSelect($event)" class="form-select form-select-sm" #ruta
+  
+                    <ng-option *ngFor="let country of countries"  [value]="country.id">{{country.country_name}}</ng-option>
+                 </ng-select>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <!-- <select (change)="onCitySelect($event)" class="form-select form-select-sm" #ciudad
+                    aria-label="Default select example">
+                    <option value="0">Selecciona una ciudad</option>
+                    <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
+                  </select> -->
+                  <ng-select name="citySelect"
+                  (ngModelChange)="onCitySelect($event)"  placeholder="Selecciona una ciudad"
+                   [(ngModel)]="selectedCityId" aria-label="Default select example">
+  
+                    <ng-option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</ng-option>
+                 </ng-select>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <!-- <select (change)="onNationalitySelect($event)" class="form-select form-select-sm" #nacionalidad
+                    aria-label="Default select example" >
+                    <option value="0" selected>Nacionalidad del guía</option>
+                    <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
+                      nacionalidad.nationality_name }}</option>
+                  </select> -->
+                  <ng-select  #nacionalidad name="nacionalidad"
+                  (ngModelChange)="onNationalitySelect($event)" [(ngModel)]="selectedNationalityId"   placeholder="Nacionalidad del guia"
                   aria-label="Default select example">
-                  <option value="0" selected>Ruta de ingreso del guía</option>
-                  <option *ngFor="let rutamigracion of rutasmigracion" [value]="rutamigracion.id">{{
-                    rutamigracion.name_way_migration }}</option>
-                </select>
+                  <!-- <ng-option value="0" disabled>Pais</ng-option> -->
+                    <ng-option *ngFor="let nacionalidad of nationalities"  [value]="nacionalidad.id">{{nacionalidad.nationality_name }}</ng-option>
+                 </ng-select>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <select (change)="onWayMigrationSelect($event)" class="form-select form-select-sm" #ruta
+                    aria-label="Default select example">
+                    <option value="0" selected>Ruta de ingreso del guía</option>
+                    <option *ngFor="let rutamigracion of rutasmigracion" [value]="rutamigracion.id">{{
+                      rutamigracion.name_way_migration }}</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-12 mb-3">
-                <a class="btn btn-primary" (click)="filtrarHistorias()">Filtrar</a>
-                <a class="btn btn-primary mt-2" (click)="limpiar()">Limpiar</a>
+              <div class="row">
+                <div class="col-lg-12 mb-3">
+                  <a class="btn btn-primary" (click)="filtrarHistorias()">Filtrar</a>
+                  <a class="btn btn-primary mt-2" (click)="limpiar()">Limpiar</a>
+                </div>
               </div>
-            </div>
-
-
-          </form>
+  
+  
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-lg-9">
-      <div class="row mt-2">
-        <div class="col-lg-6">
-          <label for="" class="form-label letra__b__bold">¿De qué temas necesitas informarte?</label>
-          <!-- <select multiple name="language" id="languages">
-            <option value="js">Salud / Entretenimiento / Mascotas</option>
-            <option value="html">Educacion niños / Campamentos / Daycares</option>
-            <option value="css3">Educación adultos / Idiomas /Ayuda social</option>
-            <option value="css4">Hogar / Mobiliario / Vestimenta</option>
-          </select> -->
-
-          <ng-select [items]="temas" bindLabel="description" bindValue="id" [multiple]="true" groupBy="selectedAllGroup"
-            [searchWhileComposing]="true" [selectableGroup]="true" placeholder="Elige los temas mas urgentes para ti"
-            (change)="onMaterialGroupChangeTemas($event)"  #temasSelect>
-
-            <ng-template ng-label-tmp let-item="item">
-              {{ item.description }}
-            </ng-template>
-            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
-              <input id="option-{{ item.value }}" type="checkbox" [ngModel]="item$.selected" />
-
-              <label for="option-{{ item.value }}">{{ item.description }}</label>
-            </ng-template>
-          </ng-select>
-
+      <div class="col-lg-9">
+        <div class="row mt-2">
+          <div class="col-lg-6">
+            <label for="" class="form-label letra__b__bold">¿De qué temas necesitas informarte?</label>
+            <!-- <select multiple name="language" id="languages">
+              <option value="js">Salud / Entretenimiento / Mascotas</option>
+              <option value="html">Educacion niños / Campamentos / Daycares</option>
+              <option value="css3">Educación adultos / Idiomas /Ayuda social</option>
+              <option value="css4">Hogar / Mobiliario / Vestimenta</option>
+            </select> -->
+  
+            <ng-select [items]="temas" bindLabel="description" bindValue="id" [multiple]="true" groupBy="selectedAllGroup"
+              [searchWhileComposing]="true" [selectableGroup]="true" placeholder="Elige los temas mas urgentes para ti"
+              (change)="onMaterialGroupChangeTemas($event)"  #temasSelect>
+  
+              <ng-template ng-label-tmp let-item="item">
+                {{ item.description }}
+              </ng-template>
+              <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                <input id="option-{{ item.value }}" type="checkbox" [ngModel]="item$.selected" />
+  
+                <label for="option-{{ item.value }}">{{ item.description }}</label>
+              </ng-template>
+            </ng-select>
+  
+          </div>
+          <div class="col-lg-6">
+            <label for="" class="form-label letra__b__bold">Haz match con un guía</label>
+  
+            <ng-select [items]="modemigrations" bindLabel="description" bindValue="id" [multiple]="true"
+              groupBy="selectedAllGroup" [searchWhileComposing]="true" [selectableGroup]="true"
+              placeholder="Modo de migracion" (change)="onMaterialGroupChangeModo($event)" #modesSelect>
+  
+              <ng-template ng-label-tmp let-item="item">
+                {{ item.description }}
+              </ng-template>
+              <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                <input id="option-{{ item.value }}" type="checkbox" [ngModel]="item$.selected" />
+  
+  
+                <label for="option-{{ item.value }}">{{ item.description }}</label>
+              </ng-template>
+            </ng-select>
+  
+  
+          </div>
         </div>
-        <div class="col-lg-6">
-          <label for="" class="form-label letra__b__bold">Haz match con un guía</label>
-
-          <ng-select [items]="modemigrations" bindLabel="description" bindValue="id" [multiple]="true"
-            groupBy="selectedAllGroup" [searchWhileComposing]="true" [selectableGroup]="true"
-            placeholder="Modo de migracion" (change)="onMaterialGroupChangeModo($event)" #modesSelect>
-
-            <ng-template ng-label-tmp let-item="item">
-              {{ item.description }}
-            </ng-template>
-            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
-              <input id="option-{{ item.value }}" type="checkbox" [ngModel]="item$.selected" />
-
-
-              <label for="option-{{ item.value }}">{{ item.description }}</label>
-            </ng-template>
-          </ng-select>
-
-
+        <div class="row mt-4">
+          <div class="d-flex justify-content-center">
+  
+            <ng-container *ngIf="!mostrarLoad">
+              <div class="cardskelet loading  me-4" *ngFor="let score of [1, 2, 3,]">
+                <div class="imagecard">
+  
+                </div>
+                <div class="contentskel">
+                  <h4 class="skelh4"></h4>
+                  <div class="descriptionskel">
+  
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+  
+  
+          </div>
+  
+  
+          <div class="d-flex align-content-center flex-wrap container__historias__reales__body">
+  
+  
+  
+            <div class="card card-container mb-3" *ngFor="let historia of resp_historias">
+              <div class="image-content">
+  
+                <div class="card-image" style="cursor: pointer;">
+                  <!-- <img src="assets/images/imagen_prueba.png" class="card-img" alt="fondo"> -->
+                  <img [routerLink]="['../detalle']" [queryParams]="{ historia_id: historia.id }" [src]="historia.urlImagenStory || 'assets/images/imagen_prueba.png'" class="card-img" alt="fondo">
+                </div>
+                <div class="card-image2" style="cursor: pointer;">
+  
+                  <img [routerLink]="['../detalle']" [queryParams]="{ historia_id: historia.id }" [src]="historia.urlImagen || 'assets/images/perfiles/profile1.jpg'" class="card-img" alt="perfil">
+  
+                </div>
+                <div class="card-image_flag">
+                  <img [src]="'assets/images/flags/tiny/'+ historia.flag_img" class="card-img" alt="pais">
+                </div>
+              </div>
+  
+              <div class="card-content">
+  
+                <a class="description" style="cursor: pointer;"   [routerLink]="['../detalle']" [queryParams]="{ historia_id: historia.id }"  >{{historia.title}}</a>
+  
+                <span class="autor mb-1">{{historia.name.split(' ')[0]}} {{historia.lastname.substring(0, 1)}}.</span>
+  
+                <span class="etiqueta mb-1">{{historia.city_name}}, {{historia.country_name}}</span>
+                <div class="container_etiquetas mb-1">
+                  <div class="container__body__etiqueta">
+                    {{historia.name_way_migration}}
+                  </div>
+  
+  
+                </div>
+                <div class="footer-content">
+  
+                  <a [routerLink]="['../detalle']" [queryParams]="{ historia_id: historia.id }"
+                    class="btn btn-light mt-2">Ver Más <i class="fa-solid fa-arrow-right"></i></a>
+  
+                </div>
+  
+              </div>
+  
+            </div>
+  
+          </div>
+  
+  
         </div>
-      </div>
-      <div class="row mt-4">
         <div class="d-flex justify-content-center">
-
-          <ng-container *ngIf="!mostrarLoad">
-            <div class="cardskelet loading  me-4" *ngFor="let score of [1, 2, 3,]">
-              <div class="imagecard">
-
-              </div>
-              <div class="contentskel">
-                <h4 class="skelh4"></h4>
-                <div class="descriptionskel">
-
-                </div>
-              </div>
-            </div>
-          </ng-container>
-
-
+          <ngb-pagination [(page)]="nropagina" [pageSize]="tamanopagina" [collectionSize]="totalelementos" [maxSize]="1"
+            [boundaryLinks]="true" (pageChange)="onPageChange(nropagina)">
+          </ngb-pagination>
         </div>
-
-
-        <div class="d-flex align-content-center flex-wrap container__historias__reales__body">
-
-
-
-          <div class="card card-container mb-3" *ngFor="let historia of resp_historias">
-            <div class="image-content">
-
-              <div class="card-image" style="cursor: pointer;">
-                <!-- <img src="assets/images/imagen_prueba.png" class="card-img" alt="fondo"> -->
-                <img [routerLink]="['../detalle']" [queryParams]="{ historia_id: historia.id }" [src]="historia.urlImagenStory || 'assets/images/imagen_prueba.png'" class="card-img" alt="fondo">
-              </div>
-              <div class="card-image2" style="cursor: pointer;">
-
-                <img [routerLink]="['../detalle']" [queryParams]="{ historia_id: historia.id }" [src]="historia.urlImagen || 'assets/images/perfiles/profile1.jpg'" class="card-img" alt="perfil">
-
-              </div>
-              <div class="card-image_flag">
-                <img [src]="'assets/images/flags/tiny/'+ historia.flag_img" class="card-img" alt="pais">
-              </div>
+  
+      </div>
+  
+      <div class="card">
+        <div class="row card-content align-items-center">
+  
+          <div class="row mb-3">
+            <div class="col-lg-12 text-center">
+              <span class="container__historias__body__title letra__b__bold">Historias</span>
+              <span class="container__historias__body__title" style="color: #5a2395;"> como la tuya</span>
             </div>
-
-            <div class="card-content">
-
-              <a class="description" style="cursor: pointer;"   [routerLink]="['../detalle']" [queryParams]="{ historia_id: historia.id }"  >{{historia.title}}</a>
-
-              <span class="autor mb-1">{{historia.name.split(' ')[0]}} {{historia.lastname.substring(0, 1)}}.</span>
-
-              <span class="etiqueta mb-1">{{historia.city_name}}, {{historia.country_name}}</span>
-              <div class="container_etiquetas mb-1">
-                <div class="container__body__etiqueta">
-                  {{historia.name_way_migration}}
-                </div>
-
-
-              </div>
-              <div class="footer-content">
-
-                <a [routerLink]="['../detalle']" [queryParams]="{ historia_id: historia.id }"
-                  class="btn btn-light mt-2">Ver Más <i class="fa-solid fa-arrow-right"></i></a>
-
-              </div>
-
+            <div class="col-lg-12 text-center" style="font-size: 13pt;">
+              <span>de migrantes reales dispuestos a responder</span>
             </div>
-
           </div>
-
+  
+          <div class="row d-flex align-content-center flex-wrap justify-content-between mb-5">
+  
+            <div class="container__historias__items ">
+              <div class="container__historias__body__body__item__imagen">
+                <picture>
+  
+                  <img src="assets/images/icons/People-mobile.png">
+                </picture>
+              </div>
+              <div class="container__historias__body__body__item__body">
+                <div class="container__historias__body__body__item__title">
+                  3456
+                </div>
+                <div class="container__historias__body__body__item__text">
+                  Migrantes que han llegado con éxito
+                </div>
+              </div>
+  
+            </div>
+            <div class="container__historias__items">
+              <div class="container__historias__body__body__item__imagen">
+                <picture>
+  
+                  <img src="assets/images/icons/People-mobile.png">
+                </picture>
+              </div>
+              <div class="container__historias__body__body__item__body">
+                <div class="container__historias__body__body__item__title">
+                  3456
+                </div>
+                <div class="container__historias__body__body__item__text">
+                  Migrantes que han llegado con éxito
+                </div>
+              </div>
+  
+            </div>
+            <div class="container__historias__items">
+              <div class="container__historias__body__body__item__imagen">
+                <picture>
+  
+                  <img src="assets/images/icons/Mochila-mobile.png">
+                </picture>
+              </div>
+              <div class="container__historias__body__body__item__body">
+                <div class="container__historias__body__body__item__title">
+                  1684
+                </div>
+                <div class="container__historias__body__body__item__text">
+                  Menores que se encuentran estudiando
+                </div>
+              </div>
+  
+            </div>
+            <div class="container__historias__items">
+              <div class="container__historias__body__body__item__imagen">
+                <picture>
+  
+                  <img src="assets/images/icons/Call--mobile.png">
+                </picture>
+              </div>
+              <div class="container__historias__body__body__item__body">
+                <div class="container__historias__body__body__item__title">
+                  27
+                </div>
+                <div class="container__historias__body__body__item__text">
+                  Ciudades en 4 países los alojan
+                </div>
+              </div>
+  
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-lg-12 text-center">
+              <span class="container__historias__body__title letra__b__bold">Preguntas</span>
+              <span class="container__historias__body__title" style="color: #5a2395;"> frecuentes</span>
+            </div>
+            <div class="col-lg-12">
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button " type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <strong>¿Cuánto dura una sesión con un residente?</strong>
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      This is the first item's accordion body.It is shown by default, until the collapse plugin adds the
+                      appropriate classes that we use to style each element. These classes control the overall appearance,
+                      as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
+                      overriding our default variables. It's also worth noting that just about any HTML can go within the
+                      <code>.accordion-body</code>, though the transition does limit overflow.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <strong>¿Let iusto odio dignissim qui blandit praesent?</strong>
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      This is the second item's accordion body. It is hidden by default, until the collapse plugin adds
+                      the
+                      appropriate classes that we use to style each element. These classes control the overall appearance,
+                      as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
+                      overriding our default variables. It's also worth noting that just about any HTML can go within the
+                      <code>.accordion-body</code>, though the transition does limit overflow.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      <strong>¿Rerat volutpat. Ut wisi enim ad minim veniam?</strong>
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      This is the third item's accordion body. It is hidden by default, until the collapse plugin adds the
+                      appropriate classes that we use to style each element. These classes control the overall appearance,
+                      as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
+                      overriding our default variables. It's also worth noting that just about any HTML can go within the
+                      <code>.accordion-body</code>, though the transition does limit overflow.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapeFour" aria-expanded="false" aria-controls="collapeFour">
+                      <strong> ¿Vel illum dolore eu feugiat nulla facilisis at?</strong>
+                    </button>
+                  </h2>
+                  <div id="collapeFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      This is the third item's accordion body. It is hidden by default, until the collapse plugin adds the
+                      appropriate classes that we use to style each element. These classes control the overall appearance,
+                      as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
+                      overriding our default variables. It's also worth noting that just about any HTML can go within the
+                      <code>.accordion-body</code>, though the transition does limit overflow.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+  
+  
         </div>
-
-
+  
       </div>
-      <div class="d-flex justify-content-center">
-        <ngb-pagination [(page)]="nropagina" [pageSize]="tamanopagina" [collectionSize]="totalelementos" [maxSize]="1"
-          [boundaryLinks]="true" (pageChange)="onPageChange(nropagina)">
-        </ngb-pagination>
-      </div>
-
+  
     </div>
+</div>
 
-    <div class="card">
-      <div class="row card-content align-items-center">
-
-        <div class="row mb-3">
-          <div class="col-lg-12 text-center">
-            <span class="container__historias__body__title letra__b__bold">Historias</span>
-            <span class="container__historias__body__title" style="color: #5a2395;"> como la tuya</span>
-          </div>
-          <div class="col-lg-12 text-center" style="font-size: 13pt;">
-            <span>de migrantes reales dispuestos a responder</span>
-          </div>
-        </div>
-
-        <div class="row d-flex align-content-center flex-wrap justify-content-between mb-5">
-
-          <div class="container__historias__items ">
-            <div class="container__historias__body__body__item__imagen">
-              <picture>
-
-                <img src="assets/images/icons/People-mobile.png">
-              </picture>
-            </div>
-            <div class="container__historias__body__body__item__body">
-              <div class="container__historias__body__body__item__title">
-                3456
-              </div>
-              <div class="container__historias__body__body__item__text">
-                Migrantes que han llegado con éxito
-              </div>
-            </div>
-
-          </div>
-          <div class="container__historias__items">
-            <div class="container__historias__body__body__item__imagen">
-              <picture>
-
-                <img src="assets/images/icons/People-mobile.png">
-              </picture>
-            </div>
-            <div class="container__historias__body__body__item__body">
-              <div class="container__historias__body__body__item__title">
-                3456
-              </div>
-              <div class="container__historias__body__body__item__text">
-                Migrantes que han llegado con éxito
-              </div>
-            </div>
-
-          </div>
-          <div class="container__historias__items">
-            <div class="container__historias__body__body__item__imagen">
-              <picture>
-
-                <img src="assets/images/icons/Mochila-mobile.png">
-              </picture>
-            </div>
-            <div class="container__historias__body__body__item__body">
-              <div class="container__historias__body__body__item__title">
-                1684
-              </div>
-              <div class="container__historias__body__body__item__text">
-                Menores que se encuentran estudiando
-              </div>
-            </div>
-
-          </div>
-          <div class="container__historias__items">
-            <div class="container__historias__body__body__item__imagen">
-              <picture>
-
-                <img src="assets/images/icons/Call--mobile.png">
-              </picture>
-            </div>
-            <div class="container__historias__body__body__item__body">
-              <div class="container__historias__body__body__item__title">
-                27
-              </div>
-              <div class="container__historias__body__body__item__text">
-                Ciudades en 4 países los alojan
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <span class="container__historias__body__title letra__b__bold">Preguntas</span>
-            <span class="container__historias__body__title" style="color: #5a2395;"> frecuentes</span>
-          </div>
-          <div class="col-lg-12">
-            <div class="accordion" id="accordionExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button " type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <strong>¿Cuánto dura una sesión con un residente?</strong>
-                  </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    This is the first item's accordion body.It is shown by default, until the collapse plugin adds the
-                    appropriate classes that we use to style each element. These classes control the overall appearance,
-                    as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
-                    overriding our default variables. It's also worth noting that just about any HTML can go within the
-                    <code>.accordion-body</code>, though the transition does limit overflow.
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <strong>¿Let iusto odio dignissim qui blandit praesent?</strong>
-                  </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    This is the second item's accordion body. It is hidden by default, until the collapse plugin adds
-                    the
-                    appropriate classes that we use to style each element. These classes control the overall appearance,
-                    as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
-                    overriding our default variables. It's also worth noting that just about any HTML can go within the
-                    <code>.accordion-body</code>, though the transition does limit overflow.
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <strong>¿Rerat volutpat. Ut wisi enim ad minim veniam?</strong>
-                  </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    This is the third item's accordion body. It is hidden by default, until the collapse plugin adds the
-                    appropriate classes that we use to style each element. These classes control the overall appearance,
-                    as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
-                    overriding our default variables. It's also worth noting that just about any HTML can go within the
-                    <code>.accordion-body</code>, though the transition does limit overflow.
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapeFour" aria-expanded="false" aria-controls="collapeFour">
-                    <strong> ¿Vel illum dolore eu feugiat nulla facilisis at?</strong>
-                  </button>
-                </h2>
-                <div id="collapeFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    This is the third item's accordion body. It is hidden by default, until the collapse plugin adds the
-                    appropriate classes that we use to style each element. These classes control the overall appearance,
-                    as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
-                    overriding our default variables. It's also worth noting that just about any HTML can go within the
-                    <code>.accordion-body</code>, though the transition does limit overflow.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-      </div>
-
-    </div>
-
-  </div>
 
 
