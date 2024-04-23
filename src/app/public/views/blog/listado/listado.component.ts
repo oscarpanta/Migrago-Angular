@@ -32,13 +32,17 @@ export class ListadoComponent implements OnInit{
 
   ngOnInit(): void {
     // this.listaHistorias();
-    this.listaBlogs();
+
+
+
+      this.listaBlogs();
+
 
   }
 
 
   listaBlogs() {
-
+    this.mostrarLoad = false
     // if (this.selectedEstado == "")
     //   this.selectedEstado = null
 
@@ -75,6 +79,7 @@ export class ListadoComponent implements OnInit{
 
 
         });
+        this.mostrarLoad = true
       }
 
     );
