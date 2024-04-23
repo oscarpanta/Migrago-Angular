@@ -578,7 +578,8 @@ export class PerfilComponent implements OnInit {
                 console.log(archivo)
                 imagen.append('file', archivo)
               });
-              imagen.append('request[id_user]', this.usuario.id.toString());
+              // imagen.append('request[id_user]', this.usuario.id.toString());
+              imagen.append('id_user', this.usuario.id.toString());
 
               console.log(imagen)
               this.imagenservice.enviarImage(imagen).subscribe(
