@@ -1,251 +1,254 @@
-<div class="container-fluid d-grid gap-3 container__70_gris_guia">
+<div class="apartado__combinado">
+  <div class="container-fluid d-grid gap-3 container__70 container__temas">
 
-  <div class="row mt-4">
-    <p class="p-bold-500-20" style="margin-bottom: auto; font-weight: 300;">¡Bienvenido</p>
-      <p >
-        <label class="p-bold-500-20" style="
-        margin-right: 1rem; font-weight: 300;">a</label>
-        <label class="p-bold-500-20" > MigraGo!</label>
-      </p>
-    <p class="p-normal-300">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-      tincidunt ut laoreet dolore
-      magna aliquam erat volutpat. Ut wisi enim ad minim veniam,</p>
-  </div>
-  <div class="row">
-    <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="registroGuia()" class="row">
-      <div class="form-group col-lg-6 mb-3">
-        <p class="p-bold-300-10-black">Nombres*
-          <label class="letra_gris">(público)</label>
+    <div class="row mt-4">
+      <p class="p-bold-500-20" style="margin-bottom: auto; font-weight: 300;">¡Bienvenido</p>
+        <p >
+          <label class="p-bold-500-20" style="
+          margin-right: 1rem; font-weight: 300;">a</label>
+          <label class="p-bold-500-20" > MigraGo!</label>
         </p>
-        <input type="text" formControlName="nombre" class="form-control form-control-sm" value="" placeholder="Nombres">
-
-      </div>
-      <div class="form-group col-lg-6 mb-3">
-        <p class="p-bold-300-10-black">Nacionalidad*</p>
-
-        <!-- <select formControlName="nacionalidad" appNotZero (change)="onNationalitySelect($event)"
-          class="form-select  form-select-normal" [(ngModel)]="selectedNationalityId"
+      <p class="p-normal-300">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+        tincidunt ut laoreet dolore
+        magna aliquam erat volutpat. Ut wisi enim ad minim veniam,</p>
+    </div>
+    <div class="row">
+      <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="registroGuia()" class="row">
+        <div class="form-group col-lg-6 mb-3">
+          <p class="p-bold-300-10-black">Nombres*
+            <label class="letra_gris">(público)</label>
+          </p>
+          <input type="text" formControlName="nombre" class="form-control form-control-sm" value="" placeholder="Nombres">
+  
+        </div>
+        <div class="form-group col-lg-6 mb-3">
+          <p class="p-bold-300-10-black">Nacionalidad*</p>
+  
+          <!-- <select formControlName="nacionalidad" appNotZero (change)="onNationalitySelect($event)"
+            class="form-select  form-select-normal" [(ngModel)]="selectedNationalityId"
+            aria-label="Default select example">
+            <option value="0" selected disabled>Nacionalidad del guía</option>
+            <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
+              nacionalidad.nationality_name }}</option>
+          </select> -->
+          <ng-select formControlName="nacionalidad" appNotZero
+          (ngModelChange)="onNationalitySelect($event)" [(ngModel)]="selectedNationalityId"   placeholder="Nacionalidad del guia"
           aria-label="Default select example">
-          <option value="0" selected disabled>Nacionalidad del guía</option>
-          <option *ngFor="let nacionalidad of nationalities" [value]="nacionalidad.id">{{
-            nacionalidad.nationality_name }}</option>
-        </select> -->
-        <ng-select formControlName="nacionalidad" appNotZero
-        (ngModelChange)="onNationalitySelect($event)" [(ngModel)]="selectedNationalityId"   placeholder="Nacionalidad del guia"
-        aria-label="Default select example">
-
-          <ng-option *ngFor="let nacionalidad of nationalities"  [value]="nacionalidad.id">{{nacionalidad.nationality_name }}</ng-option>
-       </ng-select>
-      </div>
-      <div class="form-group col-lg-6 mb-3">
-        <p class="p-bold-300-10-black">Apellidos*
-          <label class="letra_gris">(publica la primera inicial)</label>
-        </p>
-        <input type="text" formControlName="apellidos" class="form-control form-control-sm" value=""
-          placeholder="Apellidos">
-
-      </div>
-      <!-- <div class="form-group col-lg-6 mb-3">
-        <p class="p-bold-300-10-black">Pais de Residencia Actual*
-          <label class="letra_gris">(público)</label>
-        </p>
-        <select formControlName="countrySelect" appNotZero
-          (change)="onCountrySelect($event)" [(ngModel)]="selectedCountryId" class="form-select form-select-normal"
+  
+            <ng-option *ngFor="let nacionalidad of nationalities"  [value]="nacionalidad.id">{{nacionalidad.nationality_name }}</ng-option>
+         </ng-select>
+        </div>
+        <div class="form-group col-lg-6 mb-3">
+          <p class="p-bold-300-10-black">Apellidos*
+            <label class="letra_gris">(publica la primera inicial)</label>
+          </p>
+          <input type="text" formControlName="apellidos" class="form-control form-control-sm" value=""
+            placeholder="Apellidos">
+  
+        </div>
+        <!-- <div class="form-group col-lg-6 mb-3">
+          <p class="p-bold-300-10-black">Pais de Residencia Actual*
+            <label class="letra_gris">(público)</label>
+          </p>
+          <select formControlName="countrySelect" appNotZero
+            (change)="onCountrySelect($event)" [(ngModel)]="selectedCountryId" class="form-select form-select-normal"
+            aria-label="Default select example">
+            <option value="0" selected disabled> País</option>
+            <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}
+            </option>
+          </select>
+  
+        </div> -->
+        <div class="form-group col-lg-6 mb-3">
+          <p class="p-bold-300-10-black">Pais de Residencia Actual*
+            <label class="letra_gris">(público)</label>
+          </p>
+          <ng-select formControlName="countrySelect"
+          (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"   placeholder="Pais"
           aria-label="Default select example">
-          <option value="0" selected disabled> País</option>
-          <option *ngFor="let country of countries" [value]="country.id">{{ country.country_name }}
-          </option>
-        </select>
-
-      </div> -->
-      <div class="form-group col-lg-6 mb-3">
-        <p class="p-bold-300-10-black">Pais de Residencia Actual*
-          <label class="letra_gris">(público)</label>
-        </p>
-        <ng-select formControlName="countrySelect"
-        (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"   placeholder="Pais"
-        aria-label="Default select example">
-        <!-- <ng-option value="0" disabled>Pais</ng-option> -->
-          <ng-option *ngFor="let country of countries"  [value]="country.id">{{country.country_name}}</ng-option>
-       </ng-select>
-      </div>
-
-      <div class="form-group col-lg-6 mb-3">
-
-        <p class="p-bold-300-10-black">Género*</p>
-        <select class="form-select form-select-normal" aria-label="Default select example"
-          formControlName="genero" appNotZero>
-          <option selected disabled value="">Selecciona el genero</option>
-          <option value="M">Masculino</option>
-          <option value="F">Femenino</option>
-
-        </select>
-      </div>
-      <!-- <div class="form-group col-lg-6 mb-3">
-        <p class="p-bold-300-10-black">Ciudad de residencia actual*
-          <label class="letra_gris">(público)</label>
-        </p>
-        <select name="citySelect" formControlName="citySelect" (change)="onCitySelect($event)" appNotZero
-          class="form-select form-select-normal" [(ngModel)]="selectedCityId" aria-label="Default select example">
-          <option value="0" disabled>Selecciona una ciudad</option>
-          <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
-        </select>
-      </div> -->
-      <div class="form-group col-lg-6 mb-3">
-        <p class="p-bold-300-10-black">Ciudad de residencia actual*
-          <label class="letra_gris">(público)</label>
-        </p>
-        <ng-select formControlName="citySelect"
-        name="citySelect"  (ngModelChange)="onCitySelect($event)"  placeholder="Selecciona una ciudad"
-         [(ngModel)]="selectedCityId" aria-label="Default select example">
-
-          <ng-option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</ng-option>
-       </ng-select>
-      </div>
-
-      <div class="form-group col-lg-6 mb-3">
-
-        <p class="p-bold-300-10-black">Número de WhatsApp*</p>
-        <div class="d-flex">
-          <div ngbDropdown class="image-dropdown" >
-            <a type="button" class="select-paises btn " id="dropdownBasic1" ngbDropdownToggle disabled>
-              <img [src]="selectedOption?.image" alt="{{ selectedOption?.text }}" class="option-image">
-
-            </a>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <a type="button" ngbDropdownItem *ngFor="let option of options" (click)="onOptionSelect(option)" disabled>
-                <img [src]="option.image" alt="{{ option.text }}" class="option-image">
-                {{ option.text }}
+          <!-- <ng-option value="0" disabled>Pais</ng-option> -->
+            <ng-option *ngFor="let country of countries"  [value]="country.id">{{country.country_name}}</ng-option>
+         </ng-select>
+        </div>
+  
+        <div class="form-group col-lg-6 mb-3">
+  
+          <p class="p-bold-300-10-black">Género*</p>
+          <select class="form-select form-select-normal" aria-label="Default select example"
+            formControlName="genero" appNotZero>
+            <option selected disabled value="">Selecciona el genero</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+  
+          </select>
+        </div>
+        <!-- <div class="form-group col-lg-6 mb-3">
+          <p class="p-bold-300-10-black">Ciudad de residencia actual*
+            <label class="letra_gris">(público)</label>
+          </p>
+          <select name="citySelect" formControlName="citySelect" (change)="onCitySelect($event)" appNotZero
+            class="form-select form-select-normal" [(ngModel)]="selectedCityId" aria-label="Default select example">
+            <option value="0" disabled>Selecciona una ciudad</option>
+            <option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</option>
+          </select>
+        </div> -->
+        <div class="form-group col-lg-6 mb-3">
+          <p class="p-bold-300-10-black">Ciudad de residencia actual*
+            <label class="letra_gris">(público)</label>
+          </p>
+          <ng-select formControlName="citySelect"
+          name="citySelect"  (ngModelChange)="onCitySelect($event)"  placeholder="Selecciona una ciudad"
+           [(ngModel)]="selectedCityId" aria-label="Default select example">
+  
+            <ng-option *ngFor="let city of cities" [value]="city.id">{{ city.city_name }}</ng-option>
+         </ng-select>
+        </div>
+  
+        <div class="form-group col-lg-6 mb-3">
+  
+          <p class="p-bold-300-10-black">Número de WhatsApp*</p>
+          <div class="d-flex">
+            <div ngbDropdown class="image-dropdown" >
+              <a type="button" class="select-paises btn " id="dropdownBasic1" ngbDropdownToggle disabled>
+                <img [src]="selectedOption?.image" alt="{{ selectedOption?.text }}" class="option-image">
+  
               </a>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <a type="button" ngbDropdownItem *ngFor="let option of options" (click)="onOptionSelect(option)" disabled>
+                  <img [src]="option.image" alt="{{ option.text }}" class="option-image">
+                  {{ option.text }}
+                </a>
+              </div>
+            </div>
+  
+            <input type="number" formControlName="numero" class="form-control form-control-sm"
+              placeholder="Ingresa tu número" style="width: 100%;margin-left: 10px;">
+  
+          </div>
+  
+  
+  
+  
+        </div>
+        <div class="form-group col-lg-6 mb-3">
+  
+          <p class="p-bold-300-10-black">¿Cuando llegastes al país?*
+            <label class="letra_gris">(público)</label>
+          </p>
+          <input type="date" name="" formControlName="fecha" (change)="onFecha($event)"
+            class="form-control form-control-sm" value="" placeholder="">
+  
+        </div>
+        <div class="form-group col-lg-6 mb-3">
+          <p class="p-bold-300-10-black">Correo electrónico*</p>
+          <input type="text" name="" formControlName="correo" class="form-control form-control-sm" value=""
+            placeholder="Correo electronico">
+        </div>
+        <div class="form-group col-lg-6 mb-3">
+          <p class="p-bold-300-10-black">Ruta de ingreso al país*
+            <label class="letra_gris">(público)</label>
+          </p>
+          <select formControlName="RutaMigracion" (change)="onRutaMigrationSelect($event)" appNotZero
+            class="form-select form-select-normal" [(ngModel)]="selectedRutaMigrationId" aria-label="Default select example">
+            <option value="0" selected disabled>Ruta Migracion</option>
+            <option *ngFor="let ruta of rutasmigracion" [value]="ruta.id">{{
+              ruta.name_way_migration }}</option>
+          </select>
+        </div>
+        <!-- <div class="form-group col-lg-6 mb-3">
+          <p class="p-bold-300-10-black">Modo Migracion*</p>
+          <select  formControlName="ModoMigracion" (change)="onWayMigrationSelect($event)" class="form-select form-select-normal"  [(ngModel)]="selectedModoMigrationId"
+            aria-label="Default select example">
+            <option value="0" selected>Modo Migracion</option>
+            <option *ngFor="let migracion of modemigrations" [value]="migracion.id">{{
+              migracion.description }}</option>
+          </select>
+        </div> -->
+  
+        <div class="form-group col-lg-6 mb-3">
+  
+          <p class="p-bold-300-10-black">Fecha de nacimiento*</p>
+          <input type="date" name="" formControlName="fechaNac" (change)="onFechaNac($event)"
+          class="form-control form-control-sm" value="" placeholder="">
+  
+        </div>
+        <!-- <div class="form-group col-lg-6 mb-3">
+  
+          <p class="p-bold-300-10-black">¿Llegó con alguna mascota?* (público)</p>
+          <div class="d-flex justify-content-start mb-3">
+            <div class="form-check form-perfil">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+              <label class="form-check-label" for="flexRadioDefault1">
+                Si
+              </label>
+            </div>
+            <div class="form-check form-perfil">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+              <label class="form-check-label" for="flexRadioDefault2">
+                No
+              </label>
             </div>
           </div>
-
-          <input type="number" formControlName="numero" class="form-control form-control-sm"
-            placeholder="Ingresa tu número" style="width: 100%;margin-left: 10px;">
-
+        </div> -->
+  
+        <!-- <div class="form-group col-lg-12 mb-3 ">
+  
+            <p class="p-bold-300-10-black mb-1">Titulo*
+              <label class="letra_gris">(Escribe hasta 70 caracteres)</label>
+            </p>
+  
+            <input type="text" id="" formControlName="titulo" class="form-control form-control-sm">
+  
+  
+  
+  
+        </div> -->
+        <div class="form-group col-lg-6 mb-3">
+          <p>Llegó con mascotas</p>
+          <select formControlName="llegadamascota" class="form-select form-select-sm form-select-normal">
+            <option selected value="">Seleccione</option>
+  
+            <option value="0">No</option>
+            <option value="1">Si</option>
+  
+          </select>
         </div>
-
-
-
-
-      </div>
-      <div class="form-group col-lg-6 mb-3">
-
-        <p class="p-bold-300-10-black">¿Cuando llegastes al país?*
-          <label class="letra_gris">(público)</label>
-        </p>
-        <input type="date" name="" formControlName="fecha" (change)="onFecha($event)"
-          class="form-control form-control-sm" value="" placeholder="">
-
-      </div>
-      <div class="form-group col-lg-6 mb-3">
-        <p class="p-bold-300-10-black">Correo electrónico*</p>
-        <input type="text" name="" formControlName="correo" class="form-control form-control-sm" value=""
-          placeholder="Correo electronico">
-      </div>
-      <div class="form-group col-lg-6 mb-3">
-        <p class="p-bold-300-10-black">Ruta de ingreso al país*
-          <label class="letra_gris">(público)</label>
-        </p>
-        <select formControlName="RutaMigracion" (change)="onRutaMigrationSelect($event)" appNotZero
-          class="form-select form-select-normal" [(ngModel)]="selectedRutaMigrationId" aria-label="Default select example">
-          <option value="0" selected disabled>Ruta Migracion</option>
-          <option *ngFor="let ruta of rutasmigracion" [value]="ruta.id">{{
-            ruta.name_way_migration }}</option>
-        </select>
-      </div>
-      <!-- <div class="form-group col-lg-6 mb-3">
-        <p class="p-bold-300-10-black">Modo Migracion*</p>
-        <select  formControlName="ModoMigracion" (change)="onWayMigrationSelect($event)" class="form-select form-select-normal"  [(ngModel)]="selectedModoMigrationId"
-          aria-label="Default select example">
-          <option value="0" selected>Modo Migracion</option>
-          <option *ngFor="let migracion of modemigrations" [value]="migracion.id">{{
-            migracion.description }}</option>
-        </select>
-      </div> -->
-
-      <div class="form-group col-lg-6 mb-3">
-
-        <p class="p-bold-300-10-black">Fecha de nacimiento*</p>
-        <input type="date" name="" formControlName="fechaNac" (change)="onFechaNac($event)"
-        class="form-control form-control-sm" value="" placeholder="">
-
-      </div>
-      <!-- <div class="form-group col-lg-6 mb-3">
-
-        <p class="p-bold-300-10-black">¿Llegó con alguna mascota?* (público)</p>
-        <div class="d-flex justify-content-start mb-3">
-          <div class="form-check form-perfil">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
-              Si
-            </label>
-          </div>
-          <div class="form-check form-perfil">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
-              No
-            </label>
-          </div>
-        </div>
-      </div> -->
-
-      <!-- <div class="form-group col-lg-12 mb-3 ">
-
-          <p class="p-bold-300-10-black mb-1">Titulo*
-            <label class="letra_gris">(Escribe hasta 70 caracteres)</label>
+  
+  
+        <div class="form-group col-lg-12 mb-3">
+          <p class="p-bold-300-10-black col-lg-6">
+            <label class="letra_gris"  style="font-size: 11pt;">Cuéntanos brevemente tu historia de migración y cómo ésta puede ayudar a otros migrantes*</label>
           </p>
-
-          <input type="text" id="" formControlName="titulo" class="form-control form-control-sm">
-
-
-
-
-      </div> -->
-      <div class="form-group col-lg-6 mb-3">
-        <p>Llegó con mascotas</p>
-        <select formControlName="llegadamascota" class="form-select form-select-sm form-select-normal">
-          <option selected value="">Seleccione</option>
-
-          <option value="0">No</option>
-          <option value="1">Si</option>
-
-        </select>
-      </div>
-
-
-      <div class="form-group col-lg-12 mb-3">
-        <p class="p-bold-300-10-black col-lg-6">
-          <label class="letra_gris"  style="font-size: 11pt;">Cuéntanos brevemente tu historia de migración y cómo ésta puede ayudar a otros migrantes*</label>
-        </p>
-        <textarea placeholder="Cuéntanos" formControlName="texto_historia" class="form-control form-control-sm" name="" id="" cols="30" rows="10"></textarea>
-      </div>
-      <div class="form-group col-lg-12 mb-3">
-        <div class="form-check form-perfil">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-          <label class="form-check-label" for="flexCheckDefault">
-            Acepto términos y condiciones
-          </label>
+          <textarea placeholder="Cuéntanos" formControlName="texto_historia" class="form-control form-control-sm" name="" id="" cols="30" rows="10"></textarea>
         </div>
-      </div>
-      <div class="col-lg-6 mb-3"  >
-        <!-- <div [ngbTooltip]="miFormulario.invalid ? 'Llene todos los campos porfavor' : ''"> -->
-          <div [ngbTooltip]="miFormulario.invalid ? getTooltipMessage() : ''">
-          <button  type="submit" class="btn btn-primary" [disabled]="miFormulario.invalid || formularioEnviado">{{ textoBoton }}</button>
+        <div class="form-group col-lg-12 mb-3">
+          <div class="form-check form-perfil">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Acepto términos y condiciones
+            </label>
+          </div>
         </div>
-
-      </div>
-      <div class="col-lg-12 mb-3">
-        <p>* Campos obligatorios</p>
-      </div>
-
-
-    </form>
-
-
-
+        <div class="col-lg-6 mb-3"  >
+          <!-- <div [ngbTooltip]="miFormulario.invalid ? 'Llene todos los campos porfavor' : ''"> -->
+            <div [ngbTooltip]="miFormulario.invalid ? getTooltipMessage() : ''">
+            <button  type="submit" class="btn btn-primary" [disabled]="miFormulario.invalid || formularioEnviado">{{ textoBoton }}</button>
+          </div>
+  
+        </div>
+        <div class="col-lg-12 mb-3">
+          <p>* Campos obligatorios</p>
+        </div>
+  
+  
+      </form>
+  
+  
+  
+    </div>
+  
+  
+  
   </div>
-
-
-
 </div>
+

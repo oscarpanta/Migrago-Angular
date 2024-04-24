@@ -998,16 +998,44 @@ margin-left: 0.3rem;
 }
 
 .form_registro{
-  background-color: #4680ff;
+  background-color: #f4f4f4;
 }
 .form_registro .form_registro_estilo{
   border-radius: 20px;
   background-color: white;
+  box-shadow: 2px 5px 5px #717171;
 }
 .form_registro ul{
   padding: 0 14rem;
 }
-
+.container__temas__body{
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 5em;
+}
+.container__temas__body__i{
+  width: 45%;
+}
+.container__temas__body__item{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.container__temas__body__item__img{
+  max-width: 50%;
+}
+.container__temas__body__item__text{
+  max-width: 40%;
+  margin-left: 2em;
+}
+.container__temas__body__item__img img{
+  width: 30px;
+  display: block;
+}
 /* responsive */
 @media (max-width: 1200px) {
   .login100-form .padding-form-princ{

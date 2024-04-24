@@ -52,12 +52,13 @@ body{
   max-width: 1200px;
   /* max-width: 60%; */
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 5rem 0;
+}
+.container__login{
+  max-width: 1750px;
+  margin:  0 auto;
 }
 .container__70{
-  /* max-width: 70%;
-  margin: 0 auto; */
-  /* padding: 0 8em; */
   padding: 2em 0;
   max-width: 1200px;
   /* max-width: 65%; */
@@ -78,18 +79,20 @@ i{
   font-size: 20px;
 }
 .letra__a{
-  color: #1a46f1;
+  color: #00c1ff;
+  font-weight: 600;
 }
 .letra__b{
 color: #5a2395;
+font-weight: bold;
 }
 .letra__a__bold{
   color: #1a46f1;
   font-weight: bold;
 }
 .letra__b__bold{
-color: #5a2395;
-font-weight: bold;
+color: #fff;
+font-weight: 600;
 }
 .btn_ver_mas{
   text-decoration: none;
@@ -98,6 +101,7 @@ font-weight: bold;
   padding: 15px 30px;
   font-size: 14pt;
   color: #333333;
+  box-shadow: 2px 5px 5px #717171
 }
 .btn_ver_informacion{
   text-decoration: none;
@@ -106,6 +110,7 @@ font-weight: bold;
   padding: 15px 30px;
   font-size: 14pt;
   color: #fff;
+  box-shadow: 2px 5px 5px #717171;
 
 }
 .btn_unirme{
@@ -118,6 +123,21 @@ font-weight: bold;
   max-width: 300px;
   display: block;
   text-align: center;
+}
+.btn_ver_temas{
+  width: 300px;
+  display: block;
+  text-decoration: none;
+  background: #5a2395;
+  border-radius: 30px;
+  padding: 15px 30px;
+  font-size: 14pt;
+  color: #fff;
+  box-shadow: 2px 5px 5px #717171;
+
+}
+.temas__button{
+  display: ruby-text;
 }
 .btn_unirme:hover{
   color: #fff;
@@ -193,20 +213,19 @@ color: white;
   display: block !important;
   position: fixed;
   z-index: 9999999;
-  bottom: 100px;
+  bottom: 15px;
   right: 20px;
   cursor: pointer;
 }
 /* seccion 1 */
 .apartado__index{
 
-  background-image: url(/assets/images/imagen_prueba.png);
+  background-image: url(/assets/images/imagen_principal.jpg);
   background-size: cover;
-  background-position: center center;
+  /* background-position: center center; */
   background-repeat: no-repeat;
-  /* background-attachment: fixed; */
-  height: 45rem;
-  /* height: calc(100% - 90%); */
+ 
+  height: 50rem;
 
 }
 
@@ -226,6 +245,7 @@ color: white;
     color: #48259b;
     font-size: xx-large;
    }
+   
    .apartado__index__buscador .ng-select .ng-select-container{
     border-radius: 20px;
    }
@@ -233,9 +253,9 @@ color: white;
     display: none;
    }
 .apartado__index__body{
-  padding: 2.5em 0 1em 0em;
-  font-size: 50pt;
-  width: 55%;
+  padding:3em 0 1em 0em;
+  font-size: 55pt;
+  width: 100%;
 }
 .buscador{
   border-radius: 30px;
@@ -251,7 +271,7 @@ color: white;
 /* section azul */
 .container__azul__content{
   margin: 0 auto;
-  padding: 2em 0;
+  padding: 5em 0;
   font-size: 13pt;
   max-width: 1200px;
 }
@@ -352,7 +372,7 @@ color: white;
 }
 /* seccion historias */
 .container__historias{
-  padding: 5rem 0;
+  padding: 3rem 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -411,12 +431,13 @@ color: white;
 
 /* seccion naranja */
 .container__naranja{
+  /* background: #f98900;# */
   background: #f98900;
   color: #fff;
   /* height: 75rem; */
 }
 .container__historias__reales{
-  padding: 5em 0 0 0;
+  padding: 3em 0;
 }
 
 
@@ -850,14 +871,14 @@ background-color: #1a46f1;
 }
 /* seccion migrantes verificados */
 .container_verificador_main{
-  background: #94e0bc;
+  background: #00e7af;
 
 }
 .container__verificados{
   max-width: 1200px;
   /* display: flex;
   justify-content: space-between; */
-  padding: 2em 0;
+  padding: 5em 0;
   /* width: 100%; */
   margin:  0 auto;
 
@@ -908,8 +929,8 @@ width: 60%; */
   flex-wrap: wrap
 }
 .container__verificados__body__item{
-  max-width: 45%;
-  margin-bottom: 3em;
+  max-width: 50%;
+  margin-bottom: 1em;
   font-family: 'Inter';
 }
 /* seccion reseñas de migrantes */
@@ -923,7 +944,7 @@ width: 60%; */
   margin: 0 auto;
 }
 .container__content{
-  padding: 5em  0 0 0;
+  padding: 3em  0;
 }
 .container__resenias__body{
   width:  100%;
@@ -974,6 +995,7 @@ width: 60%; */
 }
 .container_content_unrime{
   max-width: 100%;
+  padding: 3em 0;
 }
 .container__unirme{
   /* width: 100%; */
@@ -991,6 +1013,7 @@ width: 60%; */
 }
 .container__unirme__head{
  width:  100%;
+ margin-right: 5em;
  /* padding: 0 8em; */
 }
 .container__unirme__head__title{
@@ -1004,7 +1027,7 @@ width: 60%; */
 
 }
 .container__unirme__body{
-  width:100%;
+  width: 30%;
   display: flex;
   justify-content: center;
   /* padding: 0 5em; */
@@ -1134,6 +1157,17 @@ adicionales
   max-width: 100%;
   padding: 0;
   margin: 20px auto 20px auto;
+}
+.linea__temas{
+  /* border-top: 1px solid #333333; */
+  border-top: 1px solid rgb(0 0 0 / 21%);
+    height: 2px;
+  height: 2px;
+  /* max-width: 200px; */
+  max-width: 100%;
+  padding: 0;
+  margin: 1em auto;
+
 }
 .card-main{
   box-shadow:  none;
@@ -2834,6 +2868,12 @@ ul.form-stepper li a .form-stepper-circle {
   .container__azul{
       padding: 1em 1em;
       font-size: 12pt;
+  }
+ .container__temas__body__i{
+  width: 100%;
+ }
+  .container__temas__body__i{
+    max-width: 100%;
   }
   .container__azul__body{
       flex-direction: column;

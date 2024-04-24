@@ -2,75 +2,79 @@
 
 
   <div class="container-fluid ">
-    <div class="row ">
-      <div class="col-md-6 bg-white p-5 padding-form-princ">
-        <div class="row login-logo text-center mb-3 ">
-          <picture>
-            <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                          <source media="(min-width: 550px)" srcset="media.png">  -->
-            <img src="assets/images/icons/Migrago_fondo_transparente.png" class="img-fluid" routerLink="/" style="
-            cursor: pointer;">
-          </picture>
-        </div>
-        <div class="row mb-5">
-          <span class="titulo-login" style="font-size: 27pt;">¡Bienvenido!</span>
-          <!-- <div class="">
-            <a (click)="loginFace()" class="btn  mb-2  btn-facebook"><i class="fa-brands fa-facebook"></i> Continuar con Facebook</a>
-        </div> -->
-          <div id="google-btn" style="
-          text-align: -webkit-center;">
-
+    <div class="container__login">
+      <div class="row ">
+        <!-- <div class="col-md-6 bg-white p-5 padding-form-princ"></div> -->
+        <div class="col-md-4 bg-white py-5">
+          <div class="row login-logo text-center mb-3 ">
+            <picture>
+              <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                            <source media="(min-width: 550px)" srcset="media.png">  -->
+              <img src="assets/images/icons/Migrago_fondo_transparente.png" class="img-fluid" routerLink="/" style="
+              cursor: pointer;">
+            </picture>
           </div>
-
-        </div>
-        <div class="row mb-5">
-          <!-- <form> -->
-            <div class="mb-4 d-grid gap-2 col-8 mx-auto">
-              <div class="form-group">
-                <label for="txtCorreo" class="form-label">Correo electrónico:</label>
-                <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Correo electrónico"
-                  formControlName="username">
-                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+          <div class="row mb-5">
+            <span class="titulo-login" style="font-size: 27pt;">¡Bienvenido!</span>
+            <!-- <div class="">
+              <a (click)="loginFace()" class="btn  mb-2  btn-facebook"><i class="fa-brands fa-facebook"></i> Continuar con Facebook</a>
+          </div> -->
+            <div id="google-btn" style="
+            text-align: -webkit-center;">
+  
+            </div>
+  
+          </div>
+          <div class="row mb-5">
+            <!-- <form> -->
+              <div class="mb-4 d-grid gap-2 col-8 mx-auto">
+                <div class="form-group">
+                  <label for="txtCorreo" class="form-label">Correo electrónico:</label>
+                  <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Correo electrónico"
+                    formControlName="username">
+                  <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
               </div>
-            </div>
-
-            <div class="mb-4 d-grid gap-2 col-8 mx-auto">
-              <div class="form-group">
-
-                Contraseña:
-                <!-- <input type="password" formControlName="password" class="form-control password1" value="clave"
-                  placeholder="Establecer contraseña">
-                <span class="fa  password-icon show-password fa-eye"></span> -->
-                <input type="password" id="inputPassword" formControlName="password" name="password" class="form-control password1"
-                [type]="ocultarpas ? 'password' : 'text'" placeholder="Contraseña" required>
-
-              <span class="fa  password-icon show-password1 " [ngClass]="{'fa-eye': ocultarpas, 'fa-eye-slash': !ocultarpas }"
-                (click)="ocultarpass1()"></span>
-
+  
+              <div class="mb-4 d-grid gap-2 col-8 mx-auto">
+                <div class="form-group">
+  
+                  Contraseña:
+                  <!-- <input type="password" formControlName="password" class="form-control password1" value="clave"
+                    placeholder="Establecer contraseña">
+                  <span class="fa  password-icon show-password fa-eye"></span> -->
+                  <input type="password" id="inputPassword" formControlName="password" name="password" class="form-control password1"
+                  [type]="ocultarpas ? 'password' : 'text'" placeholder="Contraseña" required>
+  
+                <span class="fa  password-icon show-password1 " [ngClass]="{'fa-eye': ocultarpas, 'fa-eye-slash': !ocultarpas }"
+                  (click)="ocultarpass1()"></span>
+  
+                </div>
+  
+  
               </div>
-
-
-            </div>
-            <div class="mb-4 login-link text-center">
-              <a href="">¿Olvidastes tu contraseña?</a>
-            </div>
-            <div class="d-grid gap-2 col-8 mx-auto mb-4">
-              <button type="submit" class="btn btn-primary" [disabled]="miFormulario.invalid">Inicia sesión</button>
-
-                <span class="p-normal-300-10-black text-center">¿No tienes cuenta?
-                  <a routerLink="/auth/registro" class="ms-2 p-normal-300-10 link-dashboard"
-                style="cursor: pointer  ;font-weight: bold;">Registrate en MigraGo</a>
-                </span>
-
-            </div>
-
-          <!-- </form> -->
+              <div class="mb-4 login-link text-center">
+                <a href="">¿Olvidastes tu contraseña?</a>
+              </div>
+              <div class="d-grid gap-2 col-8 mx-auto mb-4">
+                <button type="submit" class="btn btn-primary" [disabled]="miFormulario.invalid">Inicia sesión</button>
+  
+                  <span class="p-normal-300-10-black text-center">¿No tienes cuenta?
+                    <a routerLink="/auth/registro" class="ms-2 p-normal-300-10 link-dashboard"
+                  style="cursor: pointer  ;font-weight: bold;">Registrate en MigraGo</a>
+                  </span>
+  
+              </div>
+  
+            <!-- </form> -->
+          </div>
         </div>
-      </div>
-      <div class="col-md-6 d-none d-md-block padding-0">
-        <img src="assets/images/icons/shutterstock.jpg" class="img-fluid" style="min-height:100%;" />
+        <div class="col-md-8 d-none d-md-block padding-0">
+          <img src="assets/images/icons/shutterstock.jpg" class="img-fluid" style="min-height:100%;" />
+        </div>
       </div>
     </div>
+   
   </div>
 
 </form>
