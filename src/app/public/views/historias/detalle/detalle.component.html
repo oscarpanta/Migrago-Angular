@@ -1,212 +1,350 @@
-<div class="container-fluid d-grid gap-3 container__70_gris">
-  <div class="row mt-lg-3 mt-4">
-    <div class="col-lg-12">
-      <div class="card ">
-        <div class="card-body text-center">
-          <h5 class="card-title letra__b__bold">Banner/Tutorial</h5>
+
+<div class="apartado__combinado">
+  <div class="container-fluid d-grid gap-3 container__70">
+    <div class="row mt-lg-3 mt-4">
+      <div class="col-lg-12">
+        <div class="card ">
+          <div class="card-body text-center">
+            <h5 class="card-title letra__b__bold">Banner/Tutorial</h5>
+          </div>
         </div>
       </div>
+
     </div>
+    <div class="row">
+      <div class="col-lg-8">
 
-  </div>
-  <div class="row">
-    <div class="col-lg-8">
+        <div class="row col-lg-12 mb-3">
+          <div class="col-lg-7">
+            <span class="p-bold-500-20" *ngIf="historiaDetalle">{{historiaDetalle.story.data[0].title}}</span>
 
-      <div class="row col-lg-12 mb-3">
-        <div class="col-lg-7">
-          <span class="p-bold-500-20" *ngIf="historiaDetalle">{{historiaDetalle.story.data[0].title}}</span>
-
-        </div>
-
-      </div>
-      <div class="row col-lg-12 mb-3">
-        <div class="col-lg-12">
-          <div class="container_etiquetas">
-            <div class="container__body__etiqueta__perfil" *ngIf="historiaDetalle">
-              <!-- {{cantidadresenas}} Reseñas -->
-              {{historiaDetalle.reviews.totalElements}} Reseñas
-            </div>
           </div>
 
         </div>
-      </div>
-      <!-- <div class="row col-lg-12 mb-3" *ngIf="historiaDetalle"> -->
-      <div class="row col-lg-12 mb-3" *ngIf="historiaDetalle">
+        <div class="row col-lg-12 mb-3">
+          <div class="col-lg-12">
+            <div class="container_etiquetas">
+              <div class="container__body__etiqueta__perfil" *ngIf="historiaDetalle">
+                <!-- {{cantidadresenas}} Reseñas -->
+                {{historiaDetalle.reviews.totalElements}} Reseñas
+              </div>
+            </div>
 
-        <ngb-carousel>
-          <ng-template ngbSlide *ngIf="imageSrc1">
-            <img [src]="imageSrc1" class="card-img" alt="">
+          </div>
+        </div>
+        <!-- <div class="row col-lg-12 mb-3" *ngIf="historiaDetalle"> -->
+        <div class="row col-lg-12 mb-3" *ngIf="historiaDetalle">
+
+          <ngb-carousel>
+            <ng-template ngbSlide *ngIf="imageSrc1">
+              <img [src]="imageSrc1" class="card-img" alt="">
 
 
-          </ng-template>
-          <ng-template ngbSlide *ngIf="imageSrc2">
-            <img [src]="imageSrc2" class="card-img" alt="">
-          </ng-template>
-          <ng-template ngbSlide *ngIf="imageSrc3">
-            <img [src]="imageSrc3" class="card-img" alt="">
-          </ng-template>
-        </ngb-carousel>
-        <!-- <div class="slide-container-carrrusel-imagenes swiper">
-          <div class="slide-content">
+            </ng-template>
+            <ng-template ngbSlide *ngIf="imageSrc2">
+              <img [src]="imageSrc2" class="card-img" alt="">
+            </ng-template>
+            <ng-template ngbSlide *ngIf="imageSrc3">
+              <img [src]="imageSrc3" class="card-img" alt="">
+            </ng-template>
+          </ngb-carousel>
+          <!-- <div class="slide-container-carrrusel-imagenes swiper">
+            <div class="slide-content">
 
-            <div class="card-wrapper swiper-wrapper" >
-              <div class="swiper-slide"  *ngFor="let images of historiaDetalle.images_story.data">
-                <div class="image-content" >
+              <div class="card-wrapper swiper-wrapper" >
+                <div class="swiper-slide"  *ngFor="let images of historiaDetalle.images_story.data">
+                  <div class="image-content" >
 
-                  <div class="card-image" >
-                    <img [src]="'assets/images/historias/'+ images.image_story" class="card-img" alt="">
+                    <div class="card-image" >
+                      <img [src]="'assets/images/historias/'+ images.image_story" class="card-img" alt="">
+
+                    </div>
+
+                  </div>
+
+                </div> -->
+
+
+          <!-- <ng-container *ngIf="imageSrc1 || imageSrc2 || imageSrc3">
+                    <div class="swiper-slide">
+                      <div class="image-content">
+                        <img *ngIf="imageSrc1" [src]="imageSrc1" class="card-img" alt="">
+                        <img *ngIf="imageSrc2" [src]="imageSrc2" class="card-img" alt="">
+                        <img *ngIf="imageSrc3" [src]="imageSrc3" class="card-img" alt="">
+                      </div>
+                    </div>
+                  </ng-container> -->
+
+          <!-- <div class="swiper-slide">
+                  <div class="image-content">
+
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
 
                   </div>
 
                 </div>
 
-              </div> -->
+                <div class="swiper-slide">
+                  <div class="image-content">
+
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="swiper-slide">
+                  <div class="image-content">
+
+                    <div class="card-image">
+                      <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
+                    </div>
+
+                  </div>
+
+                </div> -->
+          <!-- </div>
+            </div> -->
+          <!-- <div class="swiper-button-next swiper-navBtn"></div>
+                            <div class="swiper-button-prev swiper-navBtn"></div> -->
+          <!-- <div class="swiper-pagination"></div>
+          </div> -->
+        </div>
+        <div class="row col-lg-12 mt-5 mb-3 fs-6">
+          <p *ngIf="historiaDetalle">
+            {{historiaDetalle.story.data[0].story_text}}
+          </p>
+          <!-- <p>
+            Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un
+            sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos
+            normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos
+            textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web
+            usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado
+            muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han
+            evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo
+            insertándole humor y cosas por el estilo).
+          </p> -->
+        </div>
+        <div class="row col-lg-12 mb-3">
+          <div class="iconos__redes__perfil">
+            <a href="">
+              <picture>
+                <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                    <source media="(min-width: 550px)" srcset="media.png">  -->
+                <img src="assets/images/icons/Facebook-mobile.png">
+              </picture>
+            </a>
+            <a href="">
+              <picture>
+                <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                    <source media="(min-width: 550px)" srcset="media.png">  -->
+                <img src="assets/images/icons/LinkIn-mobile.png">
+              </picture>
+            </a>
+            <a href="">
+              <picture>
+                <!-- <source media="(min-width: 900px)" srcset="grande.png">
+                                    <source media="(min-width: 550px)" srcset="media.png">  -->
+                <img src="assets/images/icons/Twitter-mobile.png">
+              </picture>
+            </a>
 
 
-        <!-- <ng-container *ngIf="imageSrc1 || imageSrc2 || imageSrc3">
-                  <div class="swiper-slide">
-                    <div class="image-content">
-                      <img *ngIf="imageSrc1" [src]="imageSrc1" class="card-img" alt="">
-                      <img *ngIf="imageSrc2" [src]="imageSrc2" class="card-img" alt="">
-                      <img *ngIf="imageSrc3" [src]="imageSrc3" class="card-img" alt="">
+          </div>
+        </div>
+
+        <div class="row col-lg-12 ">
+          <div class="card mb-3">
+            <div class="card-content">
+              <div class="row col-lg-12 mb-2">
+
+                <p class="p-normal-300-18">Reseñas:</p>
+
+              </div>
+              <div class="row col-lg-12 mb-2" *ngIf="historiaDetalle">
+                <ng-container *ngFor="let reviews of historiaDetalle.reviews.data; let i = index">
+                  <div class="row mb-5" *ngIf="i < 2">
+                    <div class="col-lg-3">
+                      <div class="image-content-perfil">
+
+                        <div class="card-image-tiny">
+                          <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
+                        </div>
+                        <!-- <div class="card-image-flag-small">
+                                                                  <img src="../images/flags/tiny/Peru.png"  class="card-img" alt="pais">
+                                              </div> -->
+                      </div>
+                    </div>
+                    <div class="col-lg-9">
+
+                      <span class="p-bold-500 mb-1"> {{reviews.name}}</span>
+                      <p class="p-normal-300 mb-2">{{reviews.creation_date}}</p>
+                      <!-- <div class="valoracion_small mb-3"> -->
+
+                      <!-- Estrella 1 -->
+                      <!-- <div *ngFor="let score of getScoreArray(reviews.score)">
+                          <div class="active">
+                              <i class="fa-solid fa-star"></i>
+                          </div>
+                      </div> -->
+                      <div class="valoracion_small mb-3">
+                        <ng-container *ngFor="let score of [1, 2, 3, 4, 5]">
+                          <div [class.active]="score <= +reviews.score">
+                            <i class="fa-solid fa-star"></i>
+                          </div>
+                        </ng-container>
+                      </div>
+
+
+                      <p class="p-parrafo">
+                        {{reviews.review}}
+                      </p>
+
+                    </div>
+
+                  </div>
+                  <!-- </div> -->
+                  <div class="infoExtra">
+                    <div class="row mb-5" *ngIf="i >= 2">
+                      <div class="col-lg-3">
+                        <div class="image-content-perfil">
+
+                          <div class="card-image-tiny">
+                            <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-9">
+
+                        <span class="p-bold-500 mb-1"> {{reviews.name}}</span>
+                        <p class="p-normal-300 mb-2">{{reviews.creation_date}}</p>
+                        <div class="valoracion_small mb-3">
+                          <ng-container *ngFor="let score of [1, 2, 3, 4, 5]">
+                            <div [class.active]="score <= +reviews.score">
+                              <i class="fa-solid fa-star"></i>
+                            </div>
+                          </ng-container>
+                        </div>
+                        <p class="p-parrafo">
+                          {{reviews.review}}
+
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </ng-container> -->
-
-        <!-- <div class="swiper-slide">
-                <div class="image-content">
-
-                  <div class="card-image">
-                    <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="swiper-slide">
-                <div class="image-content">
-
-                  <div class="card-image">
-                    <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
-                  </div>
-
-                </div>
-
-              </div>
-              <div class="swiper-slide">
-                <div class="image-content">
-
-                  <div class="card-image">
-                    <img src="assets/images/imagen_prueba.png" alt="" class="card-img">
-                  </div>
-
-                </div>
-
-              </div> -->
-        <!-- </div>
-          </div> -->
-        <!-- <div class="swiper-button-next swiper-navBtn"></div>
-                          <div class="swiper-button-prev swiper-navBtn"></div> -->
-        <!-- <div class="swiper-pagination"></div>
-        </div> -->
-      </div>
-      <div class="row col-lg-12 mt-5 mb-3 fs-6">
-        <p *ngIf="historiaDetalle">
-          {{historiaDetalle.story.data[0].story_text}}
-        </p>
-        <!-- <p>
-          Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un
-          sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos
-          normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos
-          textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web
-          usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado
-          muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han
-          evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo
-          insertándole humor y cosas por el estilo).
-        </p> -->
-      </div>
-      <div class="row col-lg-12 mb-3">
-        <div class="iconos__redes__perfil">
-          <a href="">
-            <picture>
-              <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                  <source media="(min-width: 550px)" srcset="media.png">  -->
-              <img src="assets/images/icons/Facebook-mobile.png">
-            </picture>
-          </a>
-          <a href="">
-            <picture>
-              <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                  <source media="(min-width: 550px)" srcset="media.png">  -->
-              <img src="assets/images/icons/LinkIn-mobile.png">
-            </picture>
-          </a>
-          <a href="">
-            <picture>
-              <!-- <source media="(min-width: 900px)" srcset="grande.png">
-                                  <source media="(min-width: 550px)" srcset="media.png">  -->
-              <img src="assets/images/icons/Twitter-mobile.png">
-            </picture>
-          </a>
+                </ng-container>
 
 
-        </div>
-      </div>
-
-      <div class="row col-lg-12 ">
-        <div class="card mb-3">
-          <div class="card-content">
-            <div class="row col-lg-12 mb-2">
-
-              <p class="p-normal-300-18">Reseñas:</p>
-
-            </div>
-            <div class="row col-lg-12 mb-2" *ngIf="historiaDetalle">
-              <ng-container *ngFor="let reviews of historiaDetalle.reviews.data; let i = index">
-                <div class="row mb-5" *ngIf="i < 2">
+                <!-- <div class="row mb-5" >
                   <div class="col-lg-3">
                     <div class="image-content-perfil">
 
                       <div class="card-image-tiny">
                         <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
                       </div>
-                      <!-- <div class="card-image-flag-small">
-                                                                <img src="../images/flags/tiny/Peru.png"  class="card-img" alt="pais">
-                                            </div> -->
                     </div>
                   </div>
                   <div class="col-lg-9">
 
-                    <span class="p-bold-500 mb-1"> {{reviews.name}}</span>
-                    <p class="p-normal-300 mb-2">{{reviews.creation_date}}</p>
-                    <!-- <div class="valoracion_small mb-3"> -->
-
-                    <!-- Estrella 1 -->
-                    <!-- <div *ngFor="let score of getScoreArray(reviews.score)">
-                        <div class="active">
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                    </div> -->
+                    <span class="p-bold-500 mb-1"> Miguel Angel</span>
+                    <p class="p-normal-300 mb-2">20/06/2023</p>
                     <div class="valoracion_small mb-3">
-                      <ng-container *ngFor="let score of [1, 2, 3, 4, 5]">
-                        <div [class.active]="score <= +reviews.score">
-                          <i class="fa-solid fa-star"></i>
-                        </div>
-                      </ng-container>
+
+
+                      <div class="active">
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div class="active">
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div class="active">
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
                     </div>
-
-
-                    <p class="p-parrafo">
-                      {{reviews.review}}
-                    </p>
-
+                    <p class="p-parrafo">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el
+                      contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que
+                      tiene una distribución más o menos normal de las letras, al contrario de usar textos como por
+                      ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer.
+                      Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por
+                      defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan
+                      este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de
+                      los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y
+                      cosas por el estilo).</p>
                   </div>
+                </div> -->
+                <!-- <div class="row mb-5">
+                  <div class="col-lg-3">
+                    <div class="image-content-perfil">
 
-                </div>
-                <!-- </div> -->
-                <div class="infoExtra">
-                  <div class="row mb-5" *ngIf="i >= 2">
+                      <div class="card-image-tiny">
+                        <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-9">
+
+                    <span class="p-bold-500 mb-1"> Miguel Angel</span>
+                    <p class="p-normal-300 mb-2">20/06/2023</p>
+                    <div class="valoracion_small mb-3">
+
+
+                      <div class="active">
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div class="active">
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div class="active">
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+
+                      <div>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+
+                    </div>
+                    <p class="p-parrafo">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el
+                      contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que
+                      tiene una distribución más o menos normal de las letras, al contrario de usar textos como por
+                      ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer.
+                      Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por
+                      defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan
+                      este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de
+                      los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y
+                      cosas por el estilo).</p>
+                  </div>
+                </div> -->
+
+                <!-- <div class="infoExtra">
+                  <div class="row mb-5" >
                     <div class="col-lg-3">
                       <div class="image-content-perfil">
 
@@ -217,409 +355,275 @@
                     </div>
                     <div class="col-lg-9">
 
-                      <span class="p-bold-500 mb-1"> {{reviews.name}}</span>
-                      <p class="p-normal-300 mb-2">{{reviews.creation_date}}</p>
+                      <span class="p-bold-500 mb-1"> Miguel Angel</span>
+                      <p class="p-normal-300 mb-2">20/06/2023</p>
                       <div class="valoracion_small mb-3">
-                        <ng-container *ngFor="let score of [1, 2, 3, 4, 5]">
-                          <div [class.active]="score <= +reviews.score">
-                            <i class="fa-solid fa-star"></i>
-                          </div>
-                        </ng-container>
-                      </div>
-                      <p class="p-parrafo">
-                        {{reviews.review}}
 
-                      </p>
+
+                        <div class="active">
+                          <i class="fa-solid fa-star"></i>
+                        </div>
+
+
+                        <div class="active">
+                          <i class="fa-solid fa-star"></i>
+                        </div>
+
+
+                        <div class="active">
+                          <i class="fa-solid fa-star"></i>
+                        </div>
+
+
+                        <div>
+                          <i class="fa-solid fa-star"></i>
+                        </div>
+
+
+                        <div>
+                          <i class="fa-solid fa-star"></i>
+                        </div>
+
+                      </div>
+                      <p class="p-parrafo">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el
+                        contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que
+                        tiene una distribución más o menos normal de las letras, al contrario de usar textos como por
+                        ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede
+                        leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto
+                        por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que
+                        usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a
+                        través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole
+                        humor y cosas por el estilo).</p>
+                    </div>
+                  </div>
+                  <div class="row mb-5">
+                    <div class="col-lg-3">
+                      <div class="image-content-perfil">
+
+                        <div class="card-image-tiny">
+                          <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="col-lg-9">
+
+                      <span class="p-bold-500 mb-1"> Miguel Angel</span>
+                      <p class="p-normal-300 mb-2">20/06/2023</p>
+                      <div class="valoracion_small mb-3">
+
+
+                        <div class="active">
+                          <i class="fa-solid fa-star"></i>
+                        </div>
+
+
+                        <div class="active">
+                          <i class="fa-solid fa-star"></i>
+                        </div>
+
+
+                        <div class="active">
+                          <i class="fa-solid fa-star"></i>
+                        </div>
+
+
+                        <div>
+                          <i class="fa-solid fa-star"></i>
+                        </div>
+
+
+                        <div>
+                          <i class="fa-solid fa-star"></i>
+                        </div>
+
+                      </div>
+                      <p class="p-parrafo">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el
+                        contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que
+                        tiene una distribución más o menos normal de las letras, al contrario de usar textos como por
+                        ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede
+                        leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto
+                        por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que
+                        usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a
+                        través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole
+                        humor y cosas por el estilo).</p>
+                    </div>
+                  </div>
+                </div> -->
+
+
+              </div>
+
+              <div class="row d-grid gap-2 col-4 mx-auto" style="
+              align-items: center;
+              justify-content: center;" *ngIf="historiaDetalle">
+                <button *ngIf="historiaDetalle.reviews.totalElements > 2 " type="button" class="btn btn-info"
+                  id='mostrar'>Ver más</button>
+                <span *ngIf="historiaDetalle.reviews.totalElements==0">Sin Reseñas</span>
+                <!-- <button type="button" class="btn btn-info" id="mostrar" (click)="toggleInfoExtra()">
+                              {{ isInfoExtraVisible ? 'Ocultar' : 'Ver más' }}
+                          </button> -->
+                <!-- <button id="mostrar" (click)="toggleInfoExtra()">{{ isInfoExtraVisible ? 'Ocultar' : 'Ver más' }}</button> -->
+
+                <!-- <input type="button" id="leerMas" class="btn btn-info" name="boton1" value="Ver Más">  -->
+                <!-- <a href="" class="btn btn-info mt-2 verMas">Ver más</a> -->
+              </div>
+
+            </div>
+          </div>
+          <div class="card mb-3" *ngIf="rolUsuario!== 'ROLE_GUIDE'  ">
+            <div class="card-body">
+              <div class="row col-lg-12 mb-2">
+
+                <p class="p-normal-300-18">Comentario:</p>
+
+              </div>
+              <div class="row col-lg-12 mb-2" *ngIf="usuario">
+                <p *ngIf="historiaDetalle">Hola {{usuario.name}}, déjanos un comentario sobre tu experiencia con {{
+                  historiaDetalle.story.data[0].name.split(' ')[0] }}</p>
+              </div>
+              <form class="form-login" autocomplete="off" [formGroup]="miFormularioReview">
+                <div class="row col-lg-12 mb-2">
+
+                  <div class="form-floating">
+                    <textarea class="form-control" rows="10" style="height:100%;" placeholder="Leave a comment here"
+                      id="floatingTextarea" formControlName="comentario"></textarea>
+
+                  </div>
+
+                </div>
+                <div class="row col-lg-12 mb-2">
+                  <div class="col-lg-6">
+                    <button type="submit" class="btn btn-primary" (click)="registroReview()"
+                      [disabled]="miFormularioReview.invalid">Publicar</button>
+                  </div>
+                  <div class="col-lg-6 d-flex flex-nowrap align-items-center justify-content-end">
+                    <span>Califica :</span>
+                    <div class="valoracion">
+
+                      <div class="valoracion_small">
+                        <button *ngFor="let estrella of estrellas" (click)="setCalificacion(estrella)"
+                          [class.active]="estrella <= calificacionSeleccionada!">
+                          <i class="fa-solid fa-star"></i>
+                        </button>
+                      </div>
+
+
+
+
+
                     </div>
                   </div>
                 </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Esta parte arreglar -->
+      <div class="col-lg-4">
+        <div class="card mb-3">
+          <div class="card-body p-4">
+            <div class="row mt-5 mb-3">
+
+              <div class="card card-main card-container image-content-perfil">
+
+                <div class="card-image-small">
+                  <!-- <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil"> -->
+                  <img [src]="perfilUrlImagen || 'assets/images/perfiles/profile1.jpg'" class="card-img" alt="perfil">
+                </div>
+                <div class="card-image-flag-small" *ngIf="historiaDetalle">
+                  <img *ngIf="historiaDetalle.story.data[0]"
+                    [src]="'assets/images/flags/tiny/'+  historiaDetalle.story.data[0].flag_img" class="card-img"
+                    alt="pais">
+                  <!-- <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais"> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3" *ngIf="historiaDetalle">
+              <span class="p-bold-500-18-detalle">
+                {{ historiaDetalle.story.data[0].name.split(' ')[0] }} {{
+                historiaDetalle.story.data[0].lastname.substring(0, 1) }}.
+              </span>
+              <span class="p-normal-300-16 color-gray">Vive en {{historiaDetalle.story.data[0].city_name}},
+                {{historiaDetalle.story.data[0].country_name}}</span>
+            </div>
+            <div class="row mb-3">
+              <span class="p-bold-500">Rutas de ingreso</span>
+              <div class="container_etiquetas mt-1">
+                <div class="container__body__etiqueta__perfil" *ngIf="historiaDetalle">
+                  {{ historiaDetalle.story.data[0].name_way_migration }}
+                </div>
+                <!-- <div class="container__body__etiqueta__perfil">
+                  Refugio
+                </div> -->
+
+              </div>
+            </div>
+            <div class="row mb-3">
+              <!-- *ngIf="historiaDetalle.monthsDiff" -->
+              <span class="p-bold-500" *ngIf="historiaDetalle">Llegó a {{historiaDetalle.story.data[0].country_name}}
+                hace:</span>
+
+              <span class="p-normal-300 color-gray" *ngIf="historiaDetalle">{{diferenciames > 0 ? diferenciames + ' meses'
+                : '0 meses' }}</span>
+
+            </div>
+            <div class="row mb-3">
+              <span class="p-bold-500">Nacionalidad: </span>
+              <span class="p-normal-300 color-gray"
+                *ngIf="historiaDetalle">{{historiaDetalle.story.data[0].nationality_name}}</span>
+            </div>
+            <!-- <div class="row mb-3">
+              <span class="p-bold-500">Integrantes de familia:</span>
+              <span class="p-normal-300 color-gray" *ngFor="let member of historiaMiembros">
+
+                {{member.mode_type_migration_description}},{{ member.amount }}
+
+              </span>
+            </div> -->
+
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body p-4 text-center">
+            <div class="row mb-3 " *ngIf="historiaDetalle">
+              <!-- <span class="p-bold-500-20">$ 90.00</span> -->
+              <ng-container *ngIf="usuario">
+                <span class="p-bold-500-20" *ngIf="historiaDetalle.story.data[0].user_created_id === usuario.id">Precio de
+                  tu Cita</span>
               </ng-container>
 
-
-              <!-- <div class="row mb-5" >
-                <div class="col-lg-3">
-                  <div class="image-content-perfil">
-
-                    <div class="card-image-tiny">
-                      <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-9">
-
-                  <span class="p-bold-500 mb-1"> Miguel Angel</span>
-                  <p class="p-normal-300 mb-2">20/06/2023</p>
-                  <div class="valoracion_small mb-3">
-
-
-                    <div class="active">
-                      <i class="fa-solid fa-star"></i>
-                    </div>
-
-
-                    <div class="active">
-                      <i class="fa-solid fa-star"></i>
-                    </div>
-
-
-                    <div class="active">
-                      <i class="fa-solid fa-star"></i>
-                    </div>
-
-
-                    <div>
-                      <i class="fa-solid fa-star"></i>
-                    </div>
-
-
-                    <div>
-                      <i class="fa-solid fa-star"></i>
-                    </div>
-
-                  </div>
-                  <p class="p-parrafo">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el
-                    contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que
-                    tiene una distribución más o menos normal de las letras, al contrario de usar textos como por
-                    ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer.
-                    Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por
-                    defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan
-                    este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de
-                    los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y
-                    cosas por el estilo).</p>
-                </div>
-              </div> -->
-              <!-- <div class="row mb-5">
-                <div class="col-lg-3">
-                  <div class="image-content-perfil">
-
-                    <div class="card-image-tiny">
-                      <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-9">
-
-                  <span class="p-bold-500 mb-1"> Miguel Angel</span>
-                  <p class="p-normal-300 mb-2">20/06/2023</p>
-                  <div class="valoracion_small mb-3">
-
-
-                    <div class="active">
-                      <i class="fa-solid fa-star"></i>
-                    </div>
-
-
-                    <div class="active">
-                      <i class="fa-solid fa-star"></i>
-                    </div>
-
-
-                    <div class="active">
-                      <i class="fa-solid fa-star"></i>
-                    </div>
-
-
-                    <div>
-                      <i class="fa-solid fa-star"></i>
-                    </div>
-
-
-                    <div>
-                      <i class="fa-solid fa-star"></i>
-                    </div>
-
-                  </div>
-                  <p class="p-parrafo">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el
-                    contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que
-                    tiene una distribución más o menos normal de las letras, al contrario de usar textos como por
-                    ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer.
-                    Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por
-                    defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan
-                    este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de
-                    los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y
-                    cosas por el estilo).</p>
-                </div>
-              </div> -->
-
-              <!-- <div class="infoExtra">
-                <div class="row mb-5" >
-                  <div class="col-lg-3">
-                    <div class="image-content-perfil">
-
-                      <div class="card-image-tiny">
-                        <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-9">
-
-                    <span class="p-bold-500 mb-1"> Miguel Angel</span>
-                    <p class="p-normal-300 mb-2">20/06/2023</p>
-                    <div class="valoracion_small mb-3">
-
-
-                      <div class="active">
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-
-
-                      <div class="active">
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-
-
-                      <div class="active">
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-
-
-                      <div>
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-
-
-                      <div>
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-
-                    </div>
-                    <p class="p-parrafo">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el
-                      contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que
-                      tiene una distribución más o menos normal de las letras, al contrario de usar textos como por
-                      ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede
-                      leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto
-                      por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que
-                      usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a
-                      través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole
-                      humor y cosas por el estilo).</p>
-                  </div>
-                </div>
-                <div class="row mb-5">
-                  <div class="col-lg-3">
-                    <div class="image-content-perfil">
-
-                      <div class="card-image-tiny">
-                        <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil">
-                      </div>
-
-                    </div>
-                  </div>
-                  <div class="col-lg-9">
-
-                    <span class="p-bold-500 mb-1"> Miguel Angel</span>
-                    <p class="p-normal-300 mb-2">20/06/2023</p>
-                    <div class="valoracion_small mb-3">
-
-
-                      <div class="active">
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-
-
-                      <div class="active">
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-
-
-                      <div class="active">
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-
-
-                      <div>
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-
-
-                      <div>
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-
-                    </div>
-                    <p class="p-parrafo">Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el
-                      contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que
-                      tiene una distribución más o menos normal de las letras, al contrario de usar textos como por
-                      ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede
-                      leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto
-                      por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que
-                      usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a
-                      través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole
-                      humor y cosas por el estilo).</p>
-                  </div>
-                </div>
-              </div> -->
-
-
+              <!-- <span class="p-bold-500-20">${{historiaDetalle.rates.data[0].price}}.00</span>
+              <span class="p-normal-300">1 sesión - {{historiaDetalle.rates.data[0].time_rate}}</span> -->
+              <span class="p-bold-500-20">${{historiaDetalle.rates[0].price}}</span>
+              <span class="p-normal-300">1 sesión - {{historiaDetalle.rates[0].time_rate}}</span>
             </div>
-
-            <div class="row d-grid gap-2 col-4 mx-auto" style="
-            align-items: center;
-            justify-content: center;" *ngIf="historiaDetalle">
-              <button *ngIf="historiaDetalle.reviews.totalElements > 2 " type="button" class="btn btn-info"
-                id='mostrar'>Ver más</button>
-              <span *ngIf="historiaDetalle.reviews.totalElements==0">Sin Reseñas</span>
-              <!-- <button type="button" class="btn btn-info" id="mostrar" (click)="toggleInfoExtra()">
-                            {{ isInfoExtraVisible ? 'Ocultar' : 'Ver más' }}
-                        </button> -->
-              <!-- <button id="mostrar" (click)="toggleInfoExtra()">{{ isInfoExtraVisible ? 'Ocultar' : 'Ver más' }}</button> -->
-
-              <!-- <input type="button" id="leerMas" class="btn btn-info" name="boton1" value="Ver Más">  -->
-              <!-- <a href="" class="btn btn-info mt-2 verMas">Ver más</a> -->
-            </div>
-
-          </div>
-        </div>
-        <div class="card mb-3" *ngIf="rolUsuario!== 'ROLE_GUIDE'  ">
-          <div class="card-body">
-            <div class="row col-lg-12 mb-2">
-
-              <p class="p-normal-300-18">Comentario:</p>
-
-            </div>
-            <div class="row col-lg-12 mb-2" *ngIf="usuario">
-              <p *ngIf="historiaDetalle">Hola {{usuario.name}}, déjanos un comentario sobre tu experiencia con {{
-                historiaDetalle.story.data[0].name.split(' ')[0] }}</p>
-            </div>
-            <form class="form-login" autocomplete="off" [formGroup]="miFormularioReview">
-              <div class="row col-lg-12 mb-2">
-
-                <div class="form-floating">
-                  <textarea class="form-control" rows="10" style="height:100%;" placeholder="Leave a comment here"
-                    id="floatingTextarea" formControlName="comentario"></textarea>
-
-                </div>
-
+            <div class="row">
+              <div class="col-lg-12 mt-3 mb-3">
+                <button class="btn btn-primary p-bold-500-18" [disabled]="rolUsuario=== 'ROLE_GUIDE'"
+                  (click)="open(modalReservaCita, modalContinuacion)">
+                  Reservar una cita</button>
               </div>
-              <div class="row col-lg-12 mb-2">
-                <div class="col-lg-6">
-                  <button type="submit" class="btn btn-primary" (click)="registroReview()"
-                    [disabled]="miFormularioReview.invalid">Publicar</button>
-                </div>
-                <div class="col-lg-6 d-flex flex-nowrap align-items-center justify-content-end">
-                  <span>Califica :</span>
-                  <div class="valoracion">
-
-                    <div class="valoracion_small">
-                      <button *ngFor="let estrella of estrellas" (click)="setCalificacion(estrella)"
-                        [class.active]="estrella <= calificacionSeleccionada!">
-                        <i class="fa-solid fa-star"></i>
-                      </button>
-                    </div>
-
-
-
-
-
-                  </div>
-                </div>
-              </div>
-            </form>
-
+            </div>
+            <div class="row" style="opacity: .5;">
+              <span class="p-bold-400-10">En una cita podrás elegir hasta <strong>3 temas</strong> a la vez para conversar
+                por <strong>60 min.</strong></span>
+            </div>
           </div>
+
         </div>
       </div>
+
     </div>
-    <!-- Esta parte arreglar -->
-    <div class="col-lg-4">
-      <div class="card mb-3">
-        <div class="card-body p-4">
-          <div class="row mt-5 mb-3">
 
-            <div class="card card-main card-container image-content-perfil">
 
-              <div class="card-image-small">
-                <!-- <img src="assets/images/perfiles/profile1.jpg" class="card-img" alt="perfil"> -->
-                <img [src]="perfilUrlImagen || 'assets/images/perfiles/profile1.jpg'" class="card-img" alt="perfil">
-              </div>
-              <div class="card-image-flag-small" *ngIf="historiaDetalle">
-                <img *ngIf="historiaDetalle.story.data[0]"
-                  [src]="'assets/images/flags/tiny/'+  historiaDetalle.story.data[0].flag_img" class="card-img"
-                  alt="pais">
-                <!-- <img src="assets/images/flags/tiny/Peru.png" class="card-img" alt="pais"> -->
-              </div>
-            </div>
-          </div>
-
-          <div class="row mb-3" *ngIf="historiaDetalle">
-            <span class="p-bold-500-18-detalle">
-              {{ historiaDetalle.story.data[0].name.split(' ')[0] }} {{
-              historiaDetalle.story.data[0].lastname.substring(0, 1) }}.
-            </span>
-            <span class="p-normal-300-16 color-gray">Vive en {{historiaDetalle.story.data[0].city_name}},
-              {{historiaDetalle.story.data[0].country_name}}</span>
-          </div>
-          <div class="row mb-3">
-            <span class="p-bold-500">Rutas de ingreso</span>
-            <div class="container_etiquetas mt-1">
-              <div class="container__body__etiqueta__perfil" *ngIf="historiaDetalle">
-                {{ historiaDetalle.story.data[0].name_way_migration }}
-              </div>
-              <!-- <div class="container__body__etiqueta__perfil">
-                Refugio
-              </div> -->
-
-            </div>
-          </div>
-          <div class="row mb-3">
-            <!-- *ngIf="historiaDetalle.monthsDiff" -->
-            <span class="p-bold-500" *ngIf="historiaDetalle">Llegó a {{historiaDetalle.story.data[0].country_name}}
-              hace:</span>
-
-            <span class="p-normal-300 color-gray" *ngIf="historiaDetalle">{{diferenciames > 0 ? diferenciames + ' meses'
-              : '0 meses' }}</span>
-
-          </div>
-          <div class="row mb-3">
-            <span class="p-bold-500">Nacionalidad: </span>
-            <span class="p-normal-300 color-gray"
-              *ngIf="historiaDetalle">{{historiaDetalle.story.data[0].nationality_name}}</span>
-          </div>
-          <!-- <div class="row mb-3">
-            <span class="p-bold-500">Integrantes de familia:</span>
-            <span class="p-normal-300 color-gray" *ngFor="let member of historiaMiembros">
-
-              {{member.mode_type_migration_description}},{{ member.amount }}
-
-            </span>
-          </div> -->
-
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body p-4 text-center">
-          <div class="row mb-3 " *ngIf="historiaDetalle">
-            <!-- <span class="p-bold-500-20">$ 90.00</span> -->
-            <ng-container *ngIf="usuario">
-              <span class="p-bold-500-20" *ngIf="historiaDetalle.story.data[0].user_created_id === usuario.id">Precio de
-                tu Cita</span>
-            </ng-container>
-
-            <!-- <span class="p-bold-500-20">${{historiaDetalle.rates.data[0].price}}.00</span>
-            <span class="p-normal-300">1 sesión - {{historiaDetalle.rates.data[0].time_rate}}</span> -->
-            <span class="p-bold-500-20">${{historiaDetalle.rates[0].price}}</span>
-            <span class="p-normal-300">1 sesión - {{historiaDetalle.rates[0].time_rate}}</span>
-          </div>
-          <div class="row">
-            <div class="col-lg-12 mt-3 mb-3">
-              <button class="btn btn-primary p-bold-500-18" [disabled]="rolUsuario=== 'ROLE_GUIDE'"
-                (click)="open(modalReservaCita, modalContinuacion)">
-                Reservar una cita</button>
-            </div>
-          </div>
-          <div class="row" style="opacity: .5;">
-            <span class="p-bold-400-10">En una cita podrás elegir hasta <strong>3 temas</strong> a la vez para conversar
-              por <strong>60 min.</strong></span>
-          </div>
-        </div>
-
-      </div>
-    </div>
 
   </div>
-
-
-
 </div>
+
 
 <!-- <button (click)="abrirmodallogin()">ABCD</button> -->
 
