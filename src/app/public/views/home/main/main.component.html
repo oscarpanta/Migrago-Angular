@@ -358,177 +358,177 @@ align-items: center;     display: flex; width: 1200px;">
 <section>
   <div class="container_verificador_main">
     <div class="container__verificados">
-     
+
         <div class="container__historias__body__head">
           <div class="container__rutas__head__title">
             <p>Temas de interés </p>
             <p> para migrar seguro</p>
           </div>
-          
+
           <div class="container__rutas__head__subtitle">
             Conoce los temas en los que te podemos ayudar
           </div>
         </div>
         <div class="container__temas__body">
-            <div class="container__temas__body__i">
+            <div class="container__temas__body__i" *ngFor="let tema of Temas">
               <div class="container__temas__body__item">
                 <div class="container__temas__body__item__img">
                   <picture>
-  
+
                     <img src="assets/images/icons/Escudo-mobile.png">
                   </picture>
                 </div>
                 <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
+                  <p>{{ formatDescriptionThemes(tema.details.data) }}</p>
                 </div>
-               
-                
+
+
               </div>
               <div class="linea__temas"></div>
             </div>
-            <div class="container__temas__body__i">
+            <!-- <div class="container__temas__body__i">
               <div class="container__temas__body__item">
                 <div class="container__temas__body__item__img">
                   <picture>
-  
+
                     <img src="assets/images/icons/Escudo-mobile.png">
                   </picture>
                 </div>
                 <div class="container__temas__body__item__text">
                   <p>Entretenimiento, mascotas y salud</p>
                 </div>
-               
-                
-              </div>
-              <div class="linea__temas"></div>
-            </div>
-           
-            <div class="container__temas__body__i">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
-  
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
-                </div>
-               
-                
-              </div>
-              <div class="linea__temas"></div>
-            </div>
-           
-            <div class="container__temas__body__i">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
-  
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
-                </div>
-               
-                
-              </div>
-              <div class="linea__temas"></div>
-            </div>
-           
-            <div class="container__temas__body__i">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
-  
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
-                </div>
-               
-                
-              </div>
-              <div class="linea__temas"></div>
-            </div>
-           
-            <div class="container__temas__body__i">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
-  
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
-                </div>
-               
-                
-              </div>
-              <div class="linea__temas"></div>
-            </div>
-           
-            <div class="container__temas__body__i">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
-  
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
-                </div>
-               
-                
-              </div>
-              <div class="linea__temas"></div>
-            </div>
-           
-            <div class="container__temas__body__i">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
-  
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
-                </div>
-               
-                
-              </div>
-              <div class="linea__temas"></div>
-            </div>
-            <div class="container__temas__body__i">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
-  
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
-                </div>
-               
-                
+
+
               </div>
               <div class="linea__temas"></div>
             </div>
 
+            <div class="container__temas__body__i">
+              <div class="container__temas__body__item">
+                <div class="container__temas__body__item__img">
+                  <picture>
+
+                    <img src="assets/images/icons/Escudo-mobile.png">
+                  </picture>
+                </div>
+                <div class="container__temas__body__item__text">
+                  <p>Entretenimiento, mascotas y salud</p>
+                </div>
+
+
+              </div>
+              <div class="linea__temas"></div>
+            </div>
+
+            <div class="container__temas__body__i">
+              <div class="container__temas__body__item">
+                <div class="container__temas__body__item__img">
+                  <picture>
+
+                    <img src="assets/images/icons/Escudo-mobile.png">
+                  </picture>
+                </div>
+                <div class="container__temas__body__item__text">
+                  <p>Entretenimiento, mascotas y salud</p>
+                </div>
+
+
+              </div>
+              <div class="linea__temas"></div>
+            </div>
+
+            <div class="container__temas__body__i">
+              <div class="container__temas__body__item">
+                <div class="container__temas__body__item__img">
+                  <picture>
+
+                    <img src="assets/images/icons/Escudo-mobile.png">
+                  </picture>
+                </div>
+                <div class="container__temas__body__item__text">
+                  <p>Entretenimiento, mascotas y salud</p>
+                </div>
+
+
+              </div>
+              <div class="linea__temas"></div>
+            </div>
+
+            <div class="container__temas__body__i">
+              <div class="container__temas__body__item">
+                <div class="container__temas__body__item__img">
+                  <picture>
+
+                    <img src="assets/images/icons/Escudo-mobile.png">
+                  </picture>
+                </div>
+                <div class="container__temas__body__item__text">
+                  <p>Entretenimiento, mascotas y salud</p>
+                </div>
+
+
+              </div>
+              <div class="linea__temas"></div>
+            </div>
+
+            <div class="container__temas__body__i">
+              <div class="container__temas__body__item">
+                <div class="container__temas__body__item__img">
+                  <picture>
+
+                    <img src="assets/images/icons/Escudo-mobile.png">
+                  </picture>
+                </div>
+                <div class="container__temas__body__item__text">
+                  <p>Entretenimiento, mascotas y salud</p>
+                </div>
+
+
+              </div>
+              <div class="linea__temas"></div>
+            </div>
+
+            <div class="container__temas__body__i">
+              <div class="container__temas__body__item">
+                <div class="container__temas__body__item__img">
+                  <picture>
+
+                    <img src="assets/images/icons/Escudo-mobile.png">
+                  </picture>
+                </div>
+                <div class="container__temas__body__item__text">
+                  <p>Entretenimiento, mascotas y salud</p>
+                </div>
+
+
+              </div>
+              <div class="linea__temas"></div>
+            </div>
+            <div class="container__temas__body__i">
+              <div class="container__temas__body__item">
+                <div class="container__temas__body__item__img">
+                  <picture>
+
+                    <img src="assets/images/icons/Escudo-mobile.png">
+                  </picture>
+                </div>
+                <div class="container__temas__body__item__text">
+                  <p>Entretenimiento, mascotas y salud</p>
+                </div>
+
+
+              </div>
+              <div class="linea__temas"></div>
+            </div> -->
+
             <!-- boton ver mas
    -->
-          
+
 
 
         </div>
         <div class="container__historias__reales__link temas__button">
-          <a routerLink="/" routerLinkActive="router-link-active" class="btn_ver_temas">Ver más</a>
+          <a routerLink="/temas" routerLinkActive="router-link-active" class="btn_ver_temas">Ver más</a>
         </div>
 
     </div>
@@ -543,7 +543,7 @@ align-items: center;     display: flex; width: 1200px;">
     <span *ngIf="!last"><i class="fas fa-xs fa-circle"></i></span> -->
 <!-- <div class="marquee p-cinta" style="display: flex; align-items: center; justify-content: center;">
   <p [style.padding-right]="last ? '0em':'5em'" *ngFor="let tema of Temas; let last = last">
-  
+
     <span *ngIf="!last"><i class="fas fa-xs fa-circle me-2"></i></span><span [style.margin-right]="last ? '0' : '70px'">{{ formatDescriptionThemes(tema.details.data) }}</span>
 
 
@@ -909,7 +909,7 @@ align-items: center;     display: flex; width: 1200px;">
                   <div class="image-content">
                     <!-- <span class="overlay"></span> -->
                     <div class="card-image">
-                      <img [routerLink]="['./detalle']" [queryParams]="{ blog_id: blog.id }"
+                      <img [routerLink]="['../blog/detalle']" [queryParams]="{ blog_id: blog.id }"
                       [src]="blog.urlImagen || 'assets/images/imagen_prueba.png'" class="card-img" alt="fondo">
                     </div>
 
