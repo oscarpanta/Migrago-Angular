@@ -171,11 +171,12 @@ background-color: #e4e4e4;padding: 3rem;">
               </div>
 
               <div class="form-group col-lg-12">
-                <label for="" class="form-label letra__b__bold">Haz match con un guía</label>
+                <label for="" class="form-label letra__b__bold" style="
+                color: #000;">Categorias</label>
 
                 <ng-select [items]="categorias" bindLabel="description" bindValue="id" [multiple]="true"
                   groupBy="selectedAllGroup" [searchWhileComposing]="true" [selectableGroup]="true"
-                  formControlName="categoria" placeholder="Modo de migracion"
+                  formControlName="categoria" placeholder="Categorias"
                   (change)="onMaterialGroupChangeModo($event)" #modesSelect>
 
                   <ng-template ng-label-tmp let-item="item">

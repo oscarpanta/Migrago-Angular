@@ -198,8 +198,14 @@ export class BlogComponent  {
 
 
   abrirModal() {
-    // this.modalService.open( { size: 'lg' });
+    // this.modalService.open( { size: 'lg' })
     this.imageSrc = ''
+
+    // this.miFormulario.patchValue({
+
+    //    fecha:this.obtenerFechaActual()
+    // });
+    this.miFormulario.get('fecha')?.setValue(this.obtenerFechaActual());
     this.modalService.open(this.modalContent, { backdrop: 'static', keyboard: false, ariaLabelledBy: 'modal-basic-Register' }).result.then(
 
     );
@@ -471,5 +477,13 @@ export class BlogComponent  {
 
   }
 
+  obtenerFechaActual(): string {
+    const fechaActual = new Date();
+    const mes = fechaActual.getMonth() + 1;
+    const dia = fechaActual.getDate();
+    const año = fechaActual.getFullYear();
 
+
+    return `${año}-${mes.toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')}`;
+  }
 }
