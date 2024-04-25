@@ -6,7 +6,7 @@
         <p>
           Regístrate y obtén 20$ OFF en tu primera consulta
 
-          </p>
+        </p>
       </a>
     </div>
 
@@ -26,60 +26,129 @@ justify-content: center;
 align-items: center;     display: flex; width: 1200px;">
 
 
+      <div class="d-lg-none " style="width: 100%;">
+        <div class="d-flex align-items-center">
+          <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span><i class="fas fa-bars"></i></span>
+          </button>
 
-
-      <a class="navbar-brand" routerLink="" style="flex-basis: 20%;  display: flex;
-      justify-content: flex-start;">
-        <!-- Migrago -->
-        <img src="assets/images/icons/LogoMigrago.png" width="130" height="25">
-      </a>
-
-      <a routerLink="../auth/login" class="btn custom-btn btn-ingresa d-lg-none ms-auto me-4"
-        *ngIf="!estalogeado">Ingresa</a>
-      <div class="dropdown d-lg-none ms-auto" *ngIf="estalogeado">
-        <div class="perfil-info">
-          <a class=" perfil-icon">
-            <i class="fas fa-user-circle"></i>
+          <a class="navbar-brand" routerLink="" style="flex-basis: 100%;display: flex;justify-content: center;">
+            <!-- Migrago -->
+            <img src="assets/images/icons/LogoMigrago.png" width="130" height="25">
           </a>
-          <span class="nombre-usuario dropdown-toggle  me-4" href="#" role="button" id="perfilDropdown"
-            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username | slice:0:usuario.username.indexOf('@') }}</span>
-          <!-- <div class="dropdown-menu" aria-labelledby="perfilDropdown">
-            <a class="dropdown-item" href="#">Perfil</a>
-            <a class="dropdown-item" href="#">Configuración</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Salir de sesión</a>
-          </div> -->
-          <div class="dropdown-menu" [ngSwitch]="rolUsuario" aria-labelledby="perfilDropdown">
-            <ng-container *ngSwitchCase='"ROLE_CLIENT"'>
-              <a class="dropdown-item" routerLink="/auth/dashboardCliente/agendadas">Agendadas</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardCliente/historico">Históricas</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardCliente/perfil">Actualizar Perfil</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardCliente/cambiar">Cambiar Contraseña</a>
+
+          <!-- <a routerLink="../auth/login" class="btn custom-btn btn-ingresa d-lg-none ms-auto me-4"
+            *ngIf="!estalogeado">Ingresa</a> -->
+
+            <a class="btn custom-btn d-lg-none btn-registrate" *ngIf="!estalogeado"
+            routerLink="/auth/registro">Registrate</a>
+          <div class="dropdown d-lg-none ms-auto" *ngIf="estalogeado">
+            <div class="perfil-info">
+              <a class=" perfil-icon">
+                <i class="fas fa-user-circle"></i>
+              </a>
+              <span class="nombre-usuario dropdown-toggle  me-4" href="#" role="button" id="perfilDropdown"
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username |
+                slice:0:usuario.username.indexOf('@') }}</span>
+              <!-- <div class="dropdown-menu" aria-labelledby="perfilDropdown">
+              <a class="dropdown-item" href="#">Perfil</a>
+              <a class="dropdown-item" href="#">Configuración</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
-            </ng-container>
-            <ng-container *ngSwitchCase='"ROLE_GUIDE"' >
-              <a class="dropdown-item" routerLink="/auth/dashboardGuia/dashboard">Panel</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardGuia/historias">Mis Historias</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardGuia/agenda">Agenda</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardGuia/agendadas">Citas Agendadas</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardGuia/perfil">Actualizar Perfil</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardGuia/cambiar">Cambiar Contraseña</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
-            </ng-container>
+              <a class="dropdown-item" href="#">Salir de sesión</a>
+            </div> -->
+              <div class="dropdown-menu" [ngSwitch]="rolUsuario" aria-labelledby="perfilDropdown">
+                <ng-container *ngSwitchCase='"ROLE_CLIENT"'>
+                  <a class="dropdown-item" routerLink="/auth/dashboardCliente/agendadas">Agendadas</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardCliente/historico">Históricas</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardCliente/perfil">Actualizar Perfil</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardCliente/cambiar">Cambiar Contraseña</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+                </ng-container>
+                <ng-container *ngSwitchCase='"ROLE_GUIDE"'>
+                  <a class="dropdown-item" routerLink="/auth/dashboardGuia/dashboard">Panel</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardGuia/historias">Mis Historias</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardGuia/agenda">Agenda</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardGuia/agendadas">Citas Agendadas</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardGuia/perfil">Actualizar Perfil</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardGuia/cambiar">Cambiar Contraseña</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+                </ng-container>
+
+
+              </div>
+            </div>
 
 
           </div>
         </div>
 
 
+
+
+
+      </div>
+
+      <div class="d-lg-block d-none" >
+
+        <a class="navbar-brand" routerLink="" style="flex-basis: 20%;  display: flex;
+      justify-content: flex-start;">
+          <!-- Migrago -->
+          <img src="assets/images/icons/LogoMigrago.png" width="130" height="25">
+        </a>
+
+        <a routerLink="../auth/login" class="btn custom-btn btn-ingresa d-lg-none ms-auto me-4"
+          *ngIf="!estalogeado">Ingresa</a>
+        <div class="dropdown d-lg-none ms-auto" *ngIf="estalogeado">
+          <div class="perfil-info">
+            <a class=" perfil-icon">
+              <i class="fas fa-user-circle"></i>
+            </a>
+            <span class="nombre-usuario dropdown-toggle  me-4" href="#" role="button" id="perfilDropdown"
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username |
+              slice:0:usuario.username.indexOf('@') }}</span>
+            <!-- <div class="dropdown-menu" aria-labelledby="perfilDropdown">
+            <a class="dropdown-item" href="#">Perfil</a>
+            <a class="dropdown-item" href="#">Configuración</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Salir de sesión</a>
+          </div> -->
+            <div class="dropdown-menu" [ngSwitch]="rolUsuario" aria-labelledby="perfilDropdown">
+              <ng-container *ngSwitchCase='"ROLE_CLIENT"'>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/agendadas">Agendadas</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/historico">Históricas</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/perfil">Actualizar Perfil</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/cambiar">Cambiar Contraseña</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+              </ng-container>
+              <ng-container *ngSwitchCase='"ROLE_GUIDE"'>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/dashboard">Panel</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/historias">Mis Historias</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/agenda">Agenda</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/agendadas">Citas Agendadas</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/perfil">Actualizar Perfil</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/cambiar">Cambiar Contraseña</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+              </ng-container>
+
+
+            </div>
+          </div>
+
+
+        </div>
+
+
+        <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span><i class="fas fa-bars"></i></span>
+        </button>
+
       </div>
 
 
-      <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-        <span><i class="fas fa-bars"></i></span>
-      </button>
 
 
       <div class="collapse navbar-collapse menu_up" id="navbarCollapse" style="width:100%;justify-content: center;">
@@ -97,6 +166,9 @@ align-items: center;     display: flex; width: 1200px;">
           </li>
           <li class="nav-item">
             <a class="nav-head" routerLink="/blog">Blog</a>
+          </li>
+          <li class="nav-item d-lg-none"  *ngIf="!estalogeado">
+            <a class="nav-head" routerLink="../auth/login">Ingresa</a>
           </li>
         </ul>
 
@@ -118,7 +190,7 @@ align-items: center;     display: flex; width: 1200px;">
         <!-- <a class="btn custom-btn d-lg-block d-none btn-registrate" *ngIf="!estalogeado"
           (click)="openModal(modalContent)">Registrate</a> -->
 
-          <a class="btn custom-btn d-lg-block d-none btn-registrate" *ngIf="!estalogeado"
+        <a class="btn custom-btn d-lg-block d-none btn-registrate" *ngIf="!estalogeado"
           routerLink="/auth/registro">Registrate</a>
         <div *ngIf="estalogeado" class="dropdown">
           <div class="perfil-info">
@@ -126,7 +198,8 @@ align-items: center;     display: flex; width: 1200px;">
               <i class="fas fa-user-circle" style="font-size: 30px;"></i>
             </a>
             <span class="nombre-usuario dropdown-toggle" href="#" role="button" id="perfilDropdown"
-              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username | slice:0:usuario.username.indexOf('@') }}</span>
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username |
+              slice:0:usuario.username.indexOf('@') }}</span>
             <div class="dropdown-menu" [ngSwitch]="rolUsuario" aria-labelledby="perfilDropdown">
               <ng-container *ngSwitchCase='"ROLE_CLIENT"'>
                 <a class="dropdown-item" routerLink="/auth/dashboardCliente/agendadas">Agendadas</a>
@@ -136,7 +209,7 @@ align-items: center;     display: flex; width: 1200px;">
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
               </ng-container>
-              <ng-container *ngSwitchCase='"ROLE_GUIDE"' >
+              <ng-container *ngSwitchCase='"ROLE_GUIDE"'>
                 <a class="dropdown-item" routerLink="/auth/dashboardGuia/dashboard">Panel</a>
                 <a class="dropdown-item" routerLink="/auth/dashboardGuia/historias">Mis Historias</a>
                 <a class="dropdown-item" routerLink="/auth/dashboardGuia/agenda">Agenda</a>
@@ -220,12 +293,12 @@ align-items: center;     display: flex; width: 1200px;">
 
         </div>
         <div class="letra__b__bold letra__blanca">
-            <p class="p_texto">
-              para migrar
-            </p>
-            <p class="p_texto">
-              seguro
-            </p>
+          <p class="p_texto">
+            para migrar
+          </p>
+          <p class="p_texto">
+            seguro
+          </p>
 
         </div>
 
@@ -235,10 +308,10 @@ align-items: center;     display: flex; width: 1200px;">
           <div class="row col-lg-10 mx-auto">
             <div class="mb-4">
               <div class="form-group"> -->
-                <!-- <input type="text" class="buscador" placeholder="Busca el país al que estas migrando"> -->
+        <!-- <input type="text" class="buscador" placeholder="Busca el país al que estas migrando"> -->
 
 
-              <!-- </div>
+        <!-- </div>
             </div>
           </div>
 
@@ -246,13 +319,13 @@ align-items: center;     display: flex; width: 1200px;">
 
         <!-- <input type="text" class="form-control" placeholder="Busca el país al que estas migrando">
         <span class="fa fa-solid fa-circle-arrow-right arrow-icon "></span> -->
-        <ng-select name="countrySelect"
-        (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"   placeholder="Busca el país al que estas migrando"
-        aria-label="Default select example">
+        <ng-select name="countrySelect" (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"
+          placeholder="Busca el país al que estas migrando" aria-label="Default select example">
 
-          <ng-option *ngFor="let country of countries"  [value]="country.id">{{country.country_name}}</ng-option>
-       </ng-select>
-       <span class="fa fa-solid fa-circle-arrow-right arrow-icon " (click)="redirectToListado(selectedCountryId)"></span>
+          <ng-option *ngFor="let country of countries" [value]="country.id">{{country.country_name}}</ng-option>
+        </ng-select>
+        <span class="fa fa-solid fa-circle-arrow-right arrow-icon "
+          (click)="redirectToListado(selectedCountryId)"></span>
       </div>
     </div>
 
@@ -260,69 +333,69 @@ align-items: center;     display: flex; width: 1200px;">
 </section>
 
 <section class="container__azul">
-    <div class="container__azul__content">
-      <div class="container__azul__head">
-        <p>¿Cómo funciona?</p>
-        <p class="container__rutas__head__subtitle">Distintas maneras de llegar a tu destino</p>
+  <div class="container__azul__content">
+    <div class="container__azul__head">
+      <p>¿Cómo funciona?</p>
+      <p class="container__rutas__head__subtitle">Distintas maneras de llegar a tu destino</p>
+    </div>
+    <div class="container__azul__body">
+      <div class="container__azul__body__item">
+        <div class="container__azul__body__item__imagen">
+          <picture>
+
+            <img src="assets/images/icons/geo.png">
+          </picture>
+        </div>
+        <div class="container__azul__body__item__title d-none d-lg-block">
+          1.-
+        </div>
+        <div class="container__azul__body__item__text d-none d-lg-block">
+          Busca el país y ciudad a donde migrarás
+        </div>
+        <div class="d-lg-none d-block">
+          <span class="container__azul__body__item__title">1.-</span>
+          <span class="container__azul__body__item__text"> Busca el país y ciudad a donde migrarás</span>
+        </div>
+
       </div>
-      <div class="container__azul__body">
-        <div class="container__azul__body__item">
-          <div class="container__azul__body__item__imagen">
-            <picture>
+      <div class="container__azul__body__item">
+        <div class="container__azul__body__item__imagen">
+          <picture>
 
-              <img src="assets/images/icons/geo.png">
-            </picture>
-          </div>
-            <div class="container__azul__body__item__title d-none d-lg-block">
-              1.-
-            </div>
-            <div class="container__azul__body__item__text d-none d-lg-block">
-              Busca el país y ciudad a donde migrarás
-            </div>
-            <div  class="d-lg-none d-block">
-              <span class="container__azul__body__item__title">1.-</span>
-              <span class="container__azul__body__item__text"> Busca el país y ciudad a donde migrarás</span>
-            </div>
-
+            <img src="assets/images/icons/cora.png">
+          </picture>
         </div>
-        <div class="container__azul__body__item">
-          <div class="container__azul__body__item__imagen">
-            <picture>
-
-              <img src="assets/images/icons/cora.png">
-            </picture>
-          </div>
-          <div class="container__azul__body__item__title d-none d-lg-block">
-            2.-
-          </div>
-          <div class="container__azul__body__item__text d-none d-lg-block">
-            Elige una historia como la tuya ahora
-          </div>
-          <div  class="d-lg-none d-block">
-            <span class="container__azul__body__item__title">2.-</span>
-            <span class="container__azul__body__item__text "> Elige una historia como la tuya ahora</span>
-          </div>
+        <div class="container__azul__body__item__title d-none d-lg-block">
+          2.-
         </div>
-        <div class="container__azul__body__item">
-          <div class="container__azul__body__item__imagen">
-            <picture>
+        <div class="container__azul__body__item__text d-none d-lg-block">
+          Elige una historia como la tuya ahora
+        </div>
+        <div class="d-lg-none d-block">
+          <span class="container__azul__body__item__title">2.-</span>
+          <span class="container__azul__body__item__text "> Elige una historia como la tuya ahora</span>
+        </div>
+      </div>
+      <div class="container__azul__body__item">
+        <div class="container__azul__body__item__imagen">
+          <picture>
 
-              <img src="assets/images/icons/calen.png">
-            </picture>
-          </div>
-          <div class="container__azul__body__item__title d-none d-lg-block">
-            3.-
-          </div>
-          <div class="container__azul__body__item__text d-none d-lg-block">
-            Reserva una cita para obtener información
-          </div>
-          <div class="d-lg-none d-block">
-            <span class="container__azul__body__item__title">3.-</span>
-            <span class="container__azul__body__item__text"> Reserva una cita para obtener información</span>
-          </div>
+            <img src="assets/images/icons/calen.png">
+          </picture>
+        </div>
+        <div class="container__azul__body__item__title d-none d-lg-block">
+          3.-
+        </div>
+        <div class="container__azul__body__item__text d-none d-lg-block">
+          Reserva una cita para obtener información
+        </div>
+        <div class="d-lg-none d-block">
+          <span class="container__azul__body__item__title">3.-</span>
+          <span class="container__azul__body__item__text"> Reserva una cita para obtener información</span>
         </div>
       </div>
     </div>
+  </div>
 </section>
 
 <section>
@@ -343,7 +416,7 @@ align-items: center;     display: flex; width: 1200px;">
 
             <div class="container__rutas__body__etiqueta" *ngFor="let rutamigracion of rutasmigracion">
 
-                  {{rutamigracion.name_way_migration}}
+              {{rutamigracion.name_way_migration}}
 
 
             </div>
@@ -359,34 +432,34 @@ align-items: center;     display: flex; width: 1200px;">
   <div class="container_verificador_main">
     <div class="container__verificados">
 
-        <div class="container__historias__body__head">
-          <div class="container__rutas__head__title">
-            <p>Temas de interés </p>
-            <p> para migrar seguro</p>
-          </div>
-
-          <div class="container__rutas__head__subtitle">
-            Conoce los temas en los que te podemos ayudar
-          </div>
+      <div class="container__historias__body__head">
+        <div class="container__rutas__head__title">
+          <p>Temas de interés </p>
+          <p> para migrar seguro</p>
         </div>
-        <div class="container__temas__body">
-            <div class="container__temas__body__i" *ngFor="let tema of Temas">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
 
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>{{ formatDescriptionThemes(tema.details.data) }}</p>
-                </div>
+        <div class="container__rutas__head__subtitle">
+          Conoce los temas en los que te podemos ayudar
+        </div>
+      </div>
+      <div class="container__temas__body">
+        <div class="container__temas__body__i" *ngFor="let tema of Temas">
+          <div class="container__temas__body__item">
+            <div class="container__temas__body__item__img">
+              <picture>
 
-
-              </div>
-              <div class="linea__temas"></div>
+                <img src="assets/images/icons/Escudo-mobile.png">
+              </picture>
             </div>
-            <!-- <div class="container__temas__body__i">
+            <div class="container__temas__body__item__text">
+              <p>{{ formatDescriptionThemes(tema.details.data) }}</p>
+            </div>
+
+
+          </div>
+          <div class="linea__temas"></div>
+        </div>
+        <!-- <div class="container__temas__body__i">
               <div class="container__temas__body__item">
                 <div class="container__temas__body__item__img">
                   <picture>
@@ -521,15 +594,15 @@ align-items: center;     display: flex; width: 1200px;">
               <div class="linea__temas"></div>
             </div> -->
 
-            <!-- boton ver mas
+        <!-- boton ver mas
    -->
 
 
 
-        </div>
-        <div class="container__historias__reales__link temas__button">
-          <a routerLink="/temas" routerLinkActive="router-link-active" class="btn_ver_temas">Ver más</a>
-        </div>
+      </div>
+      <div class="container__historias__reales__link temas__button">
+        <a routerLink="/temas" routerLinkActive="router-link-active" class="btn_ver_temas">Ver más</a>
+      </div>
 
     </div>
   </div>
@@ -539,7 +612,7 @@ align-items: center;     display: flex; width: 1200px;">
   <p [style.padding-right]="last ? '0em':'5em'" *ngFor="let rutamigracion of rutasmigracion ; let last = last">
      {{rutamigracion.name_way_migration}}</p>
 </div> -->
-  <!-- <span [style.margin-right]="last ? '0' : '70px'">{{ formatDescriptionThemes(tema.details.data) }}</span>
+<!-- <span [style.margin-right]="last ? '0' : '70px'">{{ formatDescriptionThemes(tema.details.data) }}</span>
     <span *ngIf="!last"><i class="fas fa-xs fa-circle"></i></span> -->
 <!-- <div class="marquee p-cinta" style="display: flex; align-items: center; justify-content: center;">
   <p [style.padding-right]="last ? '0em':'5em'" *ngFor="let tema of Temas; let last = last">
@@ -631,23 +704,23 @@ align-items: center;     display: flex; width: 1200px;">
 
           <img src="assets/images/imagen_video.png">
         </picture> -->
-                  <!-- <source media="(min-width: 900px)" srcset="grande.png">
+        <!-- <source media="(min-width: 900px)" srcset="grande.png">
                   <source media="(min-width: 550px)" srcset="media.png"> -->
         <div class="col-xl-12">
           <div class="card">
-              <div class="card-body" style="padding: 0;">
-<!--
+            <div class="card-body" style="padding: 0;">
+              <!--
                   <h4 class="card-title">Responsive embed video 4:3</h4>
                   <p class="card-title-desc">Aspect ratios can be customized with modifier classes.</p> -->
 
-                  <!-- 4:3 aspect ratio -->
-                  <div class="embed-responsive embed-responsive-4by3" style="
+              <!-- 4:3 aspect ratio -->
+              <div class="embed-responsive embed-responsive-4by3" style="
                   height: 800px;">
-                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/1y_kfWUCFDQ"></iframe>
-                  </div>
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/1y_kfWUCFDQ"></iframe>
               </div>
+            </div>
           </div>
-      </div> <!-- end col -->
+        </div> <!-- end col -->
 
         <!-- <iframe width="1080" height="1920"
         src=" https://youtube.com/shorts/eMKlPCvHmnE?si=e4m96KnoVayNI_U2"
@@ -710,7 +783,7 @@ align-items: center;     display: flex; width: 1200px;">
       <div class="container__verificados__texto">
         <div class="container__verificados__head">
           <div class="container__verificados__head__title">
-            <span class="letra__b">Reseñas  </span>
+            <span class="letra__b">Reseñas </span>
 
           </div>
           <div class="container__verificados__head__title">
@@ -910,7 +983,7 @@ align-items: center;     display: flex; width: 1200px;">
                     <!-- <span class="overlay"></span> -->
                     <div class="card-image">
                       <img [routerLink]="['../blog/detalle']" [queryParams]="{ blog_id: blog.id }"
-                      [src]="blog.urlImagen || 'assets/images/imagen_prueba.png'" class="card-img" alt="fondo">
+                        [src]="blog.urlImagen || 'assets/images/imagen_prueba.png'" class="card-img" alt="fondo">
                     </div>
 
                   </div>
@@ -919,7 +992,7 @@ align-items: center;     display: flex; width: 1200px;">
                     <span class="texto" [innerHTML]="blog.text_breve_blog"></span>
                     <div class="container__etiquetas">
                       <div class="container__body__etiqueta" *ngFor="let detalle of blog.detalle">
-                       {{detalle.descripcion}}
+                        {{detalle.descripcion}}
                       </div>
                       <!-- <div class="container__body__etiqueta">
                         Testimonio
@@ -972,7 +1045,8 @@ align-items: center;     display: flex; width: 1200px;">
               <span class="">Comparte tu historia</span>
             </div>
             <div class="container__unirme__head__subtitle">
-              Si eres nuevo en un país desarrollado, puedes recuperar tu inversión compartiendo tu experiencia con futuros
+              Si eres nuevo en un país desarrollado, puedes recuperar tu inversión compartiendo tu experiencia con
+              futuros
               emigrantes de todo el mundo.
             </div>
           </div>

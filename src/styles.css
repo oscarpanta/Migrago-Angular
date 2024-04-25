@@ -292,7 +292,7 @@ ul{
 
   .navh .navbar-nav {
     flex-direction: row;
- 
+
   }
 
   .navh .navbar-nav .nav-link {
@@ -1074,6 +1074,16 @@ margin-left: 0.3rem;
   }
   .fc .fc-toolbar{
     display: block;
+  }
+
+  .container__temas__body__item{
+
+    justify-content: center;
+
+  }
+  .container__temas__body{
+
+    padding-top:0em;
   }
 
 }

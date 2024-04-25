@@ -224,7 +224,7 @@ color: white;
   background-size: cover;
   /* background-position: center center; */
   background-repeat: no-repeat;
- 
+
   height: 50rem;
 
 }
@@ -245,7 +245,7 @@ color: white;
     color: #48259b;
     font-size: xx-large;
    }
-   
+
    .apartado__index__buscador .ng-select .ng-select-container{
     border-radius: 20px;
    }
@@ -277,9 +277,9 @@ color: white;
 }
 .container__azul{
   background: #00c1ff;
- 
+
   /* border-radius: 10px; */
-  
+
   /* position: absolute;
   top: calc(100% - 7em);
   left: 0;
@@ -893,7 +893,7 @@ background-color: #1a46f1;
   width: 100%;
   display: flex;
   justify-content: space-around;
- 
+
 /* padding: 0 10em;
 width: 60%; */
 }
@@ -1223,7 +1223,7 @@ adicionales
   font-size: 10pt;
 }
 .container__gris{
-  background: #ededed; 
+  background: #ededed;
 }
 .container__temas{
   padding-top: 10em;
@@ -2324,7 +2324,7 @@ ul.form-stepper li a .form-stepper-circle {
     /* width: calc(100% - 20%); */
     /* top: calc(100% - 8em); */
     /* margin: -17em auto 0em auto; */
-   
+
   }
   .container__rutas{
     padding: 0;
@@ -2664,13 +2664,17 @@ ul.form-stepper li a .form-stepper-circle {
   text-align: center;
     margin-bottom: 2rem;
 }
+.container__historias__reales__link{
+  text-align: center;
+  padding: 0rem;
+}
 }
 
 
 
 /* tamaño de maximo 460  */
 @media (max-width: 460px) {
- 
+
   .container__content{
     padding: 0;
   }

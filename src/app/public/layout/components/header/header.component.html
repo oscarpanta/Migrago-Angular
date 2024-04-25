@@ -7,56 +7,128 @@
 
 
 
-      <a class="navbar-brand" routerLink="" style="flex-basis: 20%;  display: flex;
-      justify-content: flex-start;">
-        <!-- Migrago -->
-        <img src="assets/images/icons/Migrago_fondo_transparente.png"  style=" width: 100px;height: 60px;">
-      </a>
+      <div class="d-lg-none " style="width: 100%;">
+        <div class="d-flex align-items-center">
+          <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+          style="color: black;">
+          <span><i class="fas fa-bars"></i></span>
+        </button>
 
-      <a routerLink="/auth/login" class="btn custom-btn  d-lg-none ms-auto me-4 btn-ingresa-princ" *ngIf="!estalogeado">Ingresa</a>
-       <div class="dropdown d-lg-none ms-auto" *ngIf="estalogeado">
-        <div class="perfil-info">
-          <a class=" perfil-icon">
-            <i class="fas fa-user-circle"></i>
+          <a class="navbar-brand" routerLink="" style="flex-basis: 100%;display: flex;justify-content: center;">
+            <!-- Migrago -->
+            <img src="assets/images/icons/Migrago_fondo_transparente.png"  style=" width: 100px;height: 60px;">
           </a>
-          <span class="nombre-usuario dropdown-toggle me-4" href="#" role="button" id="perfilDropdown"
-            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username | slice:0:usuario.username.indexOf('@') }}</span>
-          <!-- <div class="dropdown-menu" aria-labelledby="perfilDropdown">
-            <a class="dropdown-item" href="#">Perfil</a>
-            <a class="dropdown-item" href="#">Configuración</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Salir de sesión</a>
-          </div> -->
-          <div class="dropdown-menu" [ngSwitch]="rolUsuario" aria-labelledby="perfilDropdown">
-            <ng-container *ngSwitchCase='"ROLE_CLIENT"'>
-              <a class="dropdown-item" routerLink="/auth/dashboardCliente/agendadas">Agendadas</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardCliente/historico">Históricas</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardCliente/perfil">Actualizar Perfil</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardCliente/cambiar">Cambiar Contraseña</a>
+
+          <!-- <a routerLink="../auth/login" class="btn custom-btn btn-ingresa d-lg-none ms-auto me-4"
+            *ngIf="!estalogeado">Ingresa</a> -->
+
+            <a class="btn custom-btn d-lg-none btn-registrate" *ngIf="!estalogeado"
+            routerLink="/auth/registro">Registrate</a>
+          <div class="dropdown d-lg-none ms-auto" *ngIf="estalogeado">
+            <div class="perfil-info">
+              <a class=" perfil-icon">
+                <i class="fas fa-user-circle"></i>
+              </a>
+              <span class="nombre-usuario dropdown-toggle  me-4" href="#" role="button" id="perfilDropdown"
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username |
+                slice:0:usuario.username.indexOf('@') }}</span>
+              <!-- <div class="dropdown-menu" aria-labelledby="perfilDropdown">
+              <a class="dropdown-item" href="#">Perfil</a>
+              <a class="dropdown-item" href="#">Configuración</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
-            </ng-container>
-            <ng-container *ngSwitchCase='"ROLE_GUIDE"' >
-              <a class="dropdown-item" routerLink="/auth/dashboardGuia/dashboard">Panel</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardGuia/historias">Mis Historias</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardGuia/agenda">Agenda</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardGuia/agendadas">Citas Agendadas</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardGuia/perfil">Actualizar Perfil</a>
-              <a class="dropdown-item" routerLink="/auth/dashboardGuia/cambiar">Cambiar Contraseña</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
-            </ng-container>
+              <a class="dropdown-item" href="#">Salir de sesión</a>
+            </div> -->
+              <div class="dropdown-menu" [ngSwitch]="rolUsuario" aria-labelledby="perfilDropdown">
+                <ng-container *ngSwitchCase='"ROLE_CLIENT"'>
+                  <a class="dropdown-item" routerLink="/auth/dashboardCliente/agendadas">Agendadas</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardCliente/historico">Históricas</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardCliente/perfil">Actualizar Perfil</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardCliente/cambiar">Cambiar Contraseña</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+                </ng-container>
+                <ng-container *ngSwitchCase='"ROLE_GUIDE"'>
+                  <a class="dropdown-item" routerLink="/auth/dashboardGuia/dashboard">Panel</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardGuia/historias">Mis Historias</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardGuia/agenda">Agenda</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardGuia/agendadas">Citas Agendadas</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardGuia/perfil">Actualizar Perfil</a>
+                  <a class="dropdown-item" routerLink="/auth/dashboardGuia/cambiar">Cambiar Contraseña</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+                </ng-container>
+
+
+              </div>
+            </div>
 
 
           </div>
         </div>
 
 
+
+
+
       </div>
-      <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-        style="color: black;">
-        <span><i class="fas fa-bars"></i></span>
-      </button>
+
+      <div class="d-lg-block d-none" >
+
+        <a class="navbar-brand" routerLink="" style="flex-basis: 20%;  display: flex;
+      justify-content: flex-start;">
+          <!-- Migrago -->
+          <img src="assets/images/icons/Migrago_fondo_transparente.png"  style=" width: 100px;height: 60px;">
+        </a>
+
+        <a routerLink="../auth/login" class="btn custom-btn btn-ingresa d-lg-none ms-auto me-4"
+          *ngIf="!estalogeado">Ingresa</a>
+        <div class="dropdown d-lg-none ms-auto" *ngIf="estalogeado">
+          <div class="perfil-info">
+            <a class=" perfil-icon">
+              <i class="fas fa-user-circle"></i>
+            </a>
+            <span class="nombre-usuario dropdown-toggle  me-4" href="#" role="button" id="perfilDropdown"
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{usuario.username |
+              slice:0:usuario.username.indexOf('@') }}</span>
+            <!-- <div class="dropdown-menu" aria-labelledby="perfilDropdown">
+            <a class="dropdown-item" href="#">Perfil</a>
+            <a class="dropdown-item" href="#">Configuración</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Salir de sesión</a>
+          </div> -->
+            <div class="dropdown-menu" [ngSwitch]="rolUsuario" aria-labelledby="perfilDropdown">
+              <ng-container *ngSwitchCase='"ROLE_CLIENT"'>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/agendadas">Agendadas</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/historico">Históricas</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/perfil">Actualizar Perfil</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardCliente/cambiar">Cambiar Contraseña</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+              </ng-container>
+              <ng-container *ngSwitchCase='"ROLE_GUIDE"'>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/dashboard">Panel</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/historias">Mis Historias</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/agenda">Agenda</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/agendadas">Citas Agendadas</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/perfil">Actualizar Perfil</a>
+                <a class="dropdown-item" routerLink="/auth/dashboardGuia/cambiar">Cambiar Contraseña</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="logout()">Salir de sesión</a>
+              </ng-container>
+
+
+            </div>
+          </div>
+
+
+        </div>
+
+
+        <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span><i class="fas fa-bars"></i></span>
+        </button>
+
+      </div>
 
 
       <div class="collapse navbar-collapse menu_up" id="navbarCollapse" style="width: 100%; justify-content: center;">
