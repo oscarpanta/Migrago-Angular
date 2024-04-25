@@ -604,9 +604,7 @@ height: 230px;
   /* border: 4px solid #4070F4; */
   /* border-radius: 15px 15px 0 0; */
 }
-.card-resenia{
-  /* padding: 0 2em; */
-}
+
 .card-resenia .card-image .card-img{
   height: 100%;
   width: 100%;
@@ -618,10 +616,18 @@ height: 230px;
 
 
 .description{
-font-size: 16pt;
+font-size: 13pt;
 color: #5a2395;
 text-align: left;
 font-weight: bold;
+display: block;
+display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 80px;
+    text-overflow: ellipsis;
+    line-height: 1.2;
 }
 .texto{
   font-size: 13px;
@@ -1231,7 +1237,7 @@ adicionales
   /* background: #ededed; */
 }
 .autor{
-  font-size: 13pt;
+  font-size: 10pt;
   /* font-weight: 500; */
   color: #333333;
   font-family: 'Inter';
