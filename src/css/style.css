@@ -222,7 +222,6 @@ color: white;
 
   background-image: url(/assets/images/imagen_principal.jpg);
   background-size: cover;
-  /* background-position: center center; */
   background-repeat: no-repeat;
 
   height: 50rem;
@@ -2287,6 +2286,7 @@ ul.form-stepper li a .form-stepper-circle {
 
   .apartado__index{
     height: 42rem;
+    background-position: center center; 
   }
   .apartado__index__body{
 
@@ -2441,6 +2441,7 @@ ul.form-stepper li a .form-stepper-circle {
   }
   .apartado__index{
     height: 40rem;
+    background-position: center center; 
   }
   .container__70{
     max-width: 1024px;
@@ -2666,7 +2667,7 @@ ul.form-stepper li a .form-stepper-circle {
 }
 .container__historias__reales__link{
   text-align: center;
-  padding: 0rem;
+  padding: 2rem;
 }
 }
 
@@ -2678,12 +2679,11 @@ ul.form-stepper li a .form-stepper-circle {
   .container__content{
     padding: 0;
   }
-  .container__azul{
-    /* width: calc(100% - 15%); */
-  }
+
   .apartado__index{
        background-position: 35% 100%;
        height: 45rem;
+       background-position: center center; 
   }
   .apartado__index__body{
       width: 100%;
@@ -2705,9 +2705,15 @@ ul.form-stepper li a .form-stepper-circle {
   .p-cinta i{
       font-size: 10px;
   }
+  .container__unirme__head{
+    margin: 0;
+  }
+  .container_content_unrime{
+    padding: 0;
+  }
   .container__unirme{
       flex-direction: column;
-      padding: 2em 2em;
+      padding: 0;
       text-align: center;
   }
  .container__unirme__head{
@@ -3164,7 +3170,7 @@ border-radius: 5px;
 @media (max-width: 460px) {
 
 .apartado__index{
-     background-position: 35% 100%;
+     background-position: center center; 
 }
 .apartado__index__body{
     width: 100%;
@@ -3190,7 +3196,7 @@ border-radius: 5px;
 }
 .container__unirme{
     flex-direction: column;
-    padding: 2em 2em;
+    padding:0;
     text-align: center;
 }
 .container__unirme__head{
