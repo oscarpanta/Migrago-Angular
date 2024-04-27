@@ -1,9 +1,9 @@
 <section>
   <div class="container_verificador_main ">
-    <div class="container-fluid d-grid gap-3 container__70 container__temas">
+    <div class="container-fluid d-grid gap-3 container__70__main container__temas">
 
-      <div class="row">
-        <div class="col-lg-6">
+      <div class="row align-items-center">
+        <div class="col-lg-6 d-grid gap-5">
           <div class="row">
             <p class="p-texto p-bold-500-20">
               Temas
@@ -80,7 +80,7 @@
   </ng-container>
 
   <ng-container *ngFor="let tema of Temas; let i = index">
-    <div *ngIf="i % 2 === 0" class="container-fluid d-grid gap-3 container__70" >
+    <div *ngIf="i % 2 === 0" class="container-fluid d-grid gap-3 container__70__main" >
       <div class="row">
         <div class="col-lg 6">
           <p class="p-normal-20-naranja">
@@ -111,7 +111,7 @@
 
     </div>
     <div class="container__gris">
-      <div *ngIf="i % 2 !== 0" class="container-fluid d-grid gap-3 container__70 d-lg-block d-none">
+      <div *ngIf="i % 2 !== 0" class="container-fluid d-grid gap-3 container__70__main d-lg-block d-none">
         <div class="row">
           <div class="col-lg 6">
             <ngb-carousel *ngIf="tema && tema.images.data.length > 0">
@@ -145,7 +145,7 @@
     </div>
    
     <div class="container__gris">
-      <div *ngIf="i % 2 !== 0" class="container-fluid d-grid gap-3 container__70_gris container_2em_10em  d-block d-lg-none">
+      <div *ngIf="i % 2 !== 0" class="container-fluid d-grid gap-3 container__70__main   d-block d-lg-none">
         <div class="row">
   
   
@@ -183,7 +183,7 @@
 
   </ng-container>
 
-  <!-- <div class="container-fluid d-grid gap-3 container__70_gris container_2em_10em">
+  <!-- <div class="container-fluid d-grid gap-3 container__70__main_gris container_2em_10em">
       <div class="row">
           <div class="col-lg-6">
 
@@ -207,7 +207,7 @@
       </div>
 
   </div>
-  <div class="container-fluid d-grid gap-3 container__70_blanco container_2em_10em">
+  <div class="container-fluid d-grid gap-3 container__70__main_blanco container_2em_10em">
       <div class="row">
           <div class="col-lg 6">
               <p class="p-normal-20-naranja">
@@ -230,7 +230,7 @@
       </div>
 
   </div>
-  <div class="container-fluid d-grid gap-3 container__70_gris container_2em_10em">
+  <div class="container-fluid d-grid gap-3 container__70__main_gris container_2em_10em">
       <div class="row">
           <div class="col-lg 6">
           </div>
@@ -254,7 +254,7 @@
       </div>
 
   </div>
-  <div class="container-fluid d-grid gap-3 container__70_blanco container_2em_10em">
+  <div class="container-fluid d-grid gap-3 container__70__main_blanco container_2em_10em">
       <div class="row">
           <div class="col-lg 6">
               <p class="p-normal-20-naranja">
@@ -277,7 +277,7 @@
       </div>
 
   </div>
-  <div class="container-fluid d-grid gap-3 container__70_gris container_2em_10em">
+  <div class="container-fluid d-grid gap-3 container__70__main_gris container_2em_10em">
       <div class="row">
           <div class="col-lg-6">
 
@@ -301,7 +301,7 @@
       </div>
 
   </div>
-  <div class="container-fluid d-grid gap-3 container__70_blanco container_2em_10em">
+  <div class="container-fluid d-grid gap-3 container__70__main_blanco container_2em_10em">
       <div class="row">
           <div class="col-lg 6">
               <p class="p-normal-20-naranja">
@@ -324,7 +324,7 @@
       </div>
 
   </div>
-  <div class="container-fluid d-grid gap-3 container__70_gris container_2em_10em">
+  <div class="container-fluid d-grid gap-3 container__70__main_gris container_2em_10em">
       <div class="row">
           <div class="col-lg-6">
 
@@ -348,7 +348,7 @@
       </div>
 
   </div>
-  <div class="container-fluid d-grid gap-3 container__70_blanco container_2em_10em">
+  <div class="container-fluid d-grid gap-3 container__70__main_blanco container_2em_10em">
       <div class="row">
           <div class="col-lg 6">
               <p class="p-normal-20-naranja">
@@ -375,7 +375,7 @@
 </section>
 <section>
   <div class="container__unirme__main">
-    <div class="container-fluid d-grid gap-3 container__70">
+    <div class="container-fluid d-grid gap-3 container__70__main">
       <div class="row">
 
               <div class="col-sm-8">

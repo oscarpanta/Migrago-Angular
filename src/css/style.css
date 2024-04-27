@@ -45,6 +45,9 @@ body{
   color: #333333;
   margin: 0;
 }
+p{
+  font-size: 18pt;
+}
 .container{
   width: 100%;
 }
@@ -64,6 +67,12 @@ body{
   /* max-width: 65%; */
   margin:  0 auto;
 }
+.container__70__main{
+  padding: 5em 0;
+  max-width: 1200px;
+  /* max-width: 65%; */
+  margin:  0 auto;
+}
 .p_texto{
   margin: 0 0 -2.5rem 0;
 
@@ -78,9 +87,10 @@ body{
 i{
   font-size: 20px;
 }
-.letra__a{
+.letra__a p{
   color: #00c1ff;
   font-weight: 600;
+  font-size: 55pt;
 }
 .letra__b{
 color: #5a2395;
@@ -90,7 +100,8 @@ font-weight: bold;
   color: #1a46f1;
   font-weight: bold;
 }
-.letra__b__bold{
+.letra__b__bold p{
+  font-size: 55pt;
 color: #fff;
 font-weight: 600;
 }
@@ -335,8 +346,8 @@ color: white;
   margin: 0 auto;
   /* padding: 4rem 0; */
 }
-.container__rutas__head{
-  padding: 2em 0;
+.container__rutas__head {
+  padding-bottom: 2em;
 }
 .container__rutas__head__title{
   font-size: 35pt;
@@ -927,7 +938,7 @@ width: 60%; */
   padding:1rem 0rem
 }
 .container__verificados__body{
-  max-width: 100%;
+  max-width: 75%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -940,12 +951,10 @@ width: 60%; */
 }
 /* seccion reseñas de migrantes */
 .container__resenias{
-  /* padding: 7rem 0; */
-  /* padding: 7rem 0rem 0rem 17rem; */
-  /* height: 52rem; */
-  padding: 2em 0;
+
+  padding: 5em 0;
   max-width: 1200px;
-  /* max-width: 65%; */
+
   margin: 0 auto;
 }
 .container__content{
@@ -953,12 +962,7 @@ width: 60%; */
 }
 .container__resenias__body{
   width:  100%;
-  /* padding: 0 5em; */
-
-  /* position: absolute;
-  top: 240rem;
-  left: 0;
-  right: 0; */
+ 
   margin: -28em auto 5em auto;
 }
 .container__resenias__body__back{
@@ -1235,6 +1239,7 @@ adicionales
   padding: 5em 0;
   /* background: #ededed; */
 }
+
 .autor{
   font-size: 10pt;
   /* font-weight: 500; */
@@ -1395,8 +1400,12 @@ adicionales
 }
 .p-bold-500-20{
   font-weight: 600;
-  font-size: 26pt;
+  font-size: 35pt;
+  line-height: 1em;
   color: #5a2395;
+}
+.p-bold-500-20 p{
+  font-size: 18pt;
 }
 .p-normal-300-18{
   font-weight: 500;
@@ -1903,7 +1912,7 @@ ul.form-stepper li a .form-stepper-circle {
 }
 .p-normal-300-12{
   font-weight: 300;
-  font-size: 12pt;
+  font-size: 18pt;
 }
 .p-normal-300-9{
   color: #5a2395;
@@ -1967,7 +1976,7 @@ ul.form-stepper li a .form-stepper-circle {
 }
 .p-bold-300-10-black{
   font-weight: bold;
-  font-size: 10pt;
+  font-size: 18pt;
   color: #333333;
 }
 .p-texto{
@@ -2176,6 +2185,9 @@ ul.form-stepper li a .form-stepper-circle {
   .container__70{
     padding: 2em;
   }
+  .container__70__main{
+    padding: 2em;
+  }
   .container__verificados{
     padding: 2em;
   }
@@ -2191,6 +2203,9 @@ ul.form-stepper li a .form-stepper-circle {
   .container__70{
     max-width: 1024px;
     /* max-width: 80%; */
+  }
+  .container__70__main{
+    max-width: 1024px;
   }
         /* adicional */
       .container__70_gris{
@@ -2306,6 +2321,10 @@ ul.form-stepper li a .form-stepper-circle {
     justify-content: center;
     align-items: center; */
 
+  }
+  .container__70__main{
+    max-width: 1024px;
+    padding: 2em;
   }
   .container__temas{
     padding-top:10em;
@@ -2446,12 +2465,13 @@ ul.form-stepper li a .form-stepper-circle {
   .container__70{
     max-width: 1024px;
   }
+  .container__70__main{
+    max-width: 1024px;
+  }
     .container__historias__reales__body{
       justify-content: center;
     }
-    .container_2em_10em{
-      padding: 1em 1em;
-    }
+  
     .apartado__index__body{
       font-size: 38pt;
       padding-top: 14rem;
@@ -2835,6 +2855,7 @@ ul.form-stepper li a .form-stepper-circle {
   .container__historias__reales__head{
       padding: 1em 0;
       text-align: center;
+      width: 100%;
 
   }
   .card-content{
@@ -2843,13 +2864,7 @@ ul.form-stepper li a .form-stepper-circle {
   .card-image{
       height: auto;
   }
-  .container__verificados{
-      /* margin: 0;
-      padding: 2em 0;
-      flex-direction: column;
-      align-items: center; */
 
-  }
   .container__verificados__texto{
       width: auto;
       padding: 0 2em;
@@ -2882,7 +2897,7 @@ ul.form-stepper li a .form-stepper-circle {
       margin-bottom: 1em;
   }
   .container__azul{
-      padding: 1em 1em;
+      /* padding: 1em 1em; */
       font-size: 12pt;
   }
  .container__temas__body__i{
@@ -3044,6 +3059,7 @@ ul.form-stepper li a .form-stepper-circle {
   .container_blog_descubre .p-bold-500-18{
     font-size: 12pt;
   }
+
 }
 
 
@@ -3061,12 +3077,13 @@ background: #00c1ff;
 }
 .p-bold-300-10-black{
 font-weight: bold;
-font-size: 12pt;
+font-size: 18pt;
 color: #333333;
 }
 .p-normal-20-naranja{
 color: #f98900;
-font-size: 20pt;
+font-size: 25pt;
+line-height: 1em;
 }
 .p-normal-14-gris{
 color: #7a7a7a;
@@ -3085,9 +3102,7 @@ top: 170rem;
 .container_10em{
 padding: 5em 10em;
 }
-.container_2em_10em{
-padding: 2em 10em;
-}
+
 .container_item_flotante_verde{
 width: 30%;
 padding-bottom: 2em ;
@@ -3118,6 +3133,9 @@ text-align: center;
 /* border-radius: 15px;
 height:400px;
 ;max-width: 350px; */
+}
+.img_border{
+  height: 500px;
 }
 .img_border_radio{
 border-radius: 5px;
@@ -3168,7 +3186,9 @@ border-radius: 5px;
 
 /* tamaño de maximo 460  */
 @media (max-width: 460px) {
-
+p{
+  font-size: 12pt;
+}
 .apartado__index{
      background-position: center center; 
 }
@@ -3260,6 +3280,9 @@ padding: 1em;
 .container__70{
     padding: 1em;
 }
+.container__70__main{
+  padding: 1em;
+}
 .container__temas{
   padding-top:10em;
 }
@@ -3269,7 +3292,7 @@ padding: 1em;
 .container__historias__reales__head__title{
     width: 100%;
     font-size: 20pt;
-    line-height: 2em;
+    line-height: 1em;
 }
 .container__historias__reales__head__subtitle{
     width: 100%;
@@ -3305,6 +3328,15 @@ padding: 1em;
     padding:0rem 0rem
 
 }
+.letra__a p{
+  font-size: 35pt;
+}
+.letra__b__bold p{
+  font-size: 35pt;
+}
+.container__azul__content{
+  padding: 1em;
+}
 .texto{
     font-size: 8pt;
     -webkit-line-clamp: 5;
@@ -3323,8 +3355,14 @@ padding: 1em;
 .btn_ver_mas{
     font-size: 8pt;
 }
+.btn_ver_temas{
+  font-size: 8pt;
+  max-width: 150px;
+}
 .container__historias__reales__head{
-    padding: 1em 0;
+    padding: 0;
+    padding-bottom: 1em;
+    line-height: 1em;
 }
 .card-content{
     padding: 35px 15px;
@@ -3333,11 +3371,8 @@ padding: 1em;
     height: auto;
 }
 .container__verificados{
-  padding: 2em
-    /* margin: 0;
-    padding: 2em 0;
-    flex-direction: column;
-    align-items: center; */
+  padding: 1em
+   
 }
 .container__verificados__texto{
     width: auto;
@@ -3352,6 +3387,7 @@ padding: 1em;
 .container__verificados__head__title{
     max-width: 100%;
     font-size: 20pt;
+    margin-top: 0em;
 
 }
 .container__verificados__head__subtitle{
@@ -3369,9 +3405,7 @@ padding: 1em;
 .container__verificados__head{
     margin-bottom: 1em;
 }
-.container__azul{
-    /* padding: 1em 1em; */
-}
+
 .container__azul__body{
     flex-direction: column;
     font-size: 10pt;
@@ -3429,7 +3463,9 @@ justify-content: space-between;
     font-size: 20pt;
 }
 .container__historias__body__head{
-    padding: 1em 0;
+    padding: 0;
+    line-height: 1em;
+    padding-bottom: 1em;
 }
 .container__historias__body__subtitle{
     font-size: 12pt;
@@ -3445,11 +3481,7 @@ justify-content: space-between;
     text-align: justify;
 }
 .container__resenias__body{
-    /* width: 100%;
-    top: 200rem */
-    /* position: relative;
-    top:0;
-    width: 100%; */
+  
     margin: auto;
 }
 .container__resenias{
@@ -3484,9 +3516,7 @@ justify-content: space-between;
     width: 30px;
     height: auto;
 }
-/* .apartado__combinado {
-    padding-top: 10rem;
-} */
+
 .btn-whatsapp img{
     width: 120px;
     height: 120px;
@@ -3514,11 +3544,26 @@ justify-content: space-between;
 .container__historias__reales__body{
     justify-content: center;
 }
+.p-bold-500-20{
+  font-size: 20pt;
+}
+.p-normal-300-12 ,.p-bold-300-10-black,.p-normal-300-18{
+  font-size: 12pt;
+}
 /* // */
-
-
-
-
+.img_border{
+  height: auto;
+}
+.p-normal-20-naranja{
+  font-size: 15pt;
+}
+.container__rutas__head{
+  padding: 0;
+  padding-bottom: 1em;
+}
+.img_border_radio{
+  height: 300px;
+}
 }
 /* NUEVOS 16/02/2025 */
 .embed-responsive {
@@ -3570,13 +3615,11 @@ justify-content: space-between;
     .footer {
       padding: 2em 2em;
   }
-  .container__historias__reales__head {
+  /* .container__historias__reales__head {
     width: 100%;
     text-align: center;
-  }
-  .apartado__index__body{
-    /* font-size: 40pt; */
-  }
+  } */
+
 }
 
 
