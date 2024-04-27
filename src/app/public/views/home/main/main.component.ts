@@ -502,4 +502,10 @@ export class MainComponent implements OnInit,AfterViewInit{
 
     );
   }
+  eliminarCinta(){
+    const cinta = document.querySelector('.p-cinta');
+    if (cinta) {
+      cinta.remove();
+    }
+  }
 }
