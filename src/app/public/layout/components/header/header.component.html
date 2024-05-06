@@ -148,6 +148,9 @@
           <li class="nav-item">
             <a class="nav-head-principal" routerLink="/blog"><strong>Blog</strong></a>
           </li>
+          <li class="nav-item d-lg-none"  *ngIf="!estalogeado">
+            <a class="nav-head-principal" routerLink="../auth/login"><strong>Ingresa</strong></a>
+          </li>
         </ul>
 
 
