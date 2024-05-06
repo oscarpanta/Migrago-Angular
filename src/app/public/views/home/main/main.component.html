@@ -976,7 +976,7 @@ align-items: center;     display: flex; width: 1200px;">
               </div>
 
               <div class="card-wrapper swiper-wrapper cards">
-                <div class="card swiper-slide" *ngFor="let blog of blogs">
+                <div class="card swiper-slide" *ngFor="let blog of blogs" [routerLink]="['../blog/detalle']" [queryParams]="{ blog_id: blog.id }" style="cursor: pointer;">
                   <div class="image-content">
                     <!-- <span class="overlay"></span> -->
                     <div class="card-image">
