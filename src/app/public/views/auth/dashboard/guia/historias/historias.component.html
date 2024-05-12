@@ -39,6 +39,7 @@
           <p class="p-normal-14-gris">Estado: {{guia.status}}</p>
         </div>
       </div>
+      <p *ngIf="guia.status === 'APROBADO'" class="text-success"><i class="fa-solid fa-asterisk text-success me-2"></i>Esta historia esta en modo publico y lista para se reservada</p>
       <div class="row col-lg-6 my-3">
         <div  class="d-grid gap-2 d-md-flex justify-content-md-start">
           <div style="width: 100%;" [ngbTooltip]="(guia.status === 'PENDING') ? 'Editar no disponible. Tu historia se encuentra en revisión' : 'Haz clic para editar'">
