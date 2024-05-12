@@ -15,7 +15,7 @@
       <div class="col-lg-8">
 
         <div class="row col-lg-12 mb-3">
-          <div class="col-lg-7">
+          <div class="col-lg-12">
             <span class="p-bold-500-20" *ngIf="historiaDetalle">{{historiaDetalle.story.data[0].title}}</span>
 
           </div>
@@ -37,15 +37,15 @@
 
           <ngb-carousel>
             <ng-template ngbSlide *ngIf="imageSrc1">
-              <img [src]="imageSrc1" class="card-img" alt="">
+              <img [src]="imageSrc1" class="card-img " alt="" style="object-fit: cover;">
 
 
             </ng-template>
             <ng-template ngbSlide *ngIf="imageSrc2">
-              <img [src]="imageSrc2" class="card-img" alt="">
+              <img [src]="imageSrc2" class="card-img" alt="" style="object-fit: cover;">
             </ng-template>
             <ng-template ngbSlide *ngIf="imageSrc3">
-              <img [src]="imageSrc3" class="card-img" alt="">
+              <img [src]="imageSrc3" class="card-img" alt="" style="object-fit: cover;">
             </ng-template>
           </ngb-carousel>
           <!-- <div class="slide-container-carrrusel-imagenes swiper">

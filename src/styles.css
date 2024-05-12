@@ -987,7 +987,7 @@ margin-left: 0.3rem;
   text-align: center !important;
   color:#54606C !important;
 }
-
+/* object-fit: cover; */
 .disabled-link {
   pointer-events: none;
   color: grey; /* Puedes ajustar el color según tus preferencias */
@@ -1002,10 +1002,14 @@ margin-left: 0.3rem;
 .form_registro{
   background-color: #f4f4f4;
 }
+.form_registro p{
+  font-size: 12pt;
+}
 .form_registro .form_registro_estilo{
   border-radius: 20px;
   background-color: white;
   box-shadow: 2px 5px 5px #717171;
+  padding: 1em;
 }
 .form_registro ul{
   padding: 0 14rem;

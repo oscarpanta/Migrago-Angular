@@ -1,20 +1,23 @@
 <ng-container *ngIf="blogs">
 
   <section>
-    <div class="container-fluid px-0 container__detalle__blog__imagen">
-      <div class=" row col-12 ms-0">
-        <div class="container__blog__imagen__inicio px-0">
-          <picture>
-
-            <!-- <img src="assets/images/1200x1500-min.jpeg"> -->
-            <img [src]="blogs[0].urlImagen">
-
-          </picture>
+    <div class="container-fluid container__detalle__blog container__60">
+     
+        <div class=" row col-12 ms-0">
+          <div class="container__blog__imagen__inicio px-0">
+            <picture>
+  
+              <!-- <img src="assets/images/1200x1500-min.jpeg"> -->
+              <img [src]="blogs[0].urlImagen" style="object-fit: cover;">
+  
+            </picture>
+          </div>
+  
+  
+  
         </div>
-
-
-
-      </div>
+    
+    
     </div>
 
   </section>
