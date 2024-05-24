@@ -1091,8 +1091,32 @@ margin-left: 0.3rem;
 
     padding-top:0em;
   }
-
+  .btn-registrate {
+    padding-right: 1em;
+    padding-left: 1em;
+    font-size: 15px;
+  }
 }
+
+.btn_ver_temas:hover,.btn_ver_informacion:hover, .container__historias__reales__link:hover .btn_ver_mas,
+.btn-whatsapp:hover,.btn-ingresa:hover,.btn-registrate:hover,.btn_unirme:hover,.btn-ingresa-princ:hover  {
+  animation: shakeX 1s; /* Define the duration of the animation */
+}
+@keyframes shakeX {
+  from, to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate3d(-5px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    transform: translate3d(5px, 0, 0);
+  }
+}
+
+
 
 
 
