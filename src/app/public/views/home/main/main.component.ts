@@ -19,6 +19,8 @@ import { CountriesService } from '../../services/countries.service';
 import { Country } from '../../interfaces/countries.interface';
 import { BlogService } from '../../services/blog.service';
 import { DateService } from 'src/app/core/utils/date.service';
+import { AnimationService } from 'src/app/core/utils/animation.service';
+import * as AOS from 'aos';
 declare var $: any;
 //import * as $ from 'jquery';
 
@@ -55,14 +57,18 @@ export class MainComponent implements OnInit,AfterViewInit{
               private rutamigracionService: WaysMigrationService,
               private historiasService:StoriesService,
               private authService:AutenticacionService,private temasService:TemasService,private imagenservice: ImagenesService,
-              private blogService: BlogService, private fechaservice:DateService ) {
+              private blogService: BlogService, private fechaservice:DateService,
+              ) {
 
               }
   ngAfterViewInit(): void {
     this.slideContent();
+
   }
 
   ngOnInit(): void {
+
+    AOS.init();
     const url = environment.baseUrl
     console.log(url)
     const nav = document.getElementById("navbar")!
