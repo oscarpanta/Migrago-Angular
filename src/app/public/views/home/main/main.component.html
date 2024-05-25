@@ -286,47 +286,55 @@ align-items: center;     display: flex; width: 1200px;">
       <div class="apartado__index__body">
         <div class="letra__a letra__blanca">
 
-          <p class="p_texto">
-            Encuentra
+          <!-- <p class="p_texto">
+            Migra seguro con un Guía confiable
           </p>
-          <p class="p_texto">historias</p>
+          <p class="p_texto">historias</p> -->
 
         </div>
         <div class="letra__b__bold letra__blanca">
           <p class="p_texto">
-            para migrar
+            Migra seguro 
           </p>
           <p class="p_texto">
-            seguro
+            con un Guía confiable
           </p>
 
         </div>
+        <div class="letra__black">
 
+      
+          <p>y obtén información valiosa con historias reales.</p> 
+
+        </div>
       </div>
-      <div class="apartado__index__buscador">
-        <!-- <div class="col-md-8 bg-white px-4 py-5 padding-0 d-flex flex-column align-items-center mx-auto">
-          <div class="row col-lg-10 mx-auto">
-            <div class="mb-4">
-              <div class="form-group"> -->
-        <!-- <input type="text" class="buscador" placeholder="Busca el país al que estas migrando"> -->
-
-
-        <!-- </div>
+      <div class="container__buscador">
+        <div class="apartado__index__buscador">
+          <!-- <div class="col-md-8 bg-white px-4 py-5 padding-0 d-flex flex-column align-items-center mx-auto">
+            <div class="row col-lg-10 mx-auto">
+              <div class="mb-4">
+                <div class="form-group"> -->
+          <!-- <input type="text" class="buscador" placeholder="Busca el país al que estas migrando"> -->
+  
+  
+          <!-- </div>
+              </div>
             </div>
-          </div>
-
-        </div> -->
-
-        <!-- <input type="text" class="form-control" placeholder="Busca el país al que estas migrando">
-        <span class="fa fa-solid fa-circle-arrow-right arrow-icon "></span> -->
-        <ng-select name="countrySelect" (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"
-          placeholder="Busca el país al que estas migrando" aria-label="Default select example">
-
-          <ng-option *ngFor="let country of countries" [value]="country.id">{{country.country_name}}</ng-option>
-        </ng-select>
-        <span class="fa fa-solid fa-circle-arrow-right arrow-icon "
-          (click)="redirectToListado(selectedCountryId)"></span>
+  
+          </div> -->
+  
+          <!-- <input type="text" class="form-control" placeholder="Busca el país al que estas migrando">
+          <span class="fa fa-solid fa-circle-arrow-right arrow-icon "></span> -->
+          <ng-select name="countrySelect" (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"
+            placeholder="Elige un país a migrar" aria-label="Default select example">
+  
+            <ng-option *ngFor="let country of countries" [value]="country.id">{{country.country_name}}</ng-option>
+          </ng-select>
+          <span class="fa fa-solid fa-circle-arrow-right arrow-icon "
+            (click)="redirectToListado(selectedCountryId)"></span>
+        </div>
       </div>
+     
     </div>
 
   </div>
@@ -335,8 +343,8 @@ align-items: center;     display: flex; width: 1200px;">
 <section class="container__azul">
   <div class="container__azul__content">
     <div class="container__azul__head">
-      <p class="container__rutas__head__title">¿Cómo funciona?</p>
-      <p class="container__rutas__head__subtitle">Distintas maneras de llegar a tu destino</p>
+      <p class="container__rutas__head__title">¿Cómo funciona MigraGo?</p>
+      <p class="container__rutas__head__subtitle">Identifícate con una historia, reserva una videollamada un guía y obtén la información que necesitas para migrar sin contratiempos.</p>
     </div>
     <div class="container__azul__body">
       <div class="container__azul__body__item">
@@ -350,11 +358,11 @@ align-items: center;     display: flex; width: 1200px;">
           1.-
         </div>
         <div class="container__azul__body__item__text d-none d-lg-block">
-          Busca el país y ciudad a donde migrarás
+          Busca el país y ciudad a donde migrarás.
         </div>
         <div class="d-lg-none d-block">
           <span class="container__azul__body__item__title">1.-</span>
-          <span class="container__azul__body__item__text"> Busca el país y ciudad a donde migrarás</span>
+          <span class="container__azul__body__item__text">Busca el país y ciudad a donde migrarás.</span>
         </div>
 
       </div>
@@ -369,11 +377,11 @@ align-items: center;     display: flex; width: 1200px;">
           2.-
         </div>
         <div class="container__azul__body__item__text d-none d-lg-block">
-          Elige una historia como la tuya ahora
+          Elige una historia como la tuya.
         </div>
         <div class="d-lg-none d-block">
           <span class="container__azul__body__item__title">2.-</span>
-          <span class="container__azul__body__item__text "> Elige una historia como la tuya ahora</span>
+          <span class="container__azul__body__item__text ">Elige una historia como la tuya.</span>
         </div>
       </div>
       <div class="container__azul__body__item">
@@ -387,11 +395,11 @@ align-items: center;     display: flex; width: 1200px;">
           3.-
         </div>
         <div class="container__azul__body__item__text d-none d-lg-block">
-          Reserva una cita para obtener información
+          Resérvala con un guía de confianza.
         </div>
         <div class="d-lg-none d-block">
           <span class="container__azul__body__item__title">3.-</span>
-          <span class="container__azul__body__item__text"> Reserva una cita para obtener información</span>
+          <span class="container__azul__body__item__text"> Resérvala con un guía de confianza.</span>
         </div>
       </div>
     </div>
@@ -409,7 +417,7 @@ align-items: center;     display: flex; width: 1200px;">
             Rutas de migración
           </div>
           <div class="container__rutas__head__subtitle">
-            Distintas maneras de llegar a tu destino
+            Distintas maneras de llegar a vivir a otro país.
           </div>
         </div>
         <div class="container__rutas__body">
@@ -438,12 +446,12 @@ align-items: center;     display: flex; width: 1200px;">
 
       <div class="container__historias__body__head">
         <div class="container__rutas__head__title">
-          <p class="container__rutas__head__title">Temas de interés </p>
-          <p class="container__rutas__head__title"> para migrar seguro</p>
+          <p class="container__rutas__head__title"> Temas que </p>
+          <p class="container__rutas__head__title">  debes conocer bien.</p>
         </div>
 
         <div class="container__rutas__head__subtitle">
-          Conoce los temas en los que te podemos ayudar
+          Obtén información personalizada y precisa en cada tema que necesites para una migración segura y exitosa.
         </div>
       </div>
       <div class="container__temas__body">
@@ -463,145 +471,7 @@ align-items: center;     display: flex; width: 1200px;">
           </div>
           <div class="linea__temas"></div>
         </div>
-        <!-- <div class="container__temas__body__i">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
-
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
-                </div>
-
-
-              </div>
-              <div class="linea__temas"></div>
-            </div>
-
-            <div class="container__temas__body__i">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
-
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
-                </div>
-
-
-              </div>
-              <div class="linea__temas"></div>
-            </div>
-
-            <div class="container__temas__body__i">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
-
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
-                </div>
-
-
-              </div>
-              <div class="linea__temas"></div>
-            </div>
-
-            <div class="container__temas__body__i">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
-
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
-                </div>
-
-
-              </div>
-              <div class="linea__temas"></div>
-            </div>
-
-            <div class="container__temas__body__i">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
-
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
-                </div>
-
-
-              </div>
-              <div class="linea__temas"></div>
-            </div>
-
-            <div class="container__temas__body__i">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
-
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
-                </div>
-
-
-              </div>
-              <div class="linea__temas"></div>
-            </div>
-
-            <div class="container__temas__body__i">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
-
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
-                </div>
-
-
-              </div>
-              <div class="linea__temas"></div>
-            </div>
-            <div class="container__temas__body__i">
-              <div class="container__temas__body__item">
-                <div class="container__temas__body__item__img">
-                  <picture>
-
-                    <img src="assets/images/icons/Escudo-mobile.png">
-                  </picture>
-                </div>
-                <div class="container__temas__body__item__text">
-                  <p>Entretenimiento, mascotas y salud</p>
-                </div>
-
-
-              </div>
-              <div class="linea__temas"></div>
-            </div> -->
-
-        <!-- boton ver mas
-   -->
-
-
+    
 
       </div>
       <div class="container__historias__reales__link temas__button " >
@@ -634,15 +504,15 @@ align-items: center;     display: flex; width: 1200px;">
         <div class="container__historias__body__head">
           <div style="line-height: 1;">
             <div class="container__historias__body__title letra__b">
-              Historias
+              MigraGo,
 
             </div>
             <div class="container__historias__body__title letra__b">
-              como la tuya
+              información valiosa 
             </div>
           </div>
           <div class="container__historias__body__subtitle">
-            de migrantes reales dispuestos a responder
+            para migrar con éxito.
           </div>
         </div>
         <div class="container__historias__body__body">
@@ -740,13 +610,13 @@ align-items: center;     display: flex; width: 1200px;">
       <div class="container__historias__reales">
         <div class="container__historias__reales__head">
           <div class="container__historias__reales__head__title">
-            Historias reales
+            Historias reales 
           </div>
           <div class="container__historias__reales__head__title">
-            de migrantes
+            dde migrantes.
           </div>
           <div class="container__historias__reales__head__subtitle">
-            dispuestos a responder tus dudas
+            Dispuestos a responder todas tus dudas.
           </div>
         </div>
         <div class="container__historias__reales__body">
@@ -787,17 +657,22 @@ align-items: center;     display: flex; width: 1200px;">
       <div class="container__verificados__texto">
         <div class="container__historias__body__head">
 
-              <p class="container__rutas__head__title">Reseñas</p>
-              <p class="container__rutas__head__title">de migrantes</p>
+              <p class="container__rutas__head__title">Testimonios</p>
+              <p class="container__rutas__head__title"> de éxito.</p>
 
           <div class="container__rutas__head__subtitle">
-            que ahora viven en un nuevo país
+            Lee cómo emigrantes han encontrado su camino seguro con MigraGo.
           </div>
 
         </div>
 
       </div>
       <div class="container__resenias__body__back">
+        <div class="container__resenia__imagen">
+         
+            <img src="assets/images/imagen_resenia.png" alt="" class="">
+        
+        </div>
         <div class="slide-container swiper">
           <div class="slide-content3">
 
@@ -813,13 +688,13 @@ align-items: center;     display: flex; width: 1200px;">
 
 
                 </div>
-                <div class="image-content">
+                <!-- <div class="image-content">
 
                   <div class="card-image">
                     <img src="assets/images/imagen_resenia.png" alt="" class="card-img">
                   </div>
 
-                </div>
+                </div> -->
               </div>
               <div class="swiper-slide card-resenia">
 
@@ -832,13 +707,13 @@ align-items: center;     display: flex; width: 1200px;">
 
 
                 </div>
-                <div class="image-content">
+                <!-- <div class="image-content">
 
                   <div class="card-image">
                     <img src="assets/images/imagen_resenia.png" alt="" class="card-img">
                   </div>
 
-                </div>
+                </div> -->
               </div>
               <div class="swiper-slide card-resenia">
 
@@ -851,27 +726,28 @@ align-items: center;     display: flex; width: 1200px;">
 
 
                 </div>
-                <div class="image-content">
+                <!-- <div class="image-content">
 
                   <div class="card-image">
                     <img src="assets/images/imagen_resenia.png" alt="" class="card-img">
                   </div>
 
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="container__pagination__navigation">
               <div class="swiper-pagination"></div>
-              <div class="btn_navigation">
+              <!-- <div class="btn_navigation">
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
-              </div>
+              </div> -->
             </div>
 
 
           </div>
 
         </div>
+        
       </div>
     </div>
 
@@ -897,7 +773,7 @@ align-items: center;     display: flex; width: 1200px;">
               <!-- <span class="letra__b">verificados</span> -->
             <!-- </div> -->
             <div class="container__verificados__head__subtitle">
-              dispuestos a ayudarte a migrar con seguridad
+              con información valiosa y personalizada
             </div>
 
           </div>
@@ -988,7 +864,7 @@ align-items: center;     display: flex; width: 1200px;">
             <span class="letra__b">Antes de migrar</span>
           </div>
           <div class="container__historias__reales__head__subtitle">
-            debes saber esto. últimos post
+            debes saber esto.
           </div>
 
         </div>
@@ -1066,12 +942,10 @@ align-items: center;     display: flex; width: 1200px;">
         <div class="container__unirme">
           <div class="container__unirme__head">
             <div class="container__unirme__head__title letra__b">
-              <span class="">Comparte tu historia</span>
+              <span class="">Unete a Nuestra Comunidad de Guías</span>
             </div>
             <div class="container__unirme__head__subtitle">
-              Si eres nuevo en un país desarrollado, puedes recuperar tu inversión compartiendo tu experiencia con
-              futuros
-              emigrantes de todo el mundo.
+              Comparte tu experiencia migratoria y gana dinero desde la comodidad de tu hogar. Sé parte de la comunidad más grande de inmigrantes en países desarrollados y ayuda a otros a migrar de forma segura y exitosa, tal como lo hiciste tú.
             </div>
           </div>
           <div class="container__unirme__body">
