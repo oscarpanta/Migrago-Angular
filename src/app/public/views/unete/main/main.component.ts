@@ -92,9 +92,7 @@ export class MainComponent implements OnInit, AfterViewInit {
               disabledClass: 'swiper-button-disabled',
             },
             effect: 'fade',
-            // fadeEffect: {
-            //   crossFade: true
-            // },
+          
 
 
             breakpoints: {

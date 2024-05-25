@@ -2,16 +2,16 @@
 <div class="apartado__combinado">
   <div class="container-fluid d-grid gap-3 container__70">
     <div class="row mt-lg-3 mt-4">
-      <div class="col-lg-12">
+      <!-- <div class="col-lg-12">
         <div class="card ">
           <div class="card-body text-center">
             <h5 class="card-title letra__b__bold">Banner/Tutorial</h5>
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
-    <div class="row">
+    <div class="row my-5">
       <div class="col-lg-8">
 
         <div class="row col-lg-12 mb-3">
@@ -114,19 +114,10 @@
           </div> -->
         </div>
         <div class="row col-lg-12 mt-5 mb-3 fs-6">
-          <p *ngIf="historiaDetalle">
+          <p *ngIf="historiaDetalle" class="detalle__texto">
             {{historiaDetalle.story.data[0].story_text}}
           </p>
-          <!-- <p>
-            Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un
-            sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos
-            normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos
-            textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web
-            usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado
-            muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han
-            evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo
-            insertándole humor y cosas por el estilo).
-          </p> -->
+       
         </div>
         <div class="row col-lg-12 mb-3">
           <div class="iconos__redes__perfil">
