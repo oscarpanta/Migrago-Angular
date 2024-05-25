@@ -282,7 +282,7 @@ align-items: center;     display: flex; width: 1200px;">
 <!-- seccion 1 -->
 <section>
   <div class="apartado__index">
-    <div class="container__70">
+    <div class="container__70" data-aos="zoom-in-right"  data-aos-duration="1500">
       <div class="apartado__index__body">
         <div class="letra__a letra__blanca">
 
@@ -294,7 +294,7 @@ align-items: center;     display: flex; width: 1200px;">
         </div>
         <div class="letra__b__bold letra__blanca">
           <p class="p_texto">
-            Migra seguro 
+            Migra seguro
           </p>
           <p class="p_texto">
             con un Guía confiable
@@ -315,33 +315,33 @@ align-items: center;     display: flex; width: 1200px;">
               <div class="mb-4">
                 <div class="form-group"> -->
           <!-- <input type="text" class="buscador" placeholder="Busca el país al que estas migrando"> -->
-  
-  
+
+
           <!-- </div>
               </div>
             </div>
-  
+
           </div> -->
-  
+
           <!-- <input type="text" class="form-control" placeholder="Busca el país al que estas migrando">
           <span class="fa fa-solid fa-circle-arrow-right arrow-icon "></span> -->
           <ng-select name="countrySelect" (ngModelChange)="onCountrySelect($event)" [(ngModel)]="selectedCountryId"
             placeholder="Elige un país a migrar" aria-label="Default select example">
-  
+
             <ng-option *ngFor="let country of countries" [value]="country.id">{{country.country_name}}</ng-option>
           </ng-select>
           <span class="fa fa-solid fa-circle-arrow-right arrow-icon "
             (click)="redirectToListado(selectedCountryId)"></span>
         </div>
       </div>
-     
+
     </div>
 
   </div>
 </section>
 
 <section class="container__azul">
-  <div class="container__azul__content">
+  <div class="container__azul__content"  data-aos="zoom-in">
     <div class="container__azul__head">
       <p class="container__rutas__head__title">¿Cómo funciona MigraGo?</p>
       <p class="container__rutas__head__subtitle">Identifícate con una historia, reserva una videollamada un guía y obtén la información que necesitas para migrar sin contratiempos.</p>
@@ -471,7 +471,7 @@ align-items: center;     display: flex; width: 1200px;">
           </div>
           <div class="linea__temas"></div>
         </div>
-    
+
 
       </div>
       <div class="container__historias__reales__link temas__button " >
@@ -508,7 +508,7 @@ align-items: center;     display: flex; width: 1200px;">
 
             </div>
             <div class="container__historias__body__title letra__b">
-              información valiosa 
+              información valiosa
             </div>
           </div>
           <div class="container__historias__body__subtitle">
@@ -607,10 +607,10 @@ align-items: center;     display: flex; width: 1200px;">
 <section>
   <div class="container__naranja">
     <div class="container__70">
-      <div class="container__historias__reales">
+      <div class="container__historias__reales"  data-aos="zoom-in">
         <div class="container__historias__reales__head">
           <div class="container__historias__reales__head__title">
-            Historias reales 
+            Historias reales
           </div>
           <div class="container__historias__reales__head__title">
             dde migrantes.
@@ -653,7 +653,7 @@ align-items: center;     display: flex; width: 1200px;">
 <!-- seccion reseñas de migrantes -->
 <section>
   <div class="container__resenias">
-    <div class="">
+    <div class="" data-aos="fade-left" data-aos-duration="2000">
       <div class="container__verificados__texto">
         <div class="container__historias__body__head">
 
@@ -669,9 +669,9 @@ align-items: center;     display: flex; width: 1200px;">
       </div>
       <div class="container__resenias__body__back">
         <div class="container__resenia__imagen">
-         
+
             <img src="assets/images/imagen_resenia.png" alt="" class="">
-        
+
         </div>
         <div class="slide-container swiper">
           <div class="slide-content3">
@@ -747,7 +747,7 @@ align-items: center;     display: flex; width: 1200px;">
           </div>
 
         </div>
-        
+
       </div>
     </div>
 
@@ -858,7 +858,7 @@ align-items: center;     display: flex; width: 1200px;">
 <section>
   <div class="container__migrar">
     <div class="container__70">
-      <div class="container__historias__reales">
+      <div class="container__historias__reales" data-aos="zoom-in">
         <div class="container__historias__reales__head">
           <div class="container__historias__reales__head__title">
             <span class="letra__b">Antes de migrar</span>
@@ -939,7 +939,7 @@ align-items: center;     display: flex; width: 1200px;">
   <div class="container__unirme__main">
     <div class="container__70">
       <div class="container_content_unrime">
-        <div class="container__unirme">
+        <div class="container__unirme" data-aos="zoom-in-right">
           <div class="container__unirme__head">
             <div class="container__unirme__head__title letra__b">
               <span class="">Unete a Nuestra Comunidad de Guías</span>

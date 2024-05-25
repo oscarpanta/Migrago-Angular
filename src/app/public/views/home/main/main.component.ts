@@ -19,7 +19,6 @@ import { CountriesService } from '../../services/countries.service';
 import { Country } from '../../interfaces/countries.interface';
 import { BlogService } from '../../services/blog.service';
 import { DateService } from 'src/app/core/utils/date.service';
-import { AnimationService } from 'src/app/core/utils/animation.service';
 import * as AOS from 'aos';
 declare var $: any;
 //import * as $ from 'jquery';
