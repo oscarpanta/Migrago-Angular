@@ -441,10 +441,11 @@ ul{
 }
 .btn-registrate {
   background: #00c1ff;
-  padding-right: 3rem;
-  padding-left: 3rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
   font-family: 'Inter';
   color: #fff;
+  border-radius: 15px;
 }
 .btn-registrate:hover{
   color: #fff;
