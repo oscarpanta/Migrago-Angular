@@ -621,8 +621,11 @@ nav .btn{
   border-width: 0 5px 5px;
 }
 .ng-select .ng-select-container .ng-value-container .ng-placeholder {
-  color: #999;
+  color: #fff;
   font-size: 0.9rem;
+}
+.ng-value-label {
+  color: #fff;
 }
 .ng-option-checkbox {
   display: none; /* Ocultar los checkboxes predeterminados */
