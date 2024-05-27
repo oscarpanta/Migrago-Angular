@@ -1038,6 +1038,7 @@ margin-left: 0.3rem;
 .container__temas__body__item__img{
   max-width: 50%;
 }
+
 .container__temas__body__item__text{
   max-width: 60%;
   margin-left: 2em;
@@ -1088,8 +1089,12 @@ margin-left: 0.3rem;
 
   .container__temas__body__item{
 
-    justify-content: center;
-
+    justify-content: flex-start;
+  
+  }
+  .container__temas__body{
+    max-width: 80%;
+    margin: 0 auto;
   }
   .container__temas__body{
 

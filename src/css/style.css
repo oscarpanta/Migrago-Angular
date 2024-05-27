@@ -110,6 +110,17 @@ font-weight: bold;
 color: #fff;
 font-weight: 600;
 }
+
+.letra__white__bold {
+  font-size: 18px !important;
+color: #fff !important;
+font-weight: 600;
+text-align: center !important;
+;
+}
+.letra__morada__radius{
+  background-color: #5a2395; color: white; border-radius: 15px;
+}
 .btn_ver_mas{
   text-decoration: none;
   background: #00c1ff;
@@ -136,7 +147,7 @@ font-weight: 600;
   background: #5a2395;
   border-radius: 15px;
   padding: 15px;
-  font-size: 24pt;
+  font-size: 18px;
   color: #fff;
   max-width: 300px;
   display: block;
@@ -182,6 +193,14 @@ font-weight: 600;
 }
 .p-cinta p{
   color: #5a2395;
+  font-size: 18px;
+  margin: 0;
+  padding: 10px 0;
+  margin: 0 0.2em;
+}
+.p-cinta a{
+  text-decoration: underline;
+  color: #fff;
   font-size: 18px;
   margin: 0;
   padding: 10px 0;
@@ -254,7 +273,7 @@ color: white;
    }
    .apartado__index__buscador{
     width: 50%;
-    font-size: 12pt;
+    font-size: 12px;
 
    }
    .apartado__index__buscador input{
@@ -350,7 +369,7 @@ color: white;
 .container__azul__body__item__title{
   font-weight: bold;
   font-family: "Inter";
-  font-size: 12pt;
+  font-size: 12px;
 }
 .container__azul__body__item__text{
   font-family: "Inter light";
@@ -392,7 +411,7 @@ color: white;
   text-align: center;
   align-items: center;
   font-family: 'Inter';
-  font-size: 12pt;
+  font-size: 12px;
 }
 .container__rutas__body__etiqueta{
   background: #cfcfcf;
@@ -638,6 +657,15 @@ height: 230px;
   /* border-radius: 15px 15px 0 0; */
 }
 
+/* .swiper-fade .swiper-slide-active{
+align-items: flex-end;
+} */
+
+.card-resenia{
+  display: flex;
+  align-items: flex-end;
+  
+}
 .card-resenia .card-image .card-img{
   height: 100%;
   width: 100%;
@@ -986,6 +1014,11 @@ width: 60%; */
 
   margin: 0 auto;
 }
+.container__resenia__body{
+  display: flex;
+  flex-wrap: wrap;
+
+}
 .container__content{
   padding: 3em  0;
 }
@@ -998,7 +1031,7 @@ width: 60%; */
   width:  100%;
   display: flex;
   align-items: center;
-  height: 400px;
+  /* height: 400px; */
 
   /* margin: -8em auto 0 auto; */
 }
@@ -1006,28 +1039,30 @@ width: 60%; */
 .container__resenias .card-content{
   /* width: 60%;
   padding: 0; */
-  width: 100%;
+  width: 80%;
     padding: 0;
+    margin-top: 2em;
 }
 .container__resenia__imagen .slide-container{
 
 width: 40%;
 }
 .container__resenia__imagen{
-  width: 40%;
+  max-width: 40%;
 }
 .description-resenia{
-  font-size: 24pt;
+  font-size: 18px;
   font-family: 'Inter light';
   margin-bottom: 2rem;
   color: #333333;
 
 }
 .container__resenia__imagen img{
-  width: 350px;
-  height: 350px;
+  max-width: 500px;
+  max-height: 500px;
   display: block;
   margin: 0 auto;
+  border-radius: 5px;
 }
 
 .container__resenias .image-content{
@@ -1037,10 +1072,10 @@ width: 40%;
    width: 100%;
 }
 .container__resenias .swiper{
-  width: 60%;
+  width: 100%;
 }
 .container__resenias .btn_navigation{
-  margin: 3em 0;
+  margin: 1em 0;
 }
 .container__pagination__navigation{
   display: flex;
@@ -1415,11 +1450,11 @@ adicionales
 }
 .p-bold-500{
   font-weight: 600;
-  font-size: 12pt;
+  font-size: 12px;
 }
 .p-normal-300{
   font-weight: 300;
-  font-size: 12pt;
+  font-size: 12px;
 }
 .p-bold-500-18{
   font-weight: 600;
@@ -1484,7 +1519,7 @@ adicionales
   padding: 5px 10px;
   max-width: 200px;
   color: #fff;
-  font-size: 12pt;
+  font-size: 12px;
 }
 .slide-container-carrrusel-imagenes {
   width: 100%;
@@ -1642,12 +1677,12 @@ padding: 0;
 }
 .container__70_gris .container__historias__reales__body i{
   color: #5a2395;
-  font-size: 12pt
+  font-size: 12px
 }
 .link-dashboard{
   text-decoration: none;
   color: #00c1ff;
-  font-size: 12pt
+  font-size: 12px
 }
 .link-dashboard:hover{
   color: #5a2395;
@@ -1659,7 +1694,7 @@ padding: 0;
   padding: 5px 10px;
   max-width: 200px;
   color: #fff;
-  font-size: 12pt;
+  font-size: 12px;
 }
 .password-icon {
   float: right;
@@ -2121,7 +2156,7 @@ ul.form-stepper li a .form-stepper-circle {
   font-size: 20pt;
 }
 .container_leidos .leidos_contenido{
-  font-size: 12pt;
+  font-size: 12px;
 }
 .description-detalle{
   font-size: 16px;
@@ -2482,6 +2517,7 @@ ul.form-stepper li a .form-stepper-circle {
 /* / Móviles en horizontal o tablets en vertical
  ------------------------------------------------------------------------- / */
 @media (max-width: 768px) {
+
   .container__azul{
     /* width: calc(100% - 18%); */
   }
@@ -2563,7 +2599,7 @@ ul.form-stepper li a .form-stepper-circle {
   }
   .container__azul__body{
     flex-direction: column;
-    font-size: 12pt;
+    font-size: 12px;
     padding: 10px;
   }
   .container__azul__body__item{
@@ -2698,8 +2734,9 @@ ul.form-stepper li a .form-stepper-circle {
   }
   .container__resenias .card-content {
     width: 100%;
-    padding: 2em 2em;
-}
+    margin-top: 0;
+    padding: 0 2em;
+  } 
 .description-resenia {
   font-size: 13pt;
   text-align: justify;
@@ -2751,13 +2788,7 @@ ul.form-stepper li a .form-stepper-circle {
        height: 45rem;
        background-position: center center;
   }
-  .apartado__index__body{
-      width: 100%;
-      color: #fff;
-      text-align: center;
-      font-size: 25pt;
-      padding: 10em 0 1em 0;
-  }
+
   .buscador{
       width: 100%;
       font-size: 10px;
@@ -2793,7 +2824,7 @@ ul.form-stepper li a .form-stepper-circle {
   font-size: 8pt;
  }
  .btn_unirme{
-  font-size: 12pt;
+  font-size: 12px;
   width: 200px;
   display: inline-block;
  }
@@ -2855,7 +2886,7 @@ ul.form-stepper li a .form-stepper-circle {
   }
   .container__historias__reales__head__subtitle{
       width: 100%;
-      font-size: 12pt;
+      font-size: 12px;
   }
   .btn_navigation{
       justify-content: center;
@@ -2879,7 +2910,7 @@ ul.form-stepper li a .form-stepper-circle {
       height: 20px;
   }
   .description{
-      font-size: 12pt;
+      font-size: 12px;
   }
   .texto{
       font-size: 8pt;
@@ -2930,7 +2961,7 @@ ul.form-stepper li a .form-stepper-circle {
   }
   .container__verificados__head__subtitle{
       max-width: 100%;
-      font-size: 12pt;
+      font-size: 12px;
   }
   .container__verificados__body{
       flex-direction: column;
@@ -2945,7 +2976,7 @@ ul.form-stepper li a .form-stepper-circle {
   }
   .container__azul{
       /* padding: 1em 1em; */
-      font-size: 12pt;
+      font-size: 12px;
   }
  .container__temas__body__i{
   width: 100%;
@@ -2981,7 +3012,7 @@ ul.form-stepper li a .form-stepper-circle {
   }
   .container__rutas__head__subtitle,.container__historias__body__subtitle,.container__historias__body__body__item__text
   ,.container__historias__reales__head__subtitle,.container__verificados__head__subtitle,.container__verificados__head__subtitle{
-      font-size: 12pt;
+      font-size: 12px;
   }
   .container__historias__body__body__item__imagen img{
     width: 60px;
@@ -3018,17 +3049,17 @@ ul.form-stepper li a .form-stepper-circle {
       line-height: 2em;
   }
   .container__historias__body__subtitle{
-      font-size: 12pt;
+      font-size: 12px;
   }
   .container__historias__body__body__item__title {
       font-size: 25pt;
       padding-bottom: 0.5em;
   }
   .container__historias__body__body__item__text{
-      font-size: 12pt;
+      font-size: 12px;
   }
   .description-resenia{
-      font-size: 12pt;
+      font-size: 12px;
       text-align: justify;
   }
   .container__resenias__body{
@@ -3048,11 +3079,12 @@ ul.form-stepper li a .form-stepper-circle {
   .container__resenias .card-image{
       height: auto;
   }
-  .card-resenia {
+  /* .card-resenia {
       display: flex;
       flex-direction: column;
+      align-items: flex-end;
 
-  }
+  } */
   .slide-content3,.slide-content4{
       padding: 0 2em;
   }
@@ -3061,7 +3093,7 @@ ul.form-stepper li a .form-stepper-circle {
   }
   .container__resenias .card-content{
       width: 100%;
-      padding: 2em 2em;
+     
   }
   .container__resenias .image-content{
       max-width: 100%;
@@ -3104,7 +3136,7 @@ ul.form-stepper li a .form-stepper-circle {
     font-size: 16pt;
   }
   .container_blog_descubre .p-bold-500-18{
-    font-size: 12pt;
+    font-size: 12px;
   }
 
 }
@@ -3228,13 +3260,14 @@ border-radius: 5px;
   width: 80%;
   margin-left: 0;
 }
+
 }
 
 
 /* tamaño de maximo 460  */
 @media (max-width: 460px) {
 p{
-  font-size: 12pt;
+  font-size: 12px;
 }
 .apartado__index{
      background-position: center center;
@@ -3243,14 +3276,24 @@ p{
     width: 100%;
     color: #fff;
     text-align: center;
-    font-size: 30pt;
-    padding: 8em 0 1em 0;
+    font-size: 20px;
+    /* padding: 8em 0 1em 0; */
     line-height: 2em;
 
 }
 .buscador{
     width: 100%;
     font-size: 10px;
+}
+.container__buscador{
+  margin-top: 1em;
+}
+.letra__morada__radius{
+  background-color: #5a2395; color: white; border-radius: 15px;
+  font-size: 15px;
+}
+.letra__white__bold{
+  font-size: 12px !important;
 }
 .letra__blanca{
     color: #fff;
@@ -3343,7 +3386,7 @@ padding: 1em;
 }
 .container__historias__reales__head__subtitle{
     width: 100%;
-    font-size: 12pt;
+    font-size: 12px;
 }
 .btn_navigation{
     justify-content: center;
@@ -3367,7 +3410,11 @@ padding: 1em;
     height: 20px;
 }
 .description{
-    font-size: 12pt;
+    font-size: 12px;
+}
+.container__resenia__imagen img{
+  max-width: 500px;
+  max-height: 500px;
 }
 .container__verificados__imagen img{
   width: 100%;
@@ -3380,7 +3427,8 @@ padding: 1em;
   font-size: 40px;
 }
 .letra__b__bold p{
-  font-size: 20pt;
+  font-size: 25px;
+  line-height: 2em;
 }
 .container__azul__content{
   padding: 1em;
@@ -3440,7 +3488,7 @@ padding: 1em;
 }
 .container__verificados__head__subtitle{
     max-width: 100%;
-    font-size: 12pt;
+    font-size: 12px;
 }
 .container__verificados__body{
     flex-direction: column;
@@ -3462,8 +3510,11 @@ padding: 1em;
 .container__azul__body__item{
     width: 100%;
     display: flex;
-    align-items: center;
-justify-content: space-between;
+ 
+justify-content: flex-start;
+}
+.container__temas__body{
+  justify-content: flex-start;
 }
 .container__azul__head,.container__rutas__head__title,.container__historias__body__title,.container__historias__reales__head__title
 ,.container__verificados__head__title,.container__verificados__head__title,.container__historias__reales__head__title
@@ -3483,7 +3534,7 @@ justify-content: space-between;
 }
 .container__rutas__head__subtitle,.container__historias__body__subtitle,.container__historias__body__body__item__text
 ,.container__historias__reales__head__subtitle,.container__verificados__head__subtitle,.container__verificados__head__subtitle{
-    font-size: 12pt;
+    font-size: 12px;
 }
 .container__rutas__body__etiqueta{
     font-size: 8pt;
@@ -3516,16 +3567,16 @@ justify-content: space-between;
     padding-bottom: 1em;
 }
 .container__historias__body__subtitle{
-    font-size: 12pt;
+    font-size: 12px;
 }
 .container__historias__body__body__item__title {
     font-size: 25pt;
 }
 .container__historias__body__body__item__text{
-    font-size: 12pt;
+    font-size: 12px;
 }
 .description-resenia{
-    font-size: 12pt;
+    font-size: 12px;
     text-align: justify;
 }
 .container__resenias__body{
@@ -3545,7 +3596,13 @@ justify-content: space-between;
 .card-resenia {
     display: flex;
     flex-direction: column;
+    max-width: 100%;
+    align-items: center;
 
+}
+.container__resenia__imagen{
+  max-width: 100%;
+  margin-top: 1em;
 }
 .slide-content3,.slide-content4{
     padding: 0 2em;
@@ -3555,7 +3612,7 @@ justify-content: space-between;
 }
 .container__resenias .card-content{
     width: 100%;
-    padding: 2em 2em;
+   
 }
 .container__resenias .image-content{
     max-width: 100%;
@@ -3596,7 +3653,7 @@ justify-content: space-between;
   font-size: 20pt;
 }
 .p-normal-300-12 ,.p-bold-300-10-black,.p-normal-300-18{
-  font-size: 12pt;
+  font-size: 12px;
 }
 /* // */
 .img_border{
