@@ -463,11 +463,18 @@ align-items: center;    width: 1200px;">
 
           </div>
           <div class="linea__temas"></div>
+
+        </div>
+        <div *ngIf="(this.Temas.length % 2 !== 0)" class="container__temas__body__i">
+          <div class="container__temas__body__item justify-content-center">
+            <div class="container__temas__body__item__text">
+              <a routerLink="/temas" routerLinkActive="router-link-active" class="btn_ver_temas text-center">Ver más</a>
+            </div>
+          </div>
         </div>
 
-
       </div>
-      <div class="container__historias__reales__link temas__button ">
+      <div *ngIf="!(this.Temas.length % 2 !== 0)" class="container__historias__reales__link temas__button ">
         <a routerLink="/temas" routerLinkActive="router-link-active" class="btn_ver_temas">Ver más</a>
       </div>
 
@@ -500,7 +507,7 @@ align-items: center;    width: 1200px;">
               El impacto global de la migración
 
             </div>
-           
+
           </div>
           <div class="container__historias__body__subtitle">
             Conoce los números y asegúrate de tomar decisiones informadas.
@@ -510,7 +517,7 @@ align-items: center;    width: 1200px;">
           <div class="container__historias__body__body__item">
             <div class="container__historias__body__body__item__imagen">
               <picture>
-          
+
                 <img src="assets/images/icons/pareja.png">
               </picture>
             </div>
@@ -526,7 +533,7 @@ align-items: center;    width: 1200px;">
           <div class="container__historias__body__body__item">
             <div class="container__historias__body__body__item__imagen">
               <picture>
-             
+
                 <img src="assets/images/icons/mochila.png">
               </picture>
             </div>
@@ -561,7 +568,7 @@ align-items: center;    width: 1200px;">
           <div class="container__historias__body__body__item">
             <div class="container__historias__body__body__item__imagen">
               <picture>
-             
+
                 <img src="assets/images/icons/pet.png">
               </picture>
             </div>
@@ -578,7 +585,7 @@ align-items: center;    width: 1200px;">
         </div>
 
       </div>
-    
+
     </div>
   </div>
 </section>
@@ -633,7 +640,7 @@ align-items: center;    width: 1200px;">
 <section>
   <div class="container__resenias">
     <div class="" data-aos="fade-right" data-aos-duration="3000">
-    
+
       <div class="container__resenias__body__back">
         <!-- <div class="container__resenia__imagen">
 
@@ -644,117 +651,117 @@ align-items: center;    width: 1200px;">
           <div class="slide-content3">
 
             <div class="card-wrapper swiper-wrapper card-resenia-main">
-            
+
                 <div class="swiper-slide">
                 <div class="card-resenia">
                   <div class="container__resenia__body">
                     <div class="container__verificados__texto">
                       <div class="container__historias__body__head">
-              
+
                         <p class="container__rutas__head__title">Testimonios</p>
                         <!-- <p class="container__rutas__head__title"> de éxito.</p> -->
-              
+
                         <div class="container__rutas__head__subtitle">
                           de emigrantes que ahorraron mucho dinero y tiempo gracias a guías verificados
                         </div>
-              
+
                       </div>
-              
+
                     </div>
                     <div class="card-content">
-    
+
                       <p class="description-resenia">“LoremC ipsum dolor sit amet, con-sectetuer adipiscing elit, sed diam
                         nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat”</p>
                       <span class="autor">Miguel P.</span>
                       <span class="etiqueta">Verificado</span>
-    
-    
+
+
                     </div>
                   </div>
-               
+
                   <div class="container__resenia__imagen">
-  
+
                     <div class="">
                       <img src="assets/images/imagen_resenia.png" alt="" class="">
                     </div>
-  
+
                   </div>
                 </div>
-              
+
               </div>
               <div class="swiper-slide">
                 <div class="card-resenia">
                   <div class="container__resenia__body">
                     <div class="container__verificados__texto">
                       <div class="container__historias__body__head">
-              
+
                         <p class="container__rutas__head__title">Testimonios</p>
                         <!-- <p class="container__rutas__head__title"> de éxito.</p> -->
-              
+
                         <div class="container__rutas__head__subtitle">
                           de emigrantes que ahorraron mucho dinero y tiempo gracias a guías verificados
                         </div>
-              
+
                       </div>
-              
+
                     </div>
                     <div class="card-content">
-    
+
                       <p class="description-resenia">“LoremC ipsum dolor sit amet, con-sectetuer adipiscing elit, sed diam
                         nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat”</p>
                       <span class="autor">Miguel P.</span>
                       <span class="etiqueta">Verificado</span>
-    
-    
+
+
                     </div>
                   </div>
-               
+
                   <div class="container__resenia__imagen">
-  
+
                     <div class="">
                       <img src="assets/images/imagen_resenia.png" alt="" class="">
                     </div>
-  
+
                   </div>
                 </div>
-              
+
               </div>
               <div class="swiper-slide">
                 <div class="card-resenia">
                   <div class="container__resenia__body">
                     <div class="container__verificados__texto">
                       <div class="container__historias__body__head">
-              
+
                         <p class="container__rutas__head__title">Testimonios</p>
                         <!-- <p class="container__rutas__head__title"> de éxito.</p> -->
-              
+
                         <div class="container__rutas__head__subtitle">
                           de emigrantes que ahorraron mucho dinero y tiempo gracias a guías verificados
                         </div>
-              
+
                       </div>
-              
+
                     </div>
                     <div class="card-content">
-    
+
                       <p class="description-resenia">“LoremC ipsum dolor sit amet, con-sectetuer adipiscing elit, sed diam
                         nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat”</p>
                       <span class="autor">Miguel P.</span>
                       <span class="etiqueta">Verificado</span>
-    
-    
+
+
                     </div>
                   </div>
-               
+
                   <div class="container__resenia__imagen">
-  
+
                     <div class="">
                       <img src="assets/images/imagen_resenia.png" alt="" class="">
                     </div>
-  
+
                   </div>
                 </div>
-              
+
               </div>
             </div>
 
