@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import Swiper from 'swiper';
+import * as AOS from 'aos';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -15,6 +16,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     // this.cdRef.detectChanges();
   }
   ngOnInit(): void {
+    AOS.init();
     //this.showSwiper = true;
   }
 

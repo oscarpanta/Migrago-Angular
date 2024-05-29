@@ -6,6 +6,7 @@ import { UneteComponent } from './unete.component';
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { FormsModule } from '@angular/forms';
+import { HomeModule } from '../home/home.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    UneteRoutingModule
+    UneteRoutingModule,
+    HomeModule
   ],
   exports: [
     RouterModule,
