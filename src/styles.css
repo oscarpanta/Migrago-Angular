@@ -620,7 +620,7 @@ nav .btn{
   border-color: transparent transparent #5a2395;
   border-width: 0 5px 5px;
 }
-.ng-select .ng-select-container .ng-value-container .ng-placeholder {
+.apartado__index__buscador .ng-select .ng-select-container .ng-value-container .ng-placeholder {
   color: #fff;
   font-size: 0.9rem;
 }
@@ -1090,7 +1090,7 @@ margin-left: 0.3rem;
   .container__temas__body__item{
 
     justify-content: flex-start;
-  
+
   }
   .container__temas__body{
     max-width: 80%;

@@ -880,6 +880,7 @@ export class DetalleComponent implements OnInit{
     localStorage.setItem('temas', JSON.stringify(this.groupThemeIds));
     localStorage.setItem('historia', JSON.stringify(this.historiaDetalle.story.data[0]));
     localStorage.setItem('monto', JSON.stringify(this.historiaDetalle.rates[0].price));
+    localStorage.setItem('montos', JSON.stringify(this.historiaDetalle.rates[0]));
   }
   // abrirmodal(content: any){
 

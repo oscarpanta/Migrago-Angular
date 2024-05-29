@@ -28,7 +28,7 @@ import { DateService } from 'src/app/core/utils/date.service';
 export class PagoCitaComponent implements OnInit {
   //
   //@ViewChild(StripeCardComponent, { static: false }) card!: StripeCardComponent;
-  data:any
+  data: any
   @ViewChild(StripeCardNumberComponent) card!: StripeCardNumberComponent;
   usuario!: Usuario;
   formularioEnviado = false;
@@ -54,39 +54,46 @@ export class PagoCitaComponent implements OnInit {
     name: ['', [Validators.required]],
     email: ['', [Validators.required]],
     amount: [0, [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+    descuento: [0, [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+    montoreal: [0, [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
   });
 
   constructor(private fb: FormBuilder, private stripeService: StripeService, private modalService: NgbModal,
     private bookingService: BookingsService, private authService: AutenticacionService, private router: Router,
-      private jitsiService:JitsiService,private fechaservice:DateService) { }
+    private jitsiService: JitsiService, private fechaservice: DateService) { }
   ngOnInit(): void {
     this.GetUsuario()
     this.paymentForm.patchValue({
       name: this.usuario.name,
       email: this.usuario.username
     })
-   this.paymentForm.get('name')?.disable();
+    this.paymentForm.get('name')?.disable();
     //this.paymentForm.get('email')?.disable();
-  //  this.paymentForm.get('amount')?.setValue(90);
+    //  this.paymentForm.get('amount')?.setValue(90);
     this.paymentForm.get('amount')?.disable();
-
+    this.paymentForm.get('descuento')?.disable();
+    this.paymentForm.get('montoreal')?.disable();
   }
   GetUsuario() {
     //this.usuario = this.authService.getUsuario();
-    this.authService.getUsuario().subscribe((usuario:any) => {
+    this.authService.getUsuario().subscribe((usuario: any) => {
       this.usuario = usuario;
       console.log(this.usuario);
     });
     const historiaString = localStorage.getItem('historia');
     const fechaInicioString = localStorage.getItem('fechainicio');
-    this.paymentForm.get('amount')?.setValue(localStorage.getItem('monto'));
 
+    const montos=JSON.parse(localStorage.getItem('montos')!)
+
+    this.paymentForm.get('amount')?.setValue(montos.precio_normal);
+    this.paymentForm.get('descuento')?.setValue(`${montos.descueto}%`);
+    this.paymentForm.get('montoreal')?.setValue(montos.price);
 
 
     let fechaInicio: Date;
     if (historiaString && fechaInicioString !== null) {
       fechaInicio = new Date(fechaInicioString);
-      this.data  = {
+      this.data = {
         historia: JSON.parse(historiaString),
         // fechainicio: localStorage.getItem('fechainicio'),
         fechainicio: this.fechaservice.formatDatetimeToString(fechaInicio),
@@ -104,11 +111,11 @@ export class PagoCitaComponent implements OnInit {
   pay(): void {
     console.log(this.paymentForm)
     this.formularioEnviado = true;
-    if(this.card){
+    if (this.card) {
       if (this.paymentForm.valid || this.paymentForm.disabled) {
         const montoControl = this.paymentForm.get('amount');
         montoControl?.enable();
-        const { name,email,amount } = this.paymentForm.value;
+        const { name, email, amount } = this.paymentForm.value;
 
         montoControl?.disable();
 
@@ -162,7 +169,7 @@ export class PagoCitaComponent implements OnInit {
             showConfirmButton: false
           });
           console.log(this.card)
-          if(this.card.element){
+          if (this.card.element) {
             this.stripeService.confirmCardPayment(response[0].client_secret, {
               payment_method: {
                 card: this.card.element,
@@ -177,11 +184,11 @@ export class PagoCitaComponent implements OnInit {
                 this.formularioEnviado = false;
                 console.error(result.error.message);
                 Swal.close();
-                Swal.fire('Error', 'Ocurrio un error al pagar:'+ result.error.message, 'error')
+                Swal.fire('Error', 'Ocurrio un error al pagar:' + result.error.message, 'error')
               } else {
                 if (result.paymentIntent.status === 'succeeded') {
                   // this.jitsiService.moveRoom(this.jitsiService.namePrincipalRoom, true, this.usuario.name,this.usuario.username);
-                  this.jitsiService.moveRoom(historiaData.title+'-'+this.usuario.name, true, this.usuario.name,this.usuario.username);
+                  this.jitsiService.moveRoom(historiaData.title + '-' + this.usuario.name, true, this.usuario.name, this.usuario.username);
                   const link = this.jitsiService.getIFrameSrc();
                   console.log(link)
                   console.log('Pago exitoso');
@@ -206,17 +213,17 @@ export class PagoCitaComponent implements OnInit {
                         group_theme_id: id,
                         question: ""
                       })),
-                      name_user:this.usuario.name,
-                      email_user:this.usuario.username,
-                      storie:historiaData.title,
-                      order_id:response[0].metadata.order_id
+                      name_user: this.usuario.name,
+                      email_user: this.usuario.username,
+                      storie: historiaData.title,
+                      order_id: response[0].metadata.order_id
 
                     }
                   }
                   console.log(req)
                   this.bookingService.crearBooking(req)
                     .subscribe(res => {
-                       //  console.log(res[0].in_id);
+                      //  console.log(res[0].in_id);
                       console.log(res)
                       if (res[0][0].out_rpta === "OK") {
                         Swal.close();
@@ -252,9 +259,9 @@ export class PagoCitaComponent implements OnInit {
               }
             });
           }
-           else{
+          else {
             Swal.fire('Error', 'No se pudo registrar', 'error')
-           }
+          }
         });
       }
     }
