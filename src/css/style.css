@@ -116,7 +116,8 @@ font-weight: 600;
 color: #fff !important;
 font-weight: 600;
 text-align: center !important;
-;
+margin: auto 0 !important
+
 }
 .letra__morada__radius{
   background-color: #5a2395; color: white; border-radius: 15px;
@@ -476,7 +477,7 @@ color: white;
   margin: 0 2em;
 }
 .container__historias__body__body__item__imagen img{
-  width: 140px;
+  width: 150px;
 }
 
 .container__historias__imagen{
