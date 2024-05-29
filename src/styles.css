@@ -445,7 +445,7 @@ ul{
   padding-left: 2rem;
   font-family: 'Inter';
   color: #fff;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 .btn-registrate:hover{
   color: #fff;
@@ -621,11 +621,11 @@ nav .btn{
   border-width: 0 5px 5px;
 }
 .apartado__index__buscador .ng-select .ng-select-container .ng-value-container .ng-placeholder {
-  color: #fff;
+  color: #3333;
   font-size: 0.9rem;
 }
 .apartado__index__buscador .ng-value-label {
-  color: #fff;
+  color: #333;
 }
 .ng-option-checkbox {
   display: none; /* Ocultar los checkboxes predeterminados */
