@@ -505,6 +505,7 @@ export class ListadoComponent implements OnInit, AfterViewInit {
   onCountrySelect(selectedCountryId: number) {
 
     this.selectedCountryId = selectedCountryId;
+    this.selectedCityId=null;
     this.listaCiudades();
   }
   // onCitySelect(event: any) {
