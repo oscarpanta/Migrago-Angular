@@ -1,33 +1,57 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AnimationService {
 
-  constructor() {
-    this.initScrollListener();
-  }
+  private observer!: IntersectionObserver;
+  private observedElements: Set<ElementRef> = new Set();
+  constructor() {}
 
-  private initScrollListener() {
-    window.addEventListener('scroll', this.checkScrollPosition.bind(this));
-  }
+  observe(element: ElementRef, callback: () => void): void {
+    this.observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          callback();
+          // this.observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
 
-  private checkScrollPosition() {
-    const element = document.querySelector('.container__resenias');
-    if (element && this.isElementInViewport(element)) {
-      element.classList.add('animate__animated', 'animate__backInLeft');
-      window.removeEventListener('scroll', this.checkScrollPosition.bind(this)); // Remove listener after animation
+    if (element && element.nativeElement) {
+      this.observer.observe(element.nativeElement);
     }
   }
 
-  private isElementInViewport(el: Element): boolean {
-    const rect = el.getBoundingClientRect();
-    return (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
+  // observe(element: ElementRef, callback: () => void): void {
+  //   if (!this.observer) {
+  //     this.observer = new IntersectionObserver(entries => {
+  //       entries.forEach(entry => {
+  //         if (entry.isIntersecting) {
+  //           this.observedElements.forEach(observedElement => {
+  //             this.observer.unobserve(observedElement.nativeElement);
+  //           });
+  //           callback();
+  //         }
+  //       });
+  //     }, {
+  //       threshold: 0.1
+  //     });
+  //   }
+
+  //   if (element && element.nativeElement) {
+  //     this.observer.observe(element.nativeElement);
+  //     this.observedElements.add(element);
+  //   }
+  // }
+
+  disconnect(): void {
+    if (this.observer) {
+      this.observer.disconnect();
+      this.observedElements.clear();
+    }
   }
 }

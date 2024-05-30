@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import Swiper from 'swiper';
@@ -20,6 +20,8 @@ import { Country } from '../../interfaces/countries.interface';
 import { BlogService } from '../../services/blog.service';
 import { DateService } from 'src/app/core/utils/date.service';
 import * as AOS from 'aos';
+import { AnimationService } from 'src/app/core/utils/animation.service';
+import { CountUp } from 'countup.js';
 declare var $: any;
 //import * as $ from 'jquery';
 
@@ -32,8 +34,13 @@ declare var $: any;
 
 
 
-export class MainComponent implements OnInit,AfterViewInit{
+export class MainComponent implements OnInit,AfterViewInit,OnDestroy{
   @ViewChild('modalRegister') miModal: ElementRef | undefined
+  @ViewChild('migrantesInternacionales', { static: true }) migrantesInternacionales!: ElementRef;
+  @ViewChild('migrantespoblacion', { static: true }) migrantespoblacion!: ElementRef;
+  @ViewChild('migranteslatinoamericanos', { static: true }) migranteslatinoamericanos!: ElementRef;
+  @ViewChild('migrantesdolares', { static: true }) migrantesdolares!: ElementRef;
+
 
   selectedCountryId: number | null = null;
   countries: Country[] = []
@@ -56,12 +63,16 @@ export class MainComponent implements OnInit,AfterViewInit{
               private rutamigracionService: WaysMigrationService,
               private historiasService:StoriesService,
               private authService:AutenticacionService,private temasService:TemasService,private imagenservice: ImagenesService,
-              private blogService: BlogService, private fechaservice:DateService,
+              private blogService: BlogService, private fechaservice:DateService,private animacionservice:AnimationService
               ) {
 
               }
   ngAfterViewInit(): void {
     this.slideContent();
+    this.animacionservice.observe(this.migrantesInternacionales, this.startCountUp.bind(this, this.migrantesInternacionales, 281, {}));
+    this.animacionservice.observe(this.migrantespoblacion, this.startCountUp.bind(this, this.migrantespoblacion, 62, {}));
+    this.animacionservice.observe(this.migranteslatinoamericanos, this.startCountUp.bind(this, this.migranteslatinoamericanos, 43, {}));
+    this.animacionservice.observe(this.migrantesdolares, this.startCountUp.bind(this, this.migrantesdolares, 20000, { separator: '.' }));
 
   }
 
@@ -100,6 +111,7 @@ export class MainComponent implements OnInit,AfterViewInit{
 
   ngOnDestroy(): void {
     this.displayService.setNavigationVisibility(true);
+    this.animacionservice.disconnect();
   }
 
   // historias(){
@@ -242,6 +254,23 @@ export class MainComponent implements OnInit,AfterViewInit{
 
 
   }
+  private startCountUp(counter: ElementRef, endValue: number, options: any): void {
+    const defaultOptions = {
+      duration: 5 // Duración de la animación en segundos
+    };
+
+    const countUpOptions = { ...defaultOptions, ...options };
+    // counter.nativeElement.innerHTML = '';
+
+    const countUp = new CountUp(counter.nativeElement, endValue, countUpOptions);
+    if (!countUp.error) {
+      countUp.start();
+    } else {
+      console.error(countUp.error);
+    }
+
+  }
+
   listaPaises() {
     const requestData = {
       request: {
