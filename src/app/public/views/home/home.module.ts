@@ -13,10 +13,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainComponent } from './main/main.component';
 import { ModalComponent } from './modal/modal.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
-import { NgxSummernoteModule } from 'ngx-summernote';
+// import { NgxSummernoteModule } from 'ngx-summernote';
 import { NotZeroDirective } from 'src/app/core/directives/not-zero.directive';
 import { CoreModule } from 'src/app/core/core.module';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { PipesModule } from 'src/app/core/pipes/pipes.module';
 
 
 
@@ -40,8 +41,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgbModule,
     NgSelectModule,
    // NgbModalModule
-   NgxSummernoteModule,
-   CoreModule
+  //  NgxSummernoteModule,
+   CoreModule,
+   PipesModule
 
 
   ],
