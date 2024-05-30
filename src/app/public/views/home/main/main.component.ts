@@ -249,7 +249,7 @@ export class MainComponent implements OnInit,AfterViewInit,OnDestroy{
 
       }
 
-    }, 2000);
+    }, 5000);
 
 
 
