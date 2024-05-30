@@ -745,6 +745,9 @@ display: -webkit-box;
   text-overflow: ellipsis;
 
 }
+.texto p{
+  font-size: 13px;
+}
 .etiqueta{
 
   font-size: 10px;
